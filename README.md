@@ -27,7 +27,7 @@
 </figure>
 
 <div align="center"><figure>
-    <img src="./0-outros/logos/organizacao/nivel4.PNG" alt="nivel4">
+    <img src="./0-outros/logos/organizacao/nivel4.PNG" alt="nivel4"><br>
     <figcaption><small>Pasta com todo material da aula (vídeo), curso ou bootcamp.</small></figcaption>
 </figure></div>
 
