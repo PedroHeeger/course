@@ -37,12 +37,15 @@
 #### Estrutura:
 - A estrutura é composta por apenas um arquivo de script em Jupyter Notebook (**curso_066.ipynb**), utilizado para executar os códigos; um arquivo de Excel em CSV (**feedbacks.csv**), que é a base de dados; este arquivo de README e uma pasta contendo algumas imagens auxilares utilizadas nesse arquivo de README. A estrutura é exibida na imagem 01.
 
-![Imagem01](./img/img01.PNG)
+<figure>
+    <img src=".//img/img01.PNG" alt="img01" style="display: block; margin: 0 auto;">
+    <figcaption style="display: block; font-size: 9px;">Imagem 01.</figcaption>
+</figure>
 
 #### Desenvolvimento:
 Este projeto foi realizado em três aulas. 
 
-  ##### Aula 01:
+  - ##### Aula 01:
   Na aula 1, foi criado um arquivo de Excel no formato CSV com apenas uma planilha contendo duas colunas para ser nossa base de dados e salvamos no **Google Drive**. A primeira coluna referente a **nota**, com as notas que, hipoteticamente, os alunos deram para um Bootcamp qualquer da DIO, e a segunda coluna nomeada de **comentario** com os comentários que os alunos deram para esse mesmo Bootcamp.
 
   Utilizei a linguagem de programação **Python** no nosso ambiente de desenvolvimento **Google Colab** para escrever nosso arquivo de script em Jupyter Notebook. Iniciei o código utilizando a biblioteca **gdown** para baixar a base de dados para a pasta **/content** do sistema de arquivos no **Google Colab**. Através da biblioteca Pandas foi realizado a leitura do arquivo em CSV para um Dataframe e o output é mostrado na imagem 02.
@@ -63,11 +66,11 @@ Este projeto foi realizado em três aulas.
 
   ![Imagem05](./img/img05.PNG)
 
-  ##### Aula 02:
+  - ##### Aula 02:
   Nesta aula com o uso do módulo **pyplot** da biblioteca **matplotlib** foi construído um gráfico de colunas para determinar as zonas do NPS. Dividi o gráfico em quatro zonas: Crítico, Aperfeiçoamento, Qualidade e Excelência, cada zona com uma cor e uma faixa de valores no eixo X. Em seguida, inseri o valor calculado do NPS no gráfico e configurei o layout. Com o uso do módulo **patches** construí e inseri a legenda no gráfico. O resultado é exibido na imagem 06.
 
   ![Imagem06](./img/img06.PNG)
 
-  ##### Aula 03:
+  - ##### Aula 03:
   Na última aula, utilizei a biblioteca **openai** e configurei uma API Key na minha conta do site da [OpenAI](https://platform.openai.com/account/api-keys) para integrar com o ChatGPT. Criei uma função que utiliza os feedbacks da base de dados formatando as duas colunas para um padrão (nota-comentario). Em seguida construí uma variável para armazenar o prompt que o GPT irá executar. Com os feedbacks formatados e o prompt estabelecido, criei uma consulta e passei essas informações para o ChatGPT realizar uma análise de sentimento com base nessas informações, e pedi para ele classificar o feedback formatado em Positivo, Neutro ou Negativo. Realizei esse mesmo processo, retirando as notas do feedback, mantendo apenas o comentário.
 
