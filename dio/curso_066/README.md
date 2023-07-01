@@ -1,9 +1,9 @@
-# Dev Week - Ifood Ciência de Dados com Python
+# Dev Week - Ifood Ciência de Dados com Python   <img src="./img/dev_week.png" alt="dio" width="auto" height="45">
 
 
-#### Repositório: [course](https://github.com/PedroHeeger/course/blob/main/)   
-#### Plataforma: [dio](https://github.com/PedroHeeger/course/blob/main/dio)   
-#### Curso: [curso_066 (Dev Week - Ifood Ciência de Dados com Python)](https://github.com/PedroHeeger/course/blob/main/dio/curso_066)
+#### Repositório: [course](../../)   
+#### Plataforma: <a href="../">dio   <img src="../../outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>   
+#### Curso: [curso_066 (Dev Week - Ifood Ciência de Dados com Python)](../../dio/curso_066/)
 
 
 #### Tema:
@@ -11,11 +11,19 @@
 - Inteligência Artificial (AI)
 
 #### Ferramentas Utilizadas:
-- Linguagem de Programação: Python
-- Ambiente de Desenvolvimento (IDE): Google Colab; VS Code
-- Versionamento: Git
-- Repositório: GitHub
-- Bibliotecas: Gdown; Pandas; Matplotlib;
+- Linguagem de Programação: 
+  - Python   <img src="../../outros/logos/software/python.png" alt="dio" width="auto" height="25">
+- Ambiente de Desenvolvimento (IDE):
+  - Google Colab   <img src="../../outros/logos/software/google_colab.png" alt="dio" width="auto" height="25">
+  - VS Code   <img src="../../outros/logos/software/vscode.png" alt="dio" width="auto" height="25">
+- Versionamento: 
+  - Git   <img src="../../outros/logos/software/git.png" alt="dio" width="auto" height="25">
+- Repositório:
+  - GitHub   <img src="../../outros/logos/software/github.png" alt="dio" width="auto" height="25">
+- Bibliotecas: 
+  - Gdown   <img src="../../outros/logos/software/" alt="dio" width="auto" height="25">
+  - Matplotlib   <img src="../../outros/logos/software/matplotlib.png" alt="dio" width="auto" height="25">
+  - Pandas   <img src="../../outros/logos/software/pandas.png" alt="dio" width="auto" height="25">
 
 #### Objetivo:
 - O objetivo desse projeto prático é analisar a satisfação dos feedbacks dos talentos da DIO em relação a um Bootcamp qualquer (cujo os dados foram gerados hipoteticamente, apenas para fins didáticos). Essa análise é feita através do o cálculo do Net Promoter Score (NPS), uma métrica utilizada para medir..., para notas dada para esse Bootcamp. Sendo utilizado também as técnicas de Natural Language Processing (NLP) para analisar os sentimentos expressos nos comentários associados às notas.

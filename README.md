@@ -12,4 +12,4 @@
 Por enquanto, como este repositório e os outros dois estão em construção ainda, só está disponível nesse repositório a pasta da plataforma **DIO** (Digital Innovation One), com o curso **curso_066** (Dev Week - Ifood Ciência de Dados com Python).
 
 #### Plataformas:
-- <a href="./dio"><img src="./outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25">     dio</a>
+- <a href="./dio">dio   <img src="./outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
