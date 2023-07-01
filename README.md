@@ -26,8 +26,8 @@
     <figcaption><small>Terceiro Nível de Pastas em um repositório.</small></figcaption>
 </figure>
 
-<div style="text-aling: center;"><figure>
-    <img src="./0-outros/logos/organizacao/nivel4.PNG" alt="nivel4" style="display: block; margin: 0 auto;">
+<div align="center"><figure>
+    <img src="./0-outros/logos/organizacao/nivel4.PNG" alt="nivel4">
     <figcaption><small>Pasta com todo material da aula (vídeo), curso ou bootcamp.</small></figcaption>
 </figure></div>
 
