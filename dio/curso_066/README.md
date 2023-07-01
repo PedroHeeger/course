@@ -1,27 +1,28 @@
 # Dev Week - Ifood Ciência de Dados com Python
 
 
-Repositório: [course](https://github.com/PedroHeeger/course/blob/main/)
-Plataforma: [dio](https://github.com/PedroHeeger/course/blob/main/dio)
-Curso: [curso_066 (Dev Week - Ifood Ciência de Dados com Python)](https://github.com/PedroHeeger/course/blob/main/dio/curso_066)
+#### Repositório: [course](https://github.com/PedroHeeger/course/blob/main/)   
+#### Plataforma: [dio](https://github.com/PedroHeeger/course/blob/main/dio)   
+#### Curso: [curso_066 (Dev Week - Ifood Ciência de Dados com Python)](https://github.com/PedroHeeger/course/blob/main/dio/curso_066)
 
-Tema:
+
+#### Tema:
 - Ciência de Dados
 - Inteligência Artificial (AI)
 
-Ferramentas Utilizadas:
+#### Ferramentas Utilizadas:
 - Linguagem de Programação: Python
 - Ambiente de Desenvolvimento (IDE): Google Colab; VS Code
 - Versionamento: Git
 - Repositório: GitHub
 - Bibliotecas: Gdown; Pandas; Matplotlib;
 
-Objetivo:
-O objetivo desse projeto prático é analisar a satisfação dos feedbacks dos talentos da DIO em relação a um Bootcamp qualquer (cujo os dados foram gerados hipoteticamente, apenas para fins didáticos). Essa análise é feita através do o cálculo do Net Promoter Score (NPS), uma métrica utilizada para medir..., para notas dada para esse Bootcamp. Sendo utilizado também as técnicas de Natural Language Processing (NLP) para analisar os sentimentos expressos nos comentários associados às notas.
+#### Objetivo:
+- O objetivo desse projeto prático é analisar a satisfação dos feedbacks dos talentos da DIO em relação a um Bootcamp qualquer (cujo os dados foram gerados hipoteticamente, apenas para fins didáticos). Essa análise é feita através do o cálculo do Net Promoter Score (NPS), uma métrica utilizada para medir..., para notas dada para esse Bootcamp. Sendo utilizado também as técnicas de Natural Language Processing (NLP) para analisar os sentimentos expressos nos comentários associados às notas.
 
 Para isso, utilizaremos o cálculo do Net Promoter Score (NPS) e a aplicação de IA para analisar sentimentos dos comentários. Este projeto foi realizado em três aulas.
 
-Desenvolvimento:
+#### Desenvolvimento:
 
 Na aula 1, criamos um arquivo de Excel no formato CSV com apenas uma planilha contendo duas colunas para ser nossa base de dados e salvamos no **Google Drive**. A primeira coluna referente a **nota**, com as notas que, hipoteticamente, os alunos deram para um Bootcamp qualquer da DIO, e a segunda coluna nomeada de **comentario** com os comentários que os alunos deram para esse mesmo Bootcamp.
 Utilizamos a linguagem de programação **Python** no nosso ambiente de desenvolvimento **Google Colab** para escrever nosso script de código. 

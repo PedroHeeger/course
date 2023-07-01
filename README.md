@@ -1,3 +1,6 @@
+[//]: # (Variável de URL padrão)
+[url]: https://github.com/PedroHeeger/course/blob/main
+
 # COURSE
 
 ## EM CONSTRUÇÃO
@@ -11,5 +14,5 @@
 
 Por enquanto, como este repositório e os outros dois estão em construção ainda, só está disponível nesse repositório a pasta da plataforma **DIO** (Digital Innovation One), com o curso **curso_066** (Dev Week - Ifood Ciência de Dados com Python).
 
-#### Plataformas
-- [dio](https://github.com/PedroHeeger/course/blob/main/dio) ![dio](https://github.com/PedroHeeger/course/blob/main/outros/logos/plataforma/dio.jpeg)
+#### Plataformas:
+- [dio]([url]/dio) ![dio](https://github.com/PedroHeeger/course/blob/main/outros/logos/plataforma/dio.jpeg =50x50) 
