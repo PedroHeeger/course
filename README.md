@@ -1,6 +1,5 @@
-[//]: # (Variável de URL padrão)
-url: https://github.com/PedroHeeger/course/blob/main
-logos: https://github.com/PedroHeeger/course/blob/main/outros/logos/plataforma
+[url]: https://github.com/PedroHeeger/course/blob/main
+[logos]: url/outros/logos/plataforma
 
 # COURSE
 
