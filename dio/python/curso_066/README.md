@@ -79,7 +79,7 @@ Este projeto foi realizado em três aulas.
       print(nps)
     ```
 
-    O segundo paradigma (imagem 04) utilizado é o **Paradigma Funcional**, no qual criamos uma função para encapsular a lógica de cálculo do NPS apresentando uma separação de responsabilidades mais claras do que a versão imperativa, além de melhorias de código pontuais. 
+    O segundo paradigma utilizado é o **Paradigma Funcional**, no qual criamos uma função para encapsular a lógica de cálculo do NPS apresentando uma separação de responsabilidades mais claras do que a versão imperativa, além de melhorias de código pontuais. 
 
       ```python
       import pandas as pd
@@ -101,7 +101,7 @@ Este projeto foi realizado em três aulas.
       print(nps)
       ```
 
-    Já o terceiro paradigma (imagem 05) é o **Paradigma Orientado a Objetos (POO)**, neste, duas classes são definidas, onde **Feedback** representa um único feedback de usuário e **AnalisadorFeedback** é utilizado para o cálculo do NPS a partir de uma lista de Feedbacks. A POO fornece uma abstração mais clara dos dados e comportamentos envolvidos no cálculo do NPS.
+    Já o terceiro paradigma é o **Paradigma Orientado a Objetos (POO)**, neste, duas classes são definidas, onde **Feedback** representa um único feedback de usuário e **AnalisadorFeedback** é utilizado para o cálculo do NPS a partir de uma lista de Feedbacks. A POO fornece uma abstração mais clara dos dados e comportamentos envolvidos no cálculo do NPS.
 
       ```python
       # Criando a classe Feedback que conterá a nota e o comentário da base de dados
@@ -141,7 +141,7 @@ Este projeto foi realizado em três aulas.
       ```
 
   - ##### Aula 02:
-    Nesta aula com o uso do módulo **pyplot** da biblioteca **matplotlib** foi construído um gráfico de colunas para determinar as zonas do NPS. Dividi o gráfico em quatro zonas: Crítico, Aperfeiçoamento, Qualidade e Excelência, cada zona com uma cor e uma faixa de valores no eixo X. Em seguida, inseri o valor calculado do NPS no gráfico e configurei o layout. Com o uso do módulo **patches** construí e inseri a legenda no gráfico. O resultado é exibido na imagem 06.
+    Nesta aula com o uso do módulo **pyplot** da biblioteca **matplotlib** foi construído um gráfico de colunas para determinar as zonas do NPS. Dividi o gráfico em quatro zonas: Crítico, Aperfeiçoamento, Qualidade e Excelência, cada zona com uma cor e uma faixa de valores no eixo X. Em seguida, inseri o valor calculado do NPS no gráfico e configurei o layout. Com o uso do módulo **patches** construí e inseri a legenda no gráfico. O resultado é exibido na imagem 03.
 
       ```python
       import matplotlib.pyplot as plt
@@ -182,8 +182,8 @@ Este projeto foi realizado em três aulas.
       ```
     
     <div align="Center"><figure>
-      <img src=".//img/img06.PNG" alt="img06"><br>
-      <figcaption>Imagem 06.</figcaption>
+      <img src=".//img/img03.PNG" alt="img03"><br>
+      <figcaption>Imagem 03.</figcaption>
     </figure></div><br>
 
   - ##### Aula 03:
@@ -231,4 +231,3 @@ Este projeto foi realizado em três aulas.
       insigths = analisar_sentimentos(feedbacks)
       print(insigths)
       ```
-
