@@ -5,6 +5,8 @@
 #### Software/Assunto: <a href="../">python   <img src="../../../0-outros/logos/software/python.png" alt="python" width="auto" height="25"></a>
 #### Curso: <a href="./">curso_066 (Dev Week - Ifood Ciência de Dados com Python)   <img src="./img/dev_week.png" alt="curso_066" width="auto" height="25"></a>
 
+---
+
 #### Tema:
 - Ciência de Dados
 - Inteligência Artificial (AI)
