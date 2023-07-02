@@ -55,14 +55,27 @@ Este projeto foi realizado em três aulas.
       <figcaption>Imagem 02.</figcaption>
     </figure></div><br>
 
-    A partir da criação do Dataframe realizei o cálculo do **Net Promoter Score (NPS)**. O NPS é uma métrica utilizada para medir a experiência do cliente e prever o crescimento dos negócios. Ela fornece uma escala de 0 a 10 para determinar quem são os clientes Detratores (pontuação de 0 a 6), os Passivos (pontuação de 7 a 8), e os Promotores (pontuação de 9 a 10). Feito a determinação, a métrica utiliza a fórmula **NPS = % Promotores - % Detratores** para cálculo do NPS, descartando os clientes Passivos.
+    A partir da criação do Dataframe realizei o cálculo do **Net Promoter Score (NPS)**. O NPS é uma métrica utilizada para medir a experiência do cliente e prever o crescimento dos negócios. Ela fornece uma escala de 0 a 10 para determinar quem são os clientes Detratores (pontuação de 0 a 6), os Passivos (pontuação de 7 a 8), e os Promotores (pontuação de 9 a 10). A determinação é feita contando a quantidade de clientes Detratores e Promotores e calculando quanto porcento eles representam da quantidade total de notas, descartando os clientes Passivos. Feito a determinação, a métrica utiliza a fórmula **NPS = % Promotores - % Detratores** para cálculo do NPS.
 
     Construí três blocos de códigos com o mesmo processo, para cada bloco foi utilizando três paradigmas de programação diferentes. O primeiro paradigma utilizado, como apresentado na imagem 03, é o **Paradigma Imperativo**, onde a implementação é realizada de uma maneira imperativa, ou seja, os comandos são executados sequencialmente. 
 
-    <div align="Center"><figure>
-      <img src=".//img/img03.PNG" alt="img03"><br>
-      <figcaption>Imagem 03.</figcaption>
-    </figure></div><br>
+    ```# Selecionando apenas a coluna de nota do Dataframe
+    notas = dados['nota']
+
+    detratores = 0
+    promotores = 0
+
+    # Percorrendo a coluna de nota do Dataframe, verificando quantos são os Promotores e os Detratores
+    for nota in notas:
+      if nota >= 9:
+        promotores += 1
+      elif nota <= 6:
+        detratores += 1
+
+    # Calculando o NPS 
+    nps = (promotores - detratores) / len(notas) * 100
+
+    print(nps)```
 
     O segundo paradigma (imagem 04) utilizado é o **Paradigma Funcional**, no qual criamos uma função para encapsular a lógica de cálculo do NPS apresentando uma separação de responsabilidades mais claras do que a versão imperativa, além de melhorias de código pontuais. 
 
