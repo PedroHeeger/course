@@ -35,3 +35,4 @@ Por enquanto, como este repositório e os outros dois estão em construção, s�
 
 #### Plataformas:
 - <a href="./dio">dio   <img src="./0-outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
+- <a href="./xperiun">xperiun   <img src="./0-outros/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>
