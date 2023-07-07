@@ -1,4 +1,4 @@
-# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./img/logo_01.png" alt="curso_069" width="auto" height="65">
+# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./img/logo_01.png" alt="curso_069" width="auto" height="45">
 
 #### Repositório: [course](../../../)   
 #### Plataforma: <a href="../../">xperiun   <img src="../../../0-outros/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>   
