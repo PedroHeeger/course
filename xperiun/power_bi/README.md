@@ -9,4 +9,4 @@
 Essa pasta é referente a todos os cursos que realizei na plataforma Xperiun (Antiga Power BI Experience) referente ao software Power BI.
 
 #### Cursos:
-- <a href="./curso_069">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./curso_069/logo_01.png" alt="curso_069" width="auto" height="25"></a>
+- <a href="./curso_069">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./curso_069/img/logo_01.png" alt="curso_069" width="auto" height="25"></a>
