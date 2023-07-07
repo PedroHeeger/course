@@ -62,7 +62,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     ```
     Meta Atendimento = 3000
     ```
-
+         
     ```
     Meta Faturamento = 500000
     ```
@@ -72,7 +72,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     ```
     Total Faturamento = Sum(f_atendimento[Valor])
     ```
-
+        
     ```
     Total Atendimentos = DISTINCTCOUNT(f_atendimento[ID Atendimento])
     ```
@@ -126,18 +126,25 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     IF(
         [Total Atendimentos] > [Meta Atendimento],
         [Total Atendimentos] - [Meta Atendimento])
-  ```
+    ```
+  
+  Abaixo está a imagem 03, exibindo como ficou a tabela **Medidas** com as suas pastas e medidas criadas.
 
+  <div align="Center"><figure>
+    <img src="./img/img03.PNG" alt="img03"><br>
+    <figcaption>Imagem 03.</figcaption>
+  </figure></div><br>
+  
 ##### Report:
-O Report contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario**, não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual criou um mapa de calor entre os dias das semanas e os horários que mais tiveram quantidade de procedimentos (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
+  O Report contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario**, não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual criou um mapa de calor entre os dias das semanas e os horários que mais tiveram quantidade de procedimentos (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
 
-  ```
-  NomeDiaAbrev = Left(d_calendario[NomeDia], 3)
-  ```
+    ```
+    NomeDiaAbrev = Left(d_calendario[NomeDia], 3)
+    ```
 
-Na imagem 03, abaixo, é possível visualizar como ficou o Report.
+  Na imagem 04, abaixo, é possível visualizar como ficou o Report e acessar a página do relatório.
 
-<div align="Center"><figure>
-    <img src="./img/curso_069_report_01.PNG" alt="img03"><br>
-    <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
-</figure></div><br>
+  <div align="Center"><figure>
+      <img src="./img/curso_069_report_01.PNG" alt="img04"><br>
+      <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
+  </figure></div><br>
