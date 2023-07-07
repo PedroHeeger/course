@@ -42,7 +42,7 @@
   -  Um arquivo de **Power BI** para construção do Report.
 
 <div align="Center"><figure>
-    <img src=".//img/img01.PNG" alt="img01"><br>
+    <img src="./img/img01.PNG" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
@@ -59,75 +59,85 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
 ##### Criação das Medidas:
   A próxima etapa foi a criação de uma tabela vazia para servir como tabela de medidas, onde foram armazenados todos os cálculos realizados através das **Expressões DAX** e separadas por pastas para melhorar a organização da tabela. As duas primeiras medidas criadas foram as metas determinadas, **Meta Faturamento** (R$ 500 mil/mês) e **Meta Atendimentos** (3.000 /mês), ambas dentro da pasta **Meta Determinada**.
 
-  ```Meta Atendimento = 3000
-  ```
+    ```
+    Meta Atendimento = 3000
+    ```
 
-  ```Meta Faturamento = 500000
-  ```
+    ```
+    Meta Faturamento = 500000
+    ```
 
   Dentro da pasta **Total** foi armazenada duas outras medidas, uma para o total de faturamento (**Total Faturamento**) e outra para o total de atendimentos (**Total Atendimentos**). No Total de Atendimentos foi utilizado o **DISTINCTCOUNT**, pois um mesmo atendimento à um mesmo paciente pode ter diversos procedimentos, porém é apenas um atendimento. O resultado de **Total Faturamento** é apresentado no novo visual de cartão do Power BI.
 
-  ```Total Faturamento = Sum(f_atendimento[Valor])
-  ```
+    ```
+    Total Faturamento = Sum(f_atendimento[Valor])
+    ```
 
-  ```Total Atendimentos = DISTINCTCOUNT(f_atendimento[ID Atendimento])
-  ```
+    ```
+    Total Atendimentos = DISTINCTCOUNT(f_atendimento[ID Atendimento])
+    ```
 
   Outra medida criada foi a **Meta Faturamento Mensal** que conta a quantidade diferente de **MesAno** (quantidade de meses em cada ano) da tabela **d_calendario** que está contida na tabela fato (**f_atendimento**). Com a quantidade de meses determinada multiplica pela medida **Meta Faturamento** que contém a meta de faturamento (R$ 500 mil/mês). Qualquer filtro em relação a ano e mês vai interferir no cálculo da quantidade de meses e consequentemente na **Meta Faturamento Mensal**. Esta medida está armazenada na pasta **Desempenho** da tabela de medidas e a exibição do resultado é mostrado no novo visual de cartão do Power BI.
 
-  ```Meta Faturamento Mensal = 
-  VAR vQtdMeses =
-  CALCULATE(
-      DISTINCTCOUNT(d_calendario[MesAno]),
-      f_atendimento
-  )
-  Return
-  vQtdMeses * [Meta Faturamento]
-  ```
+    ```
+    Meta Faturamento Mensal = 
+    VAR vQtdMeses =
+    CALCULATE(
+        DISTINCTCOUNT(d_calendario[MesAno]),
+        f_atendimento
+    )
+    Return
+    vQtdMeses * [Meta Faturamento]
+    ```
   A medida **% Faturamento Sobre Meta Mensal**, que está também na pasta **Desempenho**, calcula o percentual do **Total Faturamento** sobre a medida **Meta Faturamento Mensal**, formatando para percentual e determinando se está abaixo ou acima da meta. O resultado é exibido em visual de cartão.
 
-  ```% Faturamento Sobre Meta Mensal = 
-  VAR vPercentual = DIVIDE([Total Faturamento], [Meta Faturamento Mensal]) -1
-  Return
+    ```
+    % Faturamento Sobre Meta Mensal = 
+    VAR vPercentual = DIVIDE([Total Faturamento], [Meta Faturamento Mensal]) -1
+    Return
 
-  IF(
-      vPercentual < 0,
-      "🔽" & FORMAT(vPercentual, "0%") & " abaixo da meta de faturamento mensal.",
-      "🔼" & FORMAT(vPercentual, "0%") & " acima da meta de faturamento mensal."
-  )
-  ```
+    IF(
+        vPercentual < 0,
+        "🔽" & FORMAT(vPercentual, "0%") & " abaixo da meta de faturamento mensal.",
+        "🔼" & FORMAT(vPercentual, "0%") & " acima da meta de faturamento mensal."
+    )
+    ```
 
   A medida **% Faturamento Sobre Meta Anual**, armazenada na pasta **Desempenho**, realiza o mesmo cálculo da medida anterior, porém ao invés de ser Mensal, é calculado o percentual do **Total Faturamento** sobre a medida **Meta Faturamento** vezes 12 meses, para determinar anulamente. O resultado é apresentado em porcentagem em um gráfico de velocímetro.
 
-  ```% Faturamento Sobre Meta Anual = DIVIDE([Total Faturamento], [Meta Faturamento] * 12)
-  ```
+    ```
+    % Faturamento Sobre Meta Anual = DIVIDE([Total Faturamento], [Meta Faturamento] * 12)
+    ```
 
   Nesta próxima medida **Até a Meta** foi criado uma condicional para determinar se a medida **Total Atendimentos** é maior que a medida **Meta Atendimento** que contém a meta de atendimento determinada (3.000 /mês), caso seja verdadeiro é utilizado a medida **Meta Atendimento**, caso contrário utiliza a medida **Total Atendimentos**. O Objetivo é dividir em um gráfico de colunas empilhadas a parte da coluna que está abaixo da linha da meta para formatar com uma cor referente a meta de atendimentos. Essa medida foi armazenada na pasta **Meta Gráfico** na tabela de medidas e a exibição é apresentada no gráfico de coluna empilhada.
 
-  ```Até a Meta = 
-  IF(
-      [Total Atendimentos] > [Meta Atendimento],
-      [Meta Atendimento],
-      [Total Atendimentos])
-  ```
+    ```
+    Até a Meta = 
+    IF(
+        [Total Atendimentos] > [Meta Atendimento],
+        [Meta Atendimento],
+        [Total Atendimentos])
+    ```
 
   A última medida criada **Acima da Meta**, também na pasta **Meta Gráfico**, possui a mesma condicional da medida anterior, porém só tem valor para caso o resultado da condicional seja verdadeiro. Então a medida calcula a parte acima da meta, ou seja, a parte do gráfico de coluna empilhada que está acima da linha de meta. O resultado dessa medida é apresentado no mesmo gráfico da medida anterior, já que as duas medidas servem para dividir a coluna em duas partes.
 
-  ```Acima da Meta = 
-  IF(
-      [Total Atendimentos] > [Meta Atendimento],
-      [Total Atendimentos] - [Meta Atendimento])
+    ```
+    Acima da Meta = 
+    IF(
+        [Total Atendimentos] > [Meta Atendimento],
+        [Total Atendimentos] - [Meta Atendimento])
   ```
 
 ##### Report:
 O Report contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario**, não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual criou um mapa de calor entre os dias das semanas e os horários que mais tiveram quantidade de procedimentos (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
 
-```NomeDiaAbrev = Left(d_calendario[NomeDia], 3)
-```
+  ```
+  NomeDiaAbrev = Left(d_calendario[NomeDia], 3)
+  ```
 
 Na imagem 03, abaixo, é possível visualizar como ficou o Report.
 
 <div align="Center"><figure>
     <img src="./img/curso_069_report_01.PNG" alt="img03"><br>
-    <figcaption>Imagem 03: Report.</figcaption>
+    <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
 </figure></div><br>
