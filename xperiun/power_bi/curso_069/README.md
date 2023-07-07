@@ -1,4 +1,4 @@
-# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./img/logo_01.png" alt="curso_069" width="auto" height="45">
+# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./img/logo_01.png" alt="curso_069" width="auto" height="65">
 
 #### Repositório: [course](../../../)   
 #### Plataforma: <a href="../../">xperiun   <img src="../../../0-outros/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>   
@@ -30,16 +30,16 @@
 ---
 
 #### Objetivo:
-- O objetivo desse projeto prático foi construir um Report em **Power BI** para análises de dados de uma empresa fictícia de laboratório, chamada **HealthLab Laboratório**. Para essa análise foi levada em consideração duas metas determinadas, uma para faturamento (R$ 500 mil/mês) e outra para quantidade de atendimentos (3.000 /mês), de forma que seja possível perceber rapidamente o desempenho do setor de atendimento do laboratório.
+- O objetivo desse projeto prático foi construir um Report em **Power BI** para análises de dados de uma empresa fictícia de laboratório, chamada **HealthLab Laboratório**. Para essa análise foi levada em consideração duas metas determinadas, uma para faturamento (R$ 500 mil/mês) e outra para quantidade de atendimentos (3.000 /mês), de forma que fosse possível perceber rapidamente o desempenho do setor de atendimento do laboratório.
 
 #### Estrutura:
-- A estrutura (imagem 01) é composta por:
+- A estrutura (Imagem 01) é composta por:
   -  Uma pasta com a base de dados que são quatro arquivos de **Excel** em CSV;
   -  Um arquivo em **PowerPoint** para criação do layout do Report;
   -  Um arquivo de imagem **SVG** que é o layout do PowerPoint exportado;
   -  Um arquivo **PDF** com as instruções do Desafio;
   -  Uma pasta de imagens contendo dois arquivos de imagens, criados através de dois sites de IA para geração de logomarcas (**Brandmark** e **Looka**), além de imagens auxiliares na construção desse arquivo de README;
-  -  Um arquivo de **Power BI** para construção do Report.
+  -  Um arquivo de **Power BI** para construção do Report. Para visualizar esse Report completo <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">clique aqui</a>.
 
 <div align="Center"><figure>
     <img src="./img/img01.PNG" alt="img01"><br>
@@ -49,7 +49,7 @@
 #### Desenvolvimento:
 Este projeto foi desenvolvido em apenas uma aula e iniciou com um pequeno processo de **ETL** (Extração, Transformação e Carregamento) dos dados no **Power Query**, dentro do Power BI. Foi realizado o carregamento dos quatros arquivos de **Excel** em CSV, que formam a base de dados no **Power Query**. Cada arquivo representando uma tabela, sendo três tabelas **dimensões** (d_convênio, d_procedimento, d_recepcionista) e uma tabela **fato** (f_atendimentos). Para as tabelas dimensões não foi necessário nenhuma transformação, enquanto na tabela fato a coluna **Data/Hora** foi dividida em duas, uma para **Data** e outro para **Hora**, para facilitar o trabalho durante a construção dos gráficos.
 
-Ainda no editor do **Power Query**, foi construído duas consultas vazias para elaboração das tabelas dimensões **Calendário** e **Hora**. Essas tabelas foram criadas através de arquivos padrões de scritps em **Linguagem M** para geração das mesmas. Finalizado o processo de transformação, as Queries foram carregadas para dentro do **Power BI** e em seguida foi realizado o relacionamento entre as tabelas em que o relacionamento não foi indentificado automaticamente pelo **Power BI**. Neste caso foram as tabelas dimensões criadas **Calendário** (d_calendario) e **Hora** (d_hora) que se relacionaram com a tabela fato através das colunas Data e Hora. A imagem 02 a seguir ilustra como ficou a modelagem dos dados.
+Ainda no editor do **Power Query**, foi construído duas consultas vazias para elaboração das tabelas dimensões **Calendário** e **Hora**. Essas tabelas foram criadas através de arquivos padrões de scritps em **Linguagem M**, sendo que esses arquivos não fazem parte do material do curso, foram utilizado apenas para copiar e colar o código. Finalizado o processo de transformação, as Queries foram carregadas para dentro do **Power BI** e em seguida foi realizado o relacionamento entre as tabelas em que o relacionamento não foi indentificado automaticamente pelo **Power BI**. Neste caso foram as tabelas dimensões criadas **Calendário** (d_calendario) e **Hora** (d_hora) que se relacionaram com a tabela fato através das colunas **Data** e **Hora**. A imagem 02 a seguir ilustra como ficou a modelagem dos dados.
 
 <div align="Center"><figure>
     <img src="./img/img02.PNG" alt="img02"><br>
@@ -67,7 +67,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     Meta Faturamento = 500000
     ```
 
-  Dentro da pasta **Total** foi armazenada duas outras medidas, uma para o total de faturamento (**Total Faturamento**) e outra para o total de atendimentos (**Total Atendimentos**). No Total de Atendimentos foi utilizado o **DISTINCTCOUNT**, pois um mesmo atendimento à um mesmo paciente pode ter diversos procedimentos, porém é apenas um atendimento. O resultado de **Total Faturamento** é apresentado no novo visual de cartão do Power BI.
+  Dentro da pasta **Total** foi armazenada duas outras medidas, uma para o total de faturamento (**Total Faturamento**) e outra para o total de atendimentos (**Total Atendimentos**). No Total de Atendimentos foi utilizado o **DISTINCTCOUNT**, pois um mesmo atendimento a um mesmo paciente pode ter diversos procedimentos, porém é apenas um atendimento. O resultado de **Total Faturamento** foi apresentado no novo visual de cartão do Power BI.
 
     ```
     Total Faturamento = Sum(f_atendimento[Valor])
@@ -77,7 +77,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     Total Atendimentos = DISTINCTCOUNT(f_atendimento[ID Atendimento])
     ```
 
-  Outra medida criada foi a **Meta Faturamento Mensal** que conta a quantidade diferente de **MesAno** (quantidade de meses em cada ano) da tabela **d_calendario** que está contida na tabela fato (**f_atendimento**). Com a quantidade de meses determinada multiplica pela medida **Meta Faturamento** que contém a meta de faturamento (R$ 500 mil/mês). Qualquer filtro em relação a ano e mês vai interferir no cálculo da quantidade de meses e consequentemente na **Meta Faturamento Mensal**. Esta medida está armazenada na pasta **Desempenho** da tabela de medidas e a exibição do resultado é mostrado no novo visual de cartão do Power BI.
+  Outra medida criada foi a **Meta Faturamento Mensal** que conta a quantidade diferente de **MesAno** (quantidade de meses em cada ano) da tabela **d_calendario** que está contida na tabela fato (**f_atendimento**). Com a quantidade de meses determinada, foi multiplicado pela medida **Meta Faturamento** que contém a meta de faturamento (R$ 500 mil/mês). Qualquer filtro em relação ao ano e mês vai interferir no cálculo da quantidade de meses e consequentemente na **Meta Faturamento Mensal**. Esta medida foi armazenada na pasta **Desempenho** da tabela de medidas e a exibição do resultado foi mostrado no novo visual de cartão do Power BI.
 
     ```
     Meta Faturamento Mensal = 
@@ -89,7 +89,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     Return
     vQtdMeses * [Meta Faturamento]
     ```
-  A medida **% Faturamento Sobre Meta Mensal**, que está também na pasta **Desempenho**, calcula o percentual do **Total Faturamento** sobre a medida **Meta Faturamento Mensal**, formatando para percentual e determinando se está abaixo ou acima da meta. O resultado é exibido em visual de cartão.
+  A medida **% Faturamento Sobre Meta Mensal**, que está também na pasta **Desempenho**, calcula o percentual do **Total Faturamento** sobre a medida **Meta Faturamento Mensal**, formatando para percentual e determinando se está abaixo ou acima da meta. O resultado foi exibido em visual de cartão.
 
     ```
     % Faturamento Sobre Meta Mensal = 
@@ -103,13 +103,13 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     )
     ```
 
-  A medida **% Faturamento Sobre Meta Anual**, armazenada na pasta **Desempenho**, realiza o mesmo cálculo da medida anterior, porém ao invés de ser Mensal, é calculado o percentual do **Total Faturamento** sobre a medida **Meta Faturamento** vezes 12 meses, para determinar anulamente. O resultado é apresentado em porcentagem em um gráfico de velocímetro.
+  A medida **% Faturamento Sobre Meta Anual**, armazenada na pasta **Desempenho**, realiza o mesmo cálculo da medida anterior, porém ao invés de ser mensal, é calculado o percentual do **Total Faturamento** sobre a medida **Meta Faturamento** vezes 12 meses, para determinar o anual. O resultado foi apresentado em porcentagem em um gráfico de velocímetro.
 
     ```
     % Faturamento Sobre Meta Anual = DIVIDE([Total Faturamento], [Meta Faturamento] * 12)
     ```
 
-  Nesta próxima medida **Até a Meta** foi criado uma condicional para determinar se a medida **Total Atendimentos** é maior que a medida **Meta Atendimento** que contém a meta de atendimento determinada (3.000 /mês), caso seja verdadeiro é utilizado a medida **Meta Atendimento**, caso contrário utiliza a medida **Total Atendimentos**. O Objetivo é dividir em um gráfico de colunas empilhadas a parte da coluna que está abaixo da linha da meta para formatar com uma cor referente a meta de atendimentos. Essa medida foi armazenada na pasta **Meta Gráfico** na tabela de medidas e a exibição é apresentada no gráfico de coluna empilhada.
+  Nesta próxima medida **Até a Meta** foi criado uma condicional para determinar se a medida **Total Atendimentos** é maior que a medida **Meta Atendimento** que contém a meta de atendimento determinada (3.000 /mês), ou seja, se a quantidad de atendimentos atingiu a meta. Caso seja verdadeiro, é utilizado a medida **Meta Atendimento**, caso contrário utiliza a medida **Total Atendimentos**. O Objetivo foi dividir em um gráfico de colunas empilhadas a parte da coluna que está abaixo da linha da meta para formatar com uma cor referente a meta de atendimentos. Essa medida foi armazenada na pasta **Meta Gráfico** na tabela de medidas e a exibição foi apresentada no gráfico de coluna empilhada.
 
     ```
     Até a Meta = 
@@ -119,7 +119,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
         [Total Atendimentos])
     ```
 
-  A última medida criada **Acima da Meta**, também na pasta **Meta Gráfico**, possui a mesma condicional da medida anterior, porém só tem valor para caso o resultado da condicional seja verdadeiro. Então a medida calcula a parte acima da meta, ou seja, a parte do gráfico de coluna empilhada que está acima da linha de meta. O resultado dessa medida é apresentado no mesmo gráfico da medida anterior, já que as duas medidas servem para dividir a coluna em duas partes.
+  A última medida criada **Acima da Meta**, também na pasta **Meta Gráfico**, possui a mesma condicional da medida anterior, porém só tem valor para caso o resultado da condicional seja verdadeiro. Então a medida calcula a parte acima da meta, ou seja, a parte do gráfico de coluna empilhada que está acima da linha de meta. O resultado dessa medida foi apresentado no mesmo gráfico da medida anterior, já que as duas medidas serviram para dividir a coluna em duas partes.
 
     ```
     Acima da Meta = 
@@ -128,7 +128,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
         [Total Atendimentos] - [Meta Atendimento])
     ```
   
-  Abaixo está a imagem 03, exibindo como ficou a tabela **Medidas** com as suas pastas e medidas criadas.
+  Abaixo está a imagem 03, exibindo como ficou a tabela **Medidas** com as suas respectivas pastas e medidas criadas.
 
   <div align="Center"><figure>
     <img src="./img/img03.PNG" alt="img03"><br>
@@ -136,7 +136,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
   </figure></div><br>
   
 ##### Report:
-  O Report contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario**, não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual criou um mapa de calor entre os dias das semanas e os horários que mais tiveram quantidade de procedimentos (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
+  O Report (relatório) contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último utilizado para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario** não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual exibiu um mapa de calor entre os dias da semana e os horários que mais tiveram quantidade de procedimentos realizados (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
 
     ```
     NomeDiaAbrev = Left(d_calendario[NomeDia], 3)
