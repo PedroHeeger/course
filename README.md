@@ -33,6 +33,8 @@
 
 Por enquanto, como este repositório e os outros dois estão em construção, só está disponível nesse repositório a pasta da plataforma **DIO** (Digital Innovation One), com o curso **curso_066** (Dev Week - Ifood Ciência de Dados com Python).
 
+Obs.: Os arquivos contidos dentro da pasta do bootcamp, curso ou vídeo (aula), podem não estar disponíveis no GitHub, com o objetivo de diminuir a quantidade de arquivos armazenados que não são versionados como arquivos de Excel (CSV), Power BI, PowerPoint, e de imagens. Esses arquivos estão armazenados no Google Drive Pessoal. São versionados apenas arquivos relavantes e arquivos de README explicando o bootcamp, curso ou vídeo (aula).
+
 #### Plataformas:
 - <a href="./dio">dio   <img src="./0-outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
 - <a href="./xperiun">xperiun   <img src="./0-outros/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>
