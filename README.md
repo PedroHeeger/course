@@ -12,14 +12,14 @@
     <figcaption>Primeiro Nível de Pastas em um repositório.</figcaption>
 </figure></div><br>
 
-- Segundo Nível de Pastas: Um segundo nível de pastas é criado para pastas que contém muito material, sendo assim divididas por nome do software ou assunto (python, power_bi, mysql, javascript, analise_dados, etc.). 
+- Segundo Nível de Pastas: Um segundo nível de pastas é criado para pastas que contém muitos materiais, sendo assim divididas por nome do software ou assunto (python, power_bi, mysql, javascript, analise_dados, etc.). 
 
 <div align="center"><figure>
     <img src="./0-outros/logos/organizacao/nivel2.PNG" alt="nivel2"><br>
     <figcaption>Segundo Nível de Pastas em um repositório.</figcaption>
 </figure></div><br>
 
-- Terceiro Nível de Pastas: Por fim, o terceiro nível possui a pasta, indicada com um número de ordem para controle, onde terá todo material da aula (vídeo), curso ou bootcamp que realizei nos seus respectivos repositórios. Nessa pasta pode ter outras subpastas específicas, além de arquivos, todos referente a essa aula (vídeo), curso ou bootcamp específico.
+- Terceiro Nível de Pastas: Por fim, o terceiro nível possui a pasta, indicada com um número de ordem para controle, onde terá todo material da aula (vídeo), curso ou bootcamp que realizei nos seus respectivos repositórios. Nessa pasta pode ter outras subpastas específicas, além de arquivos, todos referente a aula (vídeo), curso ou bootcamp específico.
 
 <div align="center"><figure>
     <img src="./0-outros/logos/organizacao/nivel3.PNG" alt="nivel3"><br>
@@ -31,9 +31,7 @@
     <figcaption>Pasta com todo material da aula (vídeo), curso ou bootcamp.</figcaption>
 </figure></div><br>
 
-Por enquanto, como este repositório e os outros dois estão em construção, só está disponível nesse repositório a pasta da plataforma **DIO** (Digital Innovation One), com o curso **curso_066** (Dev Week - Ifood Ciência de Dados com Python).
-
-Obs.: Os arquivos contidos dentro da pasta do bootcamp, curso ou vídeo (aula), podem não estar disponíveis no GitHub, com o objetivo de diminuir a quantidade de arquivos armazenados que não são versionados como arquivos de Excel (CSV), Power BI, PowerPoint, e de imagens. Esses arquivos estão armazenados no Google Drive Pessoal. São versionados apenas arquivos relavantes e arquivos de README explicando o bootcamp, curso ou vídeo (aula).
+Obs.: Alguns arquivos contidos dentro da pasta do bootcamp, curso ou vídeo (aula), podem não estar disponíveis no GitHub, com o objetivo de diminuir a quantidade de arquivos armazenados que não são versionados como arquivos de Excel (CSV), Power BI, PowerPoint, e de imagens. Esses arquivos estão armazenados no Google Drive Pessoal. São versionados apenas arquivos relavantes e arquivos de README explicando o bootcamp, curso ou vídeo (aula).
 
 #### Plataformas:
 - <a href="./dio">dio   <img src="./0-outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
