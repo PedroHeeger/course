@@ -3,7 +3,7 @@
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">xperiun   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>   
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
-### Course: <a href="./">curso_066 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./0-aux/logo_1.png" alt="curso_069" width="auto" height="25"></a>
+### Course: <a href="./">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./0-aux/logo_1.png" alt="curso_069" width="auto" height="25"></a>
 
 ---
 
