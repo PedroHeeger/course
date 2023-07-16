@@ -12,19 +12,19 @@
 
 ### Used Tools:
 - BI Tool: 
-  - Power BI   <img src="../../../0-outros/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25">
-  - Power Query <img src="../../../0-outros/logos/software/microsoft_power_query.png" alt="power_query" width="auto" height="25">
+  - Power BI   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25">
+  - Power Query <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_power_query.png" alt="power_query" width="auto" height="25">
 - Integrated Development Environment (IDE):
-  - VS Code   <img src="../../../0-outros/logos/software/vscode.png" alt="vscode" width="auto" height="25">
+  - VS Code   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
 - Versioning: 
-  - Git   <img src="../../../0-outros/logos/software/git.png" alt="git" width="auto" height="25">
+  - Git   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="auto" height="25">
 - Repository:
-  - GitHub   <img src="../../../0-outros/logos/software/github.png" alt="github" width="auto" height="25">
+  - GitHub   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github" width="auto" height="25">
 - Others:
-  - Google Drive <img src="../../../0-outros/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
-  - Excel <img src="../../../0-outros/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
-  - Brandmark <img src="../../../0-outros/logos/sites/ai_brandmark.png" alt="brandmark" width="auto" height="25">
-  - Looka <img src="../../../0-outros/logos/sites/ai_looka.svg" alt="looka" width="auto" height="25">
+  - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
+  - Excel <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
+  - Brandmark <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/sites/ai_brandmark.png" alt="brandmark" width="auto" height="25">
+  - Looka <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/sites/ai_looka.svg" alt="looka" width="auto" height="25">
   - Linguagem M e Expressões DAX
 
 ---
@@ -42,7 +42,7 @@
   -  Um arquivo de **Power BI** para construção do Report. Para visualizar esse Report completo <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">clique aqui</a>.
 
 <div align="Center"><figure>
-    <img src="./img/img01.PNG" alt="img01"><br>
+    <img src="./0-aux/img01.PNG" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
@@ -52,7 +52,7 @@ Este projeto foi desenvolvido em apenas uma aula e iniciou com um pequeno proces
 Ainda no editor do **Power Query**, foi construído duas consultas vazias para elaboração das tabelas dimensões **Calendário** e **Hora**. Essas tabelas foram criadas através de arquivos padrões de scritps em **Linguagem M**, sendo que esses arquivos não fazem parte do material do curso, foram utilizado apenas para copiar e colar o código. Finalizado o processo de transformação, as Queries foram carregadas para dentro do **Power BI** e em seguida foi realizado o relacionamento entre as tabelas em que o relacionamento não foi indentificado automaticamente pelo **Power BI**. Neste caso foram as tabelas dimensões criadas **Calendário** (d_calendario) e **Hora** (d_hora) que se relacionaram com a tabela fato através das colunas **Data** e **Hora**. A imagem 02 a seguir ilustra como ficou a modelagem dos dados.
 
 <div align="Center"><figure>
-    <img src="./img/img02.PNG" alt="img02"><br>
+    <img src="./0-aux/img02.PNG" alt="img02"><br>
     <figcaption>Imagem 02.</figcaption>
 </figure></div><br>
 
@@ -131,7 +131,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
   Abaixo está a imagem 03, exibindo como ficou a tabela **Medidas** com as suas respectivas pastas e medidas criadas.
 
   <div align="Center"><figure>
-    <img src="./img/img03.PNG" alt="img03"><br>
+    <img src="./0-aux/img03.PNG" alt="img03"><br>
     <figcaption>Imagem 03.</figcaption>
   </figure></div><br>
   
@@ -145,6 +145,6 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
   Na imagem 04, abaixo, é possível visualizar como ficou o Report e acessar a página do relatório.
 
   <div align="Center"><figure>
-      <img src="./img/curso_069_report_01.PNG" alt="img04"><br>
+      <img src="./0-aux/curso_069_report_01.PNG" alt="img04"><br>
       <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
   </figure></div><br>

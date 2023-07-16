@@ -15,21 +15,21 @@
 - Programming Language: 
   - Python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="25">
 - Integrated Development Environment (IDE):
-  - Google Colab   <img src="../../../0-outros/logos/software/google_colab.png" alt="google_colab" width="auto" height="25">
-  - VS Code   <img src="../../../0-outros/logos/software/vscode.png" alt="vscode" width="auto" height="25">
+  - Google Colab   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_colab.png" alt="google_colab" width="auto" height="25">
+  - VS Code   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
 - Versioning: 
-  - Git   <img src="../../../0-outros/logos/software/git.png" alt="git" width="auto" height="25">
+  - Git   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="auto" height="25">
 - Repository:
-  - GitHub   <img src="../../../0-outros/logos/software/github.png" alt="github" width="auto" height="25">
+  - GitHub   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github" width="auto" height="25">
 - Library: 
-  - Gdown   <img src="../../../0-outros/logos/software/google_drive.png" alt="gdown" width="auto" height="25">
-  - Matplotlib   <img src="../../../0-outros/logos/software/matplotlib.png" alt="matplotlib" width="auto" height="25">
-  - Pandas   <img src="../../../0-outros/logos/software/pandas.png" alt="pandas" width="auto" height="25">
-  - Openai   <img src="../../../0-outros/logos/software/openai.png" alt="openai" width="auto" height="25">
+  - Gdown   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="gdown" width="auto" height="25">
+  - Matplotlib   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/matplotlib.png" alt="matplotlib" width="auto" height="25">
+  - Pandas   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="pandas" width="auto" height="25">
+  - Openai   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/openai.png" alt="openai" width="auto" height="25">
 - Others:
-  - Google Drive <img src="../../../0-outros/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
-  - Excel <img src="../../../0-outros/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
-  - ChatGPT <img src="../../../0-outros/logos/software/chatgpt.png" alt="chat_gpt" width="auto" height="25">
+  - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
+  - Excel <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
+  - ChatGPT <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/chatgpt.png" alt="chat_gpt" width="auto" height="25">
 
 ---
 
@@ -40,7 +40,7 @@
 - A estrutura é composta por apenas um arquivo de script em Jupyter Notebook (**curso_066.ipynb**), utilizado para executar os códigos; um arquivo de Excel em CSV (**feedbacks.csv**), que é a base de dados; este arquivo de README e uma pasta contendo algumas imagens auxilares utilizadas nesse arquivo de README. A estrutura é exibida na imagem 01.
 
 <div align="Center"><figure>
-    <img src=".//img/img01.PNG" alt="img01"><br>
+    <img src="./0-aux/img01.PNG" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
@@ -53,7 +53,7 @@ Este projeto foi realizado em três aulas.
     Utilizei a linguagem de programação **Python** no nosso ambiente de desenvolvimento **Google Colab** para escrever nosso arquivo de script em Jupyter Notebook. Iniciei o código utilizando a biblioteca **gdown** para baixar a base de dados para a pasta **/content** do sistema de arquivos no **Google Colab**. Através da biblioteca Pandas foi realizado a leitura do arquivo em CSV para um Dataframe e o output é mostrado na imagem 02.
 
     <div align="Center"><figure>
-      <img src=".//img/img02.PNG" alt="img02"><br>
+      <img src="./0-aux/img02.PNG" alt="img02"><br>
       <figcaption>Imagem 02.</figcaption>
     </figure></div><br>
 
@@ -184,7 +184,7 @@ Este projeto foi realizado em três aulas.
       ```
     
     <div align="Center"><figure>
-      <img src=".//img/img03.PNG" alt="img03"><br>
+      <img src="./0-aux/img03.PNG" alt="img03"><br>
       <figcaption>Imagem 03.</figcaption>
     </figure></div><br>
 
