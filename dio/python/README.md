@@ -1,12 +1,12 @@
-# Python   <img src="../../0-outros/logos/software/python.png" alt="python" width="auto" height="45">
+# Python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="45">
 
-#### Repositório: [course](../../)
-#### Plataforma: <a href="../">dio   <img src="../../0-outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
-#### Software/Assunto: <a href="./">python   <img src="../../0-outros/logos/software/python.png" alt="python" width="auto" height="25"></a>
+### Repository: [course](../../)
+### Platform: <a href="../">dio   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
+#### Software/Subject: <a href="./">python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="25"></a>
 
 ---
 
-Essa pasta é referente a todos os cursos que realizei na plataforma DIO (Digital Innovation One) referente ao software Python.
+This folder refers to all the courses I took on the Digital Innovation One (DIO) platform regarding Python software.
 
-#### Cursos:
-- <a href="./curso_066">curso_066 (Dev Week - Ifood Ciência de Dados com Python)   <img src="./curso_066/img/dev_week.png" alt="curso_066" width="auto" height="25"></a>
+### Courses:
+- <a href="./curso_066">curso_066 (Dev Week - Ifood Ciência de Dados com Python)   <img src="./curso_066/0-aux/dev_week.png" alt="curso_066" width="auto" height="25"></a>

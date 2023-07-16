@@ -1,26 +1,26 @@
-# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./img/logo_1.png" alt="curso_069" width="auto" height="45">
+# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./0-aux/logo_1.png" alt="curso_069" width="auto" height="45">
 
-#### Repositório: [course](../../../)   
-#### Plataforma: <a href="../../">xperiun   <img src="../../../0-outros/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>   
-#### Software/Assunto: <a href="../">power_bi   <img src="../../../0-outros/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
-#### Curso: <a href="./">curso_066 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./img/logo_1.png" alt="curso_069" width="auto" height="25"></a>
+### Repository: [course](../../../)   
+### Platform: <a href="../../">xperiun   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>   
+### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
+### Course: <a href="./">curso_066 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./0-aux/logo_1.png" alt="curso_069" width="auto" height="25"></a>
 
 ---
 
-#### Tema:
+### Theme:
 - Data Analysis
 
-#### Ferramentas Utilizadas:
-- Ferramenta de BI: 
+### Used Tools:
+- BI Tool: 
   - Power BI   <img src="../../../0-outros/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25">
   - Power Query <img src="../../../0-outros/logos/software/microsoft_power_query.png" alt="power_query" width="auto" height="25">
-- Ambiente de Desenvolvimento (IDE):
+- Integrated Development Environment (IDE):
   - VS Code   <img src="../../../0-outros/logos/software/vscode.png" alt="vscode" width="auto" height="25">
-- Versionamento: 
+- Versioning: 
   - Git   <img src="../../../0-outros/logos/software/git.png" alt="git" width="auto" height="25">
-- Repositório:
+- Repository:
   - GitHub   <img src="../../../0-outros/logos/software/github.png" alt="github" width="auto" height="25">
-- Outros:
+- Others:
   - Google Drive <img src="../../../0-outros/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
   - Excel <img src="../../../0-outros/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
   - Brandmark <img src="../../../0-outros/logos/sites/ai_brandmark.png" alt="brandmark" width="auto" height="25">
@@ -29,10 +29,10 @@
 
 ---
 
-#### Objetivo:
+### Objective:
 - O objetivo desse projeto prático foi construir um Report em **Power BI** para análises de dados de uma empresa fictícia de laboratório, chamada **HealthLab Laboratório**. Para essa análise foi levada em consideração duas metas determinadas, uma para faturamento (R$ 500 mil/mês) e outra para quantidade de atendimentos (3.000 /mês), de forma que fosse possível perceber rapidamente o desempenho do setor de atendimento do laboratório.
 
-#### Estrutura:
+### Structure:
 - A estrutura (Imagem 01) é composta por:
   -  Uma pasta com a base de dados que são quatro arquivos de **Excel** em CSV;
   -  Um arquivo em **PowerPoint** para criação do layout do Report;
@@ -46,7 +46,7 @@
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
-#### Desenvolvimento:
+### Development:
 Este projeto foi desenvolvido em apenas uma aula e iniciou com um pequeno processo de **ETL** (Extração, Transformação e Carregamento) dos dados no **Power Query**, dentro do Power BI. Foi realizado o carregamento dos quatros arquivos de **Excel** em CSV, que formam a base de dados no **Power Query**. Cada arquivo representando uma tabela, sendo três tabelas **dimensões** (d_convênio, d_procedimento, d_recepcionista) e uma tabela **fato** (f_atendimentos). Para as tabelas dimensões não foi necessário nenhuma transformação, enquanto na tabela fato a coluna **Data/Hora** foi dividida em duas, uma para **Data** e outro para **Hora**, para facilitar o trabalho durante a construção dos gráficos.
 
 Ainda no editor do **Power Query**, foi construído duas consultas vazias para elaboração das tabelas dimensões **Calendário** e **Hora**. Essas tabelas foram criadas através de arquivos padrões de scritps em **Linguagem M**, sendo que esses arquivos não fazem parte do material do curso, foram utilizado apenas para copiar e colar o código. Finalizado o processo de transformação, as Queries foram carregadas para dentro do **Power BI** e em seguida foi realizado o relacionamento entre as tabelas em que o relacionamento não foi indentificado automaticamente pelo **Power BI**. Neste caso foram as tabelas dimensões criadas **Calendário** (d_calendario) e **Hora** (d_hora) que se relacionaram com a tabela fato através das colunas **Data** e **Hora**. A imagem 02 a seguir ilustra como ficou a modelagem dos dados.
@@ -56,7 +56,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     <figcaption>Imagem 02.</figcaption>
 </figure></div><br>
 
-##### Criação das Medidas:
+#### Creation of Measures:
   A próxima etapa foi a criação de uma tabela vazia para servir como tabela de medidas, onde foram armazenados todos os cálculos realizados através das **Expressões DAX** e separadas por pastas para melhorar a organização da tabela. As duas primeiras medidas criadas foram as metas determinadas, **Meta Faturamento** (R$ 500 mil/mês) e **Meta Atendimentos** (3.000 /mês), ambas dentro da pasta **Meta Determinada**.
 
     ```
@@ -135,7 +135,7 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
     <figcaption>Imagem 03.</figcaption>
   </figure></div><br>
   
-##### Report:
+#### Report:
   O Report (relatório) contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último utilizado para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario** não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual exibiu um mapa de calor entre os dias da semana e os horários que mais tiveram quantidade de procedimentos realizados (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
 
     ```

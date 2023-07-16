@@ -1,12 +1,12 @@
-# Power BI   <img src="../../0-outros/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="45">
+# Power BI   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="45">
 
-#### Repositório: [course](../../)
-#### Plataforma: <a href="../">xperiun   <img src="../../0-outros/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>
-#### Software/Assunto: <a href="./">power_bi   <img src="../../0-outros/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
+### Repository: [course](../../)
+### Platform: <a href="../">xperiun   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>
+### Software/Subject: <a href="./">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 
 ---
 
-Essa pasta é referente a todos os cursos que realizei na plataforma Xperiun (Antiga Power BI Experience) referente ao software Power BI.
+This folder refers to all the courses I took on the Xperiun platform (formerly Power BI Experience) regarding the Power BI software.
 
-#### Cursos:
-- <a href="./curso_069">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./curso_069/img/logo_1.png" alt="curso_069" width="auto" height="25"></a>
+### Courses:
+- <a href="./curso_069">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./curso_069/0-aux/logo_1.png" alt="curso_069" width="auto" height="25"></a>

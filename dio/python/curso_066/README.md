@@ -1,42 +1,42 @@
-# Dev Week - Ifood Ciência de Dados com Python   <img src="./img/dev_week.png" alt="curso_066" width="auto" height="45">
+# Dev Week - Ifood Ciência de Dados com Python   <img src="./0-aux/dev_week.png" alt="curso_066" width="auto" height="45">
 
-#### Repositório: [course](../../../)   
-#### Plataforma: <a href="../../">dio   <img src="../../../0-outros/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>   
-#### Software/Assunto: <a href="../">python   <img src="../../../0-outros/logos/software/python.png" alt="python" width="auto" height="25"></a>
-#### Curso: <a href="./">curso_066 (Dev Week - Ifood Ciência de Dados com Python)   <img src="./img/dev_week.png" alt="curso_066" width="auto" height="25"></a>
+### Repository: [course](../../../)   
+### Platform: <a href="../../">dio   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>   
+### Software/Subject: <a href="../">python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="25"></a>
+### Course: <a href="./">curso_066 (Dev Week - Ifood Ciência de Dados com Python)   <img src="./0-aux/dev_week.png" alt="curso_066" width="auto" height="25"></a>
 
 ---
 
-#### Tema:
-- Ciência de Dados
-- Inteligência Artificial (AI)
+### Theme:
+- Data Science
+- Artificial Intelligence (AI)
 
-#### Ferramentas Utilizadas:
-- Linguagem de Programação: 
-  - Python   <img src="../../../0-outros/logos/software/python.png" alt="python" width="auto" height="25">
-- Ambiente de Desenvolvimento (IDE):
+### Used Tools:
+- Programming Language: 
+  - Python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="25">
+- Integrated Development Environment (IDE):
   - Google Colab   <img src="../../../0-outros/logos/software/google_colab.png" alt="google_colab" width="auto" height="25">
   - VS Code   <img src="../../../0-outros/logos/software/vscode.png" alt="vscode" width="auto" height="25">
-- Versionamento: 
+- Versioning: 
   - Git   <img src="../../../0-outros/logos/software/git.png" alt="git" width="auto" height="25">
-- Repositório:
+- Repository:
   - GitHub   <img src="../../../0-outros/logos/software/github.png" alt="github" width="auto" height="25">
-- Bibliotecas: 
+- Library: 
   - Gdown   <img src="../../../0-outros/logos/software/google_drive.png" alt="gdown" width="auto" height="25">
   - Matplotlib   <img src="../../../0-outros/logos/software/matplotlib.png" alt="matplotlib" width="auto" height="25">
   - Pandas   <img src="../../../0-outros/logos/software/pandas.png" alt="pandas" width="auto" height="25">
   - Openai   <img src="../../../0-outros/logos/software/openai.png" alt="openai" width="auto" height="25">
-- Outros:
+- Others:
   - Google Drive <img src="../../../0-outros/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
   - Excel <img src="../../../0-outros/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
   - ChatGPT <img src="../../../0-outros/logos/software/chatgpt.png" alt="chat_gpt" width="auto" height="25">
 
 ---
 
-#### Objetivo:
+### Objective:
 - O objetivo desse projeto prático é analisar a satisfação dos feedbacks dos talentos da DIO em relação a um Bootcamp qualquer (cujo os dados foram gerados hipoteticamente apenas para fins didáticos). Essa análise é feita através do o cálculo do Net Promoter Score (NPS), uma métrica utilizada para medir a experiência do cliente e prever o crescimento dos negócios, para notas dada para esse Bootcamp. Sendo utilizado também as técnicas de Natural Language Processing (NLP) para analisar os sentimentos expressos nos comentários associados às notas.
 
-#### Estrutura:
+### Structure:
 - A estrutura é composta por apenas um arquivo de script em Jupyter Notebook (**curso_066.ipynb**), utilizado para executar os códigos; um arquivo de Excel em CSV (**feedbacks.csv**), que é a base de dados; este arquivo de README e uma pasta contendo algumas imagens auxilares utilizadas nesse arquivo de README. A estrutura é exibida na imagem 01.
 
 <div align="Center"><figure>
@@ -44,10 +44,10 @@
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
-#### Desenvolvimento:
+### Development:
 Este projeto foi realizado em três aulas. 
 
-  - ##### Aula 01:
+  - #### Class 01:
     Na aula 1, foi criado um arquivo de Excel no formato CSV com apenas uma planilha contendo duas colunas para ser nossa base de dados e salvamos no **Google Drive**. A primeira coluna referente a **nota**, com as notas que, hipoteticamente, os alunos deram para um Bootcamp qualquer da DIO, e a segunda coluna nomeada de **comentario** com os comentários que os alunos deram para esse mesmo Bootcamp.
 
     Utilizei a linguagem de programação **Python** no nosso ambiente de desenvolvimento **Google Colab** para escrever nosso arquivo de script em Jupyter Notebook. Iniciei o código utilizando a biblioteca **gdown** para baixar a base de dados para a pasta **/content** do sistema de arquivos no **Google Colab**. Através da biblioteca Pandas foi realizado a leitura do arquivo em CSV para um Dataframe e o output é mostrado na imagem 02.
@@ -142,7 +142,7 @@ Este projeto foi realizado em três aulas.
       print(nps)
       ```
 
-  - ##### Aula 02:
+  - #### Class 02:
     Nesta aula com o uso do módulo **pyplot** da biblioteca **matplotlib** foi construído um gráfico de colunas para determinar as zonas do NPS. Dividi o gráfico em quatro zonas: Crítico, Aperfeiçoamento, Qualidade e Excelência, cada zona com uma cor e uma faixa de valores no eixo X. Em seguida, inseri o valor calculado do NPS no gráfico e configurei o layout. Com o uso do módulo **patches** construí e inseri a legenda no gráfico. O resultado é exibido na imagem 03.
 
       ```python
@@ -188,7 +188,7 @@ Este projeto foi realizado em três aulas.
       <figcaption>Imagem 03.</figcaption>
     </figure></div><br>
 
-  - ##### Aula 03:
+  - #### Class 03:
     Na última aula, utilizei a biblioteca **openai** e configurei uma API Key na minha conta do site da [OpenAI](https://platform.openai.com/account/api-keys) para integrar com o ChatGPT. Criei uma função que utiliza os feedbacks da base de dados formatando as duas colunas para um padrão (nota-comentario). Em seguida construí uma variável para armazenar o prompt que o GPT irá executar. Com os feedbacks formatados e o prompt estabelecido, criei uma consulta e passei essas informações para o ChatGPT realizar uma análise de sentimento com base nessas informações, e pedi para ele classificar o feedback formatado em Positivo, Neutro ou Negativo. Realizei esse mesmo processo, retirando as notas do feedback, mantendo apenas o comentário.
 
       ```python
