@@ -1,9 +1,9 @@
-# Simplifica Treinamentos   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/simplifica_treinamentos.png" alt="simplifica_treinamentos" width="auto" height="45">
+# Simplifica Excel Express   <img src="./0-aux/logo_course.png" alt="curso_059" width="auto" height="45">
 
-### Repository: [course](../)
-### Platform: <a href="./">simplifica_trein   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/simplifica_treinamentos.png" alt="simplifica_treinamentos" width="auto" height="25"></a>
-### Software/Subject: <a href="./excel">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
-### Course: <a href="./curso_059">curso_059 (Simplifica Excel Express)   <img src="./0-aux/logo_course.png" alt="curso_059" width="auto" height="25"></a>
+### Repository: [course](../../../)
+### Platform: <a href="../../">simplifica_trein   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/simplifica_treinamentos.png" alt="simplifica_treinamentos" width="auto" height="25"></a>
+### Software/Subject: <a href="../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
+### Course: <a href="./">curso_059 (Simplifica Excel Express)   <img src="./0-aux/logo_course.png" alt="curso_059" width="auto" height="25"></a>
 
 ---
 
@@ -43,10 +43,10 @@ Este projeto foi desenvolvido em quatro aulas.
 Na primeira aula foi apresentado alguns recursos e fórmulas principais do **Excel** como: Autopreenchimento; Referência Absoluta e Relativa; Pincel de Formatação; Preenchimento Relâmpago; Ir para Especial; Subtotal; Localizar e Substituir; Tipos de Formatação Personalizadas; Atalhos; Fórmulas (If; Sum; Average; Large; Small).
 
 #### Class 2
-Na segunda aula foi exibido as fórmulas (Vlookup; Uper; Proper; Text; TextJoin; Concat; Trim; Left; Find) e as ferramentas (Formatação Condicional; Classificar; Filtrar; Macro; Texto para as Colunas)
+Na segunda aula foi exibido as fórmulas (Vlookup; Uper; Proper; Text; TextJoin; Concat; Trim; Left; Find) e as ferramentas (Formatação Condicional; Classificar; Filtrar; Macro; Texto para Colunas)
 
 #### Class 3
-Já na terceira aula foi apresetado as ferramentas (Tabela; Tabela Dinâmica; Segmentação de Dados) e a partir de uma base de dados fornecida foi desenvolvido seis tabelas dinâmicas para construção do report de vendas. Neste report, foi realizada a análise de vendas por representante (Gráfico de Barras), análise de vendas por período (Gráfico de Linha), análise dos produtos top 3 de vendas (Gráfico de Coluna), análise de vendas por cliente e estado (Gráfico de Coluna Empilhada) e a análise por estado (Gráfico de Rosca). A imagem 02 a seguir exibe o Report. Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui]().
+Já na terceira aula foi apresetado as ferramentas (Tabela; Tabela Dinâmica; Segmentação de Dados) e a partir de uma base de dados fornecida foi desenvolvido seis tabelas dinâmicas para construção do report de vendas. Neste report, foi realizada a análise de vendas por representante (Gráfico de Barras), análise de vendas por período (Gráfico de Linha), análise dos produtos top 3 de vendas (Gráfico de Coluna), análise de vendas por cliente e estado (Gráfico de Coluna Empilhada) e a análise por estado (Gráfico de Rosca). A imagem 02 a seguir exibe o report. Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui]().
 
 <div align="Center"><figure>
     <img src="./0-aux/rep_vendas_course_059.PNG" alt="img02"><br>

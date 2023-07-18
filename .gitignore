@@ -2,7 +2,16 @@ alura/
 cev/
 cisco/
 ebac/
-empowerdata/
+
+empowerdata/excel/curso_065/*
+!empowerdata/excel/curso_065/README.md
+!empowerdata/excel/curso_065/0-aux
+empowerdata/power_bi/curso_073/*
+!empowerdata/power_bi/curso_073/README.md
+!empowerdata/power_bi/curso_073/0-aux
+
+
+
 full_cycle/
 hashtag/
 microsoft_learn/
