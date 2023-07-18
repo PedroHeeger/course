@@ -1,7 +1,7 @@
 # Imersão Excel   <img src="./0-aux/logo_course.png" alt="curso_065" width="auto" height="45">
 
 ### Repository: [course](../../../)
-### Platform: <a href="../../">simplifica_trein   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/empowerdata.jpg" alt="empowerdata" width="auto" height="25"></a>
+### Platform: <a href="../../">empowerdata   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/empowerdata.jpg" alt="empowerdata" width="auto" height="25"></a>
 ### Software/Subject: <a href="../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
 ### Course: <a href="./curso_065">curso_065 (Imersão Excel)   <img src="./0-aux/logo_course.png" alt="curso_065" width="auto" height="25"></a>
 
@@ -29,7 +29,7 @@
 - O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel**. Além de desenvolver um report do zero sobre a temática **gestão logística**.
 
 ### Structure:
-- A estrutura (Imagem 01) do projeto é formada por três arquivos em **Excel** um para cada aula. A quarta aula não tem prática. Além da pasta **0-aux**, a pasta auxiliar com imagens utilizadas na construção desse arquivo de README. A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Brandmark**.
+- A estrutura (Imagem 01) do projeto é formada por três arquivos em **Excel** um para cada aula, a quarta aula não teve parte prática. Além da pasta **0-aux**, a pasta auxiliar com imagens utilizadas na construção desse arquivo de README. A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Looka**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
@@ -40,13 +40,13 @@
 Este projeto foi desenvolvido em quatro aulas. Sendo a parte prática desenvolvida em três aulas.
 
 #### Class 1
-Na primeira aula foi apenas uma introdução as ferramentas e fórmulas do **Excel**. Nela, foi desenvolvida, a partir de uma aba com a base de dados, uma outra aba com uma tabela contendo esses dados organizados e formatados. Além disso, foi criado duas segmentações de dados e uma tabela auxiliar, nesta mesma aba, com alguns cálculos de quantidade e custo utilizando as fórmulas **CountIf** e **SumIf**.
+Na primeira aula foi apenas uma introdução as ferramentas e fórmulas do **Excel**. Nela, foi desenvolvida, a partir de uma aba com a base de dados, uma outra aba com uma tabela contendo esses dados organizados e formatados. Além disso, foi criado duas segmentações de dados e uma tabela auxiliar nesta mesma aba, com alguns cálculos de quantidade e custo utilizando as fórmulas **CountIf** e **SumIf**.
 
 #### Class 2
-Na aula 2 utilizamos o **Power Query** em um novo arquivo para realizar um processo de ETL (Extração, Transformação e Carregamento) de uma base de dados, que agora, estava em outro arquivo de **Excel** separado. Os dados foram tratados e carregados no novo arquivo em um formato de tabela. Uma segunda aba foi gerada para construção de três tabelas dinâmicas e seus respectivos gráficos.
+Na aula 2 foi utilizado o **Power Query** em um novo arquivo para realizar um processo de ETL (Extração, Transformação e Carregamento) de uma base de dados, que agora, estava em outro arquivo de **Excel** separado. Os dados foram tratados e carregados no novo arquivo em um formato de tabela. Uma segunda aba foi gerada para construção de três tabelas dinâmicas e seus respectivos gráficos.
 
 #### Class 3
-Já na terceira aula, a partir de uma aba com a base de dados já tratada e em formato de tabela foi criado cinco tabelas dinâmicas que serviram de base para construção dos gráficos dinâmicos, parte fundamental da elaboração do report. Os gráficos construídos foram: **Top 3 Tranportadoras** (Gráfico de Coluna), **Análise por Status** (Gráfico de Rosca), **Faturamento por Período** (Gráfico de Coluna) e **Quantidade de Pedidos por Transportadora** (Gráfico de Barras). Além dos gráficos, esse report possui três visuais de cartões que foram construídos com as formas do **Excel** para seguinte métricas: **Faturamento Total**, **Quantidade de Pedidos** e o **Percentual dos Pedidos Atrasados**. Uma segmentação de dados foi inserida para filtragem por transportadora. A imagem 02 a seguir exibe o report. Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui]().
+Já na terceira aula, a partir de uma aba com a base de dados já tratada e em formato de tabela foi criado cinco tabelas dinâmicas que serviram de base para construção dos gráficos dinâmicos, parte fundamental da elaboração do report. Os gráficos construídos foram: **Top 3 Tranportadoras** (Gráfico de Coluna), **Análise por Status** (Gráfico de Rosca), **Faturamento por Período** (Gráfico de Coluna) e **Quantidade de Pedidos por Transportadora** (Gráfico de Barras). Além dos gráficos, esse report possui três visuais de cartões que foram construídos com as formas do **Excel** para as seguintes métricas: **Faturamento Total**, **Quantidade de Pedidos** e o **Percentual dos Pedidos Atrasados**. Uma segmentação de dados foi inserida para filtragem por transportadora. A imagem 02 a seguir exibe o report. Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui]().
 
 <div align="Center"><figure>
     <img src="./0-aux/rep_logistica_curso_065.PNG" alt="img02"><br>

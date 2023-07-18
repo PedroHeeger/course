@@ -1,7 +1,7 @@
 # Empowerdata   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/empowerdata.jpg" alt="empowerdata" width="auto" height="45">
 
 ### Repository: [course](../../)
-### Platform: <a href="../">simplifica_trein   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/empowerdata.jpg" alt="empowerdata" width="auto" height="25"></a>
+### Platform: <a href="../">empowerdata   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/empowerdata.jpg" alt="empowerdata" width="auto" height="25"></a>
 ### Software/Subject: <a href="./">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 
 ---
