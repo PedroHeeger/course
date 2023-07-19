@@ -43,10 +43,10 @@
 Este projeto foi desenvolvido em quatro aulas. 
 
 #### Class 1
-Na primeira aula foi apresentado alguns recursos e fórmulas principais do **Excel** como: Autopreenchimento; Referência Absoluta e Relativa; Pincel de Formatação; Preenchimento Relâmpago; Ir para Especial; Subtotal; Localizar e Substituir; Tipos de Formatação Personalizadas; Atalhos; Fórmulas (If; Sum; Average; Large; Small).
+Na primeira aula foi apresentado alguns recursos e fórmulas principais do **Excel** como: **Autopreenchimento**; Referência Absoluta e Relativa; **Pincel de Formatação**; **Preenchimento Relâmpago**; **Ir para Especial**; **Subtotal**; **Localizar** e **Substituir**; Tipos de Formatação Personalizadas; Atalhos; Fórmulas (`IF`; `SUM`; `AVERAGE`; `LARGE`; `SMALL`).
 
 #### Class 2
-Na segunda aula foi exibido as fórmulas (Vlookup; Uper; Proper; Text; TextJoin; Concat; Trim; Left; Find) e as ferramentas (Formatação Condicional; Classificar; Filtrar; Macro; Texto para Colunas)
+Na segunda aula foi exibido as fórmulas (`VLOOKUP`; `UPER`; `PROPER`; `TEXT`; `TEXTJOIN`; `CONCAT`; `TRIM`; `LEFT`; `FIND`) e as ferramentas (**Formatação Condicional**; **Classificar**; **Filtrar**; **Macro**; **Texto para Colunas**)
 
 #### Class 3
 Já na terceira aula foi apresetado as ferramentas (Tabela; Tabela Dinâmica; Segmentação de Dados) e a partir de uma base de dados fornecida foi desenvolvido seis tabelas dinâmicas para construção do report de vendas. Neste report, foi realizada a **análise de vendas por representante** (Gráfico de Barras), **análise de vendas por período** (Gráfico de Linha), **análise dos produtos top 3 de vendas** (Gráfico de Coluna), **análise de vendas por cliente e estado** (Gráfico de Coluna Empilhada) e a **análise por estado** (Gráfico de Rosca). A imagem 02 a seguir exibe o report. Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui]().
@@ -57,4 +57,4 @@ Já na terceira aula foi apresetado as ferramentas (Tabela; Tabela Dinâmica; Se
 </figure></div><br>
 
 #### Class 4
-Na última aula, foi utilizado outras fórmulas do **Excel** como: If simples e composto; If com And e If com Or; SumIfs e CountIfs; AverageIfs; Vlookup; Index e Match. Além da ferramenta Validação de Dados.
+Na última aula, foi utilizado outras fórmulas do **Excel** como: `IF` simples e composto; `IF` com `AND` e `IF` com `OR`; `SUMIFs` e `COUNTIF`; `AVERAGEIFs`; `VLOOKUP`; `INDEX` e `MATCH`. Além da ferramenta **Validação de Dados**.

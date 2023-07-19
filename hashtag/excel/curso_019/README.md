@@ -31,7 +31,7 @@
 - O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel**. Além de desenvolver um report do zero sobre a temática **vendas**.
 
 ### Structure:
-- A estrutura (Imagem 01) do projeto é formada por quatro arquivos em **Excel** um para cada aula, sendo que a aula 1 e 2 foi desenvolvida no mesmo arquivo, além da pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Brandmark**.
+- A estrutura (Imagem 01) do projeto é formada por quatro arquivos em **Excel** um para cada aula, além da pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Brandmark**. As aulas 1 e 2 foram desenvolvidas no mesmo arquivo.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
@@ -42,20 +42,20 @@
 Este projeto foi desenvolvido em quatro aulas.
 
 #### Class 1 e 2
-Nessas duas aulas, em arquivo em branco, a partir de uma aba com uma base de dados em formatado **CSV** foi criado uma nova aba com esses dados formatados como tabela com auxilio da ferramenta **Texto para Colunas**, separando as informações por vírgula em cada coluna. Com essa tabela de dados foi gerado cinco tabelas dinâmicas em uma nova aba que serviram de base para construção dos gráficos dinâmicos do report na última aba.
+Nessas duas aulas, em arquivo em branco, a partir de uma aba com uma base de dados em formatado **CSV** foi criado uma nova aba com esses dados formatados como tabela com auxilio da ferramenta **Texto para Colunas**, distribuindo as informações separadas por vírgula em cada coluna. Com essa tabela de dados foi gerado cinco tabelas dinâmicas em uma nova aba que serviram de base para construção dos gráficos dinâmicos do report na última aba.
 
 Os gráficos utilizados foram para **análise de receita total por mês** (Gráfico de Coluna), **análise de receita total por produto** (Gráfico de Barra), **análise de quantidade vendida mensal** (Gráfico de Área) e **análise percentual por tipo de pagamento** (Gráfico de Rosca). Além dos gráficos, quatro visuais de cartões foram construídos com as formas do **Excel** exibindo **Receita Total**, **Quantidade de Vendas**, **Receita por Boleto Bancário** e **Receita por Cartão de Crédito**. Duas segmentações de dados foram inseridas, uma para os anos (2019, 2020, 2021) e outra para os tipos de produtos (A, B, C e D).
 
-O layout do report foi todo montado no **Excel** com uso das formas de retângulos, além dos ícones que também foram do próprio **Excel**. Também foi inserido um botão para consultar a base de dados. O desenvolvimento final do report é apresentado na imagem 02 logo abaixo.
+O layout do report foi todo montado no **Excel** com uso das formas de retângulos, além dos ícones que também foram do próprio **Excel**. Também foi inserido um botão para consultar a base de dados que direciona para uma outra aba do arquivo. O desenvolvimento final do report é apresentado na imagem 02 logo abaixo.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_019_2.png" alt="img02"><br>
+    <img src="./0-aux/rep_vendas_curso_019.png" alt="img02"><br>
     <figcaption>Imagem 02: Report.</a></figcaption>
 </figure></div><br>
 
 
 #### Class 3
-Nesta aula foi exercitado algumas fórmulas básicas (`VLOOKUP`, `COUNTIFS`, `SUMIFS` e `IF`), cada uma em uma aba diferente com uma pequena base de dados para desenvolvimento. Em uma quinta aba foi desenvolvido o conceito de If aninhado através da fórmula `IF`.
+Nesta aula foi exercitado algumas fórmulas básicas (`VLOOKUP`, `COUNTIFS`, `SUMIFS` e `IF`), cada uma em uma aba diferente com uma pequena base de dados para desenvolvimento para cada uma. Em uma quinta aba foi desenvolvido o conceito de If aninhado através da fórmula `IF`.
 
 #### Class 4
-Na última aula diversas ferramentas foram apresentadas, uma para cada aba, com uma base de dados específica para uso. Foi executado operações com: **Tabela Dinâmica**, **Texto para Colunas**, **Preenchimento Relâmpago** (em duas abas), **Validação de Dados** e **Formatação Condicional** (em duas abas).
+Na última aula diversas ferramentas foram apresentadas, uma para cada aba, com uma base de dados específica para uso em cada uma delas. Foi executado operações com: **Tabela Dinâmica**, **Texto para Colunas**, **Preenchimento Relâmpago** (em duas abas), **Validação de Dados** e **Formatação Condicional** (em duas abas).

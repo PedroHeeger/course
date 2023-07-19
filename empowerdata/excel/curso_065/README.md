@@ -43,7 +43,7 @@
 Este projeto foi desenvolvido em quatro aulas. Sendo a parte prática desenvolvida em três aulas.
 
 #### Class 1
-Na primeira aula foi apenas uma introdução as ferramentas e fórmulas do **Excel**. Nela, foi desenvolvida, a partir de uma aba com a base de dados, uma outra aba com uma tabela contendo esses dados organizados e formatados. Além disso, foi criado duas segmentações de dados e uma tabela auxiliar nesta mesma aba, com alguns cálculos de quantidade e custo utilizando as fórmulas **CountIf** e **SumIf**.
+Na primeira aula foi apenas uma introdução as ferramentas e fórmulas do **Excel**. Nela, foi desenvolvida, a partir de uma aba com a base de dados, uma outra aba com uma tabela contendo esses dados organizados e formatados. Além disso, foi criado duas segmentações de dados e uma tabela auxiliar nesta mesma aba, com alguns cálculos de quantidade e custo utilizando as fórmulas `COUNTIF` e `SUMIF`.
 
 #### Class 2
 Na aula 2 foi utilizado o **Power Query** em um novo arquivo para realizar um processo de ETL (Extração, Transformação e Carregamento) de uma base de dados, que agora, estava em outro arquivo de **Excel** separado. Os dados foram tratados e carregados no novo arquivo em um formato de tabela. Uma segunda aba foi gerada para construção de três tabelas dinâmicas e seus respectivos gráficos.
