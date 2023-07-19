@@ -3,7 +3,7 @@
 ### Repository: [course](../../../)
 ### Platform: <a href="../../">hashtag   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/hashtag.png" alt="hashtag" width="auto" height="25"></a>
 ### Software/Subject: <a href="../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
-### Course: <a href="./curso_019">curso_019 (Jornada do Excel 2022)   <img src="./0-aux/logo_course.jpg" alt="curso_019" width="auto" height="25"></a>
+### Course: <a href="./">curso_019 (Jornada do Excel 2022)   <img src="./0-aux/logo_course.jpg" alt="curso_019" width="auto" height="25"></a>
 
 ##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 

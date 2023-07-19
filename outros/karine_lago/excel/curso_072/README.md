@@ -1,9 +1,9 @@
 # Imersão Excel 2   <img src="./0-aux/logo_course.png" alt="curso_072" width="auto" height="45">
 
-### Repository: [course](../../../)
+### Repository: [course](../../../../)
 ### Platform: <a href="../">karine_lago   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/karine_lago.jpeg" alt="karine_lago" width="auto" height="25"></a>
 ### Software/Subject: <a href="../../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
-### Course: <a href="./curso_072">curso_072 (Imersão Excel 2)   <img src="./0-aux/logo_course.png" alt="curso_072" width="auto" height="25"></a>
+### Course: <a href="./">curso_072 (Imersão Excel 2)   <img src="./0-aux/logo_course.png" alt="curso_072" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/excel/(23-07-06)%20Cert%20Excel%20PH%20Karine%20Lago%20(Imersão).pdf">Certificate</a>
 ##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
