@@ -9,4 +9,5 @@
 This folder refers to all the courses I took on the Xperiun platform (formerly Power BI Experience) regarding the Power BI software.
 
 ### Courses:
-- <a href="./curso_069">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./curso_069/0-aux/logo_1.png" alt="curso_069" width="auto" height="25"></a>
+- <a href="./curso_051">curso_051 (Desafio Missão ZERO - Bootcamp HPN)   <img src="./curso_051/0-aux/logo_course.png" alt="curso_051" width="auto" height="25"></a>
+- <a href="./curso_069">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./curso_069/0-aux/logo_course.png" alt="curso_069" width="auto" height="25"></a>

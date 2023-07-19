@@ -1,9 +1,12 @@
-# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./0-aux/logo_1.png" alt="curso_069" width="auto" height="45">
+# Desafio Kickstart 1  | Atendimento Laboratorial   <img src="./0-aux/logo_course.png" alt="curso_069" width="auto" height="45">
 
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">xperiun   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/xperiun.png" alt="xperiun" width="auto" height="25"></a>   
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
-### Course: <a href="./">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./0-aux/logo_1.png" alt="curso_069" width="auto" height="25"></a>
+### Course: <a href="./">curso_069 (Desafio Kickstart 1  | Atendimento Laboratorial)   <img src="./0-aux/logo_course.png" alt="curso_069" width="auto" height="25"></a>
+
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report</a>
+##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
 
@@ -30,16 +33,16 @@
 ---
 
 ### Objective:
-- O objetivo desse projeto prático foi construir um Report em **Power BI** para análises de dados de uma empresa fictícia de laboratório, chamada **HealthLab Laboratório**. Para essa análise foi levada em consideração duas metas determinadas, uma para faturamento (R$ 500 mil/mês) e outra para quantidade de atendimentos (3.000 /mês), de forma que fosse possível perceber rapidamente o desempenho do setor de atendimento do laboratório.
+- O objetivo desse projeto prático foi construir um report em **Power BI** para análises de dados de **atendimentos** de uma empresa fictícia de **laboratório**, chamada **HealthLab Laboratório**. Para essa análise foi levada em consideração duas metas determinadas, uma para faturamento (R$ 500 mil/mês) e outra para quantidade de atendimentos (3.000 /mês), de forma que fosse possível perceber rapidamente o desempenho do setor de atendimento do laboratório.
 
 ### Structure:
 - A estrutura (Imagem 01) é composta por:
   -  Uma pasta com a base de dados que são quatro arquivos de **Excel** em CSV;
-  -  Um arquivo em **PowerPoint** para criação do layout do Report;
+  -  Um arquivo em **PowerPoint** para criação do layout do report;
   -  Um arquivo de imagem **SVG** que é o layout do PowerPoint exportado;
   -  Um arquivo **PDF** com as instruções do Desafio;
   -  Uma pasta de imagens contendo dois arquivos de imagens, criados através de dois sites de IA para geração de logomarcas (**Brandmark** e **Looka**), além de imagens auxiliares na construção desse arquivo de README;
-  -  Um arquivo de **Power BI** para construção do Report. Para visualizar esse Report completo <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">clique aqui</a>.
+  -  Um arquivo de **Power BI** para construção do report.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
@@ -136,15 +139,15 @@ Ainda no editor do **Power Query**, foi construído duas consultas vazias para e
   </figure></div><br>
   
 #### Report:
-  O Report (relatório) contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último utilizado para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario** não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual exibiu um mapa de calor entre os dias da semana e os horários que mais tiveram quantidade de procedimentos realizados (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
+  O report (relatório) contém três visuais de cartões, um gráfico de velocímetro, dois gráficos de colunas empilhadas e um visual de matriz. Este último utilizado para a construção de um visual Heatmap (Mapa de Calor). Esse visual utiliza para as linhas, a coluna de **Faixa de Hora** da tabela dimensão **d_Hora**, nos valores utiliza o somatório de coluna **Qtde Item** e para as colunas, como na tabela dimensão **d_calendario** não tinha uma coluna de dia da semana abreviado (com três letras), foi necessário criar essa coluna (**NomeDiaAbrev**) com as Expressões DAX. Com isso, esse visual exibiu um mapa de calor entre os dias da semana e os horários que mais tiveram quantidade de procedimentos realizados (Um mesmo procedimento de um mesmo atendimento pode ter sido realizado várias vezes).
 
     ```
     NomeDiaAbrev = Left(d_calendario[NomeDia], 3)
     ```
 
-  Na imagem 04, abaixo, é possível visualizar como ficou o Report e acessar a página do relatório.
+  Na imagem 04, abaixo, é possível visualizar como ficou o report e acessar o relatório através de um link da web na legenda.
 
   <div align="Center"><figure>
-      <img src="./0-aux/curso_069_report_01.PNG" alt="img04"><br>
+      <img src="./0-aux/rep_atend_lab_curso_069.png" alt="img04"><br>
       <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
   </figure></div><br>

@@ -5,6 +5,11 @@
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 ### Course: <a href="./curso_043">curso_043 (Simplifica Power Excel)   <img src="./0-aux/logo_course.png" alt="curso_043" width="auto" height="25"></a>
 
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/power_bi/(23-05-22)%20Cert%20Power%20BI%20e%20Excel%20PH%20Simplifica%20Trein.pdf">Certificate</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiNDlkYmU5ZWMtODZjZS00NmE1LWFjZDktZmY5NjA1YTY2MGE3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 3</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiNDRlNmU5NTMtYjk0ZC00NGI2LTkyYTMtZTdmOWQ2NjhiNDRkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 4</a>
+##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
+
 ---
 
 ### Theme:
@@ -29,7 +34,7 @@
 ---
 
 ### Objective:
-- O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel** e **Microsoft Power BI**, desenvolvendo três reports, um para **Excel** e outros dois para **Power BI**, sendo um do mesmo tema do **Excel**. A temática do report igual para os dois, consistiu em um cenário hipotético de atendimentos de uma clínica de saúde nos anos de 2020 e 2021. Já o tema do segundo report do **Power BI** foi referente a um cenário hipotético de vendas.
+- O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel** e **Microsoft Power BI**, desenvolvendo três reports, um para **Excel** e outros dois para **Power BI**, sendo um do mesmo tema do **Excel**. A temática do report igual para os dois consistiu em um cenário hipotético de **atendimentos de uma clínica de saúde** nos anos de 2020 e 2021. Já o tema do segundo report do **Power BI** foi referente a um cenário hipotético de **vendas**.
 ### Structure:
 - A estrutura (Imagem 01) é composta por três sub-pastas, cada pasta para uma das quatro aulas, sendo que as aulas 1 e 2 foram realizadas no mesmo arquivo, ou seja, na mesma sub-pasta.
 - A pasta **aula_01_02** possui arquivos de **Excel** (base de dados, arquivos de construção do report), um arquivo em **Word** com o roteiro do projeto e uma sub-pasta com as imagens que foram utilizadas como ícones no desenvolvimento do report.
@@ -53,14 +58,14 @@ Após o carregamento foram criadas tabelas dinâmicas que serviram como base par
 Esses gráficos foram posicionados em uma nova aba do arquivo em branco, onde foi construído um plano de fundo com uso das formas do **Excel**. Foi realizado toda configuração de layout, inserção dos ícones, configuração dos gráficos, inserção de botões em imagens para movimentar de uma aba para outra e também inserção das segmentações de dados. Também foi criado uma aba exclusiva para o menu do report. A seguir é exibido a imagem 02 de como ficou o report.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_consulta_medica_course_043.PNG" alt="img02"><br>
+    <img src="./0-aux/rep_consulta_medica_curso_043.PNG" alt="img02"><br>
     <figcaption>Imagem 02: Report.</a></figcaption>
 </figure></div><br>
 
 #### Class 3
-Na terceira aula foi desenvolvido o mesmo report em **Excel** mas para **Power BI**. O processo inicial foi pareceido, pois também foi utilizado o Power Query para extrair as três Queries do arquivo de base de dados, depois transformá-las para carregá-las para dentro do **Power BI**.
+Na terceira aula foi desenvolvido o mesmo report em **Excel** mas para **Power BI**. O processo inicial foi pareceido, pois também foi utilizado o **Power Query** para extrair as três Queries do arquivo de base de dados, depois transformá-las para carregá-las para dentro do **Power BI**.
 
-O plano de fundo foi criado no **Power Point** e foi exportado como imagem para ser utilizado na construção do report. No **Power BI** foi criado uma tabela de medidas, em uma Query vazia, com apenas duas medidas que foram **Receita Total** e **Qtd Atendimentos**. Essas medidas, que são exibias abaixo, foram elaboradas com o uso das **Expressões DAX**.
+O plano de fundo foi criado no **Power Point** e foi exportado como imagem para ser utilizado na construção do report. No **Power BI** foi criado uma tabela de medidas, em uma Query vazia, com apenas duas medidas que foram **Receita Total** e **Qtd Atendimentos**. Essas medidas, que são exibidas abaixo, foram elaboradas com o uso das **Expressões DAX**.
 
 ```
 Receita Total = CALCULATE(Sum(Atendimentos[Valor]), Atendimentos[Tipo Atendimento]<>"Retorno")
@@ -70,12 +75,12 @@ Receita Total = CALCULATE(Sum(Atendimentos[Valor]), Atendimentos[Tipo Atendiment
 Qtd Atendimentos = Distinctcount(Atendimentos[Cod Consulta])
 ```
 
-A partir dessas medidas foram construídos os mesmos gráficos do report em **Excel**. Para construção desses gráficos foi necessário a criação de uma nova Query vazia para elaboração da tabela **Calendário**. Também foi construído quatro visuais de cartões para exbição das seguintes informações: **Número de Atendimentos**, **Número de Consultas**, **Número de Exames** e **Número de Retornos**.
+A partir dessas medidas foram construídos os mesmos gráficos do report em **Excel**. Para construção desses gráficos foi necessário a criação de uma nova Query vazia para elaboração da tabela **Calendário**. Também foi construído quatro visuais de cartões para exibição das seguintes informações: **Número de Atendimentos**, **Número de Consultas**, **Número de Exames** e **Número de Retornos**.
 
 Por fim, foi construído um painel lateral com a segmentação de dados e botões interativos para navegar entre as páginas do report. Além da página principal (Page 2) do report, foi criado uma página de menu e uma outra com o visual de tabela para exibição das informações dos dados detalhadamente. A página 2 do report é exbido a seguir na imagem 03 e pode ser acessado em uma página da web atravé do link na legenda.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_consulta_medica_course_043_power.PNG" alt="img03"><br>
+    <img src="./0-aux/rep_consulta_medica_curso_043_power.PNG" alt="img03"><br>
     <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiNDlkYmU5ZWMtODZjZS00NmE1LWFjZDktZmY5NjA1YTY2MGE3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
 </figure></div><br>
 
@@ -118,9 +123,9 @@ As duas últimas **Expressões DAX** serviram apenas para construir o gráfico d
 
 Além do gráfico já citado, foram desenvolvidos dois visuais de cartões com **receita total** e **lucro total** das vendas. Também, dois gráficos, um de linha e outro de coluna para a **análise da receita por período**. Um outro gráfico de dispersão que realiza várias análises simultânea (**analisa os produtos vendidos por quantidade vendida, receita total e lucro total**, sendo o lucro representado pelo tamanho das bolhas). Por último, um visual de matriz que **analisa a receita total e lucro total por colaborador e supervisor**.
 
-Na criação do plano de fundo também foi utilizado um arquivo **Power Point** que foi exportado como imagem e inserido no report. A imagem 04, em seguida, ilustra o projeto finalizado e pode ser acessado através de uma página da web no link da legenda. Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui]().
+Na criação do plano de fundo também foi utilizado um arquivo **Power Point** que foi exportado como imagem e inserido no report. A imagem 04, em seguida, ilustra o projeto finalizado e pode ser acessado através de uma página da web no link da legenda.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas__course_043.PNG" alt="img04"><br>
+    <img src="./0-aux/rep_vendas__curso_043.PNG" alt="img04"><br>
     <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiNDRlNmU5NTMtYjk0ZC00NGI2LTkyYTMtZTdmOWQ2NjhiNDRkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 04: Report.</a></figcaption>
 </figure></div><br>
