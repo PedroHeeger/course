@@ -9,4 +9,4 @@
 This folder refers to all the courses I took on the Empowerdata platform regarding the Excel software.
 
 ### Courses:
-- <a href="./curso_065">curso_065 (Imersão Excel)   <img src="./curso_065/0-aux/logo_course.png" alt="curso_065" width="auto" height="25"></a>
+- <a href="./curso_065">curso_065 (Semana do Excel na Prática)   <img src="./curso_065/0-aux/logo_course.png" alt="curso_065" width="auto" height="25"></a>

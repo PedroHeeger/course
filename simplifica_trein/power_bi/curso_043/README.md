@@ -77,7 +77,7 @@ Qtd Atendimentos = Distinctcount(Atendimentos[Cod Consulta])
 
 A partir dessas medidas foram construídos os mesmos gráficos do report em **Excel**. Para construção desses gráficos foi necessário a criação de uma nova Query vazia para elaboração da tabela **Calendário**. Também foi construído quatro visuais de cartões para exibição das seguintes informações: **Número de Atendimentos**, **Número de Consultas**, **Número de Exames** e **Número de Retornos**.
 
-Por fim, foi construído um painel lateral com a segmentação de dados e botões interativos para navegar entre as páginas do report. Além da página principal (Page 2) do report, foi criado uma página de menu e uma outra com o visual de tabela para exibição das informações dos dados detalhadamente. A página 2 do report é exbido a seguir na imagem 03 e pode ser acessado em uma página da web atravé do link na legenda.
+Por fim, foi construído um painel lateral com a segmentação de dados e botões interativos para navegar entre as páginas do report. Além da página principal (Page 2) do report, foi criado uma página de menu e uma outra com o visual de tabela para exibição das informações dos dados detalhadamente. A página 2 do report é exibido a seguir na imagem 03 e pode ser acessado em uma página da web atravé do link na legenda.
 
 <div align="Center"><figure>
     <img src="./0-aux/rep_consulta_medica_curso_043_power.PNG" alt="img03"><br>

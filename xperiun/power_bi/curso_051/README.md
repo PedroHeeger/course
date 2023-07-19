@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 ### Course: <a href="./">curso_051 (Desafio Missão ZERO - Bootcamp HPN)   <img src="./0-aux/logo_course.png" alt="curso_051" width="auto" height="25"></a>
 
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiNTM1OGExYTItMjYwNi00ZWY1LThiMTAtODYyMmJlNWY2NDU3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report</a>
 ##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
@@ -123,12 +123,8 @@ O segundo **Tooltip** desenvolvido foi semelhante ao primeiro, porém ao invés 
 
 <div align="Center"><figure>
     <img src="./0-aux/tooltip01.png" alt="img03" width="300px">
-    <figcaption>Imagem 03: ToolTip 01.</figcaption>
-</figure>
-<figure>
-    <img src="./0-aux/tooltip01.png" alt="img04" width="300px
-    ">
-    <figcaption>Imagem 04: ToolTip 02.</figcaption>
+    <img src="./0-aux/tooltip01.png" alt="img04" width="300px">
+    <figcaption>Imagem 03 e 04: ToolTip 01 e 02.</figcaption>
 </figure></div><br>
 
 

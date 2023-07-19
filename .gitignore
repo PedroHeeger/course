@@ -13,9 +13,31 @@ empowerdata/power_bi/curso_073/*
 
 
 full_cycle/
-hashtag/
+
+
+hashtag/excel/*
+!hashtag/excel/README.md
+
+!hashtag/excel/curso_018/
+hashtag/excel/curso_018/*
+!hashtag/excel/curso_018/README.md
+!hashtag/excel/curso_018/0-aux
+
+!hashtag/excel/curso_019/
+hashtag/excel/curso_019/*
+!hashtag/excel/curso_019/README.md
+!hashtag/excel/curso_019/0-aux
+
+hashtag/power_apps
+hashtag/power_bi
+
+hashtag/vba
+
 microsoft_learn/
-outros/
+
+outros/karine_lago/curso_072/*
+!outros/karine_lago/curso_072/README.md
+!outros/karine_lago/curso_072/0-aux
 
 simplifica_trein/excel/curso_059/*
 !simplifica_trein/excel/curso_059/README.md
