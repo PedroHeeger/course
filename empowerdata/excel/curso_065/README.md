@@ -6,7 +6,7 @@
 ### Course: <a href="./curso_065">curso_065 (Semana do Excel na Prática)   <img src="./0-aux/logo_course.png" alt="curso_065" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/excel/(23-06-22)%20Cert%20Excel%20PH%20Empowerdata%20(Semana).pdf">Certificate</a>
-##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
+##### Para conferir outros reports e dashboards de outros projetos consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
 
@@ -29,10 +29,13 @@
 ---
 
 ### Objective:
-- O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel**. Além de desenvolver um report do zero sobre a temática **gestão logística**.
+O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel**. Além de desenvolver um report do zero sobre a temática **gestão logística**.
 
 ### Structure:
-- A estrutura (Imagem 01) do projeto é formada por três arquivos em **Excel** um para cada aula, a quarta aula não teve parte prática, além da pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Looka**.
+A estrutura (Imagem 01) do projeto é formada por:
+- Três arquivos em **Excel** um para cada aula, a quarta aula não teve parte prática.
+- A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
+- Obs.: A logomarca do curso foi criada apenas para fins didáticos, utilizando o site de inteligência artificial **Looka**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
@@ -43,7 +46,7 @@
 Este projeto foi desenvolvido em quatro aulas. Sendo a parte prática desenvolvida em três aulas.
 
 #### Class 1
-Na primeira aula foi apenas uma introdução as ferramentas e fórmulas do **Excel**. Nela, foi desenvolvida, a partir de uma aba com a base de dados, uma outra aba com uma tabela contendo esses dados organizados e formatados. Além disso, foi criado duas segmentações de dados e uma tabela auxiliar nesta mesma aba, com alguns cálculos de quantidade e custo utilizando as fórmulas `COUNTIF` e `SUMIF`.
+Na primeira aula, foi feita apenas uma introdução às ferramentas e fórmulas do **Excel**. Nela, foi desenvolvida, a partir de uma aba com a base de dados, outra aba contendo uma tabela com esses dados organizados e formatados. Além disso, nesta mesma aba, foram criadas duas segmentações de dados e uma tabela auxiliar com alguns cálculos de quantidade e custo utilizando as fórmulas `COUNTIF` e `SUMIF`.
 
 #### Class 2
 Na aula 2 foi utilizado o **Power Query** em um novo arquivo para realizar um processo de ETL (Extração, Transformação e Carregamento) de uma base de dados, que agora, estava em outro arquivo de **Excel** separado. Os dados foram tratados e carregados no novo arquivo em um formato de tabela. Uma segunda aba foi gerada para construção de três tabelas dinâmicas e seus respectivos gráficos.
