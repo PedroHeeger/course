@@ -33,6 +33,7 @@ O objetivo desse projeto prático foi introduzir as principais ferramentas e fó
 ### Structure:
 A estrutura (Imagem 01) do projeto é formada por:
 - Quatro arquivos em **Excel** um para cada aula, sendo que as aulas 1 e 2 foram desenvolvidas no mesmo arquivo.
+- Uma pasta com duas apostilas em **PDF**, agrupando as aulas 1 e 2, e as aulas 3 e 4.
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
 - Obs.: A logomarca do curso foi criada apenas para fins didáticos, utilizando o site de inteligência artificial **Brandmark**. 
 
@@ -45,15 +46,15 @@ A estrutura (Imagem 01) do projeto é formada por:
 Este projeto foi desenvolvido em quatro aulas.
 
 #### Class 1 e 2
-Nessas duas aulas, em um arquivo em branco, a partir de uma aba com uma base de dados em formato **CSV** (valores separados por vírgula), foi criada uma nova aba com esses dados formatados como tabela com o auxilio da ferramenta **Texto para Colunas**, distribuindo as informações separadas por vírgula em cada coluna. Com essa tabela de dados, foram gerados cinco tabelas dinâmicas em uma nova aba que serviram de base para a construção dos gráficos dinâmicos do report na última aba.
+Nessas duas aulas, em um arquivo em branco, a partir de uma aba com uma base de dados em formato **CSV** (valores separados por vírgulas), foi criada uma nova aba com esses dados formatados como tabela com o auxilio da ferramenta **Texto para Colunas**, distribuindo as informações separadas por vírgula em cada coluna. Com essa tabela de dados, foram gerados cinco tabelas dinâmicas em uma nova aba que serviram de base para a construção dos gráficos dinâmicos do report na última aba.
 
 Os gráficos utilizados realizaram as seguintes análises: **análise de receita total por mês** (Gráfico de Coluna), **análise de receita total por produto** (Gráfico de Barra), **análise de quantidade vendida mensal** (Gráfico de Área) e **análise percentual por tipo de pagamento** (Gráfico de Rosca). Além dos gráficos, quatro visuais de cartões foram construídos com as formas do **Excel**, exibindo as informações (**Receita Total**, **Quantidade de Vendas**, **Receita por Boleto Bancário** e **Receita por Cartão de Crédito**). Duas segmentações de dados foram inseridas, uma para os **anos** (2019, 2020, 2021) e outra para os **tipos de produtos** (A, B, C e D).
 
 O layout do report foi todo montado no **Excel** com uso das formas de retângulo e dos ícones do próprio **Excel**. Também foi inserido um botão para consultar a base de dados, direcionando para outra aba do arquivo. O desenvolvimento final do report é apresentado na imagem 02 logo abaixo.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_019.png" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_curso_019_vendas.png" alt="img02"><br>
+    <figcaption>Imagem 02: Report Vendas.</figcaption>
 </figure></div><br>
 
 

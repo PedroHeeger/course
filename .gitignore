@@ -34,7 +34,19 @@ hashtag/excel/curso_060/*
 !hashtag/excel/curso_060/0-aux
 
 hashtag/power_apps
-hashtag/power_bi
+hashtag/power_bi/*
+!hashtag/power_bi/README.md
+
+!hashtag/power_bi/curso_040/
+hashtag/power_bi/curso_040/*
+!hashtag/power_bi/curso_040/README.md
+!hashtag/power_bi/curso_040/0-aux
+
+!hashtag/power_bi/curso_041/
+hashtag/power_bi/curso_041/*
+!hashtag/power_bi/curso_041/README.md
+!hashtag/power_bi/curso_041/0-aux
+
 
 hashtag/vba
 

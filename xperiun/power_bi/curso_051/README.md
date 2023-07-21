@@ -128,9 +128,9 @@ O segundo **Tooltip** desenvolvido foi semelhante ao primeiro, porém ao invés 
     <figcaption>Imagem 03 e 04: ToolTip 01 e 02.</figcaption>
 </figure></div><br>
 
-Na imagem 05, abaixo, é possível visualizar como ficou a página 3 do report e acessar o relatório através do link da web na legenda.
+Na imagem 05, abaixo, é possível visualizar como ficou a página 3 do report.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_051.PNG" alt="img05"><br>
-    <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiNTM1OGExYTItMjYwNi00ZWY1LThiMTAtODYyMmJlNWY2NDU3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 05: Report.</a></figcaption>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiNTM1OGExYTItMjYwNi00ZWY1LThiMTAtODYyMmJlNWY2NDU3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_051_vendas.PNG" alt="img05"><br>
+    <figcaption>Imagem 05: Report Vendas.</figcaption></a>
 </figure></div><br>

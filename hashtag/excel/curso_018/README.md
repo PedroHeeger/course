@@ -33,6 +33,7 @@ O objetivo desse projeto prático foi introduzir as principais ferramentas e fó
 ### Structure:
 A estrutura (Imagem 01) do projeto é formada por:
 - Quatro arquivos em **Excel** um para cada aula.
+- Uma pasta com quatro apostilas em **PDF**, uma para cada aula. Além de um arquivo **TXT** com instruções de como habilitas as **Macros** de um arquivo **Excel**.
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
 - Obs.: A logomarca do curso foi criada apenas para fins didáticos, utilizando o site de inteligência artificial **Brandmark**.
 
@@ -45,7 +46,7 @@ A estrutura (Imagem 01) do projeto é formada por:
 Este projeto foi desenvolvido em quatro aulas.
 
 #### Class 1
-A primeira aula foi iniciada utilizando a ferramenta **Texto para Colunas** para separar os dados da primeira aba de um arquivo em **Excel**, em que se encontravam no formato **CSV** (valores separados por vírgula). A estrutura dos dados era formada por: **Nome**, **Sobrenome**, **Registro**, **Nascimento**, **Setor**, **Salário** e **Filial**.
+A primeira aula foi iniciada utilizando a ferramenta **Texto para Colunas** para separar os dados da primeira aba de um arquivo em **Excel**, em que se encontravam no formato **CSV** (valores separados por vírgulas). A estrutura dos dados era formada por: **Nome**, **Sobrenome**, **Registro**, **Nascimento**, **Setor**, **Salário** e **Filial**.
 
 Na segunda aba esses dados foram formatados e foi inserido três novas colunas. A coluna **Nome Completo** foi criada utilizando o preenchimento relâmpago a partir das colunas **Nome** e **Sobrenome**, as quais foram substituídas por essa nova coluna. A coluna **Idade** foi gerada com a utilização da fórmula `DATEDIF` para calcular a idade a partir da coluna **Nascimento** em relação a data corrente durante o desenvolvimento do projeto. Para a terceira coluna, foi necessário utilizar a ferramenta **Data Types** para que o **Excel** reconhecesse todos os estados (coluna **Filial**), e assim fosse possível inserir uma nova coluna (**Pop. Filial**) com as informações da população de cada estado, de forma automática.
 
@@ -63,8 +64,8 @@ Os gráficos utilizados apresentaram as seguintes análises: **análise de fatur
 O layout do report foi todo montado no **Excel** com uso das formas de retângul e dos ícones inseridos do próprio **Excel**. O desenvolvimento final do report é apresentado na imagem 02 logo abaixo.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_018.png" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_curso_018_vendas.png" alt="img02"><br>
+    <figcaption>Imagem 02: Report Vendas.</figcaption>
 </figure></div><br>
 
 

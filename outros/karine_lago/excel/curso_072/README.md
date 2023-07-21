@@ -58,6 +58,6 @@ Em uma outra aba foi desenvolvido todas as tabelas dinâmicas referente aos dado
 Além dos gráficos, foram criadas três segmentações de dados (**Anos**, **Marca** e **Categoria**) para filtragem dos visuais. Alguns ícones foram inseridos para confecção do report, e também configurações de layout foram realizadas. Com o report concluído, foi copiado a base de dados de Julho/2023 que estava em outra pasta e colado na pasta das bases atuais, sendo necessário atualizar os dados no arquivo do report para que a tabela recebesse os novos dados e passasse as informaçõs para as tabelas dinâmicas que por sua vez, atualizaram os gráficos. Por fim, o report é apresentado na imagem 02 abaixo.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_072.PNG" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_curso_072_vendas.PNG" alt="img02"><br>
+    <figcaption>Imagem 02: Report Vendas.</figcaption>
 </figure></div><br>

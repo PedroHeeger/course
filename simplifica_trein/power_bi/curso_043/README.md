@@ -61,8 +61,8 @@ Após o carregamento, foram criadas tabelas dinâmicas que serviram como base pa
 Esses gráficos foram posicionados em uma nova aba do arquivo em branco, onde foi construído um plano de fundo com uso das formas do **Excel**. Foi realizado toda a configuração de layout, inserção dos ícones, configuração dos gráficos, inserção de botões em imagens para movimentar de uma aba para outra e também inserção das segmentações de dados. Também foi criado uma aba exclusiva para o menu do report. A seguir é exibido a imagem 02 de como ficou a página principal do report.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_consulta_medica_curso_043.PNG" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_curso_043_atendimentos_excel.PNG" alt="img02"><br>
+    <figcaption>Imagem 02: Report Atendimentos.</figcaption>
 </figure></div><br>
 
 #### Class 3
@@ -80,11 +80,11 @@ Qtd Atendimentos = Distinctcount(Atendimentos[Cod Consulta])
 
 A partir dessas medidas foram construídos os mesmos gráficos do report em **Excel**. Na ocasião, foi necessário a criação de uma nova Query vazia para elaboração da tabela **Calendário**. Também foi construído quatro visuais de cartões para exibição das seguintes informações: **Número de Atendimentos**, **Número de Consultas**, **Número de Exames** e **Número de Retornos**.
 
-Por fim, foi construído um painel lateral com a segmentação de dados e botões interativos para navegar entre as páginas do report. Além desta página principal (Page 2) do report, foi criado uma página de menu e uma outra com o visual de tabela para exibição das informações dos dados detalhadamente. A página 2 do report é exibido a seguir na imagem 03 e pode ser acessada pela web atravé do link na legenda.
+Por fim, foi construído um painel lateral com a segmentação de dados e botões interativos para navegar entre as páginas do report. Além desta página principal (Page 2) do report, foi criado uma página de menu e uma outra com o visual de tabela para exibição das informações dos dados detalhadamente. A página 2 do report é exibido a seguir na imagem 03.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_consulta_medica_curso_043_power.PNG" alt="img03"><br>
-    <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiNDlkYmU5ZWMtODZjZS00NmE1LWFjZDktZmY5NjA1YTY2MGE3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 03: Report.</a></figcaption>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiNDlkYmU5ZWMtODZjZS00NmE1LWFjZDktZmY5NjA1YTY2MGE3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_043_atendimentos.PNG" alt="img03"><br>
+    <figcaption>Imagem 03: Report Atendimentos.</figcaption></a>
 </figure></div><br>
 
 #### Class 4
@@ -124,9 +124,9 @@ As duas últimas **Expressões DAX** serviram apenas para construir o gráfico d
 
 Além do gráfico já citado, foram desenvolvidos dois visuais de cartões com **receita total** e **lucro total** das vendas. Também dois gráficos, um de linha e outro de coluna para uma **análise da receita por período**. Um outro gráfico de dispersão que realiza várias análises simultânea (**analisa os produtos vendidos por quantidade vendida, receita total e lucro total**, sendo o lucro representado pelo tamanho das bolhas). Por último, um visual de matriz que **analisa a receita total e lucro total por colaborador e supervisor**.
 
-Na criação do plano de fundo, também foi utilizado um arquivo **PowerPoint** que foi exportado como imagem e inserido no report. A imagem 04, em seguida, ilustra o projeto finalizado e o report pode ser acessado através de uma página da web no link da legenda.
+Na criação do plano de fundo, também foi utilizado um arquivo **PowerPoint** que foi exportado como imagem e inserido no report. A imagem 04, em seguida, ilustra o projeto finalizado.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas__curso_043.PNG" alt="img04"><br>
-    <figcaption><a href="https://app.powerbi.com/view?r=eyJrIjoiNDRlNmU5NTMtYjk0ZC00NGI2LTkyYTMtZTdmOWQ2NjhiNDRkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Imagem 04: Report.</a></figcaption>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiNDRlNmU5NTMtYjk0ZC00NGI2LTkyYTMtZTdmOWQ2NjhiNDRkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_043_vendas.PNG" alt="img04"><br>
+    <figcaption>Imagem 04: Report Vendas.</figcaption></a>
 </figure></div><br>

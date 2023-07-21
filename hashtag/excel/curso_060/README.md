@@ -1,12 +1,12 @@
-# Semana do Excel   <img src="./0-aux/logo_course.jpg" alt="curso_060" width="auto" height="45">
+# Semana do Excel   <img src="./0-aux/logo_course.png" alt="curso_060" width="auto" height="45">
 
 ### Repository: [course](../../../)
 ### Platform: <a href="../../">hashtag   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/hashtag.png" alt="hashtag" width="auto" height="25"></a>
 ### Software/Subject: <a href="../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
-### Course: <a href="./">curso_060 (Semana do Excel)   <img src="./0-aux/logo_course.jpg" alt="curso_018" width="auto" height="25"></a>
+### Course: <a href="./">curso_060 (Semana do Excel)   <img src="./0-aux/logo_course.png" alt="curso_060" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/excel/(23-06-20)%20Cert%20Excel%20PH%20Hashtag%20Trein%20(Semana).pdf">Certificate</a>
-##### Para conferir outros reports e dashboards de outros projetos, consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
+##### Para conferir outros reports e dashboards de outros projetos consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
 
@@ -29,10 +29,14 @@
 ---
 
 ### Objective:
-- O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel**. Além de desenvolver um report do zero sobre a temática **vendas**.
+O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel**, além da construção de um report do zero sobre a temática **vendas**.
 
 ### Structure:
-- A estrutura (Imagem 01) do projeto é formada por quatro arquivos em **Excel** um para cada aula, além da pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Looka**.
+A estrutura (Imagem 01) do projeto é formada por:
+- Quatro arquivos em **Excel**, um para cada aula.
+- Uma pasta com quatro apostilas em **PDF**, uma para cada aula.
+- A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
+- Obs.: A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Looka**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
@@ -43,30 +47,23 @@
 Este projeto foi desenvolvido em quatro aulas.
 
 #### Class 1
-O curso foi iniciado utilizado a ferramenta **Texto para Colunas** para separar os dados da primeira aba de um arquivo em **Excel**, em que se encontravam no formato **CSV** (arquivo separado por vírgula). A estrutura dos dados era formada por: **Nome**, **Sobrenome**, **Registro**, **Nascimento**, **Setor**, **Salário** e **Filial**.
+Em um arquivo de **Excel** com uma aba de base de dados em formato **CSV** (valores separados por vírgulas), foi utilizado a ferramenta **Texto para Colunas** para separar os dados em colunas. A estrutura dos dados era formada por: **Produto**, **Marca**, **Última Compra**, **Estoque**, e **Origem**. Foram inseridas três novas colunas (**Código Etiqueta**, **Dias Última Compra** e **População**). A coluna **Dias Última Compra** foi inserida com a aplicação da fórmula `DATEDIF` para calcular quantos dias se passaram desde a última compra (coluna **Última Compra**). Para criar a coluna **População**, tornou-se necessário utilizar a ferramenta **Data Types** para que o **Excel** reconhecesse todos os estados (coluna **Origem**), e assim fosse possível inserir, nessa coluna, as informações da população de cada estado de forma automática. Por último, a coluna **Código Etiqueta** fez uso da ferramenta preenchimento relâmpago, na qual, a partir de algumas linhas de exemplo, a ferramenta entendia o padrão e replicava para as demais linhas desta coluna.
 
-Na segunda aba esses dados foram formatados e foi inserido três novas colunas. A coluna **Nome Completo** foi criada utilizando o preenchimento relâmpago a partir das colunas **Nome** e **Sobrenome**. A coluna **Idade** foi com a utilização da fórmula `DATEDIF` para calcular a idade a partir da coluna **Nascimento** em relação a data corrente durante o desenvolvimento do projeto. Para a terceira coluna foi necessário utilizar a ferramenta **Data Types** para que o **Excel** reconhecesse todos os estados (coluna **Filial**) e assim fosse possível inserir uma nova coluna (**Pop. Filial**) com as informações da população de cada estado de forma automática.
+Em outras cinco abas, foram utilizadas algumas colunas da aba de base de dados com as seguintes fórmulas do **Excel**: `SUM`, `AVERAGE`, `VLOOKUP` e `IF`. Além da ferramenta **Validação de Dados** que foi aplicada para criação de uma validação do tipo lista. A fórmula condicional `IF` foi executada em duas abas: na primeira para criar uma condicional simples e na segunda aba para criar uma condicional composta. A fórmula `VLOOKUP` também foi utilizada em duas abas, a diferença é que em uma delas foi usada para encontrar determinadas informações na base de dados, e no outro caso, para alimentar uma nova coluna da base de dados, trazendo as informações de um conjunto de células auxiliares.
 
-Nas abas 3 e 4 foi utilizado os mesmos dados, porém sem a coluna de **Pop Filial** para a realização de operações com as fórmulas `COUNTIF`, `VLOOKUP`, `HLOOKUP` e `XLOOKUP`. Também foi criado validações de dados do tipo lista para selecionar as opções de forma mais precisa.
+#### Class 2
+Nesta aula, em um novo arquivo de **Excel**, a partir de uma aba com uma base de dados em formatado **CSV**, os dados foram organizados e formatados como tabela com a seguinte estrutura: **Consultor** (Vendedor), **Produto**, **Valor**, **Data** e **UF Cliente**. Foi realizado a inserção de três novas colunas (**Ano**, **Mês** e **Região**). As duas primeiras fizeram uso das informações da coluna **Data**, enquanto a coluna **Região** utilizou a fórmula `VLOOKUP` para encontrar, em uma outra aba, a região para cada estado da coluna **UF Cliente**.
 
-Na quinta aba foi utilizado apenas duas colunas da aba de dados formatados (**Nome Completo** e **Filial**) e uma nova coluna (**Região**) foi inserida com a fórmula `VLOOKUP` para encontrar em um conjuntos de células a região dos estados das filiais.
+A partir desses dados foram gerados cinco tabelas dinâmicas, em uma quarta aba, realizando algumas análises de dados. Essas tabelas foram usadas na construção dos gráficos e report na aula 3. Também foi criado uma nova aba com apenas duas colunas (**Nome** e **Imagem**) com as informações dos cinco vendedores existentes. Essas informações foram utéis para construção de gerenciadores de nomes, que são nomes criados no **Excel** com alguma função específica, neste caso, com uma fórmula específica. Foram cinco gerenciadores de nomes criados, um para cada vendedor, que utilizam as fórmulas `Index` e `Match` para localizar, a partir de uma tabela dinâmica que ordenava esses vendedores por maior receita, a imagem do vendedor na ordem estabelecida. Esses gerenciadores foram utilizados na montagem do report em uma forma do **Excel**, exibindo as imagens dos vendedores em ordem de maior receita. Quando ocorre uma filtragem dos dados, a ordem é alterada e, consequentemente, as imagens são modificadas.
 
-Na sexta aba com as colunas **Nome Completo** e **Salário** foi utilizado a fórmula `IF`, em uma nova coluna **Categoria**, para determinar qual categoria cada salário estava. Enquanto na última aba foi executado o mesmo procedimento da aba 6, mas agora com o conceito de If composto.
-
-#### Class 2 e 3
-Nessas duas aulas, em um novo arquivo, a partir de uma aba com uma base de dados foi criado uma nova aba com esses dados formatados como tabela que foram utilizado para alimentar quatro tabelas dinâmicas em uma nova aba. Essas tabelas dinâmicas foram a base para construção dos gráficos dinâmicos na última aba.
-
-Os gráficos utilizados foram para **análise de faturamento por mês** (Gráfico de Coluna), **análise de faturamento total por região** (Gráfico de Barra), **análise de quantidade vendida por mês** (Gráfico de Área) e **análise percentual por tipo de pagamento** (Gráfico de Rosca). Além dos gráficos, cinco visuais de cartões foram construídos com as formas do **Excel** que mostrando **Faturamento Total**, **Quantidade Total**, **Faturamento por Boleto Bancário**, **Faturamento por Cartão de Crédito** e **Faturamento por Cartão de Débito**. Duas segmentações de dados foram inseridas, uma para os anos (2019, 2020, 2021) e outra para os tipos de produtos (A, B, C e D).
-
-O layout do report foi todo montado no **Excel** com uso das formas de retângulos, além dos ícones que também foram do próprio **Excel**. O desenvolvimento final do report é apresentado na imagem 02 logo abaixo.
+#### Class 3
+Na aula 3, foi realizada toda a construção do report, desde a montagem do layout com as formas de retângulo do **Excel**, até a inserção dos ícones, configurações dos gráficos e criação da segmentação de dados de **ano**. Foram gerados quatro gráficos que apresentaram as seguintes análises: **receita por mês** (Gráfico de Coluna), **receita por unidade federativa** (Gráfico de Barra), **receita por região** (Gráfico de Barra) e **receita por produto** (Gráfico de Rosca). Foram construídos cinco visuais, um para cada vendedor, com seus nomes, imagens e receitas obtidas. A imagem foi criada por uma forma do **Excel**, onde foi passada os gerenciadores de nomes criados na aula 2, para que as imagens fossem buscadas e alteradas conforme filtragem nos gráficos. A ilustração (Imagem 02), em seguida, retrata o report construído.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_018.png" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_vendas_curso_060.png" alt="img02"><br>
+    <figcaption>Imagem 02: Report Vendas.</figcaption>
 </figure></div><br>
 
 
 #### Class 4
-Na quarta e última aula deste curso foi realizado duas atividades diferentes. A primeira delas foi a utilização da ferramenta **Macro** para criar um painel com vários botões, feitos com as formas do **Excel**. Esses botões tinham a função de adicionar uma linha de cadastro em uma tabela, classificar a tabela, filtrar por feminino e masculino e remover o filtro.
-
-A outra atividade foi a realização de uma automação web (**Web Scrapping**), no qual foi copiado uma tabela de criptomoedas de um site na web com as cotações das moedas. Em uma outra aba, uma tabela de carteira de clientes era calculada com a cotação de duas criptomoedas (**Bitcoin** e **Ethereum**) e com a utilização de uma **Macro** a tabela de cripto era atualizada direto do site e com as novas cotações das duas moedas da tabela de carteira de clientes também era atualizada.
+Na última aula, foi apresentada a ferramenta **Macro** para criação de botões, com as formas do **Excel**, de inserir e excluir linhas em um conjunto de dados. Já em uma outra aba, um outro botão com uma **Macro** para criar uma nova aba de **Excel**, configurada como uma ficha cadastral com os seguintes campos: Nome, Idade, Sexo e UF. Também foi utilizado a ferramenta **Subtotal** para realizar cálculos rápidos (Soma, Média, Contagem, etc.) de um conjunto de dados.

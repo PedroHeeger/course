@@ -55,8 +55,8 @@ Na aula 2 foi utilizado o **Power Query** em um novo arquivo para realizar um pr
 Já na terceira aula, a partir de uma aba com a base de dados já tratada e em formato de tabela foi criado cinco tabelas dinâmicas que serviram de base para construção dos gráficos dinâmicos, parte fundamental da elaboração do report. Os gráficos construídos foram: **Top 3 Tranportadoras** (Gráfico de Coluna), **Análise por Status** (Gráfico de Rosca), **Faturamento por Período** (Gráfico de Coluna) e **Quantidade de Pedidos por Transportadora** (Gráfico de Barras). Além dos gráficos, esse report possui três visuais de cartões que foram construídos com as formas do **Excel** para as seguintes métricas: **Faturamento Total**, **Quantidade de Pedidos** e o **Percentual dos Pedidos Atrasados**. Uma segmentação de dados foi inserida para filtragem por transportadora. A imagem 02 a seguir exibe o report. 
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_logistica_curso_065.PNG" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_curso_065_logistica.PNG" alt="img02"><br>
+    <figcaption>Imagem 02: Report Logística.</figcaption>
 </figure></div><br>
 
 #### Class 4

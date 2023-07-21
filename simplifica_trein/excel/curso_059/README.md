@@ -55,8 +55,8 @@ Na segunda aula, foram exibidas as fórmulas (`VLOOKUP`, `UPPER`, `PROPER`, `TEX
 Já na terceira aula, com a introdução às ferramentas (**Tabela**, **Tabela Dinâmica**, **Segmentação de Dados**) e a partir de uma base de dados fornecida, foram desenvolvidas seis tabelas dinâmicas para construção do report de vendas. Neste report, foi realizada algumas análises como: **análise de vendas por representante** (Gráfico de Barras), **análise de vendas por período** (Gráfico de Linha), **análise dos produtos top 3 de vendas** (Gráfico de Coluna), **análise de vendas por cliente e estado** (Gráfico de Coluna Empilhada) e a **análise por estado** (Gráfico de Rosca). A imagem 02 a seguir exibe o report.
 
 <div align="Center"><figure>
-    <img src="./0-aux/rep_vendas_curso_059.PNG" alt="img02"><br>
-    <figcaption>Imagem 02: Report.</a></figcaption>
+    <img src="./0-aux/rep_curso_059_vendas.PNG" alt="img02"><br>
+    <figcaption>Imagem 02: Report Vendas.</figcaption>
 </figure></div><br>
 
 #### Class 4
