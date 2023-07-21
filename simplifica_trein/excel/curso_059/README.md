@@ -12,7 +12,7 @@
 
 ### Theme:
 - Data Analysis
-
+- Business Intelligence (BI)
 ### Used Tools:
 - BI Tool: 
   - Excel <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">

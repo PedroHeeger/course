@@ -5,6 +5,10 @@
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 ### Course: <a href="./">curso_040 (Intensivão de Power BI 2022)   <img src="./0-aux/logo_course.png" alt="curso_040" width="auto" height="25"></a>
 
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiYmE4OWI5ZDYtNmNkYi00OGQyLWIxMzctYWVlNmJkYWUyZGMyIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 1</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiOTNiZTQ2YjYtODg3Mi00OGE2LTllMDEtYzE2MmMwOGI0Y2E3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 2</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMTRlOGVjY2QtNGEyMy00ZjY0LThkMTAtN2RjMTdhMTNmMzExIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 3</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiYWUzN2Y1ZWItNWE2Yy00NGQzLWFjNjMtZWEwODI3YTNhNzlhIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 4</a>
 ##### Para conferir outros reports e dashboards de outros projetos consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
@@ -27,17 +31,18 @@
 - Others:
   - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
   - Brandmark <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/sites/ai_brandmark.png" alt="brandmark" width="auto" height="25">
+  - PowerPoint <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerpoint" alt="power_point" width="auto" height="25">
 
 ---
 
 ### Objective:
-O objetivo desse projeto prático foi construir quatro reports, um para cada aula, com as seguintes temáticas respectivamente: **compras**, **logístico**, **produção** e **projetos**. Durante a construção foram apresetadas as ferramentas e funções do **Power BI** e também do **Power Query**.
+O objetivo desse projeto prático foi construir quatro reports, um para cada aula, com as seguintes temáticas respectivamente: **vendas**, **poodução**, **recursos humanos** e **financeiro**. Durante a construção foram apresetadas as ferramentas e funções do **Power BI** e também do **Power Query**.
 
 ### Structure:
 A estrutura (Imagem 01) do projeto é formada por:
 - Quatro arquivos em **Power BI**, um para cada aula, com a construção dos reports.
 - Uma pasta com quatro apostilas em **PDF**, uma para cada aula.
-- Uma pasta (**material**) com todo material de apoio para construção dos reports, como: quatro bases de dados em **Excel** para cada projeto em **Power BI**, arquivos de imagens para construção do plano de fundo dos reports, incluindo plano de fundo dos **Tooltips**, e também, uma sub-pasta (**ícones**) com os arquivos de imagens dos ícones utilizados na montagem dos relatórios.
+- Uma pasta (**material**) com todo material de apoio para construção dos reports, como: quatro bases de dados em **Excel** para cada projeto em **Power BI**, arquivos de imagens para construção do plano de fundo dos reports, incluindo plano de fundo dos **Tooltips**, dois arquivos em **PowerPoint** para montagem do plano de fundo, duas sub-pastas (**Ícones** e **Imagens**) com os arquivos de imagens e de ícones utilizados na construção dos relatórios.
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
 - Obs.: A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Brandmark**.
 

@@ -14,6 +14,7 @@
 
 ### Theme:
 - Data Analysis
+- Business Intelligence (BI)
 
 ### Used Tools:
 - BI Tool: 
