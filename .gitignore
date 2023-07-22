@@ -47,6 +47,10 @@ hashtag/power_bi/curso_041/*
 !hashtag/power_bi/curso_041/README.md
 !hashtag/power_bi/curso_041/0-aux
 
+!hashtag/power_bi/curso_045/
+hashtag/power_bi/curso_045/*
+!hashtag/power_bi/curso_045/README.md
+!hashtag/power_bi/curso_045/0-aux
 
 hashtag/vba
 
@@ -66,7 +70,10 @@ simplifica_trein/power_bi/curso_043/*
 simplifica_trein/power_bi/curso_043/0-aux/1F?- Referências de Cores.pptx
 
 xperiun/figma/
-xperiun/power_bi/curso_048
+xperiun/power_bi/curso_048/*
+!xperiun/power_bi/curso_048/README.md
+!xperiun/power_bi/curso_048/0-aux
+
 
 xperiun/power_bi/curso_051/*
 !xperiun/power_bi/curso_051/README.md
