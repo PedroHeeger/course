@@ -27,8 +27,8 @@
 - Others:
   - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
   - Excel <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
+  - PowerPoint <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerpoint.png" alt="power_point" width="auto" height="25">
   - Looka <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/sites/ai_looka.svg" alt="looka" width="auto" height="25">
-  - PowerPoint <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerpoint" alt="power_point" width="auto" height="25">
   - Linguagem M e Expressões DAX
 
 ---
@@ -78,7 +78,7 @@ Lucro = sum(Receita[Receita]) - sum(Receita[Custo])
 ```
 
 ```
-Margem % = DIVIDE([Margem], sum(Receita[Receita]), 0)
+% Margem = DIVIDE([Margem], sum(Receita[Receita]), 0)
 ```
 
 Na elaboração do report foram criadas duas páginas, uma para o modo **Dark** e outra para o modo **Light**. O layout dessas páginas foi desenvolvido no **PowerPoint**, sendo exportado como imagem e aplicado para cada uma delas. A montagem dos visuais e recursos são idênticas entre os dois modos. A página do relatório é composta por três visuas de cartão exibindo a **Receita**, o **Custo** e o **Lucro**. Foram inseridos também, cinco gráficos, para realização das seguintes análises: **Análise da Receita Mensal** (Gráfico de Área), **Análise da Receita dos 5 Primeiros Produtos** (Gráfico de Barra), **Análise da Receita e Custo por Vendedor e Supervisor** (Visual de Matriz), **Análise do Lucro por Linha de Produto** (Gráfico de Rosca), **Análise do Lucro dos 5 Primeiros Produtos** (Gráfico de Barra) e **Análise da Lucro por Vendedor e Supervisor**. Além dos visuais, foi adicionado uma segmentação de dados para filtragem por **Mês**. Três botões em branco foram criados em cima dos ícones da painel lateral esquerdo do report, os dois últimos para acesso via web das minhas redes sociais (**GitHub** e **Linkedin**), e o botão superior para alternar o modo de exibição entre **Dark** e **Light**. Os modos de exibição deste report é ilustrado abaixo, através das imagens 03 (**Dark**) e 04 (**Light**).
