@@ -56,5 +56,5 @@ Com o tratamento finalizado, a consulta foi carregada para uma tabela de mesmo n
 
 <div align="Center"><figure>
     <img src="./0-aux/rep_curso_045_vendas.PNG" alt="img02"><br>
-    <figcaption>Imagem 02: Vendas.</figcaption>
+    <figcaption>Imagem 02: Report Vendas.</figcaption>
 </figure></div><br>

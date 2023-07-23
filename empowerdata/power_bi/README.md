@@ -9,4 +9,4 @@
 This folder refers to all the courses I took on the Empowerdata platform regarding the Power BI software.
 
 ### Courses:
-- <a href="./curso_073">curso_073 (Simplifica Power Excel)   <img src="./curso_043/0-aux/logo_course.png" alt="curso_073" width="auto" height="25"></a>
+- <a href="./curso_073">curso_073 (Acelerador de Carreira com Power BI)   <img src="./curso_073/0-aux/logo_course.png" alt="curso_073" width="auto" height="25"></a>
