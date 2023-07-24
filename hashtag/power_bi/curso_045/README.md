@@ -33,7 +33,7 @@
 ---
 
 ### Objective:
-O objetivo desse projeto foi introdução do software **Power BI** e o desenvolvimento de um report do zero com o tema **vendas**. Durante a construção foram apresetadas as ferramentas e funções do **Power BI** e também do **Power Query**.
+O objetivo desse projeto foi introdução do software **Power BI** e o desenvolvimento de um report do zero com o tema **vendas**. Durante a construção foram apresentadas as ferramentas e funções do **Power BI** e também do **Power Query**.
 
 ### Structure:
 A estrutura (Imagem 01) do projeto é formada por:

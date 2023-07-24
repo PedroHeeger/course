@@ -5,10 +5,10 @@
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 ### Course: <a href="./">curso_073 (Acelerador de Carreira com Power BI)   <img src="./0-aux/logo_course.png" alt="curso_073" width="auto" height="25"></a>
 
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/power_bi/(23-07-16)%20Cert%20Power%20BI%20PH%20Empowerdata%20(Acelerador%20de%20Carreiras).pdf">Certificate</a>
 #### <a href="https://app.powerbi.com/view?r=eyJrIjoiYmE4OWI5ZDYtNmNkYi00OGQyLWIxMzctYWVlNmJkYWUyZGMyIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 1</a>
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiOTNiZTQ2YjYtODg3Mi00OGE2LTllMDEtYzE2MmMwOGI0Y2E3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 2</a>
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMTRlOGVjY2QtNGEyMy00ZjY0LThkMTAtN2RjMTdhMTNmMzExIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 3</a>
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiYWUzN2Y1ZWItNWE2Yy00NGQzLWFjNjMtZWEwODI3YTNhNzlhIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 4</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiYjcxODVmNzEtMmU3MS00YTc4LTk0ZDUtZjc2YmI4NjdlYzEzIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 2</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiZGQ5Nzg0NzItODE3MC00NGI1LWI1NWUtMzI1ZDRmNzkwNjhkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 3</a>
 ##### Para conferir outros reports e dashboards de outros projetos consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
@@ -37,16 +37,16 @@
 ---
 
 ### Objective:
-O objetivo desse projeto prático foi construir três reports com as seguintes temáticas respectivamente: **logístico**, **recursos humanos (RH)** e **vendas**. Durante a construção foram apresetadas as ferramentas e funções do **Power BI** e também do **Power Query**.
+O objetivo desse projeto prático foi construir três reports com as seguintes temáticas respectivamente: **logístico**, **recursos humanos (RH)** e **vendas**. Durante a construção foram apresentadas as ferramentas e funções do **Power BI** e também do **Power Query**.
 
 ### Structure:
 A estrutura (Imagem 01) do projeto é formada por:
-- Quatro arquivos em **Power BI**, um para cada aula, com a construção dos reports.
+- Três arquivos em **Power BI**, um para cada aula, com a construção dos reports.
 - Uma apostila em **PDF** com o resumo das aulas.
-- Uma pasta (**base_dados**) com quatro arquivos em **Excel** utilizado para alimentar os relatórios.
+- Uma pasta (**base_dados**) com quatro arquivos em **Excel** utilizados para alimentar os relatórios.
 - Uma pasta (**background**) com quatro imagens para utilização como plano de fundo no **Power BI**. 
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
-- Obs.: A logomarca do curso foi criado apenas para fins didáticos utilizando o site de inteligência artificial **Brandmark**.
+- Obs.: A logomarca do curso foi criada apenas para fins didáticos utilizando o site de inteligência artificial **Brandmark**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
@@ -67,11 +67,11 @@ Para construção do report, não foi necessária a criação de medidas. Foram 
 </figure></div><br>
 
 #### Class 2
-O segundo report construído foi referente ao tema **recursos humanos (RH)**. O processo inicial é o mesmo da aula anterior, sendo que a base de dados agora, eram dois arquivos de **Excel** (**BD-RH** e **bd_integrantes**, sendo este segundo em formato **CSV**). Um arquivo tornou-se a **tabela fato** e o outro **tabela dimensão**, criando um relacionamento entre elas. No arquivo da tabela fato existiam duas abas com a mesma estrura de dados, formadas pelas colunas: **Entrevista**, **Data**, **Resposta**, **Funcionario** e **Assunto**. Já no outro arquivo, a única aba existente possuía a seguinte estrutura: **id_integrante**, **Unidade**, **Cargo / Nome**, **Data Contratação**, **Idade**, **Status do Integrante**, **Fonte de Recrutamento** e **Ano Contratacao**. Ambos foram extraídos para o **Power Query**, originando três Queries (**2019**, **2020** e **bd_integrantes**) que foram submetidos a um processo de **ETL**. 
+O segundo report construído foi referente ao tema **recursos humanos (RH)**. O processo inicial é o mesmo da aula anterior, sendo que a base de dados agora, eram dois arquivos de **Excel** (**BD-RH** e **bd_integrantes**, sendo este segundo em formato **CSV**). Um arquivo tornou-se a **tabela fato** e o outro **tabela dimensão**, criando um relacionamento entre elas. No arquivo da tabela fato existiam duas abas com a mesma estrura de dados, formadas pelas colunas: **Entrevista**, **Data**, **Resposta**, **Funcionario** e **Assunto**. Já no outro arquivo, a única planilha existente possuía a seguinte estrutura: **id_integrante**, **Unidade**, **Cargo / Nome**, **Data Contratação**, **Idade**, **Status do Integrante**, **Fonte de Recrutamento** e **Ano Contratacao**. Ambos foram extraídos para o **Power Query**, originando três Queries (**2019**, **2020** e **bd_integrantes**) que foram submetidos a um processo de **ETL**. 
 
-Automaticamente o **Power Query** realizou duas alterações inicias, promoveu a primeira linha para cabeçalho e definiu os tipos de dados das colunas. A consulta **bd_integrantes** foi renomeada para **funcionarios** e outras transformações foram realizadas. Foi dividido a coluna **Cargo / Nome** em duas colunas **Cargo** e **Nome**. As colunas **Status do Integrante** e **Ano Contratacao** foram excluídas. Foi criada uma coluna de exemplo (**FaixaEtaria**) em relação a coluna **Idade**, onde foi escrita nas três primeiras linhas o exemplo (36-40, 41-45 e 46-50) e foi identificado as outras linhas da coluna. As Queries da tabela fato foram mescladas dando origem a uma nova Query nomeada de **entrevista** e desabilatadas para carregamento, já que a nova Query possuía as informações. Nesta nova consulta, foi criada uma coluna de exemplo (**Entrevista Abrev**) referente a coluna **Entrevista**, só para abreviar o texto dos dados.
+Automaticamente o **Power Query** realizou duas alterações iniciais, promoveu a primeira linha para cabeçalho e definiu os tipos de dados das colunas. A consulta **bd_integrantes** foi renomeada para **funcionarios** e outras transformações foram realizadas. Foi dividido a coluna **Cargo / Nome** em duas colunas **Cargo** e **Nome**. As colunas **Status do Integrante** e **Ano Contratacao** foram excluídas. Foi criada uma coluna de exemplo (**FaixaEtaria**) em relação a coluna **Idade**, onde foram escritas nas três primeiras linhas o exemplo (36-40, 41-45 e 46-50), e foi identificado automaticamente as outras linhas da coluna. As Queries da tabela fato foram mescladas dando origem a uma nova Query nomeada de **entrevista** e desabilatadas para carregamento, já que a nova Query possuía as informações. Nesta nova consulta, foi criada uma coluna de exemplo (**Entrevista Abrev**) referente a coluna **Entrevista**, só para abreviar o texto dos dados.
 
-Dando seguimento, os dados foram carregados em duas tabelas no **Power BI** com o mesmo nome das consultas. A coluna **id_integrante** da tabela dimensão **funcionarios** foi relacionada com a coluna **funcionarios** da tabela fato **entrevista**. Três medidas foram criadas para a construção do report. A medida **Qtd Perguntas** contabilizou a quantidade de linhas de entrevista, ou seja, quantidade de perguntas. A medida **Qtd Cargos** contou a quantidade de cargos diferentes, enquanto a medida **Qtd Funcionarios** countou a quantidade de funcionários. A modelagem dos dados é exibida na imagem 03.
+Dando continuidade, os dados foram carregados em duas tabelas no **Power BI** com o mesmo nome das consultas. A coluna **id_integrante** da tabela dimensão **funcionarios** foi relacionada com a coluna **funcionarios** da tabela fato **entrevista**. Três medidas foram criadas para a construção do report. A medida **Qtd Perguntas** contabilizou a quantidade de linhas da tabela entrevista, ou seja, quantidade de perguntas. A medida **Qtd Cargos** contou a quantidade de cargos diferentes, enquanto a medida **Qtd Funcionarios** countou a quantidade de funcionários. A modelagem dos dados é exibida na imagem 03.
 
 ```
 Qtd Perguntas = COUNTROWS(entrevista)
@@ -90,158 +90,49 @@ Qtd Funcionarios = COUNTROWS(funcionarios)
     <figcaption>Imagem 03.</figcaption>
 </figure></div><br>
 
-Essas três medidas foram utilizadas em três visuais de cartão. Na composição do report foram criados outros visuais que realizaram as seguintes análises: **Análise da Quantidade de Funcionários por Faixa Etária** (Gráfico de Funil), **Análise da Quantidade de Funcionários pela Fonte de Recrutamento** (Visual Treemap), **Análise da Quantidade de Funcionários por Ano de Contratação** (Gráfico de Coluna), **Análise das Repostas por Entrevista** (Gráfico de Coluna) e três gráficos de colunas empilhadas idênticos **Análise Percentual de Pergunta por Tipo de Reposta e Entrevista**, sendo que em cada um foi realizado um filtro para os seguintes assuntos: **Saúde**, **Carga Horária** e **Salário**. Além disso, foi inserido uma segmentação de dados para filtragem por **Unidade**. O plano de fundo foi construído no **PowerPoint**, pela plataforma do curso, exportado para imagem e adcionada ao projeto. A seguir, é ilustrado o resultado do projeto na imagem 04.
+Essas três medidas foram utilizadas em três visuais de cartão. Na composição do report foram criados outros visuais que realizaram as seguintes análises: **Análise da Quantidade de Funcionários por Faixa Etária** (Gráfico de Funil), **Análise da Quantidade de Funcionários pela Fonte de Recrutamento** (Visual Treemap), **Análise da Quantidade de Funcionários por Ano de Contratação** (Gráfico de Coluna), **Análise das Repostas por Entrevista** (Gráfico de Coluna) e três gráficos de colunas empilhadas idênticos **Análise Percentual de Pergunta por Tipo de Reposta e Entrevista**, sendo que em cada um foi realizado um filtro para os seguintes assuntos: **Saúde**, **Carga Horária** e **Salário**. Além disso, foi inserido uma segmentação de dados para filtragem por **Unidade**. O plano de fundo foi construído no **PowerPoint**, pela plataforma do curso, exportado para imagem e adicionada ao projeto. A seguir, é ilustrado o resultado do projeto na imagem 04.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiYmE4OWI5ZDYtNmNkYi00OGQyLWIxMzctYWVlNmJkYWUyZGMyIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_073.2_rh.PNG" alt="img04"><br>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiYjcxODVmNzEtMmU3MS00YTc4LTk0ZDUtZjc2YmI4NjdlYzEzIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_073.2_rh.PNG" alt="img04"><br>
     <figcaption>Imagem 04: Report Recursos Humanos (RH).</figcaption></a>
 </figure></div><br>
 
 #### Class 3
+Na última aula, foi desenvolvido um report do tema **vendas** de outra base de dados em **Excel** com três planilhas (**pedidos**, **lojas**, **calendario**). A estrutura dos dados da aba **pedidos** era formada pelas colunas: **numero_pedido**, **data_pedido**, **cod_loja**, **Produto**, **qtde / preco_unitario** e **valor_venda**. Já da aba **lojas** era composta por: **codigo_loja**, **nome_loja**, **Cidade**, **nome_estado**, **silga_estado**, **latitude**, **longitude**, **Gerente** e **Imagem**. A última planilha possuía as seguintes colunas: **data**, **mes**, **mes_num** e **semana**. A planilha **pedidos** originou a tabela **fato**, enquanto as outras duas deram origem as tabelas **dimensão**.
 
+Os dados foram extraídos via **Power Query**, criando três consultas de mesmo nome, que foram submetidas ao processo de **ETL**. Na etapa de transformação, todas as Queries determinaram seus cabeçalhos e definiram os tipos de dados das colunas. Na Query **produtos**, foi dividido a coluna **qtde / preco_unitario** em duas colunas (**qtd** e **preco_unitario**). Nas colunas **preco_unitario** e **valor_venda**, foi definido o tipo de dados para número decimal fixo. Já na consulta **loja**, foi realizado a exclusão das linhas vazias e corrigido o nome da coluna **silga_estado** para **sigla_estado**. Na consulta **calendario**, nennhuma transformação foi necessária.
 
-
-
-
-
-
-
-
-
-Na segunda aula, foi criado um novo report, desta vez, sobre a temática **logística**. O desenvolvimento teve início também com a extração dos dados pelo **Power Query**, porém o arquivo de base de dados foi **Base Logistica**, que criou uma única Query nomeada para **Frete**. A estrutura dos dados era formada pelas colunas: **Viagem**, **Data Pedido**, **Data Entrega**, **Prazo Entrega**, **UF**, **Marca**, **Tipo de Veículo**, **Valor do Frete Líquido**, **Km**, **Combustível**, **Manutenção** e **Custos Fixos**.
-
-O primeiro tratamento realizado no **Power Query** foi a utilização da primeira linha como cabeçalho. Na sequência, foi definido os tipos de dados das colunas, pois estavam em aberto e é importante sempre definir de quais tipos são os dados. Foi criada uma nova coluna que foi renomeada para **Custos Totais** e que calculava o somatório de todos os custos, ou seja, as colunas **Combustível**, **Manutenção** e **Custos Fixos**. Essas três colunas não foram mais necessárias e portanto, foram excluídas, já que a coluna **Custos Totais** contemplava a soma delas. Uma nova coluna foi inserida e renomeada para **Tempo Entrega** que calculava o tempo de entrega em dias entre a coluna **Data Entrega** e **Data Pedido**. Para finalizar, foi inserida uma coluna condicional (**Status Entrega**) que comparava a coluna **Tempo Entrega** com **Prazo Entrega** para verificar se o tempo de entrega estava dentro do prazo estabelecido, determinando as condições **No Prazo** (Verdadeiro) e **Atrasado** (Falso).
-
-Os dados foram carregados em única tabela no **Power BI** com o mesmo nome da consulta (**Frete**). Com as **Expressões DAX** foi criado sete medidas. A primeira pedida elaborada foi a de **Receita** que somava a coluna **Valor do Frete Líquido**. A medida **Total Custos** somava a coluna **Custos Fixos** para obter o total de custos. Com a receita e o total de custos, foi obtido o lucro através da medida **Lucro**. A medida **Km Rodados** somou todas as distâncias em Km da coluna **Km** para descobrir o total de quilômetros rodados. Para calcular a quantidade de viagens realizadas (**Qtd Viagens**) foi necessário a contagem da quantidade de linhas da tabela. Abaixo estão as **Expressões DAX** dessas cinco medidas criadas.
-
-```
-Receita = SUM(Frete[Valor do Frete Líquido])
-```
-
-```
-Total Custos = SUM(Frete[Custos Totais])
-```
-
-```
-Lucro = [Receita] - [Total Custos]
-```
-
-```
-Km Rodados = SUM(Frete[Km])
-```
-
-```
-Qtd Viagens = COUNTROWS(Frete)
-```
-
-As últimas duas medidas foram utilizadas para a construção de um gráfico de velocímetro. A primeira delas foi a medida **Viagens No Prazo** que contabilizava a quantidade de linhas da tabela quando na coluna **Status Entrega** fosse **No Prazo**, ou seja, o total de viagens que foi realizada dentro do prazo. A medida **% Entrega no Prazo** realizava o cálculo do percentual das **Viagens No Prazo** sobre o total de viagens (**Qtd Viagens**). Esse valor percentual foi indicado no gráfico, onde uma linha de meta de 60% foi inserida para avaliar se estavam acima ou abaixo da meta.
-
-```
-Viagens No Prazo = CALCULATE(COUNTROWS(Frete),Frete[Status Entrega]="No Prazo")
-```
-
-```
-% Entrega no Prazo = [Viagens No Prazo] / [Qtd Viagens]
-```
-
-Além do gráfico de velocímetro que realizou uma **Análise do Percentual de Entregas no Prazo**, outros seis visuais foram construídos, um gráfico de coluna para a **Análise da Quantidade de Viagens por Mês**, um visual de matriz com uma **Análise da Receita e Quantidade de Viagens por Tipo de Veículo e Marca**, e quatro visuais de cartões exibindo: **Receita**, **Lucro**, **Km Rodado** e **Qtd Viagens**. Uma segmentação de dados de **ano e mês** foi adicionada para a filtragem dos dados. A seguir, a visualização do report logístico é apresentada na imagem 03.
+Os dados foram carregados no **Power BI**, cada Query em uma tabela. As colunas **cod_loja** e **data_pedido** da tabela **fato** foram relacionadas com as colunas **codigo_loja** e **data** das tabelas **dimensão** (**lojas** e **data**), respectivamente. Na imagem 05 a seguir, é ilustrado como ficou os relacionamentos.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiOTNiZTQ2YjYtODg3Mi00OGE2LTllMDEtYzE2MmMwOGI0Y2E3IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_040.2_logistico.PNG" alt="img03"><br>
-    <figcaption>Imagem 03: Report Logístico.</figcaption></a>
+    <img src="./0-aux/img05.PNG" alt="img05"><br>
+    <figcaption>Imagem 05.</figcaption>
 </figure></div><br>
 
-#### Class 3
-A aula, cuja temática de construção do report foi **vendas**, foi iniciada através do **Power Query** com a criação de duas Queries extraídas da base de dados **Base Vendas**. Cada consulta veio de uma aba desse arquivo em **Excel**. A consulta **CadastroProdutos** veio da segunda aba e posteriormente seria carregada em uma **tabela dimensão**. A primeira aba originou a consulta **Vendas** que foi carregada em uma **tabela fato**, e em sua estrutura de dados possuía as seguintes colunas: **SKU Vendido**, **Qtd Vendida**, **Preco Unitario**, **Faturamento**, **Loja**, **Data da Venda** e **Codigo Cliente**. As únicas alterações realizadas nas consultas foram: promover a primeira linha para cabeçalho e definir os tipos de dados das colunas. 
+Três medidas foram criadas para construção dos visuais de cartão. A medida **Faturamento** calculava o faturamento total das vendas. A medida **Total Pedidos** contabilizava o total de pedidos realizados. Já a medida **Ticket Medio** calculava o valor médio de venda dos pedidos.
 
-Após o tratamento no **Power Query**, as Queries foram carregadas para tabelas dentro do **Power BI**. O relacionamento entre elas não foi reconhecido automaticamente, logo, foi necessário relacionar a coluna **SKU** da tabela dimensão com a coluna **SKU Vendido** da tabela fato. O relacionamento é ilustrado na imagem 04 abaixo.
+```
+Faturamento = sum(pedidos[valor_venda])
+```
+
+```
+Total Pedidos = COUNTROWS(pedidos)
+```
+
+```
+Ticket Medio = DIVIDE([Faturamento], [Total Pedidos],"Erro")
+```
+
+Além dos cartões, foram adicionados mais três visuais, sendo: um gráfico de coluna (**Análise do Faturamento por Período**), um visual de mapa (**Análise do Faturamento por Cidade**) e um visual de tabela (**Análise do Faturamento e Percentual do Faturamento por Loja**), neste foi realizado uma formatação condicional do tipo barra de dados e também a inserção de minigráficos (**Análise de Faturamento por Período**). Um visual de Image Grid também foi adicionado para exibição da foto do gerente, junto com um gráfico de rosca ao redor com a **Análise do Faturamento por Loja**. Uma segmentação de dados foi inserida para filtragem por **Gerente** e um visual de cartão foi adicionado para exibir o nome do gerente selecionado no filtro. O plano de fundo, desenvolvido em **PowerPoint** e exportado como imagem, foi fornecido pela plataforma do curso, sendo utilizado como background desse report que é apresentado na imagem 06 abaixo.
 
 <div align="Center"><figure>
-    <img src="./0-aux/img04.PNG" alt="img04"><br>
-    <figcaption>Imagem 04.</figcaption>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiZGQ5Nzg0NzItODE3MC00NGI1LWI1NWUtMzI1ZDRmNzkwNjhkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_073.3_vendas.PNG" alt="img06"><br>
+    <figcaption>Imagem 06: Report Vendas.</figcaption></a>
 </figure></div><br>
 
-No **Power BI** foi criado quatro medidas dentro da tabela **Vendas** e cada uma delas originou um visual de cartão com um gráfico de **Sparkline** dentro de cada cartão. As medidas **Faturamento Total** e **Unidades Vendidas** realizaram a soma das colunas **Faturamento** e **Qtd Vendida**, respectivamente. A medida **Ticket Medio** calculou a média da coluna **Faturamento** para obter o preço médio de vendas. Já a medida **Qtd Clientes** fez a contagem das linhas com **Codigo Cliente** diferente para determinar a quantidade de clientes.
-
-```
-Faturamento Total = Sum(Vendas[Faturamento])
-```
-
-```
-Unidades Vendidas = Sum(Vendas[Qtd Vendida])
-```
-
-```
-Ticket Medio = AVERAGE(Vendas[Faturamento])
-```
-
-```
-Qtd Clientes = DISTINCTCOUNT(Vendas[Codigo Cliente])
-```
-
-Na construção do report, além dos cartões com **Sparkline**, foi construído outros dois visuais. Um gráfico de barras para a **Análise do Faturamento Total por Marca** e um visual de **Imagem Grid**, ou seja, imagens dos produtos comercializados, no qual é possível selecioná-los para filtrar os demais visuais. Para este visual foi necessário a coluna **Imagem** da tabela dimensão **CadastroProdutos**, pois nesta coluna tinha os links para utilização das imagens. O projeto do report de **vendas** é apresentado abaixo (Imagem 05).
+Na imagem 07 a seguir, é exibido o mesmo report, porém com layout para dispositivos móveis.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiMTRlOGVjY2QtNGEyMy00ZjY0LThkMTAtN2RjMTdhMTNmMzExIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_040.3_vendas.PNG" alt="img05"><br>
-    <figcaption>Imagem 05: Report Vendas.</figcaption></a>
-</figure></div><br>
-
-Nesta aula, foi criada também uma segunda página, só para apresentação do visual **Decomposition Tree** (Árvore de Decomposição), mas esta página foi ocultada do relatório.
-
-#### Class 4
-Para última aula, o tema do report foi **projetos**. O procedimento inicial é sempre parecido, sendo feito um processo de **ETL** (Extração, Transformação e Carregamento), começando com a obtenção dos dados pelo **Power Query** para criação de uma consulta (**Projetos**). Nesta ocasião, o arquivo em **Excel** de base de dados foi **Base Projetos** composta apenas por uma aba com a seguinte estrutura: **Código Projeto**, **Setor**, Valor Orçado**, **Valor Negociado**, **Desconto Concedido**, **Data Ativação Lead**, **Data Início**, **Data Termino**, **Responsável** e **Status**. No **Power Query** os dados foram tratados (promoção da primeira linha como cabeçalho, definação dos tipos de dados das colunas e exclusão de linhas em branco) e carregados em uma tabela no **Power BI**, com o mesmo nome da consulta.
-
-Todas as sete medidas criadas foram armazenadas dentro da única tabela. A primeira medida elaborada foi **Oportunidades** que contava a quantidade de linhas da tabela para conhecer o total de oportunidades de projetos. A medida **Projetos Fechados** também realiza uma contagem, porém quando uma condição é atendida, que no caso, é quando na coluna **Data Início** é diferente de em branco (vazio), ou seja, quando existe uma data de início do projeto, passando a ser considerado com um projeto fechado. Já a medida **Total Leads** subtrai as medidas anteriores uma pela outra, para calcular quantos projetos não foram fechados. Essas três medidas são demonstradas a seguir.
-
-```
-Oportunidades = COUNTROWS(Projetos)
-```
-
-```
-Projetos Fechados = CALCULATE(COUNTROWS(Projetos),Projetos[Data Início]<>BLANK())
-```
-
-```
-Total Leads = [Oportunidades]-Projetos[Projetos Fechados]
-```
-
-Para a medida **Total Orçado** é semelhante a medida **Projetos Fechados**, porém ao invés de contabilizar as linhas, vai somar a coluna **Valor Orçado** para obter o orçamento dos projetos fechados. A medida **Total Negociado** é parecida com esta anterior, pórem soma a coluna **Valor Negociado** para calcular o faturamento, de fato, dos projetos fechados. Então com essas duas medidas, é subtraída uma da outra na medida **Desconto Negociado** para calcular quanto de desconto foi dado nos projetos fechados.
-
-```
-Total Orçado = CALCULATE(
-    Sum(Projetos[Valor Orçado]), 
-    Projetos[Data Início]<>BLANK()
-    )
-    // Aqui estou somando o orçamento dos projetos fechados
-```
-
-```
-Total Negociado = CALCULATE(
-    Sum(Projetos[Valor Negociado]),
-    Projetos[Data Início]<>BLANK()
-)
-```
-
-```
-Desconto Negociado = [Total Orçado] - [Total Negociado]
-```
-
-Uma última medida foi criada, porém não foi utilizada na construção do report. A medida **Total Orçado Geral** é quase a mesma que **Total Orçado**, a diferença é que está aplica para todos os projetos, fechados ou não.
-
-```
-Total Orçado Geral = Sum(Projetos[Valor Orçado])
-```
-
-Todas as medidas, excluindo essa última, foram utilizada para construção dos visuais de cartão. Além dos cartões, o relatório contou com outros quatro visuais: um gráfico de coluna agrupada (**Análise do Orçado x Negociado por Ano**), um gráfico de área (**Análise dos Projetos Fechados por Ano e Trimestre**), um gráfico de funil (**Análise de Oportunidades por Status**), sendo este, com uso do **Tooltip** construído em outra página, e por último, um visual de **Play Axis**, que executa, em um loop, uma filtragem dos dados por **Setor**, em um determinado tempo. A imagem 06 apresentam o último report, sobre a temática **projetos**.  
-
-<div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiYWUzN2Y1ZWItNWE2Yy00NGQzLWFjNjMtZWEwODI3YTNhNzlhIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_040.4_projetos.PNG" alt="img06"><br>
-    <figcaption>Imagem 06: Report Projetos.</figcaption></a>
-</figure></div><br>
-
-A **Tooltip** foi desenvolvida em outra página, com um gráfico de colunas que realiza uma **Análise de Oportunidades por Setor**, além de dois cartões exibindo o **Valor Orçado** e o **Melhor Setor**. O **Tooltip** é exibido na imagem 07, a seguir.
-
-<div align="Center"><figure>
-    <img src="./0-aux/img07.PNG" alt="img07" width="300px"><br>
-    <figcaption>Imagem 07: Tooltip.</figcaption>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiZGQ5Nzg0NzItODE3MC00NGI1LWI1NWUtMzI1ZDRmNzkwNjhkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_073.3_vendas_mobile.PNG" alt="img07"><br>
+    <figcaption>Imagem 07: Report Vendas (Mobile).</figcaption></a>
 </figure></div><br>

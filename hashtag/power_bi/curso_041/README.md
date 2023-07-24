@@ -39,7 +39,7 @@
 ---
 
 ### Objective:
-O objetivo desse projeto prático foi construir quatro reports, um para cada aula, com as seguintes temáticas respectivamente: **vendas**, **produção**, **recursos humanos** e **financeiro**. Durante a construção foram apresetadas as ferramentas e funções do **Power BI** e também do **Power Query**.
+O objetivo desse projeto prático foi construir quatro reports, um para cada aula, com as seguintes temáticas respectivamente: **vendas**, **produção**, **recursos humanos** e **financeiro**. Durante a construção foram apresentadas as ferramentas e funções do **Power BI** e também do **Power Query**.
 
 ### Structure:
 A estrutura (Imagem 01) do projeto é formada por:
