@@ -44,7 +44,7 @@ A estrutura (Imagem 01) do projeto é composta por:
 - Obs.: A logomarca do curso foi criada apenas para fins didáticos, utilizando o site de inteligência artificial **Brandmark**.
 
 <div align="Center"><figure>
-    <img src="./0-aux/img01.PNG" alt="img01"><br>
+    <img src="./0-aux/img01.png" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
@@ -115,7 +115,7 @@ Total Gêneros = DISTINCTCOUNT(fTitulosA[skGenre])
 ```
 
 <div align="Center"><figure>
-    <img src="./0-aux/img02.PNG" alt="img02"><br>
+    <img src="./0-aux/img02.png" alt="img02"><br>
     <figcaption>Imagem 02.</figcaption>
 </figure></div><br>
 
@@ -218,6 +218,6 @@ Uma página de **Tooltip** foi construída exibindo o nome do título, a quantid
 Na imagem 03, abaixo, é possível visualizar a página principal do report.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_074_avaliacao_titulos.PNG" alt="img03"><br>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_074_avaliacao_titulos.png" alt="img03"><br>
     <figcaption>Imagem 03: Report Avaliação de Títulos.</figcaption></a>
 </figure></div><br>
