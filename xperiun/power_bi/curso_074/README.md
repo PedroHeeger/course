@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 ### Course: <a href="./">curso_074 (002 - Desafio Kickstart | Filmes Netflix)   <img src="./0-aux/logo_course.png" alt="curso_069" width="auto" height="25"></a>
 
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiY2I3Mzg5YTEtYTM2Ni00MTllLThlNjQtZTc3NDkzZTFkZDU0IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report</a>
 ##### Para conferir outros reports e dashboards de outros projetos consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
@@ -218,6 +218,6 @@ Uma página de **Tooltip** foi construída exibindo o nome do título, a quantid
 Na imagem 03, abaixo, é possível visualizar a página principal do report.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiOGUyZjM5ZmQtYzE4Yy00YTYxLTg0YzMtMjgzMTYyN2U0MDhiIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_074_avaliacao_titulos.png" alt="img03"><br>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiY2I3Mzg5YTEtYTM2Ni00MTllLThlNjQtZTc3NDkzZTFkZDU0IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_074_avaliacao_titulos.png" alt="img03"><br>
     <figcaption>Imagem 03: Report Avaliação de Títulos.</figcaption></a>
 </figure></div><br>
