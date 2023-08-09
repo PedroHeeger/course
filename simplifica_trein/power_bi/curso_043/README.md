@@ -3,7 +3,7 @@
 ### Repository: [course](../../../)
 ### Platform: <a href="../../">simplifica_trein   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/simplifica_treinamentos.png" alt="simplifica_treinamentos" width="auto" height="25"></a>
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
-### Course: <a href="./curso_043">curso_043 (Simplifica Power Excel)   <img src="./0-aux/logo_course.png" alt="curso_043" width="auto" height="25"></a>
+### Course: <a href="./">curso_043 (Simplifica Power Excel)   <img src="./0-aux/logo_course.png" alt="curso_043" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/power_bi/(23-05-22)%20Cert%20Power%20BI%20e%20Excel%20PH%20Simplifica%20Trein.pdf">Certificate</a>
 #### <a href="https://app.powerbi.com/view?r=eyJrIjoiYTYyZmZlNjctYjhkYS00MGFmLWIyZWMtMjgxODM2YTdiNTE5IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 3</a>
