@@ -36,7 +36,7 @@
 ---
 
 ### Objective:
-O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Excel** e **Microsoft Power BI**, desenvolvendo três reports, um para **Excel** e outros dois para **Power BI**, sendo um do mesmo tema do **Excel**. A temática do report igual para os dois, consistiu em um cenário hipotético de **atendimentos de uma clínica de saúde** nos anos de 2020 e 2021. Já o tema do segundo report de **Power BI** foi referente a um cenário hipotético de **vendas**.
+O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas dos softwares **Microsoft Excel** e **Microsoft Power BI**, desenvolvendo três reports, um para **Excel** e outros dois para **Power BI**, sendo um do mesmo tema do **Excel**. A temática do report igual para os dois, consistiu em um cenário hipotético de **atendimentos de uma clínica de saúde** nos anos de 2020 e 2021. Já o tema do segundo report de **Power BI** foi referente a um cenário hipotético de **vendas**.
 
 ### Structure:
 A estrutura (Imagem 01) é composta por três sub-pastas, cada pasta para uma das quatro aulas, sendo que as aulas 1 e 2 foram realizadas no mesmo arquivo, ou seja, na mesma sub-pasta.
