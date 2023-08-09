@@ -6,8 +6,7 @@
 ### Course: <a href="./curso_075">curso_075 (Simplifica Power BI)   <img src="./0-aux/logo_course.png" alt="curso_075" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/power_bi/(23-05-22)%20Cert%20Power%20BI%20e%20Excel%20PH%20Simplifica%20Trein.pdf">Certificate</a>
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9&pageName=ReportSection">Power BI Report Aula 1</a>
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 1 (Mobile)</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 1</a>
 #### <a href="https://app.powerbi.com/view?r=eyJrIjoiNWIxMzJhYzktNTk5Yy00NGM0LWI0Y2QtOGFlNzI2MDM0OTQ1IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 2</a>
 
 
@@ -69,7 +68,7 @@ Na etapa de transformação no **Power Query**, a coluna **Nome_Cliente** foi fo
 Na construção do report, foram inseridos sete visuais, sendo três cartões (**Faturamento**, **Quantidade Vendida** e **Quantidade de Pedidos**), uma segmentação de dados para filtragem por **Estados** e quatro gráficos, sendo um de barra (**Análise de Faturamento por Representante**), um de rosca (**Análise de Faturamento por Regional**), um de coluna (**Análise de Faturamento por Cliente**) e o último de dispersão (**Análise dos Produtos por Faturamento e Quantidade Vendida**). Além dos gráficos, três **Tooltips** foram elaboradas, sendo um de **Análise de Faturamento por Mês** usado no gráfico de barra, um de **Análise de Faturamento por Estados** utilizado no gráfico de rosca e outro de **Análise de Faturamento e Quantidade Vendida por Cliente** vinculado ao gráfico de dispersão. Neste último, foi realizado uma formatação condicional nas duas colunas. A imagem 02 abaixo, apresenta o desenvolvimento do report.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9&pageName=ReportSection"><img src="./0-aux/rep_curso_075.1_vendas.png" alt="img02"><br>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_075.1_vendas.png" alt="img02"><br>
     <figcaption>Imagem 02: Report Vendas.</figcaption></a>
 </figure></div><br>
 
