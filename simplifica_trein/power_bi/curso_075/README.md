@@ -8,10 +8,8 @@
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/power_bi/(23-05-22)%20Cert%20Power%20BI%20e%20Excel%20PH%20Simplifica%20Trein.pdf">Certificate</a>
 #### <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 1</a>
 #### <a href="https://app.powerbi.com/view?r=eyJrIjoiNWIxMzJhYzktNTk5Yy00NGM0LWI0Y2QtOGFlNzI2MDM0OTQ1IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 2</a>
-
-
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MWEwNTMtZjQwMS00ODVhLWEyMGMtMGRlYTQ4ZTU5MWNlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9&pageName=ReportSection">Power BI Report Aula 3</a>
-#### <a href="https://app.powerbi.com/view?r=eyJrIjoiNDRlNmU5NTMtYjk0ZC00NGI2LTkyYTMtZTdmOWQ2NjhiNDRkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 4</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiMWZjZTIwNjktODQ3Ny00OTg2LWFlYjEtYzQ3MGMwMjM0NzhlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 3</a>
+#### <a href="https://app.powerbi.com/view?r=eyJrIjoiY2Y5YTY4ODctZTA5Zi00Y2MyLThmMDYtMjE2MjI3Y2QwZDhmIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9">Power BI Report Aula 4</a>
 ##### Para conferir outros reports e dashboards de outros projetos consulte meu repositório principal na sub-pasta de report clicando [aqui](https://github.com/PedroHeeger/main/tree/main/report).
 
 ---
@@ -40,15 +38,14 @@
 ---
 
 ### Objective:
-O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Power BI**, desenvolvendo três reports, com as seguintes temáticas: .
+O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Power BI**, desenvolvendo três reports, com as seguintes temáticas: **vendas**, **atendimentos**, **vendas** (Detalhada) e **análise de perfil**.
 
 ### Structure:
 A estrutura (Imagem 01) é composta por três sub-pastas, cada pasta para uma das quatro aulas, sendo que as aulas 1 e 2 foram realizadas no mesmo arquivo, ou seja, na mesma sub-pasta.
 - A pasta **aula_01** possui um arquivo de **Excel** (base de dados), um arquivo em **Word** com o roteiro do projeto, dois arquivos em **PowerPoint** com a construção do background para os formatos mobile e desktop, duas imagens com a exportação desses backgrounds e um arquivo em **Power BI** com o desenvolvimento do projeto.
-- A pasta **aula_02** possui dois arquivo de **Excel** (base de dados), um arquivo em **Word** com o roteiro do projeto, um arquivo em **PowerPoint** com a construção do layout, uma imagem com a exportação desse layout e um arquivo em **Power BI** com o desenvolvimento do projeto.
-
-- A pasta **aula_03** contém apenas um arquivo em **Excel** com a base de dados, um arquivo em **Power BI** com o report construído e também uma sub-pasta com os arquivos de criação do plano de fundo do report (arquivos de imagens e **Power Point**).
-- A pasta **aula_04** tem duas bases de dados em **Excel**, um arquivo de imagem e um de **Power Point** para construção do plano de fundo, e o arquivo de **Power BI** com o report desenvolvido.
+- A pasta **aula_02** possui dois arquivos de **Excel** (base de dados), um arquivo em **Word** com o roteiro do projeto, um arquivo em **PowerPoint** com a construção do layout, uma imagem com a exportação desse layout e um arquivo em **Power BI** com o desenvolvimento do projeto.
+- A pasta **aula_03** possui dois arquivos de **Excel** (base de dados), um arquivo em **Word** com o roteiro do projeto, um arquivo em **PowerPoint** com a construção do layout, uma imagem com a exportação desse layout e um arquivo em **Power BI** com o desenvolvimento do projeto.
+- A pasta **aula_04** possui um arquivo de **Excel** (base de dados), um arquivo em **Word** com o roteiro do projeto, um arquivo em **PowerPoint** com a construção do layout do report e da capa, duas imagens com a exportação desse layout e um arquivo em **Power BI** com o desenvolvimento do projeto.
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
 - Obs.: A logomarca do curso foi criada apenas para fins didáticos com o uso do site de inteligência artificial **Brandmark**.
 
@@ -135,25 +132,100 @@ Na lateral esquerda foi elaborado um tipo de menu com quatro segmentações de d
 
 #### Class 3
 
+Na terceira aula, o projeto desenvolvido foi novamente sobre a temática **vendas**, igual a primeira aula, porém com uma base de dados mais completa para análises de vendas de produtos detalhada. Nesta ocasião, foram importados dois arquivos em **Excel** de base de dados para o **Power Query**. O primeiro arquivo (**1 - Base de Dados**) era composto por quatro planilhas, sendo a primeira delas **Tabela de Vendas** composta pelas colunas: **ID_Pedido**, **Data_Pedido**, **ID_Representante**, **Regional**, **ID_Produto**, **Quantidade_Vendida**, **Valor_Produto**, **Nome_Cliente**, **Cidade_Cliente** e **Estado_Cliente**. A segunda planilha (**Funcionários**) tinha as colunas: **ID_Representante**, **Primeiro Nome**, **Segundo Nome**, **Nome Completo** e **Email**. Já a terceira planilha (**Produtos**), as colunas eram: **ID_Produto**, **Nome_Produto**, **Valor_Produto**, **Custo_Produto** e **URL**. Por fim, a última planilha (**Datas**) possuía uma única coluna de **Data**. No outro arquivo (**Metas**) tinha apenas uma planilha com três colunas (**ID_Produto**, **Nome_Produto** e **Meta**).
 
+Dentro do **Power Query** foi realizado o processo de **ETL** (Extração, Transformação e Carregamento), sendo gerada quatro Queries com mesmo nome das planilhas do primeiro arquivo de base de dados. A primeira transformação realizada foi na Query **Tabela de Vendas**, onde foi construída uma nova coluna de nome **Receita_Pedido** que multiplicava a coluna **Quantidade_Vendida** por **Valor_Produto**. Em seguida, foi alterado o tipo para número decimal fixo as colunas **Valor_Produto** e **Receita_Produto** já que eram colunas com valores monetários. Na consulta **Produtos**, foi realizado o mesmo procedimento de alteração do tipo de dado para decimal fixo das colunas **Valor_Produto** e **Custo_Produto**. Também foram excluídas as linhas com dados vazios.
 
+Na consulta **Funcionários** não houve necessidade de transformações. Já na de **Data** foram adicionadas algumas colunas a partir da coluna **Data**: **Trimestre**, **Mês**, **Nome do Mês**, **Nome do Dia** e **Ano**. Na coluna **Trimestre** foi adicionado um prefixo `TRI0` aos dados. Também foi criada uma coluna condicional **Semestre** no qual a condição consistia em se o número na coluna **Mês** fosse menor ou igual a seis, a saída seria `SEM01`, caso contrário a saída seria `SEM02`. Foi adicionado uma coluna de exemplo de nome **Mês Abreviado** que a partir de exemplos dado, eram gerado os valores com base na coluna **Nome do Mês**. Após essa etapa, as Queries foram renomeadas para **fVendas**, **dProdutos**, **dFuncionários** e **dCalendário**, sendo a letra `f` indicando que esta Query tornaria-se uma tabela **fato** e a letra `d` indicando que seria uma tabela **dimensão** no **Power BI**, onde foram carregadas.
 
+Automaticamente o **Power BI** entendeu o relacionamento entre as tabelas fato e dimensão, faltando só relacionar a coluna **Data** da tabela **dCalendario** com a coluna **Data_Pedido** da tabela **fVendas**. Dando continuidade, foi elaborada uma Query vazia para servir como tabela de **medidas**, onde foi utilizado as **Expressões DAX** para criação das medidas. A primeira medida criada foi **Receita Total** que somava o total de receita. A medida **Itens Vendidos** somou a quantidade de itens que foram vendidos. Enquanto a medida **Total Pedidos** contabilizou o total de pedidos diferentes.
 
+```
+Receita Total = SUM(fVendas[Receita_Pedido])
+```
 
+```
+Itens Vendidos = SUM(fVendas[Quantidade_Vendida])
+```
 
+```
+Total Pedidos = DISTINCTCOUNT(fVendas[ID_Pedido])
+```
+
+Na etapa seguinte, foi extraído para o **Power Query** a planilha do segundo arquivo de base de dados (**Metas**) para criação de uma nova Query com nome **fMetas** já que ao ser carregada no **Power BI** tornaria-se uma tabela **fato**. Nesta consulta, não foi realizada nenhuma transformação. Ao ser carregada no **Power BI** foi gerado o relacionamento desta tabela com a tabela dimensão **dProdutos**. O relacionamento identificado era de um para um, porém, posteriormente, um mesmo produto, poderia ter mais de uma meta, logo, o relacionamento foi alterado de um para muitos (**dProdutos > fMetas**), com o filtro na direção única. A modelagem das tabelas é apresentada na imagem 06 a seguir.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiYTYyZmZlNjctYjhkYS00MGFmLWIyZWMtMjgxODM2YTdiNTE5IiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_075_atendimentos.png" alt="img06"><br>
-    <figcaption>Imagem 06: Report Atendimentos.</figcaption></a>
+    <img src="./0-aux/img06.png" alt="img06" width="900px"><br>
+    <figcaption>Imagem 06.</figcaption>
+</figure></div><br>
+
+Com a tabela de meta, foi criada uma nova medida na tabela de **medidas**, cujo nome foi **Meta Total**, que calculava o somatório das metas.
+
+```
+Meta Total = SUM(fMetas[Meta])
+```
+
+Na construção do report, foi utilizado um plano de fundo fornecido pela plataforma do curso, tanto em imagem como em **PowerPoint**. Foram construídos quatro visuais de cartões exibindo as seguintes informações: **Receita Total**, **Meta Total**, **Itens Vendidos** e **Total Pedidos**. Dois gráficos de barra foram adicionados, um para **Análise de Receita por Estado** e outro para **Análise de Receita por Funcionário**. Foram adicionados dois visuais extras, sendo um **Waffle Chart** para **Análise de Meta** e outro **Simple Image** para seleção da imagem do produto. Neste último, foi necessário categorizar a coluna **URL** da tabela **dProdutos** para `Image URL`. Um visual de cartão foi inserido em cima da imagem contendo três informações básicas (**Nome do Produto**, **Valor Unitário** e **Custo Unitário**). Uma segmentação de dados também foi adicionada na parte superior do report, para filtragem dos dados por **Nome do Produto**. Por fim, foi inserido um visual de matriz que foi desenvolvindo um mapa de calor para **Análise de Receita Total por Cliente e Período**. Para este visual, foi necessário criar duas formatações condicionais idênticas nas cores da fonte e background dos valores, assim, eles iriam ficar com a mesma cor e o valor não iria aparecer, apenas a cor. Também, foi preciso desativar todas as quebras de textos e auto dimensionamento das colunas, para que a dimensão do visual não fosse alterada. O report resultante desta aula é visualizado logo abaixo (imagem 07).
+
+<div align="Center"><figure>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiMWZjZTIwNjktODQ3Ny00OTg2LWFlYjEtYzQ3MGMwMjM0NzhlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_075.3_vendas1.png" alt="img07"><br>
+    <figcaption>Imagem 07: Report Vendas (Visualização 1).</figcaption></a>
+</figure></div><br>
+
+Ainda foi criado um outro visual de tabela que realizava uma **Análise Detalhada** com algumas informações. Este visual ficou sobreposto a outros e foi utilizado a ferramenta de **Bookmarks** e **Selection** para criar de screenshot da tela em dois momentos. O primeiro momento com os primeiros visuais, e o segundo momento com o visual de tabela. Em cada situação foi necessário ocultar os visuais que não deveriam aparecer. Nesses dois bookmarks criados, foi desmarcada a opção `data` para que quando alternasse as visualizações, os filtros não fossem removidos. Após isso, foram adicionados dois botões em brancos e posicionados em cima de dois ícones do plano de fundo. Cada bookmark foi atribuído a um botão, assim, quando o usuário clicasse, seria alternado a visualização da tabela para as duas situações. Abaixo, na imagem 08, é exibido o mesmo report só que com a visualização da tabela.
+
+<div align="Center"><figure>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiMWZjZTIwNjktODQ3Ny00OTg2LWFlYjEtYzQ3MGMwMjM0NzhlIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_075.3_vendas2.png" alt="img08"><br>
+    <figcaption>Imagem 08: Report Vendas (Visualização 2).</figcaption></a>
 </figure></div><br>
 
 #### Class 4
 
+Na última aula, o report construído foi referente ao tema **análise de perfil**. O processo inicial foi o mesmo das aulas anteriores, com uma base de dados em **Excel**, os dados foram extraídos no **Power Query**, os quais foram submetidos a um processo de **ETL**. O arquivo de **Excel** era formado por quatro planilhas, a primeira delas de nome **Alunos** possuía as seguintes colunas: **Nome_Candidato**, **Idade**, **Gênero**, **Estado**, **Cidade**, **Cargo**, **Nível de Conhecimento**, **Avaliação** e **Fonte**. A segunda aba **Fonte** só tinha as colunas: **ID Site** e **Descrição**. A planilha **Áreas** formada pelas colunas: **ID Cargo** e **Área Desejada**. Por último, a planilha **Conhecimento** que tinha as colunas: **ID Nível** e **Descrição**.
 
+Na etapa de tratamento dos dados no **Power Query**, cada planilha deu origem a uma Query, sendo elas renomeadas para **fCadastros**, **dÁreas**, **dConhecimento** e **dFonte**. Lembrando que `f` indica que será um tabela **fato** e `d` uma tabela **dimensão** no **Power BI**. As únicas transformações realizadas foram, uma na consulta **dConhecimento** na coluna **Descrição** que foi extraído apenas o texto após o delimitador especificado (`- `). Já a outra na Query **fCadastros**, onde foi criada uma coluna de exemplo da coluna **Idade** com o nome **Faixa Etária**, sendo indicado as faixas de idades que agruparam essas idades. Em seguida, os dados foram carregados para dentro do **Power BI**.
 
-
+Um dos relacionamentos foi indetificado automaticamente, sendo necessário relacionar a coluna **ID Nível** da tabela dimensão **dConhecimento** com a coluna **Nível de Conhecimento** da tabela fato e, também, a coluna **ID Site** da tabela dimensão **dFonte** com a coluna **Fonte** da tabela fato. A modelagem final é exibida na imagem 09 a seguir.
 
 <div align="Center"><figure>
-    <a href="https://app.powerbi.com/view?r=eyJrIjoiNDRlNmU5NTMtYjk0ZC00NGI2LTkyYTMtZTdmOWQ2NjhiNDRkIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_075_vendas.png" alt="img07"><br>
-    <figcaption>Imagem 07: Report Vendas.</figcaption></a>
+    <img src="./0-aux/img09.png" alt="img09" width="900px"><br>
+    <figcaption>Imagem 09.</figcaption>
+</figure></div><br>
+
+Foi criada uma consulta vazia para servir como tabela de **medidas**, sendo a única medida elaborada **Qtde de Alunos** que contabilizava a quantidade de alunos distintos. A medida **Média de Avaliação** calculou a média das avaliações. Já a medida **Valor Máximo** foi igual a `10` para que fosse utilizada no gráfico de velocímetro como avaliação máxima. Enquanto a medida **Média Alvo** seria a meta de avaliação neste mesmo gráfico. A medida **Cor do Velocímetro**, também para uso no gráfico, foi elaborada com utilização da **Expressão DAX** `SWITCH` que avaliou se uma das duas condições determinadas eram verdadeiras, caso fossem, iria selecionar a cor indicada pelo código hexadecimal.
+
+```
+Qtde de Alunos = DISTINCTCOUNT(fCadastros[Nome Candidato])
+```
+
+```
+Média de Avaliação = AVERAGE(fCadastros[Avaliação])
+```
+
+```
+Valor Máximo = 10
+```
+
+```
+Média Alvo = 6
+```
+
+```
+Cor do Velocímetro = 
+ SWITCH(
+     TRUE(),
+     Medidas[Média de Avaliação] >= Medidas[Média Alvo], "#12239E",
+     Medidas[Média de Avaliação] < Medidas[Média Alvo], "#FF0000"
+ )
+```
+
+Na etapa de construção do report, foram desenvolvidos oito visuais. Um gráfico de rosca (**Análise da Quantidade de Alunos por Gênero**) com um visual de cartão dentro da rosca exibindo a quantidade total. Um gráfico de funil (**Análise da Quantidade de Alunos por Faixa Etária**) e um visual de mapa (**Análise da Quantidade de Alunos por Estado**). Na parte inferior, mais três gráficos: dois de coluna (**Análise da Quantidade de Alunos por Fonte** e **Análise da Quantidade de Alunos por Nível de Conhecimento**) e outro de barra (**Análise da Quantidade de Alunos por Área**). Um visual de mapa de ávore foi adicionado no canto superior direito para funcionar como um filtro por **Gênero**.
+
+Em outra página, foi elaborado um **Tooltip** com gráfico de velocímetro para **Análise da Média de Avaliação**. Este foi atribuído a todos os seis visuais principais. Nele também foram adicionadas as medidas de **Valor Máximo**, **Média Alvo** e **Cor do Velocímetro**.
+
+Por fim, foram adicionados botões em branco direcionado para minhas redes socias. O report pode ser visualizado na imagem 10 abaixo.
+
+<div align="Center"><figure>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiY2Y5YTY4ODctZTA5Zi00Y2MyLThmMDYtMjE2MjI3Y2QwZDhmIiwidCI6ImI1NTJmZWJlLWFkMjgtNGI4Ny1iZjI5LTFlODhiYmZkY2I4ZiJ9"><img src="./0-aux/rep_curso_075.4_analise_perfil.png" alt="img10"><br>
+    <figcaption>Imagem 10: Report Análise de Perfil.</figcaption></a>
 </figure></div><br>
