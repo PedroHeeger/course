@@ -47,11 +47,6 @@ Esse curso teve como objeto apresentar as ferramentas e comandos básicos do sis
 ### Structure:
 - O curso foi dividido em quatro aulas e três laboratórios (dentro da plataforma do curso).
 
-<div align="Center"><figure>
-    <img src="./0-aux/img01.PNG" alt="img01"><br>
-    <figcaption>Imagem 01.</figcaption>
-</figure></div><br>
-
 ### Development:
 
 Todo conteúdo foi explicado neste arquivo de README, não sendo necessário nenhum outro arquivo. O acompanhamento do curso foi realizado em uma maquina virtual **Linux Ubuntu** com ambiente gráfico instanciada através do software **VM Virtual Box**. Os laboratórios foram executado na maquina virtual da plataforma do curso.

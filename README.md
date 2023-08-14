@@ -6,6 +6,7 @@ To understand the organization of my repositories see item 3 of my main reposito
 ## Under Construction
 
 ### Platforms:
+- <a href="./4.linux/">4.Linux   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/4.linux.png" alt="4.linux" width="auto" height="25"></a>
 - <a href="./dio">dio   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>
 - <a href="./empowerdata/">empowerdata   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/empowerdata.jpg" alt="empowerdata" width="auto" height="25"></a>
 - <a href="./hashtag">hashtag   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/hashtag.png" alt="hashtag" width="auto" height="25"></a>
