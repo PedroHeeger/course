@@ -4,6 +4,7 @@ cisco/
 ebac/
 
 cloud_treinamentos/aws/curso_080/RemoteAccessEc2.pem
+cloud_treinamentos/aws/curso_080/RemoteAccessEc2.ppk
 
 empowerdata/excel/curso_065/*
 !empowerdata/excel/curso_065/README.md

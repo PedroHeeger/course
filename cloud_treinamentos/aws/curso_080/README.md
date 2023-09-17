@@ -94,7 +94,7 @@ Em uma região existem zonas de disponibilidades e ao criar uma rede, uma sub-re
 Em detalhes avançados foi selecionado o perfil de instância do IAM criado e a determinação de execução de um script `.sh` assim que a maquina tivesse instanciada. O script de nome [Ec2Script.sh](Ec2Script.sh) realizou diversos ações dentro da maquina virtual Linux Ubuntu instanciada. Iniciou baixando os pacotes para instalar vários softwares como: Apache, PHP, extensões do PHP, MySQL Client, Wget, Unzip, Git, Binutils e Ruby. Depois iniciou, habilitou e reiniciou o serviço Apache para que quando a maquina fosse sempre ligada, o serviço ativasse automaticamente. Em seguida, baixou com o Wget, o instalador do serviço CodeDeploy, alterou a permissão de execução para realizar a instalação, iniciou o CodeDeploy e liberou todas as permissões da pasta criada deste software em `/etc/init.d/codedeploy-agent`. Depois, com o Wget novamente, baixou um arquivo compactado que estava em um bucket do serviço S3 da conta da AWS do professor do curso e descompactou esse arquivo com o Unzip, movendo ele para o diretório do Apache que é o `/var/www/html/`. Nesse diretório, removeu o arquivo padrão `index.html` gerada pelo software Apache e liberou todas as permissões desse diretório. O comando abaixo cria a maquina virtual no serviço EC2 da AWS com todas as configurações explicadas.
 
 ```
-aws ec2 run-instances --image-id ami-053b0d53c279acc90 --instance-type t2.micro --key-name RemoteAccessEc2 --security-group-ids sg-0512af5eb9da2ccfb --subnet-id subnet-0abaa13bbd5424edd --count 1 --iam-instance-profile Name=Ec2S3Read --user-data 'file://G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\Ec2Script.sh --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MeuNomeDeInstancia}]''
+aws ec2 run-instances --image-id ami-0261755bbcb8c4a84 --instance-type t2.micro --key-name RemoteAccessEc2 --security-group-ids sg-0512af5eb9da2ccfb --subnet-id subnet-0abaa13bbd5424edd --count 1 --iam-instance-profile Name=Ec2S3Read --user-data 'file://G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\Ec2Script.sh' --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=web}]'
 ```
 
 Infelizmente o comando acima foi executado sem as especificações da tag, portanto a instância foi criada sem um nome. Para definir um nome para essa instância já criada, o comando `aws ec2 create-tags --resources i-02547a2c16c51028c --tags Key=Name,Value=web` cria uma tag para ela, definindo um nome que no caso foi `web`. Para listar as instâncias criadas exibindo apenas o nome em formato de texto é usado `aws ec2 describe-tags --query "Tags[].Value" --output text`.
@@ -108,14 +108,44 @@ Dando sequência, foi configurado regras de entrada nesse grupo de segurança, q
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
+Com o Firewall liberado, seria possível acessar a aplicação em um navegador na internet pelo IP público da maquina virtual, porém isso não funcionou, pois cometi um erro que foi ter criado a maquina com a imagem do sistema operacional errada. A imagem utilizada foi a `Ubuntu Server 22.04 LTS (HVM) Volume Type`, enquanto o professor utilizou a `Ubuntu Server 20.04 LTS (HVM) Volume Type`. Dessa forma, quando a maquina era criada, o script tentava ser executado, porém diversos erros ocorriam na execução do script e só foi possível constatar isso ao realizar um acesso remoto com o software **PuTTy** a maquina virtual criada no EC2 e verificar os logs de criação da maquina com comando `sudo cat /var/log/cloud-init-output.log`. Nesses logs, dava para perceber que os pacotes que deveriam ser baixados, não foram, devido ao erro com relação a não localização desses pacotes na `source list`. Por isso, o servidor Web não foi criado e nem recebeu a aplicação que deveria ser baixada.
+
+Para entender isso foram feitos testes criando outras maquinas, após identificar o problema, essas maquinas foram excluídas com o comando `aws ec2 terminate-instances --instance-ids i-06f02ca82617e723b i-02547a2c16c51028c`. Em seguida, foi criada a maquina virtual com a imagem correta. Não foi necessário configurar o grupo de segurança pois estas não são excluídas ao ser removido a instância do EC2, e como foi a mesma sub-rede e grupo de segurança utilizado, as configurações já estavam mantidas. Assim, a aplicação é acessada no navegador pelo IP público da maquina virtual ilustrado na imagem 05.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img05.PNG" alt="img05"><br>
+    <figcaption>Imagem 05.</figcaption>
+</figure></div><br>
+
+Agora é criada uma instância do serviço **Amazon Relational Database Service (RDS)**, que é um banco de dados relacional, com o comando abaixo. Para listar todas as instâncias criadas nesse serviço é utilizado `aws rds describe-db-instances`, que exibe em formato JSON. Para um formato em texto, exibindo apenas os nomes das instâncias é utilizado o comando `aws rds describe-db-instances --query "DBInstances[].DBInstanceIdentifier" --output text`. Ainda para filtrar o status da instância criada e ver se já está em execução é utilizado o comando `aws rds describe-db-instances --db-instance-identifier banco --query 'DBInstances[0].DBInstanceStatus' --output text` que também exibe em um formato de texto filtrando a informação desejada.
+
+```
+aws rds create-db-instance --db-instance-identifier banco --db-instance-class db.t2.micro --engine mysql --engine-version 8.0.33 --master-username admin --master-user-password 19162901 --allocated-storage 20 --storage-type gp2 --db-name Banco --availability-zone us-east-1a
+```
+
+Com a instância em execução, é copiado o `endpoint` do banco de dados e colocado lá na aplicação que está rodando no navegador, na opção `Base de Dados`. Além dela, são passadas as informações de credenciais de acesso ao banco de dados e o nome do banco de dados. Então, é clicado em enviar e aplicação é executada direcionando para uma outra página, até que a aplicação pare de rodar, sendo retornado para página da aplicação. Ao conferir a opção `Base de Dados` da aplicação é exibida agora uma lista de contatos com duas linhas de dados inseridas, conforme imagem 06. Esse processo é uma automação que é realizada pela aplicação. Agora, também está disponível um link clicável `Adicionar Contatos` para cadastrar informações que vão ser enviadas para o banco de dados, onde é armazenado todas as informações, e aplicação busca essas informações para retornar compondo essa lista de contatos, sendo possível remover ou editar um contato da lista, tudo isso pelo navegador. Infelizmente, a opção de editar não estava funcionando na aplicação.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img06.PNG" alt="img06"><br>
+    <figcaption>Imagem 06.</figcaption>
+</figure></div><br>
+
+A medida que as informações são adicionadas o banco de dados é alimentado. Para acessar esse banco de dados, foi utilizado a maquina virtual do EC2 em um acesso remoto no software PuTTY e com o comando `mysql -h banco.cbjhpxxvj7m2.us-east-1.rds.amazonaws.com -u admin -p` e a senha o usuário `admin` é concedido o acesso. O parâmetro `-h` define o endpoint da instância criada no serviço RDS. A próxima imagen (07) mostra a tabela com os dados inseridos no navegador, através do acesso remoto a maquina virtual feito pelo **PuTTY**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img07.PNG" alt="img07"><br>
+    <figcaption>Imagem 07.</figcaption>
+</figure></div><br>
 
 
 
 
 
 
+`aws rds delete-db-instance --db-instance-identifier banco --skip-final-snapshot`
+`aws rds describe-db-instances --query "DBInstances[].DBInstanceIdentifier" --output text`
+`aws ec2 terminate-instances --instance-ids i-0a41b99f8774c0e32`
 
 #### Class 2
 
 
-  
