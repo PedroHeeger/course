@@ -3,6 +3,8 @@ cev/
 cisco/
 ebac/
 
+cloud_treinamentos/aws/curso_080/RemoteAccessEc2.pem
+
 empowerdata/excel/curso_065/*
 !empowerdata/excel/curso_065/README.md
 !empowerdata/excel/curso_065/0-aux
