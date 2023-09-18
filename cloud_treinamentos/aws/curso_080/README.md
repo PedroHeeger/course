@@ -59,7 +59,7 @@ Com a configuração feita, foi criado um diretório oculto `.aws` na pasta do u
 
 Na primeira aula, com o usuário do IAM administrador (`PedroheegerAdmin`) configurado no AWS CLI é criada uma role com o comando abaixo. Essa role utiliza o arquivo [policy1.JSON](policy1.JSON) que cria uma política padrão de `Trusted entities`, determinando qual entidade pode assumir essa role. Neste caso, a entidade é o serviço Amazon EC2, ou seja, este serviço pode utilizar essa role. Para verificar se a role foi criada, o comando `aws iam list-roles` lista todas as roles no formato JSON, mas para melhor formatação da saída, o comando `aws iam list-roles --query 'Roles[].RoleName' --output text` exibe apenas os nomes das roles em formato de texto. 
 
-```
+```shell
 aws iam create-role --role-name Ec2S3Read --assume-role-policy-document 'file://G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\policy1.JSON'
 ```
 
@@ -79,7 +79,7 @@ Assim como um perfil de instância é atribuída a role, várias polices podem s
 
 Antes de instanciar uma maquina no serviço Amazon EC2, é necessário criar um par de chaves para conseguir realizar o acesso remoto a essa maquina. Com o comando abaixo, foi criado uma chave de nome `RemoteAccessEc2` copiando as informações para um novo arquivo, de extensão `.pem` com mesmo nome da chave `RemoteAccessEc2.pem`, sendo armazenada neste diretório. Este arquivo é utilizado no lugar das credenciais para executar um acesso remoto a uma maquina EC2 na cloud.
 
-```
+```shell
 aws ec2 create-key-pair --key-name RemoteAccessEc2 --query 'KeyMaterial' --output text > "G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\RemoteAccessEc2.pem"
 ```
 
@@ -91,13 +91,15 @@ Na configuração desta maquina também é definida uma **Virtual Private Cloud 
 
 Em uma região existem zonas de disponibilidades e ao criar uma rede, uma sub-rede pode ser criada para cada zona. Neste caso, é utilizado apenas para zona `us-ast-1a`, cujo Id da sub-rede é o `subnet-0abaa13bbd5424edd`. Com relação ao grupo de segurança dessa rede, que é o Firewall, pode ser criado um grupo ou utilizado um que também é criado por padrão junto com a rede. Neste caso, é utilizado o grupo default construído junto com a rede, cujo Id é o `sg-0512af5eb9da2ccfb`. Também é possível configurar o armazenamento, que por padrão vem com 8 GB, e alguns detalhes adicionais. 
 
-Em detalhes avançados foi selecionado o perfil de instância do IAM criado e a determinação de execução de um script `.sh` assim que a maquina tivesse instanciada. O script de nome [Ec2Script.sh](Ec2Script.sh) realizou diversos ações dentro da maquina virtual Linux Ubuntu instanciada. Iniciou baixando os pacotes para instalar vários softwares como: Apache, PHP, extensões do PHP, MySQL Client, Wget, Unzip, Git, Binutils e Ruby. Depois iniciou, habilitou e reiniciou o serviço Apache para que quando a maquina fosse sempre ligada, o serviço ativasse automaticamente. Em seguida, baixou com o Wget, o instalador do serviço CodeDeploy, alterou a permissão de execução para realizar a instalação, iniciou o CodeDeploy e liberou todas as permissões da pasta criada deste software em `/etc/init.d/codedeploy-agent`. Depois, com o Wget novamente, baixou um arquivo compactado que estava em um bucket do serviço S3 da conta da AWS do professor do curso e descompactou esse arquivo com o Unzip, movendo ele para o diretório do Apache que é o `/var/www/html/`. Nesse diretório, removeu o arquivo padrão `index.html` gerada pelo software Apache e liberou todas as permissões desse diretório. O comando abaixo cria a maquina virtual no serviço EC2 da AWS com todas as configurações explicadas.
+Em detalhes avançados foi selecionado o perfil de instância do IAM criado e a determinação de execução de um script `.sh` assim que a maquina tivesse instanciada. O script de nome [ec2Script.sh](ec2Script.sh) realizou diversos ações dentro da maquina virtual Linux Ubuntu instanciada. Iniciou baixando os pacotes para instalar vários softwares como: Apache, PHP, extensões do PHP, MySQL Client, Wget, Unzip, Git, Binutils e Ruby. Depois iniciou, habilitou e reiniciou o serviço Apache para que quando a maquina fosse sempre ligada, o serviço ativasse automaticamente. Em seguida, baixou com o Wget, o instalador do serviço CodeDeploy, alterou a permissão de execução para realizar a instalação, iniciou o CodeDeploy e liberou todas as permissões da pasta criada deste software em `/etc/init.d/codedeploy-agent`. Depois, com o Wget novamente, baixou um arquivo compactado que estava em um bucket do serviço S3 da conta da AWS do professor do curso e descompactou esse arquivo com o Unzip, movendo ele para o diretório do Apache que é o `/var/www/html/`. Nesse diretório, removeu o arquivo padrão `index.html` gerada pelo software Apache e liberou todas as permissões desse diretório. 
 
-```
-aws ec2 run-instances --image-id ami-0261755bbcb8c4a84 --instance-type t2.micro --key-name RemoteAccessEc2 --security-group-ids sg-0512af5eb9da2ccfb --subnet-id subnet-0abaa13bbd5424edd --count 1 --iam-instance-profile Name=Ec2S3Read --user-data 'file://G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\Ec2Script.sh' --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=web}]'
+O comando abaixo criou a maquina virtual no serviço EC2 da AWS com todas as configurações explicadas. Para listar as instâncias do serviço EC2 foi utilizado o comando `aws ec2 describe-instances` que exibe em formato JSON, para o formato de texto mostrando apenas o nome da tag da instância criada é o `aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text`. Para exibir O IP público de todas maquinas virtuais criadas no EC, o comando é o `aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text`
+
+```shell
+aws ec2 run-instances --image-id ami-0261755bbcb8c4a84 --instance-type t2.micro --key-name RemoteAccessEc2 --security-group-ids sg-0512af5eb9da2ccfb --subnet-id subnet-0abaa13bbd5424edd --count 1 --iam-instance-profile Name=Ec2S3Read --user-data 'file://G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\ec2Script.sh' --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=web}]'
 ```
 
-Infelizmente o comando acima foi executado sem as especificações da tag, portanto a instância foi criada sem um nome. Para definir um nome para essa instância já criada, o comando `aws ec2 create-tags --resources i-02547a2c16c51028c --tags Key=Name,Value=web` cria uma tag para ela, definindo um nome que no caso foi `web`. Para listar as instâncias criadas exibindo apenas o nome em formato de texto é usado `aws ec2 describe-tags --query "Tags[].Value" --output text`.
+Infelizmente o comando acima foi executado sem as especificações da tag, portanto a instância foi criada sem um nome. Para definir um nome para essa instância já criada, o comando `aws ec2 create-tags --resources i-02547a2c16c51028c --tags Key=Name,Value=web` cria uma tag para ela, definindo um nome que no caso foi `web`. Para listar todas as tags criadas referente ao serviço EC2, exibindo apenas o nome em formato de texto é usado `aws ec2 describe-tags --query "Tags[].Value" --output text`.
 
 O grupo de segurança criado foi o padrão que é gerado junto com a construção da rede (VPC) que também foi padrão. Logo esse grupo de segurança está associado a essa VPC. Sempre um grupo deve ser vinculado a uma VPC. Todo grupo de segurança gerado por padrão não recebe uma tag com nome de identificação, mas com o comando `aws ec2 create-tags --resources sg-0512af5eb9da2ccfb --tags Key=Name,Value=SecurityGroup1` é possível criar uma tag para o grupo de segurança do id especificado definindo um nome para ele, que no caso foi `SecurityGroup1`. Para listar todos os grupos de segurança criado, exibindo apenas o Id dele em formato de texto é utilizado `aws ec2 describe-security-groups --query "SecurityGroups[].GroupId[]" --output text`. Assim foi identificado o Id do grupo de segurança criado junto com a VPC e copiado o Id dele para utilizar no comando anterior. Para listar todos os grupos de segurança pelo nome da tag utilizou `aws ec2 describe-security-groups --query "SecurityGroups[].Tags[?Key=='Name'].Value" --output text`.
 
@@ -119,8 +121,8 @@ Para entender isso foram feitos testes criando outras maquinas, após identifica
 
 Agora é criada uma instância do serviço **Amazon Relational Database Service (RDS)**, que é um banco de dados relacional, com o comando abaixo. Para listar todas as instâncias criadas nesse serviço é utilizado `aws rds describe-db-instances`, que exibe em formato JSON. Para um formato em texto, exibindo apenas os nomes das instâncias é utilizado o comando `aws rds describe-db-instances --query "DBInstances[].DBInstanceIdentifier" --output text`. Ainda para filtrar o status da instância criada e ver se já está em execução é utilizado o comando `aws rds describe-db-instances --db-instance-identifier banco --query 'DBInstances[0].DBInstanceStatus' --output text` que também exibe em um formato de texto filtrando a informação desejada.
 
-```
-aws rds create-db-instance --db-instance-identifier banco --db-instance-class db.t2.micro --engine mysql --engine-version 8.0.33 --master-username admin --master-user-password 19162901 --allocated-storage 20 --storage-type gp2 --db-name Banco --availability-zone us-east-1a
+```shell
+aws rds create-db-instance --db-instance-identifier banco --db-instance-class db.t2.micro --engine mysql --engine-version 8.0.33 --master-username admin --master-user-password 20173002 --allocated-storage 20 --storage-type gp2 --db-name Banco --availability-zone us-east-1a
 ```
 
 Com a instância em execução, é copiado o `endpoint` do banco de dados e colocado lá na aplicação que está rodando no navegador, na opção `Base de Dados`. Além dela, são passadas as informações de credenciais de acesso ao banco de dados e o nome do banco de dados. Então, é clicado em enviar e aplicação é executada direcionando para uma outra página, até que a aplicação pare de rodar, sendo retornado para página da aplicação. Ao conferir a opção `Base de Dados` da aplicação é exibida agora uma lista de contatos com duas linhas de dados inseridas, conforme imagem 06. Esse processo é uma automação que é realizada pela aplicação. Agora, também está disponível um link clicável `Adicionar Contatos` para cadastrar informações que vão ser enviadas para o banco de dados, onde é armazenado todas as informações, e aplicação busca essas informações para retornar compondo essa lista de contatos, sendo possível remover ou editar um contato da lista, tudo isso pelo navegador. Infelizmente, a opção de editar não estava funcionando na aplicação.
@@ -137,15 +139,110 @@ A medida que as informações são adicionadas o banco de dados é alimentado. P
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
-
-
-
-
-
-`aws rds delete-db-instance --db-instance-identifier banco --skip-final-snapshot`
-`aws rds describe-db-instances --query "DBInstances[].DBInstanceIdentifier" --output text`
-`aws ec2 terminate-instances --instance-ids i-0a41b99f8774c0e32`
+Para remover a instância do serviço RDS foi utilizado o comando `aws rds delete-db-instance --db-instance-identifier banco --skip-final-snapshot` que ignora a execução de um snapshot do estado do banco, excluindo todos os dados dentro desse banco.
 
 #### Class 2
 
+Esta aula inicou com a criação de um bucket no serviço **Amazon S3**. Por padrão, o S3 mostra os buckets para todas as regiões, mas é possível escolher a região específica para construção do bucket, que neste caso foi a `us-east-1` (Virgínia do Norte), pois é onde todos os serviços estão sendo criados. Não é possível criar um bucket com mesmo nome, mesmo que seja de outra conta da AWS. Os nomes dos buckets são únicos, não podem ser iguais.
 
+Com o comando `aws s3api create-bucket --bucket armazenamentos3 --region us-east-1` é criado o bucket de nome `armazenamentos3` na região determinada. Porém, algumas configurações realizadas pelo professor do curso não são executadas, portanto é necessário realizar algumas alterações no bucket. A primeira delas é com o comando `aws s3api put-public-access-block --bucket armazenamentos3 --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"` que desativa o bloqueio de acesso público as quatro opções existentes. 
+
+A segunda alteração é a habilitação da lista de controle de acesso (**Access Control List (ACL)**) que é executado com o comando `aws s3api put-bucket-acl --bucket armazenamentos3 --acl bucket-owner-full-control` tornando público as opções de leitura e gravação apenas para o proprietário do bucket. Contudo, esse comando só pode ser realizado se a regra propriedade do objeto (`ObjectOwnership`) criada em controles de propriedade (`OwnershipControls`) do bucket, estiver definida como proprietário do bucket preferencial/proprietário do bucket preferido (`Bucket Owner Preferred`). Como no bucket desenvolvido não é especificada essa regra, o padrão é utilizado que é proprietário do bucket aplicado/imposto pelo proprietário do bucket (`Bucket Owner Enforced`). Para verificar realmente qual a definição dessa regra, o comando `aws s3api get-bucket-ownership-controls --bucket armazenamentos3` mostra todas as regras elaboradas no controles de propriedade do bucket. Para alterar a regra e permitir a alteração do ACL, é utilizado o comando `aws s3api put-bucket-ownership-controls --bucket armazenamentos3 --ownership-controls="Rules=[{ObjectOwnership=BucketOwnerPreferred}]"`.
+
+A solução para essa situação foi descoberta através de pesquisas, no qual uma explição foi encontrada no seguinte [site](https://stackoverflow.com/questions/76097031/aws-s3-bucket-cannot-have-acls-set-with-objectownerships-bucketownerenforced-s) do **Stack Overflow**. Onde relata que desde 25/04/2023, a Amazon alterou as configurações padrão para buckets recém-criados. A ACL em buckets foi considerada uma prática errada e para desencorajar seu uso a opção `BucketOwnerEnforced` passou a ser a padrão. A opção `BucketOwnerEnforced` quer dizer que as listas de controle de acesso (ACLs) estão desabilitadas e não afetam mais as permissões. O proprietário do bucket possui automaticamente e tem controle total sobre cada objeto no bucket. O bucket aceita apenas solicitações PUT que não especificam uma ACL ou ACLs de controle total do proprietário do bucket, como a ACL pronta de controle total do proprietário do bucket ou uma forma equivalente dessa ACL expressa no formato XML. Por causa disso, é alterado a regra para opção `BucketOwnerPreferred`.
+
+Analisando o comando `create-bucket` através de `aws s3api create-bucket help`, é possível verificar um parâmetro de nome `--object-ownership`, onde nele pode ser definido as três seguintes condições;
+- BucketOwnerPreferred – Objetos carregados no bucket mudam propriedade para o proprietário do bucket se os objetos forem carregados com o ACL predefinida "bucket-owner-full-control".   
+- ObjectWriter - A conta de upload será proprietária do objeto se o objeto é carregado com a ACL predefinida "bucket-owner-full-control".   
+- BucketOwnerEnforced - As listas de controle de acesso (ACLs) estão desabilitadas e não afeta mais as permissões. O proprietário do bucket possui automaticamente e tem controle total sobre todos os objetos no bucket. O balde aceita apenas solicitações PUT que não especificam uma ACL ou proprietário de bucket ACLs de controle total, como o "bucket-owner-full-control" predefinido ACL ou uma forma equivalente desta ACL expressa no formato XML.
+
+Logo, é perceptível que pode-se criar o bucket já configurando essa regra e definindo a ACL como habilitada. O comando a seguir criar o bucket corretamente igual a execução do professor do curso. Após isso, deve desativar as quatro opções do bloqueio de acesso público. Para a listagem dos buckets existentes, existe o `aws s3 ls`, que lista todos os buckets em todas as regiões, e o `aws s3 ls --region us-east-1`, que lista apenas os buckets da região especificada.
+
+```shell
+aws s3api create-bucket --bucket armazenamentos3 --region us-east-1 --object-ownership BucketOwnerPreferred --acl bucket-owner-full-control
+```
+
+A próxima etapa é a ativação de hospedagem de site estático do bucket S3. Para isso é utilizado o comando `aws s3 website s3://armazenamentos3 --index-document index.html --error-document index.html`, onde dois arquivos **HTML** são definidos, um para o site e outro para casos de erro. Ao tentar acessar o site com o endpoint no navegador é ocorrido um erro, pois ainda é necessário criar uma política de segurança para liberar o acesso a esse bucket. Essa política é elaborada no arquivo JSON [bucketPolicy.JSON](bucket-policy.json), onde é definido os parâmetros: `Effect` como `Allow`, ou seja, permitir; `Principal` como `*`, ou seja, indica que são todos os objetos do bucket; `Actions` como `s3:GetObject`, para retornar os objetos; e o `Amazon Resource Name (ARN) / Resource` definido como o mesmo do bucket acrescido de `/*` (`arn:aws:s3:::armazenamentos3/*`). Para criar essa política para o bucket 
+é utilizado o comando abaixo.
+
+```shell
+aws s3api put-bucket-policy --bucket armazenamentos3 --policy "file://G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\bucketPolicy.json"
+```
+
+Para exibir as configurações de hospedagem do site estático e as polices criadas para esse bucket são utilizados, respectivamente, os comandos 
+`aws s3api get-bucket-website --bucket armazenamentos3` e `aws s3api get-bucket-policy --bucket armazenamentos3`. A imagem 08 ilustra a saída desses comandos.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img08.PNG" alt="img08"><br>
+    <figcaption>Imagem 08.</figcaption>
+</figure></div><br>
+
+Agora, de volta a aplicação no navegador que está sendo executada pelo serviço EC2, clicando na opção `S3` é exibido quatro campos para preenchimento que são: o nome do bucket, a região, a chave de acesso do usuário e a senha dessa chave. Então estava faltando criar um usuário do IAM para gerar a chave de acesso e a senha. 
+
+Para listar os usuários do IAM já existentes os comandos 
+`aws iam list-users` e `aws iam list-users --query "Users[].UserName" --output text` fizeram isso, sendo o primeiro no formato JSON e o segundo filtrando o nome de cada usuário e exibindo em um formato de texto. O usuário `JoaoNinguem` foi criado com o comando `aws iam create-user --user-name JoaoNinguem` para realização dessa etapa. Em seguida, foi preciso criar uma chave de acesso para esse usuário acessar a cloud, e o comando abaixo efetuou isso, extraindo as informações de `AccessKeyId` e `SecretAccessKey` que são o id e senha da chave de acesso, que foram usadas lá na aplicação nos dois últimos campos, e inserindo em um novo arquivo formato **CSV**, localizado neste diretório, para armazenar essas informações. Isso porque, ao criar uma chave de acesso, a senha dessa chave só exibida naquele momento, depois disso não é mais possível visualizar a senha, tendo que remover a chave e criar outra nova. Também é importante frisar que a chave de acesso deve ser atrelada a um usuário, é uma forma de credenciar o acesso desse usuário a cloud, ao invés de utilizar a forma de login padrão.
+
+```shell
+aws iam create-access-key --user-name JoaoNinguem --query 'AccessKey.[AccessKeyId,SecretAccessKey]' --output text > "G:\Meu Drive\4_PROJ\course\cloud_treinamentos\aws\curso_080\keyPairJoaoNinguem.csv"
+```
+
+O comando `aws iam list-access-keys` lista todas as chaves de acesso do usuário logado no CLI da AWS, em um formato JSON, enquanto o comando `aws iam list-access-keys --query "AccessKeyMetadata[].UserName" --output text` exibe apenas o nome do usuário da chave em um formato de texto, podendo alterar o `UserName` para `AccessKeyId`, exibindo o id de chave de acesso. Para listar chaves de acesso de outro usuário, foi utilizado nesses mesmos comandos, o parâmetro `--user-name JoaoNinguem`. Caso seja necessário remover a chave de acesso deve indicar como parâmetro o usuário dessa chave e o id da chave de acesso (`aws iam delete-access-key --user-name JoaoNinguem --access-key-id AKIAQCPZALZ6WMDWSG3M`).
+
+Após a criação da chave de acesso, foi necessário atribuir uma política para este novo usuário permitindo ele interagir com o serviço S3. Com o comando `aws iam list-attached-user-policies --user-name JoaoNinguem` foi listado todas as políticas vinculada ao usuário criado, que neste momento não possuia nenhuma. Para adicionar a política `AmazonS3FullAccess` foi utilizado o comando `aws iam attach-user-policy --user-name JoaoNinguem --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess`. Com o comando `aws iam list-attached-user-policies --user-name JoaoNinguem --query "AttachedPolicies[].PolicyName" --output text` foi exibido no formato de texto apenas os nomes das polices atrelada a esse novo usuário.
+
+De volta a aplicação no navegador, foi inserido as informações e clicado em enviar, a página foi redirecionada para uma página momentânea. Nesse momento, a aplicação estava em exeução, efetuando a conexão da aplicação no serviço EC2 com o bucket criado no serviço S3. Quando foi retornado para a página da aplicação, a logomarca não existia mais, pois a imagem era vinculada a um bucket e agora está sendo vinculado a um outro bucket que está vazio. Para adicionar uma nova imagem, teve quer ir na opção `Imagens` e escolher um arquivo do computador físico para enviar para o bucket e o bucket retornasse para aplicação, tornando a imagem visível no navegador. As duas imagens seguintes (09 e 10) ilustram uma nova logo na aplicação do navegador e no bucket do S3.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img09.PNG" alt="img09"><br>
+    <figcaption>Imagem 09.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.PNG" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+Dando sequencial, no serviço EC2 foi criado uma imagem da maquina virtual existente para facilitar ao construir uma nova maquina com as mesmas configurações. O comando utilizado foi o `aws ec2 create-image --instance-id i-0717ae99e28eb99a8 --name imgWeb` e para listar as imagens criadas o comando `aws ec2 describe-images --owners self`. Infelizmente, essa imagem foi criada sei definir um nome de tag para ela, portanto foi utilizado o comando 
+`aws ec2 create-tags --resources ami-0133f24182e7ef3ee --tags Key=Name,Value=imgWeb` que atribui o nome `imgWeb` para ela. O parâmetro `--name` define um nome para a imagem, enquanto o segundo o nome para tag dela. Para executar as duas configurações juntas foi utilizado este comando `aws ec2 create-image --instance-id i-0123456789abcdef0 --name imgWeb --tag-specifications 'ResourceType=image,Tags=[{Key=Name,Value=imgWeb}]'`. Para subir uma nova maquina com a imagem criada, foi utilizado o comando abaixo, a única modificação em relação a primeira maquina foi a alteração da sub-rede para a zona de disponibilidade `us-east-1b`, cujo id é `subnet-08ff51ae996e17943` e o nome da tag que ficou como `web2`, o resto foi mantido igual.
+
+```shell
+aws ec2 run-instances --image-id ami-0133f24182e7ef3ee --instance-type t2.micro --key-name RemoteAccessEc2 --security-group-ids sg-0512af5eb9da2ccfb --subnet-id subnet-08ff51ae996e17943 --count 1 --iam-instance-profile Name=Ec2S3Read --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=web2}]'
+```
+
+As imagens 11 e 12 mostram, pelo CLI e console, o nome da tag e o IP das instâncias e as duas instâncias criadas respectivamente. Já a imagem 13 exibe o acesso à aplicação no navegador pelos IPs de cada maquina virtual, o IP pode esta diferente em relação ao das imagens anteriores, pois foi necessário que criar a segunda instância novamente, devido ao erro de não ter trocado a zona para `us-east-1b`.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img11.PNG" alt="img11"><br>
+    <figcaption>Imagem 11.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img12.PNG" alt="img12"><br>
+    <figcaption>Imagem 12.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img13.PNG" alt="img13"><br>
+    <figcaption>Imagem 13.</figcaption>
+</figure></div><br>
+
+
+
+
+
+
+aws ec2 create-image --instance-id i-0123456789abcdef0 --name imgWeb --tag-specifications 'ResourceType=image,Tags=[{Key=Name,Value=imgWeb}]'
+
+
+aws ec2 deregister-image --image-id ami-0133f24182e7ef3ee
+
+`aws s3 rb s3://teste3355687`
+
+`aws ec2 describe-key-pairs --query "KeyPairs[*].KeyName" --output text`
+`aws rds describe-db-instances --query "DBInstances[].DBInstanceIdentifier" --output text`
+`aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text`
+`aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text`
+
+`aws rds delete-db-instance --db-instance-identifier banco --skip-final-snapshot`
+`aws ec2 terminate-instances --instance-ids i-0a41b99f8774c0e32`
+`aws ec2 terminate-instances --instance-ids i-0717ae99e28eb99a8`
