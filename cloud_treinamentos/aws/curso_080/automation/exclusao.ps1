@@ -5,37 +5,185 @@ Write-Output "Importando o arquivo com as variáveis"
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS IAM"
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "POLICY"
-if ((aws iam list-attached-role-policies --role-name $role_name --query 'AttachedPolicies[].PolicyArn').Count -gt 1) {
-    Write-Output "Desvinculando a política anexada da role criada"
-    # aws iam detach-role-policy --role-name $role_name --policy-arn $policy_arn
+Write-Output "ROLE"
+if ((aws iam list-roles --query "Roles[?RoleName=='$role_name']").Count -gt 1) {
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "ROLE - POLICY"
+    if ((aws iam list-attached-role-policies --role-name $role_name --query 'AttachedPolicies[].PolicyArn').Count -gt 1) {
+        Write-Output "Desvinculando a política de nome $policy_name anexada a role $role_name"
+        aws iam detach-role-policy --role-name $role_name --policy-arn $policy_arn
+    } else {
+        Write-Output "Não existe nenhuma política atrelada a role $role_name!"
+    }
+
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "ROLE - INSTANCE PROFILE"
+    if ((aws iam list-instance-profiles-for-role --role-name $role_name --query "InstanceProfiles[?InstanceProfileName=='$instance_profile_name']").Count -gt 1) {
+        Write-Output "Desvinculando o perfil de instância $instance_profile_name da role $role_name"
+        aws iam remove-role-from-instance-profile --instance-profile-name $instance_profile_name --role-name $role_name
+    } else {
+        Write-Output "Não existe perfil de instância atrelado a role $role_name!"
+    }
+
+    Write-Output "Removendo a role de nome $role_name"
+    aws iam delete-role --role-name $role_name
 } else {
-    Write-Output "Não existe nenhuma política atrelada a essa role!"
+    Write-Output "Não existe a role de nome $role_name!"
 }
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "INSTANCE PROFILE"
-if ((aws iam list-instance-profiles-for-role --role-name $role_name --query "InstanceProfiles[?InstanceProfileName=='$instance_profile_name']").Count -gt 1) {
-    Write-Output "Desvinvulando o perfil de instância da role determinada"
-    # aws iam remove-role-from-instance-profile --instance-profile-name $instance_profile_name --role-name $role_name
+if ((aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instance_profile_name']").Count -gt 1) {
+    Write-Output "Removendo o perfil de instância de nome $instance_profile_name"
+    aws iam delete-instance-profile --instance-profile-name $instance_profile_name
 } else {
-    Write-Output "Não existe perfil de instância atrelado a essa role!"
+    Write-Output "Não existe o perfil de instância de nome $instance_profile_name!"
 }
 
-if ((aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instance_profile_name']").Count -gt 1) {
-    Write-Output "Removendo o perfil de instância criado"
-    # aws iam delete-instance-profile --instance-profile-name $instance_profile_name
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS EC2"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "KEY PAIR"
+if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$key_pair_name']").Count -gt 1) {
+    Write-Output "Removendo o par de chaves criado de nome $key_pair_name e os arquivos pem e ppk"
+    aws ec2 delete-key-pair --key-name $key_pair_name
+    rm "$key_pair_path\$key_pair_name.pem" && rm "$key_pair_path\$key_pair_name.ppk"
 } else {
-    Write-Output "Não existe esse perfil de instância!"
+    Write-Output "Não existe o par de chaves de $key_pair_name!"
 }
 
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "ROLE"
-if ((aws iam list-roles --query "Roles[?RoleName=='$role_name']").Count -gt 1) {
-    Write-Output "Removendo a role criada"
-    # aws iam delete-role --role-name $role_name
+Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
+if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tag_name_instance" --query "Reservations[].Instances[]").Count -gt 1) {
+    Write-Output "Removendo as instâncias criadas de nome de tag $tag_name_instance"
+    $instance_id1 = aws ec2 describe-instances --query "Reservations[0].Instances[].InstanceId" --output text
+    $instance_id2 = aws ec2 describe-instances --query "Reservations[1].Instances[].InstanceId" --output text
+    aws ec2 terminate-instances --instance-ids $instance_id1 $instance_id2
 } else {
-    Write-Output "Não existe essa role!"
+    Write-Output "Não existe instâncias com o nome de tag $tag_name_instance!"
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS VPC"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SECURITY GROUP"
+# if ((aws ec2 describe-security-groups --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$tag_name_security_group']]").Count -gt 1) {
+#     Write-Output "Removendo o grupo de segurança padrão de nome de tag $tag_name_security_group"
+#     $security_group_id = aws ec2 describe-security-groups --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$tag_name_security_group']].GroupId" --output text
+#     aws ec2 delete-security-group --group-id $security_group_id
+# } else {
+#     Write-Output "Não existe o grupo de segurança com o nome de tag $tag_name_security_group!"
+# }
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SUBNETS"
+# $vpc_id = aws ec2 describe-vpcs --query "Vpcs[].VpcId" --output text
+# $subnets = aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpc_id" --query "Subnets[].SubnetId" --output text
+# if ($subnets.Length -gt 0) {
+#     Write-Output "Removendo as sub-redes da VPC padrão de Id $vpc_id"
+#     # for ($i = 0; $i -lt $subnets_length; $i++) {
+#     #     $subnet_id = aws ec2 describe-subnets --query "Subnets[$i].{ID:SubnetId}" --output text
+#     #     Write-Host "$subnet_id"
+#     #     aws ec2 delete-subnet --subnet-id $subnet_id
+#     foreach ($subnet_id in $subnets) {
+#         Write-Host "$subnet_id"
+#         aws ec2 delete-subnet --subnet-id $subnet_id
+#     }   
+# } else {
+#     Write-Output "Não existem sub-redes na VPC padrão de Id $vpc_id!"
+# }
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "ROUTE TABLE"
+# $vpc_id = aws ec2 describe-vpcs --query "Vpcs[].VpcId" --output text
+# $route_table_id = aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpc_id" --query "length(RouteTables[].RouteTableId)"
+# if (($route_table_id) -gt 0) {
+#     Write-Output "Removendo a tabela de rota da VPC padrão de Id $vpc_id"
+#     $route_table_id = aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpc_id" --query "RouteTables[].RouteTableId" --output text
+#     aws ec2 delete-route-table --route-table-id $route_table_id
+# } else {
+#     Write-Output "Não existe tabela de rota na VPC padrão de Id $vpc_id!"
+# }
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "AWS VIRTUAL PRIVATE CLOUD (VPC)"
+# $vpc_id = aws ec2 describe-vpcs --query "Vpcs[].VpcId" --output text
+# if (($vpc_id).Count -gt 0) {
+#     Write-Output "Removendo a VPC padrão de Id $vpc_id"
+#     aws ec2 delete-vpc --vpc-id $vpc_id
+# } else {
+#     Write-Output "Não existe nenhuma VPC criada!"
+# }
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS RDS"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AWS RELATIONAL DATABASE SERVICE (RDS)"
+if ((aws rds describe-db-instances --query "DBInstances[?DBInstanceIdentifier=='$db_instance_identifier']").Count -gt 1) {
+    Write-Output "Removendo a instância de banco de dados de nome de identificação $db_instance_identifier"
+    aws rds delete-db-instance --db-instance-identifier $db_instance_identifier  --skip-final-snapshot
+} else {
+    Write-Output "Não existe instância com o nome de identificação $db_instance_identifier!"
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS S3"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AWS SIMPLE STORAGE SERVICE (S3)"
+if ((aws s3api list-buckets --query "Buckets[?Name=='$bucket_name']").Count -gt 1) {
+    # Write-Output "Removendo os objetos existentes no bucket de nome $bucket_name"
+    # aws s3 rm s3://$bucket_name --recursive
+
+    Write-Output "Removendo o bucket de nome $bucket_name e todos os seus objetos"
+    aws s3 rb s3://$bucket_name --force
+} else {
+    Write-Output "Não existe um bucket com o nome $bucket_name!"
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS IAM"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "IAM USER"
+if ((aws iam list-users --query "Users[?UserName=='$iam_username'].UserName").Count -gt 1) {
+    if (aws iam list-attached-user-policies --user-name $iam_username --query "AttachedPolicies[].PolicyName") {
+        Write-Output "Removendo a política $policy2_name do usuário do IAM de nome $iam_username"
+        aws iam detach-user-policy --user-name $iam_username --policy-arn $policy2_arn
+    } else {
+        Write-Output "O usuário do IAM de nome $iam_username não possui políticas atrelada a ele!"
+    }
+
+    if ((aws iam list-access-keys --user-name $iam_username --query "AccessKeyMetadata[].AccessKeyId").Count -gt 1) {
+        Write-Host "Removendo o par de chave do usuário do IAM $iam_username"
+        $access_key_id = aws iam list-access-keys --user-name $iam_username --query "AccessKeyMetadata[].AccessKeyId" --output text
+        aws iam delete-access-key --user-name $iam_username --access-key-id $access_key_id
+    } else {
+        Write-Host "Não existe este par de chave do usuário do IAM $iam_username"
+    }
+
+    if (Test-Path "$keyPair_iamUser_path\$keyPair_iamUser_file" -PathType Leaf) {
+        Write-Host "Removendo o arquivo de par de chave do usuário do IAM $keyPair_iamUser_file"
+        rm "$keyPair_iamUser_path\$keyPair_iamUser_file"
+    } else {
+        Write-Host "Não existe o arquivo de par de chave do usuário do IAM $keyPair_iamUser_file"
+    }
+
+    Write-Output "Removendo o usuário do IAM de nome $iam_username"
+    aws iam delete-user --user-name $iam_username
+} else {
+    Write-Output "Não existe um usuário do IAM de nome $iam_username"
 }
 
 
@@ -44,97 +192,14 @@ if ((aws iam list-roles --query "Roles[?RoleName=='$role_name']").Count -gt 1) {
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS EC2"
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "KEY PAIR"
-if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$key_pair_name']").Count -gt 1) {
-    # Write-Output "Removendo o par de chaves criado e os arquivos pem e ppk"
-    # aws ec2 delete-key-pair --key-name $key_pair_name
-    # rm "$key_pair_path\$key_pair_name.pem" && "$key_pair_path\$key_pair_name.ppk"
+Write-Output "IMAGE"
+if ((aws ec2 describe-images --owners self --query "Images[?Name=='$img_name']").Count -gt 1) {
+    Write-Output "Removendo a imagem com o nome de imagem $img_name"
+    $image_id = aws ec2 describe-images --owners self --query "Images[?Name=='$img_name'].ImageId" --output text
+    aws ec2 deregister-image --image-id $image_id
 } else {
-    Write-Output "Não existe esse par de chaves!"
+    Write-Output "Não existe uma imagem com o nome de imagem $img_name!"
 }
-
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
-if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tag_name_instance" --query "Reservations[].Instances[]").Count -gt 1) {
-    Write-Output "Removendo as instâncias criadas"
-    # $instance_id1 = aws ec2 describe-instances --query "Reservations[0].Instances[].InstanceId" --output text
-    # $instance_id2 = aws ec2 describe-instances --query "Reservations[1].Instances[].InstanceId" --output text
-    # aws ec2 terminate-instances --instance-ids $instance_id1 $instance_id2
-} else {
-    Write-Output "Não existe instâncias com esses nomes de tag!"
-}
-
-
-
-
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "SERVIÇO: AWS VPC"
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "SECURITY GROUP"
-if ((aws ec2 describe-security-groups --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$tag_name_security_group']]").Count -gt 1) {
-    Write-Output "Removendo o grupo de segurança padrão"
-    # $security_group_id = aws ec2 describe-security-groups --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$tag_name_security_group']].GroupId" --output text
-    # aws ec2 delete-security-group --group-id $security_group_id
-} else {
-    Write-Output "Não existe o grupo de segurança com esse nome de tag!"
-}
-
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "SUBNETS"
-$vpc_id = aws ec2 describe-vpcs --query "Vpcs[].VpcId"
-$subnets_length = aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpc_id" --query "length(Subnets)"
-if (($subnets_length) -gt 0) {
-    Write-Output "Removendo as sub-redes desta VPC"
-    # for ($i = 0; $i -lt $subnets_length; $i++) {
-    #     $subnet_id = aws ec2 describe-subnets --query "Subnets[$i].{ID:SubnetId}" --output text
-    #     Write-Host "$subnet_id"
-    #     aws ec2 delete-subnet --subnet-id $subnet_id
-    # }   
-} else {
-    Write-Output "Não existem sub-redes nesta VPC!"
-}
-
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "ROUTE TABLE"
-$vpc_id = aws ec2 describe-vpcs --query "Vpcs[].VpcId"
-$route_table_id = aws ec2 describe-route-tables --filters "Name=vpc-id,Values=vpc-025923e032872abb8" --query "length(RouteTables[].RouteTableId)"
-if (($route_table_id) -gt 0) {
-    Write-Output "Removendo a tabela de rota desta VPC"
-    # $route_table_id = aws ec2 describe-route-tables --filters "Name=vpc-id,Values=vpc-025923e032872abb8" --query "RouteTables[].RouteTableId"
-    # aws ec2 delete-route-table --route-table-id $route_table_id
-} else {
-    Write-Output "Não existe tabela de rota nesta VPC!"
-}
-
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "AWS VIRTUAL PRIVATE CLOUD (VPC)"
-$vpc_id = aws ec2 describe-vpcs --query "Vpcs[].VpcId"
-if (($vpc_id).Count -gt 1) {
-    Write-Output "Removendo a VPC padrão"
-    # aws ec2 delete-vpc --vpc-id $vpc_id
-} else {
-    Write-Output "Não existe nenhuma VPC criada!"
-}
-
-
-
-# vpc-025923e032872abb8
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "SERVIÇO: AWS RDS"
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "AWS RELATIONAL DATABASE SERVICE (RDS)"
-if ((aws rds describe-db-instances --query "DBInstances[?DBInstanceIdentifier=='$db_instance_identifier']").Count -gt 1) {
-    Write-Output "Removendo a instância de banco de dados criada"
-    # aws rds delete-db-instance --db-instance-identifier $db_instance_identifier  --skip-final-snapshot
-} else {
-    Write-Output "Não existe instância com esse nome de identificação!"
-}
-
-
-
-
-
-
 
 
 
@@ -145,8 +210,8 @@ Write-Output "SERVIÇO: AWS ELB"
 Write-Output "TARGET GROUP"
 $target_group_arn = aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn" --output text
 if (($target_group_arn).Count -gt 1) {
-    Write-Output "Removendo o grupo de destino criado"
-    # aws elbv2 delete-target-group --target-group-arn $target_group_arn
+    Write-Output "Removendo o grupo de destino de ARN $target_group_arn"
+    aws elbv2 delete-target-group --target-group-arn $target_group_arn
 } else {
     Write-Output "Não existe grupo de destino criado!"
 }
@@ -157,14 +222,14 @@ $load_balancer_arn = aws elbv2 describe-load-balancers --query "LoadBalancers[].
 if (($load_balancer_arn).Count -gt 1) {
     $listener_arn = aws elbv2 describe-listeners --load-balancer-arn $load_balancer_arn --query "Listeners[].ListenerArn" --output text
     if (($listener_arn).Count -gt 1) {
-        Write-Output "Removendo o Listener criado"
-        # aws elbv2 delete-listener --listener-arn $listener_arn
+        Write-Output "Removendo o Listener de ARN $listener_arn"
+        aws elbv2 delete-listener --listener-arn $listener_arn
     } else {
         Write-Output "Não existe Listener vinculado a esse Load Balancer!"
     }
 
-    Write-Output "Removendo o Load Balancer criado"
-    # aws elbv2 delete-load-balancer --load-balancer-arn $load_balancer_arn
+    Write-Output "Removendo o Load Balancer de ARN $load_balancer_arn"
+    aws elbv2 delete-load-balancer --load-balancer-arn $load_balancer_arn
 } else {
     Write-Output "Não existe Load Balancer criado!"
 }
