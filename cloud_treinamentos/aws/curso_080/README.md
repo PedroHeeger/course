@@ -290,32 +290,3 @@ Esta aula iniciou com uso do serviço **Amazon Route53** para configuração de 
 
 
 
-
-
-`aws elbv2 create-rule --listener-arn arn:aws:elasticloadbalancing:us-east-1:123456789012:listener/app/MeuALB/abcdefgh12345678/1234567890abcdef0 --priority 1 --action-type fixed-response --fixed-response-content "{\"ContentType\": \"text/plain\", \"StatusCode\": \"200\"}"`
-
-
-
-
-
-
-
-
-
-
-
-aws ec2 create-image --instance-id i-0123456789abcdef0 --name imgWeb --tag-specifications 'ResourceType=image,Tags=[{Key=Name,Value=imgWeb}]'
-
-
-aws ec2 deregister-image --image-id ami-0133f24182e7ef3ee
-
-`aws s3 rb s3://teste3355687`
-
-`aws ec2 describe-key-pairs --query "KeyPairs[*].KeyName" --output text`
-`aws rds describe-db-instances --query "DBInstances[].DBInstanceIdentifier" --output text`
-`aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text`
-`aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text`
-
-`aws rds delete-db-instance --db-instance-identifier banco --skip-final-snapshot`
-`aws ec2 terminate-instances --instance-ids i-0a41b99f8774c0e32`
-`aws ec2 terminate-instances --instance-ids i-0717ae99e28eb99a8`

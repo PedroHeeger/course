@@ -5,7 +5,7 @@ $resources_path = "$project_path\resources"
 $secrets_path = "$project_path\secrets"
 
 # FILES PATHS
-$policy1_path = "$secrets_path"
+$policy1_path = "$resources_path"
 $key_pair_path = "$secrets_path"
 $user_data_path = "$resources_path"
 $policy_bucket_path = "$resources_path"
@@ -13,7 +13,7 @@ $keyPair_iamUser_path = "$secrets_path"
 
 # FILES
 $policy1_file = "policy1.JSON"
-$user_data_file = "ec2Sript.sh"
+$user_data_file = "ec2Script.sh"
 $policy_bucket = "bucketPolicy.json"
 $keyPair_iamUser_file = "keyPairJoaoNinguem.csv"
 
@@ -23,7 +23,7 @@ $instance_profile_name = $role_name
 $policy_name = "AmazonS3ReadOnlyAccess"
 $policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
 $key_pair_name = "remoteAccessEc2"
-$tag_name_instance = "web"
+$tag_name_instance = "web1"
 $image_id = "ami-0261755bbcb8c4a84"
 $availability_zone = "us-east-1a"
 # $tag_name_security_group = "SecurityGroup1"

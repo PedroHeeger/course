@@ -1,4 +1,3 @@
-
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "Listando o nome das roles criadas"
 aws iam list-roles --query 'Roles[].RoleName' --output text

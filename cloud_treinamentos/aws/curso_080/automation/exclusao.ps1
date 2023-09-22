@@ -48,7 +48,19 @@ Write-Output "KEY PAIR"
 if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$key_pair_name']").Count -gt 1) {
     Write-Output "Removendo o par de chaves criado de nome $key_pair_name e os arquivos pem e ppk"
     aws ec2 delete-key-pair --key-name $key_pair_name
-    rm "$key_pair_path\$key_pair_name.pem" && rm "$key_pair_path\$key_pair_name.ppk"
+
+    if (Test-Path "$key_pair_path\$key_pair_name.pem" -PathType Leaf) {
+        Write-Host "Removendo o arquivo de par de chave $key_pair_name.pem"
+        rm "$key_pair_path\$key_pair_name.pem"
+    } else {
+        Write-Host "Não existe o arquivo de par de chave $key_pair_name.pem"
+    }
+    if (Test-Path "$key_pair_path\$key_pair_name.ppk" -PathType Leaf) {
+        Write-Host "Removendo o arquivo de par de chave $key_pair_name.ppk"
+        rm "$key_pair_path\$key_pair_name.ppk"
+    } else {
+        Write-Host "Não existe o arquivo de par de chave $key_pair_name.ppk"
+    }
 } else {
     Write-Output "Não existe o par de chaves de $key_pair_name!"
 }
@@ -56,7 +68,7 @@ if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$key_pair_name']").
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
 if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tag_name_instance" --query "Reservations[].Instances[]").Count -gt 1) {
-    Write-Output "Removendo as instâncias criadas de nome de tag $tag_name_instance"
+    Write-Output "Removendo a instância criada de nome de tag $tag_name_instance"
     $instance_id1 = aws ec2 describe-instances --query "Reservations[0].Instances[].InstanceId" --output text
     $instance_id2 = aws ec2 describe-instances --query "Reservations[1].Instances[].InstanceId" --output text
     aws ec2 terminate-instances --instance-ids $instance_id1 $instance_id2
@@ -69,6 +81,21 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tag_name_instan
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS VPC"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "INBOUND AND OUTBOUND RULES"
+$security_group_id = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+$exist_rule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$security_group_id' && !IsEgress && IpProtocol=='-1' && to_string(FromPort)=='-1' && to_string(ToPort)=='-1' && CidrIpv4=='0.0.0.0/0']"
+
+if (($exist_rule).Count -gt 1) {
+    Write-Output "Removendo a regra de entrada determinada no grupo de segurança padrão"
+    aws ec2 revoke-security-group-ingress --group-id $security_group_id --protocol -1 --port -1 --cidr 0.0.0.0/0
+
+    Write-Output "Listando as regras do grupo de segurança padrão"
+    aws ec2 describe-security-group-rules
+} else {
+    Write-Output "O grupo de segurança padrão não possui essa regra de entrada!"
+}
+
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SECURITY GROUP"
 # if ((aws ec2 describe-security-groups --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$tag_name_security_group']]").Count -gt 1) {
@@ -128,7 +155,7 @@ Write-Output "SERVIÇO: AWS RDS"
 Write-Output "AWS RELATIONAL DATABASE SERVICE (RDS)"
 if ((aws rds describe-db-instances --query "DBInstances[?DBInstanceIdentifier=='$db_instance_identifier']").Count -gt 1) {
     Write-Output "Removendo a instância de banco de dados de nome de identificação $db_instance_identifier"
-    aws rds delete-db-instance --db-instance-identifier $db_instance_identifier  --skip-final-snapshot
+    aws rds delete-db-instance --db-instance-identifier $db_instance_identifier  --skip-final-snapshot --no-cli-pager
 } else {
     Write-Output "Não existe instância com o nome de identificação $db_instance_identifier!"
 }
@@ -207,19 +234,9 @@ if ((aws ec2 describe-images --owners self --query "Images[?Name=='$img_name']")
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS ELB"
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "TARGET GROUP"
-$target_group_arn = aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn" --output text
-if (($target_group_arn).Count -gt 1) {
-    Write-Output "Removendo o grupo de destino de ARN $target_group_arn"
-    aws elbv2 delete-target-group --target-group-arn $target_group_arn
-} else {
-    Write-Output "Não existe grupo de destino criado!"
-}
-
-"-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC LOAD BALANCER (ELB)"
-$load_balancer_arn = aws elbv2 describe-load-balancers --query "LoadBalancers[].LoadBalancerArn" --output text
-if (($load_balancer_arn).Count -gt 1) {
+$load_balancer_arn = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='curso080lb'].LoadBalancerArn" --output text
+if (($load_balancer_arn).Count -gt 0) {
     $listener_arn = aws elbv2 describe-listeners --load-balancer-arn $load_balancer_arn --query "Listeners[].ListenerArn" --output text
     if (($listener_arn).Count -gt 1) {
         Write-Output "Removendo o Listener de ARN $listener_arn"
@@ -234,3 +251,12 @@ if (($load_balancer_arn).Count -gt 1) {
     Write-Output "Não existe Load Balancer criado!"
 }
 
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "TARGET GROUP"
+$target_group_arn = aws elbv2 describe-target-groups --query "TargetGroups[?TargetGroupName=='$target_group'].TargetGroupArn" --output text
+if (($target_group_arn).Count -gt 0) {
+    Write-Output "Removendo o grupo de destino de ARN $target_group_arn"
+    aws elbv2 delete-target-group --target-group-arn $target_group_arn
+} else {
+    Write-Output "Não existe grupo de destino criado!"
+}
