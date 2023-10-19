@@ -1,8 +1,8 @@
 # Imersão Excel 2   <img src="./0-aux/logo_course.png" alt="curso_072" width="auto" height="45">
 
 ### Repository: [course](../../../../)
-### Platform: <a href="../">karine_lago   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/karine_lago.jpeg" alt="karine_lago" width="auto" height="25"></a>
-### Software/Subject: <a href="../../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
+### Platform: <a href="../../">karine_lago   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/karine_lago.jpeg" alt="karine_lago" width="auto" height="25"></a>
+### Software/Subject: <a href="../">excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25"></a>
 ### Course: <a href="./">curso_072 (Imersão Excel 2)   <img src="./0-aux/logo_course.png" alt="curso_072" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/excel/(23-07-06)%20Cert%20Excel%20PH%20Karine%20Lago%20(Imersão).pdf">Certificate</a>
@@ -11,22 +11,28 @@
 ---
 
 ### Theme:
-- Data Analysis
 - Business Intelligence (BI)
+- Data Analysis
 
 ### Used Tools:
-- BI Tool: 
-  - Excel <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="microsoft_excel" width="auto" height="25">
-- Integrated Development Environment (IDE):
-  - VS Code   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
+- Operating System (OS): 
+  - Windows 11 <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows11.png" alt="windows11" width="auto" height="25">
+- Cloud Services:
+  - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
+- Language:
+  - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
+  - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
+- BI Tool:
+  - Excel   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_excel.png" alt="excel" width="auto" height="25">
+- Integrated Development Environment (IDE) and Text Editor:
+  - Visual Studio Code (VS Code)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
 - Versioning: 
   - Git   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="auto" height="25">
 - Repository:
   - GitHub   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github" width="auto" height="25">
-- Others:
-  - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
-  - Looka <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/sites/ai_looka.svg" alt="looka" width="auto" height="25">
-
+- Artificial Intelligence:
+  - Looka   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/sites/ai_looka.svg" alt="looka" width="auto" height="25">
+  
 ---
 
 ### Objective:
