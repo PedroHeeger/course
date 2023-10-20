@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "PRIMEIRA ETAPA"
+echo "PRIMEIRA ETAPA: INSTALACOES BASICAS"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando o script como usuario Ubuntu"
@@ -63,13 +63,18 @@ echo "zsh" >> /home/ubuntu/.bashrc
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "SEGUNDA ETAPA"
+echo "SEGUNDA ETAPA: AULA 01-DOCKER"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Baixando e instalando o pacote AWS CLI"
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+echo "Baixando o repositório do GitHub"
+cd /home/ubuntu
+git clone https://github.com/KubeDev/imersao-devops-cloud-02.git
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Baixando e instalando o pacote AWS CLI"
+# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+# unzip awscliv2.zip
+# sudo ./aws/install
 
 # echo "-----//-----//-----//-----//-----//-----//-----"
 # echo "Baixando pacote Nodejs versão 20.x"
@@ -81,12 +86,7 @@ sudo ./aws/install
 # sudo apt-get install npm -y
 # sudo npm install -g npm@10.1.0
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Instalando o framework Serverless"
-# sudo npm i -g serverless
-
-# echo "Instalando as bibliotecas de JavaScript (Node.js)"
-# sudo npm i uuid aws-sdk
+# sudo npm install
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Baixando e instalando os pacotes necessarios para instalacao do Docker"
@@ -106,5 +106,77 @@ echo "Baixando e instalando o Docker"
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Instalando o Python 3"
-sudo apt-get install python3 -y
+echo "Adicionando o usuario padrao do ubuntu ao grupo do Docker, para executar os comandos sem o Sudo"
+# sudo groupadd docker
+sudo usermod -aG docker ubuntu
+newgrp docker
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Fazendo o login no Docker Hub (Docker Registry)"
+# echo '{"auths":{"https://index.docker.io/v1/":{"auth":"SEU_USUARIO:SEU_TOKEN"}}}' > ~/.docker/config.json
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Instalando o Python 3"
+# sudo apt-get install python3 -y
+
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "TERCEIRA ETAPA: AULA 01-DOCKER PROJETO"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 200 segundos..."
+sleep 200
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Testando o Docker"
+# docker container run --name meucontainer hello-world
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do arquivo Dockerfile"
+cd /home/ubuntu/imersao-devops-cloud-02/conversao-temperatura/src
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando o arquivo .dockerignore"
+echo "node_modules/" > .dockerignore
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando a imagem Docker da aplicacao"
+docker build -t conversao-temperatura .
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Renomeando as tags da imagem"
+docker tag conversao-temperatura pedroheeger/curso081_conversao-temperatura:v1
+docker tag conversao-temperatura pedroheeger/curso081_conversao-temperatura:latest
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Enviando a imagem para o Docker Hub (Docker Registry)"
+docker push pedroheeger/curso081_conversao-temperatura:v1
+docker push pedroheeger/curso081_conversao-temperatura:latest
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando o container da aplicacao"
+docker container run --name aplicacao1 -d -p 8080:8080 conversao-temperatura
+
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "QUARTA ETAPA: KUBERNETES"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Baixando o script de instalacao do K3D e executando"
+wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Baixando e instalando os pacotes necessarios para instalacao do Kubectl"
+sudo apt-get install -y apt-transport-https ca-certificates curl
+# sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update -y
+
+echo "Baixando o Kubectl"
+sudo apt-get install -y kubectl
+kubectl cluster-info
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Alterando o proprietário e grupo da pasta .kube para o usuário ubuntu"
+sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube

@@ -97,10 +97,17 @@ Este projeto foi desenvolvido em cinco aulas, além de conter quatro lives e tr�
 
 <a name="item01"><h4>Aula 1 - Revolução Digital com DevOps e Cloud</h4></a>[Back to summary](#item0)
 
+Na primeira aula desse curso, foi realizada uma introdução sobre o software **Docker**, mostrando alguns comandos básicos desta ferramenta. Para execução do projeto, foi decidido por mim que tudo seria executado na cloud da **AWS** com o objetivo de evitar realizar instalações na maquina física. Portanto, foi construída e configurada uma maquina virtual **Linux Ubuntu** no serviço **Amazon EC2** da cloud para servir como ambiente de execução, onde seriam feitas as instalações dos programas utilizados, do **Docker** e do download dos arquivos do projeto. Todo o processo de configuração desse ambiente foi realizado de forma automatizada através dos três arquivos seguintes de **PowerShell**: [criacao](./automation/criacao.ps1), [exclusao](./automation/exclusao.ps1) e [variaveis](./automation/variaveis.ps1), sendo todos eles armazenados no diretório [automation](./automation/). Este diretório ainda conteve duas sub-pastas, a primeira ([resources](./automation/resources/)), para armazenar os arquivos de recursos necessários, que neste caso, armazenou o arquivo de script em **Bash** [ec2Script.sh](./automation/resources/ec2Script.sh). A outra sub-pasta de nome [secrets](./automation/secrets) continha as credenciais para login do usuário na **AWS CLI**, no **Docker Hub** e o arquivo par de chaves `.pem` gerado para realização de acesso remoto na maquina virtual instanciada na cloud da **AWS**.
 
 
 
 
+
+
+scp -i "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\secrets\remoteAccessEc2.pem" -o StrictHostKeyChecking=no -r "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\Dockerfile" ubuntu@ec2-3-81-68-120.compute-1.amazonaws.com:/home/ubuntu/imersao-devops-cloud-02/conversao-temperatura/src
+
+
+ssh -i "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\secrets\remoteAccessEc2.pem" "ubuntu@ec2-3-81-68-120.compute-1.amazonaws.com" "cd /home/ubuntu/imersao-devops-cloud-02/conversao-temperatura/src && docker build -t conversao-temperatura ."
 
 
 

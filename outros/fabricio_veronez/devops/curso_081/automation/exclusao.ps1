@@ -2,6 +2,22 @@ Write-Output "Importando o arquivo com as variáveis"
 . "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\variaveis.ps1"
 
 "-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS VPC"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "INBOUND AND OUTBOUND RULES"
+$security_group_id = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+$exist_rule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$security_group_id' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
+if (($exist_rule).Count -gt 1) {
+    Write-Output "Removendo a regra de entrada determinada no grupo de segurança padrão"
+    aws ec2 revoke-security-group-ingress --group-id $security_group_id --protocol tcp --port 8080 --cidr 0.0.0.0/0
+
+    Write-Output "Listando as regras do grupo de segurança padrão"
+    aws ec2 describe-security-group-rules --no-cli-pager
+} else {
+    Write-Output "O grupo de segurança padrão não possui essa regra de entrada!"
+}
+
+"-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
 if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
@@ -16,7 +32,6 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 } else {
     Write-Output "Não existe instâncias com o nome de tag $tagNameInstance!"
 }
-
 
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SERVIÇO: AWS EC2"

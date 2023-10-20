@@ -32,6 +32,9 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
     $ipEc2 = $ipEc2.Replace(".", "-")
     Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
+
+    Write-Output "Exibindo o endereço para acesso da aplicação que está rodando no container Docker"
+    Write-Output "${ipEc2}:8080"
 } else {
     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
@@ -51,29 +54,57 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
     $ipEc2 = $ipEc2.Replace(".", "-")
     Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
+
+    Write-Output "Exibindo o endereço para acesso da aplicação que está rodando no container Docker"
+    Write-Output "${ipEc2}:8080"
 }
 
-# # Write-Output "No PuTTYgen, gere a chave privada .ppk a partir da chave pública .pem fornecida"
-# Write-Output "Aguardando 90 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
-# Start-Sleep -Seconds 90
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS VPC"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "INBOUND AND OUTBOUND RULES"
+$security_group_id = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+$exist_rule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$security_group_id' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SCP / PSCP (FILE TRANSFER)"
-# if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp").Count -gt 1) {
-#     Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
-#     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-#     $ipEc2 = $ipEc2.Replace(".", "-")
-#     Write-Output $ipEc2
+if (($exist_rule).Count -gt 1) {
+    Write-Output "Já existe a regra de entrada determinada no grupo de segurança padrão!"
+    $exist_rule
+} else {
+    Write-Output "Listando o Id de todas as regras de entrada e saída do grupo de segurança padrão"
+    aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$security_group_id" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
 
-#     Write-Output "Transferindo os arquivos para a instância de nome de tag $tagNameInstance"
-#     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$projectPath" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
-#     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$awsCliPath" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
-#     # pscp -batch -i "$keyPairPath\$keyPairName.ppk" -r "$projectPath" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
-#     # pscp -batch -i "$keyPairPath\$keyPairName.ppk" -r "$awsCliPath" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
-# } else {
-#     Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-# }
+    Write-Output "Adicionando uma regra de entrada ao grupo de segurança para liberação do protocolo TCP"
+    aws ec2 authorize-security-group-ingress --group-id $security_group_id --protocol tcp --port 8080 --cidr 0.0.0.0/0
+}
+
+
+# Write-Output "No PuTTYgen, gere a chave privada .ppk a partir da chave pública .pem fornecida"
+Write-Output "Aguardando 120 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
+Start-Sleep -Seconds 120
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SCP / PSCP (FILE TRANSFER)"
+if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp").Count -gt 1) {
+    Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
+    $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+    $ipEc2 = $ipEc2.Replace(".", "-")
+
+    # Write-Output "Transferindo os arquivos para a instância de nome de tag $tagNameInstance"
+    # scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHub" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
+
+    Write-Output "Verificando se a pasta já existe na instância de nome de tag $tagNameInstance"
+    $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"/home/ubuntu/$dockerHub\" && echo 'true' || echo 'false'"
+
+    if ($folderExists -eq 'true') {
+        Write-Output "A pasta já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    } else {
+        Write-Output "Transferindo os arquivos para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHub" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
+    }
+} else {
+    Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
+    aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+}
 
 # Write-Output "Aguardando 200 segundos para garantir que todos os arquivos foram enviados!"
 # Start-Sleep -Seconds 200
@@ -84,19 +115,9 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 #     Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
 #     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
 #     $ipEc2 = $ipEc2.Replace(".", "-")
-#     Write-Output $ipEc2
-
-#     Write-Output "Movendo os diretórios do Node.js (node_modules, package.json e package-lock.json) para dentro do diretório do projeto"
-#     ssh -i "$keyPairPath\$keyPairName.pem" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "sudo mv /home/ubuntu/node_modules /home/ubuntu/projectDioServerless"
-#     ssh -i "$keyPairPath\$keyPairName.pem" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "sudo mv /home/ubuntu/package.json /home/ubuntu/projectDioServerless"
-#     ssh -i "$keyPairPath\$keyPairName.pem" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "sudo mv /home/ubuntu/package-lock.json /home/ubuntu/projectDioServerless"
-
-#     Write-Output "Aguardando 30 segundos para garantir que as pastas foram enviadas para o diretório do projeto!"
-#     Start-Sleep -Seconds 30
 
 #     Write-Output "Alterando para diretório do projeto e implantando a infraestrutura com o arquivo serverless"
-#     ssh -i "$keyPairPath\$keyPairName.pem" "ubuntu@ec2-$ipEc2.compute-1.amazonaws.com" "cd projectDioServerless && serverless deploy"
-#     # plink -i "$keyPairPath\$keyPairName.ppk" -ssh ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "cd /home/ubuntu/projectDioServerless && serverless deploy"
+#     ssh -i "$keyPairPath\$keyPairName.pem" "ubuntu@ec2-$ipEc2.compute-1.amazonaws.com" "cd $projectPath && docker build -t conversao-temperatura ."
 # } else {
 #     Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
