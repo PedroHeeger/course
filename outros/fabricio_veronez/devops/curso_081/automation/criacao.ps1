@@ -42,7 +42,7 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
     $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
     $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$availabilityZone'].SubnetId" --output text
-    aws ec2 run-instances --image-id $imageId --instance-type t2.micro --key-name $keyPairName --security-group-ids $securityGroupId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
+    aws ec2 run-instances --image-id $imageId --instance-type $instanceType --key-name $keyPairName --security-group-ids $securityGroupId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
 
     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
@@ -99,17 +99,17 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     Write-Output "Aguardando 15 segundos para realizar o acesso remoto..."
     Start-Sleep -Seconds 15
 
-    "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "AWS CLI"
-    Write-Output "Verificando se a pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance"
-    $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmPath/$awsCliFolder\" && echo 'true' || echo 'false'"
+    # "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "AWS CLI"
+    # Write-Output "Verificando se a pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance"
+    # $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmPath/$awsCliFolder\" && echo 'true' || echo 'false'"
 
-    if ($folderExists -eq 'true') {
-        Write-Output "A pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-    } else {
-        Write-Output "Transferindo a pasta $awsCliFolder para a instância de nome de tag $tagNameInstance"
-        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$awsCliPath\$awsCliFolder" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmPath
-    }
+    # if ($folderExists -eq 'true') {
+    #     Write-Output "A pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    # } else {
+    #     Write-Output "Transferindo a pasta $awsCliFolder para a instância de nome de tag $tagNameInstance"
+    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$awsCliPath\$awsCliFolder" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmPath
+    # }
     
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "DOCKER HUB"
@@ -135,29 +135,29 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
         scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile1" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath
     }
 
-    "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "DOCKERFILE"
-    Write-Output "Verificando se o arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance"
-    $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2src/$dockerFile\" && echo 'true' || echo 'false'"
+    # "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "DOCKERFILE"
+    # Write-Output "Verificando se o arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance"
+    # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2src/$dockerFile\" && echo 'true' || echo 'false'"
 
-    if ($fileExists -eq 'true') {
-        Write-Output "O arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-    } else {
-        Write-Output "Transferindo o arquivo $dockerFile para a instância de nome de tag $tagNameInstance"
-        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$dockerFile" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2src
-    }
+    # if ($fileExists -eq 'true') {
+    #     Write-Output "O arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    # } else {
+    #     Write-Output "Transferindo o arquivo $dockerFile para a instância de nome de tag $tagNameInstance"
+    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$dockerFile" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2src
+    # }
 
-    "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "MANIFESTO DEPLOYMENT 2"
-    Write-Output "Verificando se o arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance"
-    $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2k8s/$deploymentFile2\" && echo 'true' || echo 'false'"
+    # "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "MANIFESTO DEPLOYMENT 2"
+    # Write-Output "Verificando se o arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance"
+    # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2k8s/$deploymentFile2\" && echo 'true' || echo 'false'"
 
-    if ($fileExists -eq 'true') {
-        Write-Output "O arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-    } else {
-        Write-Output "Transferindo o arquivo $deploymentFile2 para a instância de nome de tag $tagNameInstance"
-        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile2" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2k8s
-    }
+    # if ($fileExists -eq 'true') {
+    #     Write-Output "O arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    # } else {
+    #     Write-Output "Transferindo o arquivo $deploymentFile2 para a instância de nome de tag $tagNameInstance"
+    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile2" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2k8s
+    # }
 
     # Write-Output "Aguardando 30 segundos..."
     # Start-Sleep -Seconds 30
@@ -177,6 +177,25 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

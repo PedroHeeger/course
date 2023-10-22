@@ -34,6 +34,7 @@ $dataFile = "popula-dados.http"
 # DATA
 $keyPairName = "remoteAccessEc2"
 $tagNameInstance = "ec2DevOps2"
+$instanceType = "t2.micro"
 # $imageId = "ami-053b0d53c279acc90"
 $imageId = "ami-0fc5d935ebf8bc3bc"
 $availabilityZone = "us-east-1a"

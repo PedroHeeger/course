@@ -178,29 +178,28 @@ Na imagem 05 é exibido a aplicação sem a população de dados. Já nas imagen
 
 
 
-
-
-
-
-
-
-
-Este processo teve que ser feito manualmente, logo após o IP da instância ter sido fornecido, para que o arquivo fosse enviado para a maquina na cloud já com a URL correta. 
-
-
-
-
-
-
-
-
-
-
-
-
+10250
+6443
 
 
 <a name="item03"><h4>Aula 3 - AWS: Potencialize sua aplicação com o poder da Cloud Computing</h4></a>[Back to summary](#item0)
+
+Nesta aula, antes de continuar os scripts de automação, foi realizado a criação de uma conta na **AWS** e a criação de um usuário administrador anexando a ele a permissão `AdministratorAccess`, porém isto já estava feito. Em seguida, foi acessado com o usuário root da conta da **AWS** e pelo console foi configurado um alerta no serviço **AWS Budget** para que um email fosse enviado quando custo do serviços atingisse o valor determinado. Este processo teve que ser feito diretamente na conta do usuário root e pelo console, pois na **AWS CLI** instalada na maquina física, o usuário configurado é o usuário administrador `PedroheegerAdmin` que não tem permissões relacionadas a finanças.
+
+
+
+
+
+curl -k https://35.175.237.145:42007
+
+
+curl https://35.175.237.145:42007
+
+
+
+
+
+
 
 
 
