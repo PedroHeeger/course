@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "PRIMEIRA ETAPA: INSTALACOES BASICAS"
+echo "ETAPA 1: INSTALACOES BASICAS"
+start_time=$(date +%s)
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando o script como usuario Ubuntu"
@@ -61,20 +62,45 @@ echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Indicando que esse Shell deve ser iniciado"
 echo "zsh" >> /home/ubuntu/.bashrc
 
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Baixando e instalando o pacote AWS CLI"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+end_time=$(date +%s)
+runtime=$((end_time - start_time))
+echo "TEMPO ETAPA 1: $runtime segundos"
+
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "SEGUNDA ETAPA: AULA 01-DOCKER"
+echo "ETAPA 2: AULA 01-DOCKER INSTALACAO"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Baixando o repositório do GitHub"
+echo "Baixando o repositorio do projeto no GitHub"
 cd /home/ubuntu
 git clone https://github.com/KubeDev/imersao-devops-cloud-02.git
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Baixando e instalando o pacote AWS CLI"
-# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-# unzip awscliv2.zip
-# sudo ./aws/install
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Alterando o proprietario e grupo da pasta do projeto para o usuario ubuntu"
+sudo chown -R ubuntu:ubuntu /home/ubuntu/imersao-devops-cloud-02
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo o arquivo popula-dados.http da pasta do projeto principal"
+rm /home/ubuntu/imersao-devops-cloud-02/kube-news/popula-dados.http
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando o sub-diretorio k8s na pasta do projeto principal"
+cd /home/ubuntu/imersao-devops-cloud-02/kube-news
+mkdir k8s
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Alterando o proprietario e grupo da pasta criada para o usuario ubuntu"
+sudo chown -R ubuntu:ubuntu /home/ubuntu/imersao-devops-cloud-02/kube-news/k8s
+
+end_time=$(date +%s)
+runtime=$((end_time - start_time))
+echo "TEMPO ETAPA 1: $runtime segundos"
 
 # echo "-----//-----//-----//-----//-----//-----//-----"
 # echo "Baixando pacote Nodejs versão 20.x"
@@ -109,27 +135,23 @@ echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Adicionando o usuario padrao do ubuntu ao grupo do Docker, para executar os comandos sem o Sudo"
 # sudo groupadd docker
 sudo usermod -aG docker ubuntu
-newgrp docker
+sudo newgrp docker
+
+end_time=$(date +%s)
+runtime=$((end_time - start_time))
+echo "TEMPO ETAPA 1: $runtime segundos"
 
 # echo "-----//-----//-----//-----//-----//-----//-----"
 # echo "Fazendo o login no Docker Hub (Docker Registry)"
 # echo '{"auths":{"https://index.docker.io/v1/":{"auth":"SEU_USUARIO:SEU_TOKEN"}}}' > ~/.docker/config.json
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Instalando o Python 3"
-# sudo apt-get install python3 -y
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 100 segundos para configuracao do Docker Hub..."
+sleep 100
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "TERCEIRA ETAPA: AULA 01-DOCKER PROJETO"
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 200 segundos..."
-sleep 200
-
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Testando o Docker"
-# docker container run --name meucontainer hello-world
+echo "ETAPA 3: AULA 01-DOCKER PROJETO 1"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Acessando a pasta do arquivo Dockerfile"
@@ -159,7 +181,7 @@ docker container run --name aplicacao1 -d -p 8080:8080 conversao-temperatura
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "QUARTA ETAPA: KUBERNETES"
+echo "ETAPA 4: AULA 02-KUBERNETES INSTALACAO"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Baixando o script de instalacao do K3D e executando"
@@ -178,5 +200,144 @@ sudo apt-get install -y kubectl
 kubectl cluster-info
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Alterando o proprietário e grupo da pasta .kube para o usuário ubuntu"
+echo "Alterando o proprietario e grupo da pasta .kube para o usuario ubuntu"
 sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube/config
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 100 segundos para verificacao do projeto 1..."
+sleep 100
+
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "ETAPA 5: AULA 02-KUBERNETES PROJETO 2"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo o container da aplicacao do projeto 1"
+docker container rm -f aplicacao1
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do projeto"
+cd /home/ubuntu/imersao-devops-cloud-02
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando o cluster com Port Bind e Load Balancer"
+k3d cluster create meucluster1 -p "8080:30000@loadbalancer"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Executando o arquivo de Manifesto YAML"
+kubectl apply -f deployment1.yaml
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 100 segundos para verificacao do projeto 2..."
+sleep 100
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Realizando uma alteracao de URL para insercao de dados na aplicacao"
+sed -i 's|fabricioveronez/web-page:blue|fabricioveronez/web-page:green|' "/home/ubuntu/imersao-devops-cloud-02/deployment1.yaml"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Executando o arquivo de Manifesto YAML"
+kubectl apply -f deployment1.yaml
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 100 segundos para verificacao do projeto 2..."
+sleep 100
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo o arquivo de Manifesto YAML"
+kubectl delete -f deployment1.yaml
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo o cluster"
+k3d cluster delete meucluster1
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 45 segundos para exclusao do projeto 2..."
+sleep 45
+
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "ETAPA 6: AULA 02-KUBERNETES PROJETO 3"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do projeto da aula 2"
+cd /home/ubuntu/imersao-devops-cloud-02/kube-news/src
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando o arquivo .dockerignore"
+echo "node_modules/" > .dockerignore
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando a imagem Docker da aplicacao"
+docker build -t pedroheeger/curso081_kube-news:v1 .
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Renomeando a tag da imagem"
+docker tag pedroheeger/curso081_kube-news:v1 pedroheeger/curso081_kube-news:latest
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Enviando as imagens para o Docker Hub (Docker Registry)"
+docker push pedroheeger/curso081_kube-news:v1
+docker push pedroheeger/curso081_kube-news:latest
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando o cluster com Port Bind e Load Balancer"
+k3d cluster create meucluster2 -p "8080:30000@loadbalancer"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do arquivo de Manifesto YAML"
+cd /home/ubuntu/imersao-devops-cloud-02/kube-news/k8s
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Executando o arquivo de Manifesto YAML"
+kubectl apply -f deployment2.yaml
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Realizando uma alteracao de URL para insercao de dados na aplicacao"
+# ipEc2=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=ec2DevOps3" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text)
+# sed -i 's|http://localhost:4503/api/post|http://$ipEc2:8080/api/post|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/popula-dados.http"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 150 segundos para inserir os dados..."
+sleep 150
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Realizando uma alteracao na aplicacao para versao v2"
+sed -i 's/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/>/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" - v2 \/>/' "/home/ubuntu/imersao-devops-cloud-02/kube-news/src/views/partial/header.ejs"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do projeto da aula 2"
+cd /home/ubuntu/imersao-devops-cloud-02/kube-news/src
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando a imagem Docker da aplicacao na versao v2"
+docker build -t pedroheeger/curso081_kube-news:v2 .
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Enviando a imagem da aplicacao na versao v2 para o Docker Hub (Docker Registry)"
+docker push pedroheeger/curso081_kube-news:v2
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do arquivo de Manifesto YAML"
+cd /home/ubuntu/imersao-devops-cloud-02/kube-news/k8s
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Realizando uma alteracao da versao da aplicacao no arquivo de manifesto YAML"
+sed -i 's/image: pedroheeger\/curso081_kube-news:v1/image: pedroheeger\/curso081_kube-news:v2/' "/home/ubuntu/imersao-devops-cloud-02/kube-news/k8s/deployment2.yaml"
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Executando o arquivo de Manifesto YAML"
+kubectl apply -f deployment2.yaml
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Aguardando 150 segundos para verificar a aplicacao..."
+sleep 150
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo o arquivo de Manifesto YAML"
+kubectl delete -f deployment2.yaml
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo o cluster"
+k3d cluster delete meucluster2
