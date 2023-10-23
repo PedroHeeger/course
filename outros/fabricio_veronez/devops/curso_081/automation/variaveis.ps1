@@ -29,13 +29,26 @@ $dockerFile = "Dockerfile"
 $deploymentFile1 = "deployment1.yaml"
 $deploymentFile2 = "deployment2.yaml"
 $dataFile = "popula-dados.http"
+$userDataFile2 = "ec2Script2.sh"
 
 
 # DATA
 $keyPairName = "remoteAccessEc2"
 $tagNameInstance = "ec2DevOps2"
 $instanceType = "t2.micro"
+$instanceTypeCash = "t2.micro"
 # $imageId = "ami-053b0d53c279acc90"
 $imageId = "ami-0fc5d935ebf8bc3bc"
 $availabilityZone = "us-east-1a"
+$vpcName = "curso081VPC"
+$subnetPubName = "curso081SubnetPub"
+$subnetPrivName = "curso081SubnetPriv"
+$internetGatewayName = "curso081Gateway"
+$natGatewayName = "curso081NatGateway"
+$routeTablePubName = "curso081RouteTablePub"
+$routeTablePrivName = "curso081RouteTablePriv"
+$securityGroupName = "curso081SecurityGroup"
+$tagNameInstancePub = "ec2DevOpsPub"
+$tagNameInstancePriv = "ec2DevOpsPriv"
+
 

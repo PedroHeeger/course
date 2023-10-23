@@ -197,11 +197,19 @@ curl https://35.175.237.145:42007
 
 
 
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" "Name=tag:Name,Values=curso081SecurityGroup" --query "SecurityGroups[].Tags[].Value" --output text
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" --query "SecurityGroups[?Tags[?Value=='curso081SecurityGroup'].Value].Value" 
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" --query "SecurityGroups[].Tags[?Value=='curso081SecurityGroup'].Value" --output text
+
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" "Name=tag:Name,Values=curso081SecurityGroup" --query "SecurityGroups[].GroupId" --output text
 
 
 
 
+aws ec2 describe-route-tables --filters "Name=tag:Name,Values=curso081RouteTablePub" --query "RouteTables[].Associations[].RouteTableId" --output text
+aws ec2 describe-route-tables --filters "Name=tag:Name,Values=curso081RouteTablePub" --query "RouteTables[].Associations[].RouteTableId" --output text
 
-
+aws ec2 describe-route-tables --query "RouteTables[].Associations[].RouteTableId" --output text
+aws ec2 describe-route-tables --route-table-id rtb-00106caf80cd66bab --query 'RouteTables[].Associations[].RouteTableAssociationId' --output text
 
 <a name="item04"><h4>Aula 4 - Github Actions - Eficiência em entregas automatizadas</h4></a>[Back to summary](#item0)
