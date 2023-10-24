@@ -3,10 +3,16 @@ Write-Output "Importando o arquivo com as variáveis"
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AULAS 1 E 2"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SERVIÇO: AWS VPC"
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "INBOUND AND OUTBOUND RULES"
+# Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
 # $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
 # $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
 # if (($existRule).Count -gt 1) {
@@ -20,12 +26,11 @@ Write-Output "AULAS 1 E 2"
 # }
 
 
-
-
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SERVIÇO: AWS EC2"
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
+# Write-Output "Verificando se existe a instância $tagNameInstance..."
 # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
 #     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
@@ -42,6 +47,7 @@ Write-Output "AULAS 1 E 2"
 
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "KEY PAIR"
+# Write-Output "Verificando se existe o par de chaves $keyPairName..."
 # if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName']").Count -gt 1) {
 #     Write-Output "Removendo o par de chaves criado de nome $keyPairName e os arquivos pem e ppk"
 #     aws ec2 delete-key-pair --key-name $keyPairName
@@ -62,22 +68,32 @@ Write-Output "AULAS 1 E 2"
 #     Write-Output "Não existe o par de chaves de $keyPairName!"
 # }
 
+}
+
 
 
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AULA 3"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS VPC"
+Write-Output "Verificando se existe a VPC $vpcName..."
 if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].Tags[].Value").Count -gt 1) {
     $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
     $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:Name,Values=$securityGroupName" --query "SecurityGroups[].GroupId" --output text
 
+    Write-Output "Verificando se existe o Security Group $securityGroupName..."
     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$securityGroupName']]").Count -gt 1) {
         "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
+        Write-Output "Verificando se existe uma regra liberando a porta 8080 no Security Group..."
         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
-    
+
         if (($existRule).Count -gt 1) {
             Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group"
             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$securityGroupId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
@@ -93,6 +109,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
     
         "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "INBOUND AND OUTBOUND RULES - PORT 443"
+        Write-Output "Verificando se existe uma regra liberando a porta 443 no Security Group..."
         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='443' && to_string(ToPort)=='443' && CidrIpv4=='0.0.0.0/0']"
     
         if (($existRule).Count -gt 1) {
@@ -110,6 +127,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
         "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "INBOUND AND OUTBOUND RULES - PORT 22"
+        Write-Output "Verificando se existe uma regra liberando a porta 22 no Security Group..."
         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='22' && to_string(ToPort)=='22' && CidrIpv4=='0.0.0.0/0']"
     
         if (($existRule).Count -gt 1) {
@@ -124,26 +142,13 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
         } else {
             Write-Output "Não existe a regra de entrada liberando a porta 22 no Security Group $securityGroupName!"
         }
-
-        "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "SECURITY GROUP"
-        Write-Output "Listando o nome de tag de todos os Security Groups da VPC $vpcName"
-        aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].Tags[].Value" --output text
-    
-        Write-Output "Removendo o Security Group de nome de tag $securityGroupName da VPC de nome de tag $vpcName"
-        aws ec2 delete-security-group --group-id $securityGroupId
-    
-        Write-Output "Listando o nome de tag de todos os Security Groups da VPC $vpcName"
-        aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].Tags[].Value" --output text
-
     } else {
         Write-Output "O Security Group de nome de tag $securityGroupName não está vinculado a VPC $vpcName!"
     }
 
-
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "ROUTE TABLE PÚBLICA"
-    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+    Write-Output "Verificando se existe a Route Table $routeTablePubName..."
     if ((aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$routeTablePubName" --query "RouteTables[].Tags[].Value").Count -gt 1) {
         Write-Output "Listando o nome de tag de todas as Route Tables da VPC $vpcName"
         aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" --query "RouteTables[].Tags[].Value" --output text
@@ -151,11 +156,9 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
         Write-Output "Desvinculando a Subnet Pública $subnetPubName da Route Table Pública de nome de tag $routeTablePubName"
         $routeTableId = aws ec2 describe-route-tables --filters "Name=tag:Name,Values=$routeTablePubName" --query "RouteTables[].RouteTableId" --output text
         $associationId = aws ec2 describe-route-tables --route-table-id $routeTableId --query 'RouteTables[].Associations[].RouteTableAssociationId' --output text
-        # $subnetId = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
         aws ec2 disassociate-route-table --association-id $associationId
 
         Write-Output "Removendo uma Rota da Route Table Pública de nome de tag $routeTablePubName"
-        # $internetGatewayId = aws ec2 describe-internet-gateways --filters "Name=tag:Name,Values=$gatewayName" --query "InternetGateways[].InternetGatewayId" --output text
         aws ec2 delete-route --route-table-id $routeTableId --destination-cidr-block 0.0.0.0/0
     
         Write-Output "Removendo a Route Table Pública de nome de tag $routeTablePubName"
@@ -169,25 +172,21 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "ROUTE TABLE PRIVADA"
-    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+    Write-Output "Verificando se existe a Route Table $routeTablePrivName..."
     if ((aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$routeTablePrivName" --query "RouteTables[].Tags[].Value").Count -gt 1) {
         Write-Output "Listando o nome de tag de todas as Route Tables da VPC $vpcName"
         aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" --query "RouteTables[].Tags[].Value" --output text
 
         Write-Output "Desvinculando a Subnet Pública $subnetPubName da Route Table Privada de nome de tag $routeTablePrivName"
         $routeTableId = aws ec2 describe-route-tables --filters "Name=tag:Name,Values=$routeTablePrivName" --query "RouteTables[].RouteTableId" --output text
-        # $associationId = aws ec2 describe-route-tables --route-table-id $routeTableId --query 'RouteTables[].Associations[].RouteTableAssociationId' --output text
-        # # $subnetId = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-        # aws ec2 disassociate-route-table --association-id $associationId
+        $associationId = aws ec2 describe-route-tables --route-table-id $routeTableId --query 'RouteTables[].Associations[].RouteTableAssociationId' --output text
+        aws ec2 disassociate-route-table --association-id $associationId
 
         Write-Output "Removendo uma Rota da Route Table Privada de nome de tag $routeTablePrivName"
-        # $natGatewayId = aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].NatGatewayId" --output text
         aws ec2 delete-route --route-table-id $routeTableId --destination-cidr-block 0.0.0.0/0
     
         Write-Output "Removendo a Route Table Privada de nome de tag $routeTablePrivName"
-        aws ec2 delete-route-table --route-table-id $routeTableId    
-
-        # $subnetId = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPrivName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+        aws ec2 delete-route-table --route-table-id $routeTableId
 
         Write-Output "Listando o nome de tag de todas as Route Tables da VPC $vpcName"
         aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" --query "RouteTables[].Tags[].Value" --output text
@@ -196,8 +195,37 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
     }
 
     "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "NAT GATEWAY"
+    Write-Output "Verificando se existe o NAT Gateway $natGatewayName..."
+    if ((aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].Tags[].Value").Count -gt 1) {
+        Write-Output "Verificando se existe o State do NAT Gateway $natGatewayName está como 'deleted'..."
+        if ((aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].State" --output text) -ne "deleted") {
+            Write-Output "Listando o nome de tag de todos os NAT Gateway da VPC $vpcName"
+            aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" --query "NatGateways[].Tags[].Value" --output text
+
+            Write-Output "Removendo o NAT Gateway de nome de tag $natGatewayName"
+            $natGatewayId = aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].NatGatewayId" --output text
+            aws ec2 delete-nat-gateway --nat-gateway-id $natGatewayId
+
+            Write-Output "Aguardando 20 segundos para garantir que o NAT Gateway foi removido!"
+            Start-Sleep -Seconds 20
+
+            Write-Output "Removendo o IP elástico aleatório"
+            $allocationId = aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].NatGatewayAddresses[].AllocationId" --output text
+            aws ec2 release-address --allocation-id $allocationId
+        
+            Write-Output "Listando o nome de tag de todos os NAT Gateway da VPC $vpcName"
+            aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" --query "NatGateways[].Tags[].Value" --output text
+        } else {
+            Write-Output "O NAT Gateway de nome de tag $natGatewayName possui o State como 'deleted'!"
+        }
+    } else {
+        Write-Output "O NAT Gateway de nome de tag $natGatewayName não está vinculado a VPC $vpcName!"
+    }
+
+    "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "INTERNET GATEWAY"
-    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+    Write-Output "Verificando se existe o Internet Gateway $internetGatewayName..."
     if ((aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$vpcId" "Name=tag:Name,Values=$internetGatewayName" --query "InternetGateways[].Tags[].Value").Count -gt 1) {
         Write-Output "Listando o nome de tag de todos os Internet Gateway $internetGatewayName da VPC $vpcName"
         aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$vpcId" --query "InternetGateways[].Tags[].Value" --output text
@@ -216,25 +244,8 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
     }
 
     "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "NAT GATEWAY"
-    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
-    if ((aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].Tags[].Value").Count -gt 1) {
-        Write-Output "Listando o nome de tag de todos os NAT Gateway da VPC $vpcName"
-        aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" --query "NatGateways[].Tags[].Value" --output text
-       
-        Write-Output "Removendo o NAT Gateway de nome de tag $natGatewayName"
-        $natGatewayId = aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].NatGatewayId" --output text
-        aws ec2 delete-nat-gateway --nat-gateway-id $natGatewayId
-    
-        Write-Output "Listando o nome de tag de todos os NAT Gateway da VPC $vpcName"
-        aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" --query "NatGateways[].Tags[].Value" --output text
-    } else {
-        Write-Output "O NAT Gateway de nome de tag $natGatewayName não está vinculado a VPC $vpcName!"
-    }
-
-    "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "SUBNET PRIVADA"
-    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+    Write-Output "Verificando se existe a Subnet $subnetPrivName..."
     if ((aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPrivName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value").Count -gt 1) {
         Write-Output "Listando o nome de tag de todas as Subnets da VPC $vpcName"
         aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
@@ -251,7 +262,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "SUBNET PÚBLICA"
-    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+    Write-Output "Verificando se existe a Subnet $subnetPubName..."
     if ((aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value").Count -gt 1) {
         Write-Output "Listando o nome de tag de todas as Subnets da VPC $vpcName"
         aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
@@ -282,12 +293,11 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 }
 
 
-
-
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS EC2"
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2) - PÚBLICO"
+Write-Output "Verificando se existe a instância $tagNameInstancePub..."
 if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstancePub" --query "Reservations[].Instances[]").Count -gt 1) {
     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
@@ -304,6 +314,7 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2) - PRIVADO"
+Write-Output "Verificando se existe a instância $tagNameInstancePriv..."
 if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstancePriv" --query "Reservations[].Instances[]").Count -gt 1) {
     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
@@ -316,4 +327,136 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 } else {
     Write-Output "Não existe instâncias com o nome de tag $tagNameInstancePriv!"
+}
+
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 3 - ETAPA 2"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
+"-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "NODE GROUP"
+# Write-Output "Verificando se existe o node group $nodeGroupName..."
+# if ((eksctl get nodegroup --cluster $clusterName --name $nodeGroupName --region $region).Count -gt 1) {
+#     Write-Output "Listando todos os node groups criados"
+#     eksctl get nodegroup --cluster $clusterName --region $region
+
+#     Write-Output "Removendo o node group $nodeGroupName"
+#     aws eks delete-nodegroup --cluster-name $clusterName --nodegroup-name node_group_name --no-cli-pager
+
+#     Write-Output "Listando todos os node groups criados"
+#     eksctl get nodegroup --cluster $clusterName --region $region
+# } else {
+#     Write-Output "Não existe o node group $nodeGroupName!"
+# }
+
+# Write-Output "Aguardando 20 segundos para garantir que o node group foi removido..."
+# Start-Sleep -Seconds 20
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "CLUSTER"
+# Write-Output "Verificando se existe o cluster $clusterName..."
+# if ((aws eks describe-cluster --name $clusterName --query "cluster.name" --output text).Count -gt 0) {
+#     Write-Output "Listando todos os clusters criados"
+#     aws eks list-clusters --query "clusters" --output text
+
+#     Write-Output "Removendo o cluster $clusterName"
+#     aws eks delete-cluster --name $clusterName --no-cli-pager
+
+#     Write-Output "Listando todos os clusters criados"
+#     aws eks list-clusters --query "clusters" --output text
+# } else {
+#     Write-Output "Não existe o cluster $clusterName!"
+# }
+
+
+# Write-Output "Aguardando 20 segundos para garantir que o cluster foi removido..."
+# Start-Sleep -Seconds 20
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SERVIÇO: AWS CloudFormation"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "STACK"
+# Write-Output "Verificando se existe a stack $stackName..."
+# if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName").Count -gt 1) {
+#     Write-Output "Listando todas as stacks criadas"
+#     aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
+
+#     Write-Output "Removendo a stack $stackName"
+#     aws cloudformation delete-stack --stack-name $stackName
+
+#     Write-Output "Listando todas as stacks criadas"
+#     aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+# } else {
+#     Write-Output "Não existe a stack $stackName!"
+# }
+
+
+# Write-Output "Aguardando 20 segundos para garantir que toda a rede foi removida..."
+# Start-Sleep -Seconds 20
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SERVIÇO: AWS Identity and Access Management (IAM)"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "ROLE EKS"
+# Write-Output "Verificando se existe a role $roleNameEks..."
+# if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName").Count -gt 1) {
+#     Write-Output "Listando todas as roles criadas"
+#     aws iam list-roles --query 'Roles[].RoleName' --output text
+
+#     Write-Output "Desvinculando a Policy AmazonEKSClusterPolicy da role $roleNameEks"
+#     aws iam detach-role-policy --role-name $roleNameEks --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
+#     Write-Output "Removendo a role $roleNameEks"
+#     aws iam delete-role --role-name $roleNameEks
+
+#     Write-Output "Listando todas as roles criadas"
+#     aws iam list-roles --query 'Roles[].RoleName' --output text
+# } else {
+#     Write-Output "Não existe a role $roleNameEks!"
+# }
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "ROLE EC2"
+Write-Output "Verificando se existe a role $roleNameEc2..."
+if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Count -gt 1) {
+    Write-Output "Listando todas as roles criadas"
+    aws iam list-roles --query 'Roles[].RoleName' --output text
+
+    Write-Output "Desvinculando a Policy AmazonEKS_CNI_Policy da role $roleNameEc2"
+    aws iam detach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+
+    Write-Output "Desvinculando a Policy AmazonEKSWorkerNodePolicy da role $roleNameEc2"
+    aws iam detach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+
+    Write-Output "Desvinculando a Policy AmazonEC2ContainerRegistryReadOnly da role $roleNameEc2"
+    aws iam detach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
+    Write-Output "Removendo a role $roleNameEc2"
+    aws iam delete-role --role-name $roleNameEc2
+
+    Write-Output "Listando todas as roles criadas"
+    aws iam list-roles --query 'Roles[].RoleName' --output text
+} else {
+    Write-Output "Não existe a role $roleNameEc2!"
+}
+
+
+
+
+
+
+
+
+
+
 }

@@ -197,19 +197,40 @@ curl https://35.175.237.145:42007
 
 
 
-aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" "Name=tag:Name,Values=curso081SecurityGroup" --query "SecurityGroups[].Tags[].Value" --output text
-aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" --query "SecurityGroups[?Tags[?Value=='curso081SecurityGroup'].Value].Value" 
-aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" --query "SecurityGroups[].Tags[?Value=='curso081SecurityGroup'].Value" --output text
 
-aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-07beca85d1dd75614" "Name=tag:Name,Values=curso081SecurityGroup" --query "SecurityGroups[].GroupId" --output text
+aws ec2 describe-vpcs --filters "Name=tag:Name,Values=curso081Stack-VPC" --query "Vpcs[].VpcId" --output text
 
 
 
 
-aws ec2 describe-route-tables --filters "Name=tag:Name,Values=curso081RouteTablePub" --query "RouteTables[].Associations[].RouteTableId" --output text
-aws ec2 describe-route-tables --filters "Name=tag:Name,Values=curso081RouteTablePub" --query "RouteTables[].Associations[].RouteTableId" --output text
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-0a62f3765cf5fb444" "Name=tag:aws:cloudformation:stack-name,Values=curso081Stack" --query "SecurityGroups[].GroupId[]" --output text
 
-aws ec2 describe-route-tables --query "RouteTables[].Associations[].RouteTableId" --output text
-aws ec2 describe-route-tables --route-table-id rtb-00106caf80cd66bab --query 'RouteTables[].Associations[].RouteTableAssociationId' --output text
+
+$securityGroupKeyProf = "aws:cloudformation:stack-name"
+$securityGroupNameProf = "curso081Stack"
+aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=vpc-0a62f3765cf5fb444" --query "SecurityGroups[].GroupId[]" --output text
 
 <a name="item04"><h4>Aula 4 - Github Actions - Eficiência em entregas automatizadas</h4></a>[Back to summary](#item0)
+
+
+
+
+$arnRole = aws iam list-roles --query "Roles[?RoleName=='curso081RoleEks'].Arn" --output text
+$vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=curso081Stack-VPC" --query "Vpcs[].VpcId" --output text
+$subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+$subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+$subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+$subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+$securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
+
+
+aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PublicSubnet02" "Name=vpc-id,Values=vpc-0a62f3765cf5fb444" --query "Subnets[].SubnetId" --output text
+aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PublicSubnet02" "Name=vpc-id,Values=vpc-0a62f3765cf5fb444" --query "Subnets[].SubnetId" --output text
+
+
+eksctl get nodegroup --cluster curso081Cluster --region $region
+
+aws eks create-cluster --name curso081Cluster --role-arn arn:aws:iam::005354053245:role/curso081RoleEks --resources-vpc-config subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId --no-cli-pager
+
+aws eks describe-cluster --name curso081Cluster --query "cluster.name"
+eksctl get nodegroup --cluster curso081Cluster --region $region

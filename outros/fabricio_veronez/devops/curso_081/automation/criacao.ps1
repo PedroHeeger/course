@@ -3,13 +3,18 @@ Write-Output "Importando o arquivo com as variáveis"
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AULAS 1 E 2"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SERVIÇO: AWS VPC"
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
+# Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
 # $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
 # $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
-
 # if (($existRule).Count -gt 1) {
 #     Write-Output "Já existe a regra de entrada liberando a porta 8080 no grupo de segurança padrão!"
 #     $existRule
@@ -22,12 +27,11 @@ Write-Output "AULAS 1 E 2"
 # }
 
 
-
-
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SERVIÇO: AWS EC2"
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "KEY PAIR"
+# Write-Output "Verificando se existe o par de chaves $keyPairName..."
 # if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName']").Count -gt 1) {
 #     Write-Output "O par de chaves $keyPairName já foi criado!"
 #     aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
@@ -44,6 +48,7 @@ Write-Output "AULAS 1 E 2"
 
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
+# Write-Output "Verificando se existe a instância $tagNameInstance..."
 # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
 #     Write-Output "Já existe uma instância EC2 com esse nome de tag $tagNameInstance!"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstance'].Value" --output text
@@ -89,6 +94,7 @@ Write-Output "AULAS 1 E 2"
 
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SCP / PSCP (FILE TRANSFER)"
+# Write-Output "Verificando se a instância $tagNameInstance tem um IP público..."
 # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp").Count -gt 1) {
 #     Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
 #     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
@@ -99,9 +105,6 @@ Write-Output "AULAS 1 E 2"
 #     $ipEc2 = $ipEc2.Replace(".", "-")
 #     Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
 
-
-#     # Write-Output "Transferindo os arquivos para a instância de nome de tag $tagNameInstance"
-#     # scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHub" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:/home/ubuntu/
 #     Write-Output "Aguardando 15 segundos para realizar o acesso remoto..."
 #     Start-Sleep -Seconds 15
 
@@ -184,22 +187,23 @@ Write-Output "AULAS 1 E 2"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
 # }
 
+}
+
 
 
 
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "AULA 3"
-$resposta = Read-Host "Digite 'sim' se deseja continuar, 'nao' para parar"
-
-if ($resposta -eq 'nao') {
-    Write-Host "Usuário escolheu parar o código. Saindo..."
-    exit
+Write-Output "AULA 3 - ETAPA 1"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS VPC"
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "VIRTUAL PRIVATE CLOUD (VPC)"
+Write-Output "Verificando se existe a VPC $vpcName..."
 if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].Tags[].Value").Count -gt 1) {
     Write-Output "Já existe a VPC de nome $vpcName!"
     aws ec2 describe-vpcs --query "Vpcs[].Tags[?Key=='Name' && Value=='$vpcName'].Value" --output text
@@ -214,10 +218,12 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
     aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].Tags[].Value" --output text
 }
 
+Write-Output "Verificando se existe a VPC $vpcName..."
 $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
 if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].Tags[].Value").Count -gt 1) {
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "SUBNET PRIVADA"
+    Write-Output "Verificando se existe a Subnet $subnetPrivName..."
     if ((aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPrivName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value").Count -gt 1) {
         Write-Output "Já existe a Subnet $subnetPrivName vinculada na VPC $vpcName!"
         aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPrivName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
@@ -234,6 +240,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "SUBNET PÚBLICA"
+    Write-Output "Verificando se existe a Subnet $subnetPubName..."
     if ((aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value").Count -gt 1) {
         Write-Output "Já existe a Subnet $subnetPubName vinculada na VPC $vpcName!"
         aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
@@ -250,6 +257,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "INTERNET GATEWAY"
+    Write-Output "Verificando se existe o Internet Gateway $internetGatewayName..."
     if ((aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$vpcId" "Name=tag:Name,Values=$internetGatewayName" --query "InternetGateways[].Tags[].Value").Count -gt 1) {
         Write-Output "Já existe o Internet Gateway de nome de tag $internetGatewayName vinculada na VPC $vpcName!"
         aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$vpcId" "Name=tag:Name,Values=$internetGatewayName" --query "InternetGateways[].Tags[].Value" --output text
@@ -270,6 +278,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "ROUTE TABLE PUBLICA"
+    Write-Output "Verificando se existe a Route Table $routeTablePubName..."
     if ((aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$routeTablePubName" --query "RouteTables[].Tags[].Value").Count -gt 1) {
         Write-Output "Já existe a Route Table Pública de nome de tag $routeTablePubName vinculada na VPC $vpcName!"
         aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$routeTablePubName" --query "RouteTables[].Tags[].Value" --output text
@@ -295,9 +304,26 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "NAT GATEWAY"
+    Write-Output "Verificando se existe o NAT Gateway $natGatewayName..."
     if ((aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].Tags[].Value").Count -gt 1) {
-        Write-Output "Já existe o NAT Gateway de nome de tag $natGatewayName vinculada na VPC $vpcName!"
-        aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].Tags[].Value" --output text
+        Write-Output "Verificando se existe o State do NAT Gateway $natGatewayName está como 'deleted'..."
+        if ((aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].State" --output text) -ne "deleted") {
+            Write-Output "Já existe o NAT Gateway de nome de tag $natGatewayName vinculada na VPC $vpcName!"
+            aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].Tags[].Value" --output text
+        } else {
+            Write-Output "Listando o nome de tag de todos os NAT Gateway da VPC $vpcName"
+            aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" --query "NatGateways[].Tags[].Value" --output text
+    
+            Write-Output "Alocando um IP elástico aleatório para utilizar no NAT Gateway de nome de tag $natGatewayName"
+            $allocationid = aws ec2 allocate-address --query 'AllocationId' --output text
+    
+            Write-Output "Criando o NAT Gateway de nome de tag $natGatewayName"
+            $subnetId = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+            aws ec2 create-nat-gateway --subnet-id $subnetId --allocation-id $allocationid --tag-specifications "ResourceType=natgateway,Tags=[{Key=Name,Value=$natGatewayName}]" --no-cli-pager
+    
+            Write-Output "Listando o nome de tag do NAT Gateway $natGatewayName da VPC $vpcName"
+            aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].Tags[].Value" --output text
+        }
     } else {
         Write-Output "Listando o nome de tag de todos os NAT Gateway da VPC $vpcName"
         aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$vpcId" --query "NatGateways[].Tags[].Value" --output text
@@ -315,6 +341,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "ROUTE TABLE PRIVADA"
+    Write-Output "Verificando se existe a Route Table $routeTablePrivName..."
     if ((aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$routeTablePrivName" --query "RouteTables[].Tags[].Value").Count -gt 1) {
         Write-Output "Já existe a Route Table Privada de nome de tag $routeTablePrivName vinculada na VPC $vpcName!"
         aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$routeTablePrivName" --query "RouteTables[].Tags[].Value" --output text
@@ -330,8 +357,8 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
         $natGatewayId = aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=$natGatewayName" --query "NatGateways[].NatGatewayId" --output text
         aws ec2 create-route --route-table-id $routeTableId --destination-cidr-block 0.0.0.0/0 --nat-gateway-id $natGatewayId
 
-        Write-Output "Adicionando a Subnet Pública $subnetPubName a Route Table Privada de nome de tag $routeTablePrivName"
-        $subnetId = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPubName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+        Write-Output "Adicionando a Subnet Privada $subnetPrivName a Route Table Privada de nome de tag $routeTablePrivName"
+        $subnetId = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPrivName" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
         aws ec2 associate-route-table --subnet-id $subnetId --route-table-id $routeTableId
 
         Write-Output "Listando o nome de tag da Route Table Privada $routeTablePrivName da VPC $vpcName"
@@ -341,6 +368,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "SECURITY GROUP"
     $securityGroupId = aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId" --output text
+    Write-Output "Verificando se existe o Security Group $securityGroupName..."
     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$securityGroupName']]").Count -gt 1) {
         Write-Output "Já existe o Security Group de nome de tag $securityGroupName vinculada na VPC $vpcName!"
         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].Tags[?Value=='$securityGroupName'].Value" --output text
@@ -358,10 +386,12 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$securityGroupName" --query "SecurityGroups[].Tags[].Value" --output text
     }
 
+    Write-Output "Verificando se existe o Security Group $securityGroupName..."
     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[?Tags[?Key=='Name' && Value=='$securityGroupName']]").Count -gt 1) {
         $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:Name,Values=$securityGroupName" --query "SecurityGroups[].GroupId" --output text
         "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
+        Write-Output "Verificando se existe uma regra liberando a porta 8080 no Security Group..."
         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
 
         if (($existRule).Count -gt 1) {
@@ -380,6 +410,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
         "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "INBOUND AND OUTBOUND RULES - PORT 443"
+        Write-Output "Verificando se existe uma regra liberando a porta 443 no Security Group..."
         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='443' && to_string(ToPort)=='443' && CidrIpv4=='0.0.0.0/0']"
 
         if (($existRule).Count -gt 1) {
@@ -398,6 +429,7 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 
         "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "INBOUND AND OUTBOUND RULES - PORT 22"
+        Write-Output "Verificando se existe uma regra liberando a porta 22 no Security Group..."
         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='22' && to_string(ToPort)=='22' && CidrIpv4=='0.0.0.0/0']"
 
         if (($existRule).Count -gt 1) {
@@ -421,11 +453,11 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
 }
 
 
-
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS EC2"
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2) PÚBLICO"
+Write-Output "Verificando se existe a instância $tagNameInstancePub..."
 if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstancePub" --query "Reservations[].Instances[]").Count -gt 1) {
     Write-Output "Já existe uma instância EC2 com esse nome de tag $tagNameInstancePub!"
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstancePub'].Value" --output text
@@ -468,6 +500,7 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2) PRIVADO"
+Write-Output "Verificando se existe a instância $tagNameInstancePriv..."
 if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstancePriv" --query "Reservations[].Instances[]").Count -gt 1) {
     Write-Output "Já existe uma instância EC2 com esse nome de tag $tagNameInstancePriv!"
     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstancePriv'].Value" --output text
@@ -502,7 +535,252 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@$ipEc2"
 }
 
-} 
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 3 - ETAPA 2"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SERVIÇO: AWS Identity and Access Management (IAM)"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "ROLE EKS"
+# Write-Output "Verificando se existe a role $roleNameEks..."
+# if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName").Count -gt 1) {
+#     Write-Output "A role $roleNameEks já foi criada!"
+#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName" --output text
+# } else {
+#     Write-Output "Listando todas as roles criadas"
+#     aws iam list-roles --query 'Roles[].RoleName' --output text
+
+#     Write-Output "Criando a role $roleNameEks"
+#     aws iam create-role --role-name $roleNameEks --no-cli-pager --assume-role-policy-document '{
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Effect": "Allow",
+#             "Principal": {
+#                 "Service": "ec2.amazonaws.com"
+#             },
+#             "Action": "sts:AssumeRole"
+#         }
+#     ]
+#     }'
+
+#     Write-Output "Adicionando a Policy AmazonEKSClusterPolicy a role $roleNameEks para liberar o serviço do EKS"
+#     aws iam attach-role-policy --role-name $roleNameEks --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
+#     Write-Output "Listando apenas a role $roleNameEks"
+#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName" --output text
+# }
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "ROLE EC2"
+# Write-Output "Verificando se existe a role $roleNameEc2..."
+# if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Count -gt 1) {
+#     Write-Output "A role $roleNameEc2 já foi criada!"
+#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName" --output text
+# } else {
+#     Write-Output "Listando todas as roles criadas"
+#     aws iam list-roles --query 'Roles[].RoleName' --output text
+
+#     Write-Output "Criando a role $roleNameEc2"
+#     aws iam create-role --role-name $roleNameEc2 --no-cli-pager --assume-role-policy-document '{
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Effect": "Allow",
+#             "Principal": {
+#                 "Service": "ec2.amazonaws.com"
+#             },
+#             "Action": "sts:AssumeRole"
+#         }
+#     ]
+#     }'
+
+#     Write-Output "Adicionando a Policy AmazonEKS_CNI_Policy a role $roleNameEc2 para liberar o serviço do EKS"
+#     aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+
+#     Write-Output "Adicionando a Policy AmazonEKSWorkerNodePolicy a role $roleNameEc2 para liberar o serviço do EKS"
+#     aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+
+#     Write-Output "Adicionando a Policy AmazonEC2ContainerRegistryReadOnly a role $roleNameEc2 para liberar o serviço do EKS"
+#     aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
+#     Write-Output "Listando apenas a role $roleNameEc2"
+#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName" --output text
+# }
+
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SERVIÇO: AWS CloudFormation"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "STACK"
+# Write-Output "Verificando se existe a stack $stackName (Ignorando erro)..."
+# if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" 2>&1) -match "ValidationError"){
+#     Write-Output "A $stackName não foi encontrada!"
+
+#     Write-Output "Listando todas as stacks criadas"
+#     aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
+
+#     Write-Output "Criando a stack $stackName"
+#     aws cloudformation create-stack --stack-name $stackName --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
+
+#     Write-Output "Listando apenas a stack $stackName"
+#     aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+# } else {
+#     Write-Output "Verificando se existe a stack $stackName..."
+#     if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName").Count -gt 1) {
+#         Write-Output "A stack $stackName já foi criada!"
+#         aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+#     } else {
+#         Write-Output "Listando todas as stacks criadas"
+#         aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
+
+#         Write-Output "Criando a stack $stackName"
+#         aws cloudformation create-stack --stack-name $stackName --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
+
+#         Write-Output "Listando apenas a stack $stackName"
+#         aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+#     }
+# }
+
+
+# Write-Output "Aguardando 40 segundos para garantir que toda a rede foi construída pelo Cloud Formation..."
+# Start-Sleep -Seconds 40
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "CLUSTER"
+# Write-Output "Verificando se existe o cluster $clusterName (Ignorando erro)..."
+# if ((aws eks describe-cluster --name $clusterName --query "cluster.name" 2>&1) -match "ResourceNotFoundException"){
+#     Write-Output "O cluster $clusterName não foi encontrado!"
+
+#     Write-Output "Listando todos os clusters criados"
+#     aws eks list-clusters --query "clusters" --output text
+
+#     Write-Output "Criando o cluster $clusterName"
+#     $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].Arn" --output text
+#     $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcNameProf" --query "Vpcs[].VpcId" --output text
+#     $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#     $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#     $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#     $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#     $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
+#     aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
+
+#     Write-Output "Listando apenas o cluster $clusterName"
+#     aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
+# } else {
+#     Write-Output "Verificando se existe o cluster $clusterName..."
+#     if ((aws eks describe-cluster --name $clusterName --query "cluster.name" --output text).Count -gt 0) {
+#         Write-Output "O cluster $clusterName já foi criado!"
+#         aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
+#     } else {
+#         Write-Output "Listando todos os clusters criados"
+#         aws eks list-clusters --query "clusters" --output text
+
+#         Write-Output "Criando o cluster $clusterName"
+#         $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleName'].Arn" --output text
+#         $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+#         $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#         $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#         $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#         $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+#         $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
+#         Write-Output aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
+
+#         Write-Output "Listando apenas o cluster $clusterName"
+#         aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
+#     }
+# }
+
+# Write-Output "Aguardando 20 segundos para garantir que o cluster foi criado..."
+# Start-Sleep -Seconds 20
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "NODE GROUP"
+Write-Output "Verificando se existe o node group $nodeGroupName (Ignorando erro)..."
+if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --region $region 2>&1) -match "ResourceNotFoundException"){
+    Write-Output "O node group $nodeGroupName não foi encontrado!"
+
+    Write-Output "Listando todos os node groups criados"
+    eksctl get nodegroup --cluster $clusterName --region $region
+
+    Write-Output "Criando o node group $nodeGroupName"
+    $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].Arn" --output text
+    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+    $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+    $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+    eksctl create nodegroup --cluster $clusterName --name $nodeGroupName --nodes 2 --nodes-min 2 --nodes-max 3 --node-ami $instanceTypeCash --node-type $instanceType --spot false --node-volume-size 20 --cfn-role-arn $arnRole --subnet-ids $subnetPriv1Id,$subnetPriv2Id --region $region
+    # aws eks create-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --nodes 2 --nodes-min 2 --nodes-max 3 --max-unavailable 1 --node-ami $instanceTypeCash --instance-type $instanceType --spot false --volume-size 20 --node-role $arnRole --subnets $subnetPriv1Id $subnetPriv2Id --region $region --no-cli-pager
+
+    Write-Output "Listando apenas o node group $nodeGroupName"
+    aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --region $region
+} else {
+    Write-Output "Verificando se existe o node group $nodeGroupName..."
+    if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --region $region).Count -gt 1) {
+        Write-Output "O node group $nodeGroupName já foi criado!"
+        aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --region $region
+    } else {
+        Write-Output "Listando todos os node groups criados"
+        eksctl get nodegroup --cluster $clusterName --region $region
+
+        Write-Output "Criando o node group $nodeGroupName"
+        $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].Arn" --output text
+        $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+        $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+        $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+        eksctl create nodegroup --cluster $clusterName --name $nodeGroupName --nodes 2 --nodes-min 2 --nodes-max 3 --node-ami $instanceTypeCash --node-type $instanceType --spot false --node-volume-size 20 --cfn-role-arn $arnRole --subnet-ids $subnetPriv1Id,$subnetPriv2Id --region $region
+        # aws eks create-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --nodes 2 --nodes-min 2 --nodes-max 3 --max-unavailable 1 --node-ami $instanceTypeCash --instance-type $instanceType --spot false --volume-size 20 --node-role $arnRole --subnets $subnetPriv1Id $subnetPriv2Id --region $region --no-cli-pager
+
+        Write-Output "Listando apenas o node group $nodeGroupName"
+        aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --region $region
+    }
+}
+
+
+
+
+
+
+
+
+
+Write-Output "Aguardando 20 segundos para garantir que o node group foi criado..."
+Start-Sleep -Seconds 20
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "DEPLOY PROJECT"
+
+Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
+aws eks update-kubeconfig --name $clusterName
+
+Write-Output "Verificando os nodes do cluster"
+kubectl get nodes
+
+Write-Output "Alterando para o diretório do projeto"
+Set-Location $projectPath/kube-news/k8s
+
+Write-Output "Verificando os nodes do cluster"
+kubectl apply -f deployment2.yaml
+
+
+
+
+
+
+
+
+
+}
 
 
 
