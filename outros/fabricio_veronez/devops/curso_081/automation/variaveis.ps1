@@ -38,14 +38,14 @@ $dataFile = "popula-dados.http"
 $userDataFile2 = "ec2Script2.sh"
 
 
-# DATA: AULA 1,2 E 3
+# DATA: AULA 1, 2 E 3
 $keyPairName = "remoteAccessEc2"
-# $imageId = "ami-053b0d53c279acc90"
-$imageId = "ami-0fc5d935ebf8bc3bc"
 $instanceTypeCash = "t3.medium"
 
 # DATA: AULA 1 E 2
 $tagNameInstance = "ec2DevOps2"
+# $imageId = "ami-053b0d53c279acc90"
+$imageId = "ami-0fc5d935ebf8bc3bc"
 $instanceType = "t2.micro"
 $availabilityZone = "us-east-1a"
 
@@ -58,8 +58,8 @@ $natGatewayName = "curso081NatGateway"
 $routeTablePubName = "curso081RouteTablePub"
 $routeTablePrivName = "curso081RouteTablePriv"
 $securityGroupName = "curso081SecurityGroup"
-$tagNameInstancePub = "curso081Ec2Pub"
-$tagNameInstancePriv = "curso081Ec2Priv"
+$tagNameInstancePub = "curso081Ec2Pub2"
+$tagNameInstancePriv = "curso081Ec2Priv2"
 
 # DATA: AULA 3 - ETAPA 2
 $roleNameEks = "curso081RoleEks"
@@ -68,6 +68,9 @@ $stackName = "curso081Stack"
 $clusterName = "curso081Cluster"
 $region = "us-east-1"
 $nodeGroupName = "curso081NodeGroup"
+$amiType = "AL2_x86_64"     # Amazon Linux 2 Kernel 5.10 AMI 2.0.20231020.1 x86_64 HVM gp2
+$tagNameNode1 = "curso081Ec2Node1"
+$tagNameNode2 = "curso081Ec2Node2"
 
 # DATA: AULA 3 - ETAPA 2 (TEACHER)
 $vpcNameProf = "curso081Stack-VPC"

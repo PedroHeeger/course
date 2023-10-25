@@ -184,41 +184,127 @@ Na imagem 05 é exibido a aplicação sem a população de dados. Já nas imagen
 
 <a name="item03"><h4>Aula 3 - AWS: Potencialize sua aplicação com o poder da Cloud Computing</h4></a>[Back to summary](#item0)
 
-Nesta aula, antes de continuar os scripts de automação, foi realizado a criação de uma conta na **AWS** e a criação de um usuário administrador anexando a ele a permissão `AdministratorAccess`, porém isto já estava feito. Em seguida, foi acessado com o usuário root da conta da **AWS** e pelo console foi configurado um alerta no serviço **AWS Budget** para que um email fosse enviado quando custo do serviços atingisse o valor determinado. Este processo teve que ser feito diretamente na conta do usuário root e pelo console, pois na **AWS CLI** instalada na maquina física, o usuário configurado é o usuário administrador `PedroheegerAdmin` que não tem permissões relacionadas a finanças.
+A aula três foi iniciada com a criação de uma conta na **AWS**, e de um usuário administrador (`PedroheegerAdmin`) para esta conta, anexando a ele a permissão `AdministratorAccess`. Também foi necessário baixar, instalar e configurar este usuário no **AWS CLI** que foi usado no **PowerShell** da maquina física para executar comandos na cloud da **AWS**. Todo esse processo preeliminar já havia sido feitos devido a outros cursos já realizados. 
 
+Esta aula possuiu duas etapas, sendo que elas gerariam custos na **AWS**. Então foi necessário acessar o console da **AWS** com o usuário root e configurar um alerta através do serviço **AWS Budget** para receber uma notificação por email quando o custos do serviços atingisse 50% do valor determinado. Este processo teve que ser feito diretamente na conta do usuário root e pelo console, pois na **AWS CLI** instalada na maquina física, o usuário configurado era o usuário administrador que não tinha permissões relacionadas a finanças.
 
+A primeira etapa desta aula foi a construção de uma pequena infraestrutura de rede para entender o seu funcionamento. Através do script de criação foram criados no serviço **AWS VPC**, uma VPC com duas sub-redes, sendo uma pública e outra privada. Também foram criados um Internet Gateway para liberar o acesso a internet para a sub-rede pública e um NAT Gateway para liberar o acesso a internet de dentro para fora da sub-rede privada. Para o NAT Gateway foi necessário alocar um IP Elástico aleatório. Foram construídas duas tabelas de rotas, sendo também uma pública e uma privada, cada uma com uma rota criada vinculando a sua sub-rede com o Internet Gateway para rede pública, e o NAT Gateway para rede privada.
 
+Ao criar a VPC, automaticamente um grupo de segurança padrão para esta VPC foi gerado. Então ele foi utilizado, recebendo uma tag de nome e criando três regras de entrada para liberação das portas `8080`, `443` e `22` no protocolo `TCP` para todos os IPs. A porta `8080` e `443` eram as portas para acesso ao servidor **Nginx** que seria construído. Já a porta `22` era para acesso remoto as instâncias na cloud via software **OpenSSH** utilizado no **PowerShell** da maquina física **Windows**.
 
+Em seguida, duas instâncias **Linux Ubuntu** foram criadas no serviço **Amazon EC2** do tipo `t2.micro`, sendo uma vinculada a sub-rede pública e outra a sub-rede privada. Em amabas foi indicado que o arquivo de script em **Bash** [ec2Script2.sh](./automation/resources/ec2Script2.sh) deveria ser executado quando as maquinas estivessem prontas. Este script apenas atualizou os pacotes e o sistema e fez a instalação dos softwares: **Nano**, **Wget**, **Curl** e o **Nginx**. Na instância vinculada a sub-rede pública o acesso remoto era feito com o comando `ssh -i "$keyPairPath\$keyPairName.pem" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com` ou `ssh -i "$keyPairPath\$keyPairName.pem" ubuntu@$ipEc2`, sendo na primeira opção o IP deve ser separados por traços (`-`) e na segunda separado da forma normal por pontos (`.`). 
 
-curl -k https://35.175.237.145:42007
+O par de chave gerado na cloud **AWS** e o arquivo `.pem` foram os mesmos dos desenvolvidos na Aula 1 e 2, onde só seriam necessário gerar de novo se tivesse sido excluído, sendo que para gerar era só executar o bloco de código destinado a criação do par de chaves. Lembrando que o arquivo par de chaves `.pem` ficou armazenado na sub-pasta `secrets`, pasta essa que não é versionada para o **GitHub** por ter dados sensíveis. Este arquivo foi enviado da maquina física **Windows** para a instância pública na cloud **AWS** via **OpenSSH** através do comando `scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$keyPairPath\$keyPairName.pem" ubuntu@${ipEc2}:/home/ubuntu/.ssh` para que fosse possível acessar remotamente a maquina privada com a instância pública, logo a instância privada seria um **Jump Server**. Este segundo acesso remoto utilizou o IP privado da instância e não o IP público como de costume. Este acesso só foi possível, pois as duas sub-redes onde estava cada uma dessas instâncias eram partes da mesma rede. A imagem 19 abaixo mostra o arquivo par de chaves `.pem` já na instância pública dentro do diretório `.ssh` e o funcinamento do Jump Server, ou seja acessando remotamente a maquina privada pela maquina pública.
 
+<div align="Center"><figure>
+    <img src="./0-aux/img19.PNG" alt="img19"><br>
+    <figcaption>Imagem 19.</figcaption>
+</figure></div><br>
 
-curl https://35.175.237.145:42007
+Como foi instalado o software **Nginx** nas duas maquinas, foi possível acessar este servidor web através do navegador de internet da maquina física, utilizando como URL, apenas IP público da instância concatenado com a porta `:80`, que poderia ser omitida. A imagem 20 a seguir mostra a realização dessa etapa apenas na instância pública. Na instância privada, o acesso não era possível pelo navegador, tanto no IP público como no privado, como mostrado nas imagens 21 e 22. Neste caso, para ver o funcionamento do **Nginx** foi necessário fazer o acesso remoto normal a instância pública pelo seu IP público no **PowerShell** e nela utilizar o software **Curl** para enviar uma requisição ao **Nginx** da maquina privada. A URL utilizada pelo **Curl** seria praticamente a mesma da utilizada do navegador, porém o IP da maquina que no navegador era público da instância pública, agora seria o IP privado da instância privada, mantendo a mesma porta `:80`, o comando utilizado foi o seguinte `curl -IL https://IP:80`. Na imagem 23 é possível visualizar o status de retorno de três requisições como sucedido feita pelo **Curl** dentro da instância pública. A primeira e segunda requisição são as mesmas, onde o IP público da instância pública é igual ao `localhost`, que é o IP público da própria maquina, que no caso era a instância pública. Já a terceira requisição era para o IP privado da maquina privada.
 
+<div align="Center"><figure>
+    <img src="./0-aux/img20.PNG" alt="img20"><br>
+    <figcaption>Imagem 20.</figcaption>
+</figure></div><br>
 
+<div align="Center"><figure>
+    <img src="./0-aux/img21.PNG" alt="img21"><br>
+    <figcaption>Imagem 21.</figcaption>
+</figure></div><br>
 
+<div align="Center"><figure>
+    <img src="./0-aux/img22.PNG" alt="img22"><br>
+    <figcaption>Imagem 22.</figcaption>
+</figure></div><br>
 
-aws ec2 describe-vpcs --filters "Name=tag:Name,Values=curso081Stack-VPC" --query "Vpcs[].VpcId" --output text
+<div align="Center"><figure>
+    <img src="./0-aux/img23.PNG" alt="img23"><br>
+    <figcaption>Imagem 23.</figcaption>
+</figure></div><br>
 
+Para ficar um pouco melhor de entender, na maquina pública, o IP Público era `54.210.244.172` e o IP privado era `10.0.0.35`, já na maquina privada, o IP público era `54.173.6.213` e o IP privado era `10.0.1.147`. Observe que os IPs privados da instâncias obedeceram as faixas de IPs determinadas nas sub-redes construídas da VPC. Como pode ver, na imagem 24 é exibido as sub-redes, sendo a pública com IP `10.0.0.0/24` e a privada com IP `10.0.1.0/24`.
 
+<div align="Center"><figure>
+    <img src="./0-aux/img24.PNG" alt="img24"><br>
+    <figcaption>Imagem 24.</figcaption>
+</figure></div><br>
 
+Nas imagens 25, 26, 27, 28 e 29 são evidenciados a criação do seguintes recursos: **Internet Gateway**, **NAT Gateway**, duas **Route Tables**, **IP Elástico** usado pelo NAT Gateway e o **Security Group**, onde foram definidas as regras de Firewall.
 
-aws ec2 describe-security-groups --filters "Name=vpc-id,Values=vpc-0a62f3765cf5fb444" "Name=tag:aws:cloudformation:stack-name,Values=curso081Stack" --query "SecurityGroups[].GroupId[]" --output text
+<div align="Center"><figure>
+    <img src="./0-aux/img25.PNG" alt="img25"><br>
+    <figcaption>Imagem 25.</figcaption>
+</figure></div><br>
 
+<div align="Center"><figure>
+    <img src="./0-aux/img26.PNG" alt="img26"><br>
+    <figcaption>Imagem 26.</figcaption>
+</figure></div><br>
 
-$securityGroupKeyProf = "aws:cloudformation:stack-name"
-$securityGroupNameProf = "curso081Stack"
-aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=vpc-0a62f3765cf5fb444" --query "SecurityGroups[].GroupId[]" --output text
+<div align="Center"><figure>
+    <img src="./0-aux/img27.PNG" alt="img27"><br>
+    <figcaption>Imagem 27.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img28.PNG" alt="img28"><br>
+    <figcaption>Imagem 28.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img29.PNG" alt="img29"><br>
+    <figcaption>Imagem 29.</figcaption>
+</figure></div><br>
+
+A primeira etapa desta aula 3 encerra aqui, com o script de exclusão tudo que foi construído foi removido, essa etapa gerou alguns gastos relacionados aos recursos do **NAT Gateway** e **IP Elástico** utilizados.
+
+Na segunda etapa da aula, o projeto `kube-news` da segunda etapa da aula 2 foi executado em ambiente de cloud utilizando o serviço **Amazon EKS** para executar o cluster **Kubernetes**. Para essa etapa, além das configurações padrões de criação de conta e usuário administrador na **AWS**, instalação e conexão da **AWS CLI** com o usuário administrador, criação dos alertas na **AWS Budget**, também foi necessário baixar, instalar e configurar o **Kubectl** na maquina física **Windows** e baixar e instalar o **Eksctl**. Ambos são interfaces de linha de comandos (CLI) que foram utilizados no **PowerShell**, sendo o **Kubectl** para manipulação dos comandos do Kubernetes e o **Eksctl**, uma outra cli, além da **AWS CLI**, para manipulação dos recursos do serviços **Amazon EKS**. O arquivo `config` e o diretório `.kube` também foram criados na maquina física, pois era este arquivo responsável por conectar a cli do Kubernetes com softwares executadores de clusters Kubernetes, sendo neste caso conectado ao serviço **Amazon EKS**, pois era ele o responsável por executar o cluster nesta aula.
+
+Após essa parte preeliminar, com o script de criação, o projeto foi iniciado com a elaboração de duas roles no serviço **AWS IAM**, sendo uma vinculada ao cluster construído no serviço **Amazon EKS** e a outra vinculada as instâncias criadas no node group deste cluster. Na primeira role foi anexada a policy `AmazonEKSClusterPolicy`, permitindo a interação com recursos do **Amazon EKS** de clusters, enquanto na segunda role foram anexadas as três seguintes polices: `AmazonEKS_CNI_Policy`, `AmazonEKSWorkerNodePolicy` e `AmazonEC2ContainerRegistryReadOnly`. A policy `AmazonEKS_CNI_Policy` forneceu as permissões necessárias para o **Amazon EKS** gerenciar a configuração de rede das instâncias no cluster Kubernetes, configurando o `Container Networking Interface (CNI)` nas instâncias **Amazon EC2**. A policy `AmazonEKSWorkerNodePolicy` concedeu as permissões necessárias para que as instâncias possam se registrar no cluster do **Amazon EKS**, interagir com o serviço e executar containers. Já a policy `AmazonEC2ContainerRegistryReadOnly` concedeu permissões de leitura apenas para o **Amazon Elastic Container Registry (ECR)**, permitindo que as instâncias EC2 lessem (pull) imagens de container do **Amazon ECR**, mas não gravassem (push). As imagens 30 e 31 evidenciam a criação dessas duas roles com suas respectivas polices. Observando que todas as polices utilizadas já existem na cloud da **AWS**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img30.PNG" alt="img30"><br>
+    <figcaption>Imagem 30.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img31.PNG" alt="img31"><br>
+    <figcaption>Imagem 31.</figcaption>
+</figure></div><br>
+
+Com as roles criadas, foi realizado o provisionamento da infraestrutura de rede através do serviço de infraestrutura como código (IaC) **AWS Cloud Formation**. Uma stack foi criada indicando um arquivo formato **YAML** como template. Este arquivo estava armazenado em um bucket do serviço **Amazon S3** do professor do curso. O próprio **AWS Cloud Formation** possui uma opção para indicar como template um arquivo em um bucket do serviço **Amazon S3**. Este arquivo, cujo nome é o [amazon-eks-vpc-private-subnets.yaml](./automation/resources/amazon-eks-vpc-private-subnets.yaml), também foi baixado e armazenado na sub-pasta `resources`, porém não foi utilizado por aqui.
+
+Após esta execução, foi aguardado cerca de 40 segundos para que a infraestrutura de rede fosse toda provisionada através do arquivo fornecido pelo professor do curso. Esta infraestrutura conteve os seguintes recursos: sub-redes, Internet Gateway, NAT Gateway, Route Tables com rotas já desenvolvidas, Elastic IP e Security Group com regras de liberação de portas já estabelecidas, todos esses recursos foram vistos na etapa um desta aula.
+
+Na sequência, com o comando abaixo, foi realizado a criação do cluster **Kubernetes** no serviço **Amazon EKS**. Observe que foi necessário extrair os Ids das quatro sub-redes criadas na VPC, sendo duas públicas e duas privadas. Também foi necessário o Id do Security Group desta mesma VPC e o **Amazon Resource Name (ARN)** da role com permissões para o **Amazon EKS**.
+
+```PowerShell
+aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
+```
+
+Novamente, foi aguardado alguns segundos para que o cluster terminasse de ser construído. Utilizando agora comandos tanto da **AWS CLI** e da **Eksctl** foi provisionado um node group para esse cluster com dois nós cujo tipo de instância foi a `t3.medium`, lembrando que esta instância não está dentro do plano **Free Tier**, portanto custos foram gerados. O comando executado foi o abaixo. Observe que foi necessário definir vários parâmetros, entre eles, as sub-redes privadas da VPC, a **ARN** da segunda role, a região, pois como estava sendo utilizado outra cli, a região não estava definada por padrão.
+
+```PowerShell
+eksctl create nodegroup --cluster $clusterName --name $nodeGroupName --nodes 2 --nodes-min 2 --nodes-max 3 --node-ami $instanceTypeCash --node-type $instanceType --spot false --node-volume-size 20 --cfn-role-arn $arnRole --subnet-ids $subnetPriv1Id,$subnetPriv2Id --region $region
+```
+
+Agora, com toda a infraestrutura pronta chegou a hora de fazer o deploy da aplicação. Como dito anteriormente, a aplicação utilizada foi a mesma da etapa 2 da aula 2, cujo nome foi `kube-news`. Diferentemente da execução das aulas 1 e 2, onde a pasta do projeto foi baixada do repositório do **GitHub** do professor direto para instância provisionada na cloud, desta vez a pasta do projeto [imersao-devops-cloud-02-main](./imersao-devops-cloud-02-main/) foi baixado do **GitHub** para a pasta deste curso. Na pasta do projeto, duas sub-pastas eram contidas, sendo uma do projeto da aula 1 (`conversao-temperatura`) e a outra do projeto da aula 2 etapa 2 (`kube-news`). Na sub-pasta do projeto da aula 2 foi criada a sub-pasta `kube-news`, onde foi feito uma cópia do arquivo de manifesto **YAML** utilizado na aula 2 etapa 2, cujo nome era `deployment2.yaml` e estava na sub-pasta `resource`. Neste arquivo copiado foi necessário realizar uma alteração, para utilização do recurso do **Load Balancer** já que agora estava sendo utilizado no ambiente de cloud. Então, no `service` da aplicação o type foi alterado de `NodePort` para `Load Balancer` e a opção `nodeport` foi comentada. Todos esses procedimentos foram realizados por fora do script de criação, pois foi decidido que não seria uma etapa recorrente, ou seja, não seria baixado e excluído pelos scripts de automação, já seria arquivos fixos e versionados para **GitHub**. Dessa forma, esse procedimento não era necessário realizar novamente quando fosse executar o projeto, podendo pular para próxima etapa e fazer o deploy do arquivo de manifesto.
+
+Continuando no script de criação, alguns segundos foram aguardados para que o processo de construção do node group tivesse sido finalizado. Então com o comando `aws eks update-kubeconfig --name $clusterName` o arquivo configuração do **Kubectl** era configurado com o serviço **Amazon EKS**, assim os comandos para gerenciamento e manipulação do cluster **Kubernetes** poderam ser executados pelo **PowerShell** da maquina física **Windows** através do **Kubectl**. Em seguida, foi executado o comando `kubectl get nodes` para verificar os nós do cluster, que no caso eram dois. Então foi alterado para o diretório do arquivo de manifesto **YAML** com o comando `Set-Location $projectPath/kube-news/k8s` e executado o deploy com o comando `kubectl apply -f deployment2.yaml`.
+
 
 <a name="item04"><h4>Aula 4 - Github Actions - Eficiência em entregas automatizadas</h4></a>[Back to summary](#item0)
 
 
 
 
-$arnRole = aws iam list-roles --query "Roles[?RoleName=='curso081RoleEks'].Arn" --output text
+$arnRole = aws iam list-roles --query "Roles[?RoleName=='curso081RoleEc2'].Arn" --output text
 $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=curso081Stack-VPC" --query "Vpcs[].VpcId" --output text
 $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
 $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
+
+
 $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
 $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].Tags[].Value" --output text
 $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
@@ -230,7 +316,36 @@ aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PublicSub
 
 eksctl get nodegroup --cluster curso081Cluster --region $region
 
-aws eks create-cluster --name curso081Cluster --role-arn arn:aws:iam::005354053245:role/curso081RoleEks --resources-vpc-config subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId --no-cli-pager
+$subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PrivateSubnet01" "Name=vpc-id,Values=vpc-0e42f1359af396268" --query "Subnets[].Tags[?Value=='curso081Stack-PrivateSubnet01'].Value" --output text
 
-aws eks describe-cluster --name curso081Cluster --query "cluster.name"
-eksctl get nodegroup --cluster curso081Cluster --region $region
+$subnetPriv1Id = aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-0e42f1359af396268" --query "Subnets[].Tags[?Value=='curso081Stack-PrivateSubnet01'].Value" --output text
+$subnetPriv2Id = aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-0e42f1359af396268" --query "Subnets[].Tags[?Value=='curso081Stack-PrivateSubnet02'].Value" --output text
+
+
+
+eksctl create nodegroup --cluster curso081Cluster --name curso081NodeGroup --nodes 2 --nodes-min 2 --nodes-max 3 --node-ami ami-0dbc3d7bc646e8516 --node-type t3.medium --node-volume-size 20 --cfn-role-arn arn:aws:iam::005354053245:role/curso081RoleEc2 --subnet-ids curso081Stack-PrivateSubnet01,curso081Stack-PrivateSubnet02 --region us-east-1
+
+
+
+
+
+aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vpcs[].VpcId" --output text
+vpc-0e42f1359af396268
+
+
+aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PrivateSubnet01" "Name=vpc-id,Values=vpc-0e42f1359af396268" --query "Subnets[].SubnetId" --output text
+
+$subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PrivateSubnet01" "Name=vpc-id,Values=vpc-0e42f1359af396268" --query "Subnets[].SubnetId" --output text
+$subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=curso081Stack-PrivateSubnet02" "Name=vpc-id,Values=vpc-0e42f1359af396268" --query "Subnets[].SubnetId" --output text
+
+
+
+aws eks create-nodegroup --cluster-name curso081Cluster --nodegroup-name curso081NodeGroup --subnets 
+  --instance-types t3.medium --ami-type AL2_x86_64 --disk-size 20 --scaling-config minSize=2,maxSize=3,desiredSize=2 --tags KeyName1=curso081Ec2Node1
+KeyName2=curso081Ec2Node2 --node-role arn:aws:iam::005354053245:role/curso081RoleEc2
+
+aws eks describe-nodegroup --cluster-name curso081Cluster --nodegroup-name curso081NodeGroup --query "nodegroup.nodegroupName" --region us-east-1 --output text
+
+aws eks describe-cluster --name curso081Cluster 
+
+aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName"
