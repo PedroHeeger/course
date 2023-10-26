@@ -9,25 +9,6 @@ if ($resposta -ne 'y') {
 } else {
 
 # "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS VPC"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
-# Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
-# $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
-# $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
-# if (($existRule).Count -gt 1) {
-#     Write-Output "Já existe a regra de entrada liberando a porta 8080 no grupo de segurança padrão!"
-#     $existRule
-# } else {
-#     Write-Output "Listando o Id de todas as regras de entrada e saída do grupo de segurança padrão"
-#     aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$securityGroupId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
-
-#     Write-Output "Adicionando uma regra de entrada ao grupo de segurança padrão para liberação da porta 8080"
-#     aws ec2 authorize-security-group-ingress --group-id $securityGroupId --protocol tcp --port 8080 --cidr 0.0.0.0/0
-# }
-
-
-# "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "SERVIÇO: AWS EC2"
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "KEY PAIR"
@@ -55,14 +36,6 @@ if ($resposta -ne 'y') {
 
 #     Write-Output "Listando o IP público de todas as instâncias EC2 criadas"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-
-#     Write-Output "Exibindo o comando com endereço completo para acesso remoto via OpenSSH"
-#     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-#     $ipEc2 = $ipEc2.Replace(".", "-")
-#     Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
-
-#     Write-Output "Exibindo o endereço para acesso da aplicação que está rodando no container Docker"
-#     Write-Output "${ipEc2}:8080"
 # } else {
 #     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
@@ -70,122 +43,117 @@ if ($resposta -ne 'y') {
 #     Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
 #     $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
 #     $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$availabilityZone'].SubnetId" --output text
-#     aws ec2 run-instances --image-id $imageId --instance-type $instanceType --key-name $keyPairName --security-group-ids $securityGroupId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
+#     aws ec2 run-instances --image-id $imageId --instance-type $instanceTypeCash --key-name $keyPairName --security-group-ids $securityGroupId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
 
 #     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 
 #     Write-Output "Listando o IP público de todas as instâncias EC2 criadas"
 #     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-    
-#     # $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-#     # Write-Output "Exibindo o endereço para acesso da aplicação que está rodando no container Docker"
-#     # Write-Output "${ipEc2}:8080"
+# }
 
-#     # Write-Output "Exibindo o comando com endereço completo para acesso remoto via OpenSSH"
-#     # $ipEc2 = $ipEc2.Replace(".", "-")
-#     # Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
+
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "SERVIÇO: AWS VPC"
+# "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
+# Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
+# $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+# $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
+# if (($existRule).Count -gt 1) {
+#     Write-Output "Já existe a regra de entrada liberando a porta 8080 no grupo de segurança padrão!"
+#     $existRule
+# } else {
+#     Write-Output "Listando o Id de todas as regras de entrada e saída do grupo de segurança padrão"
+#     aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$securityGroupId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
+
+#     Write-Output "Adicionando uma regra de entrada ao grupo de segurança padrão para liberação da porta 8080"
+#     aws ec2 authorize-security-group-ingress --group-id $securityGroupId --protocol tcp --port 8080 --cidr 0.0.0.0/0 --no-cli-pager
 # }
 
 
 # Write-Output "Aguardando 200 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
 # Start-Sleep -Seconds 200
 
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SCP / PSCP (FILE TRANSFER)"
+Write-Output "Verificando se a instância $tagNameInstance tem um IP público..."
+if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp").Count -gt 1) {
+    Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
+    $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+    Write-Output "Exibindo o endereço para acesso da aplicação que está rodando no container Docker"
+    Write-Output "${ipEc2}:8080"
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SCP / PSCP (FILE TRANSFER)"
-# Write-Output "Verificando se a instância $tagNameInstance tem um IP público..."
-# if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp").Count -gt 1) {
-#     Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
-#     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-#     Write-Output "Exibindo o endereço para acesso da aplicação que está rodando no container Docker"
-#     Write-Output "${ipEc2}:8080"
+    Write-Output "Exibindo o comando com endereço completo para acesso remoto via OpenSSH"
+    $ipEc2 = $ipEc2.Replace(".", "-")
+    Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
 
-#     Write-Output "Exibindo o comando com endereço completo para acesso remoto via OpenSSH"
-#     $ipEc2 = $ipEc2.Replace(".", "-")
-#     Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com"
+    Write-Output "Aguardando 15 segundos para realizar o acesso remoto..."
+    Start-Sleep -Seconds 15
 
-#     Write-Output "Aguardando 15 segundos para realizar o acesso remoto..."
-#     Start-Sleep -Seconds 15
+    # "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "AWS CLI"
+    # Write-Output "Verificando se a pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance"
+    # $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmPath/$awsCliFolder\" && echo 'true' || echo 'false'"
 
-#     # "-----//-----//-----//-----//-----//-----//-----"
-#     # Write-Output "AWS CLI"
-#     # Write-Output "Verificando se a pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance"
-#     # $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmPath/$awsCliFolder\" && echo 'true' || echo 'false'"
-
-#     # if ($folderExists -eq 'true') {
-#     #     Write-Output "A pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-#     # } else {
-#     #     Write-Output "Transferindo a pasta $awsCliFolder para a instância de nome de tag $tagNameInstance"
-#     #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$awsCliPath\$awsCliFolder" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmPath
-#     # }
+    # if ($folderExists -eq 'true') {
+    #     Write-Output "A pasta $awsCliFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    # } else {
+    #     Write-Output "Transferindo a pasta $awsCliFolder para a instância de nome de tag $tagNameInstance"
+    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$awsCliPath\$awsCliFolder" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmPath
+    # }
     
-#     "-----//-----//-----//-----//-----//-----//-----"
-#     Write-Output "DOCKER HUB"
-#     Write-Output "Verificando se a pasta $dockerHubFolder já existe na instância de nome de tag $tagNameInstance"
-#     $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmPath/$dockerHubFolder\" && echo 'true' || echo 'false'"
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "DOCKER HUB"
+    Write-Output "Verificando se a pasta $dockerHubFolder já existe na instância de nome de tag $tagNameInstance"
+    $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d '$vmPath/$dockerHubFolder' && echo 'true' || echo 'false'"
 
-#     if ($folderExists -eq 'true') {
-#         Write-Output "A pasta $dockerHubFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-#     } else {
-#         Write-Output "Transferindo a pasta $dockerHubFolder para a instância de nome de tag $tagNameInstance"
-#         scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHubPath\$dockerHubFolder" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmPath
-#     }
+    if ($folderExists -eq 'true') {
+        Write-Output "A pasta $dockerHubFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    } else {
+        Write-Output "Transferindo a pasta $dockerHubFolder para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHubPath\$dockerHubFolder" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmPath
+    }
 
-#     "-----//-----//-----//-----//-----//-----//-----"
-#     Write-Output "MANIFESTO DEPLOYMENT 1"
-#     Write-Output "Verificando se o arquivo $deploymentFile1 já existe na instância de nome de tag $tagNameInstance"
-#     $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath/$deploymentFile1\" && echo 'true' || echo 'false'"
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "MANIFESTO DEPLOYMENT 1"
+    Write-Output "Verificando se o arquivo $deploymentFile1 já existe na instância de nome de tag $tagNameInstance"
+    $fileExists = ssh -v -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmProjectPath2/$deploymentFile1\" && echo 'true' || echo 'false'"
 
-#     if ($fileExists -eq 'true') {
-#         Write-Output "O arquivo $deploymentFile1 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-#     } else {
-#         Write-Output "Transferindo o arquivo $deploymentFile1 para a instância de nome de tag $tagNameInstance"
-#         scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile1" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath
-#     }
+    if ($fileExists -eq 'true') {
+        Write-Output "O arquivo $deploymentFile1 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    } else {
+        Write-Output "Transferindo o arquivo $deploymentFile1 para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile1" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmProjectPath2
+    }
 
-#     # "-----//-----//-----//-----//-----//-----//-----"
-#     # Write-Output "DOCKERFILE"
-#     # Write-Output "Verificando se o arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance"
-#     # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2src/$dockerFile\" && echo 'true' || echo 'false'"
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "DOCKERFILE"
+    Write-Output "Verificando se o arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance"
+    $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmProjectPath2src/$dockerFile\" && echo 'true' || echo 'false'"
 
-#     # if ($fileExists -eq 'true') {
-#     #     Write-Output "O arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-#     # } else {
-#     #     Write-Output "Transferindo o arquivo $dockerFile para a instância de nome de tag $tagNameInstance"
-#     #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$dockerFile" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2src
-#     # }
+    if ($fileExists -eq 'true') {
+        Write-Output "O arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    } else {
+        Write-Output "Transferindo o arquivo $dockerFile para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$dockerFile" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmProjectPath2src
+    }
 
-#     # "-----//-----//-----//-----//-----//-----//-----"
-#     # Write-Output "MANIFESTO DEPLOYMENT 2"
-#     # Write-Output "Verificando se o arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance"
-#     # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2k8s/$deploymentFile2\" && echo 'true' || echo 'false'"
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "MANIFESTO DEPLOYMENT 2"
+    Write-Output "Verificando se o arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance"
+    $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$vmProjectPath2k8s/$deploymentFile2\" && echo 'true' || echo 'false'"
 
-#     # if ($fileExists -eq 'true') {
-#     #     Write-Output "O arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-#     # } else {
-#     #     Write-Output "Transferindo o arquivo $deploymentFile2 para a instância de nome de tag $tagNameInstance"
-#     #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile2" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2k8s
-#     # }
-
-#     # Write-Output "Aguardando 30 segundos..."
-#     # Start-Sleep -Seconds 30
-
-#     # "-----//-----//-----//-----//-----//-----//-----"
-#     # Write-Output "DADOS PARA APLICAÇÃO"
-#     # Write-Output "Verificando se o arquivo $dataFile já existe na instância de nome de tag $tagNameInstance"
-#     # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@ec2-$ipEc2.compute-1.amazonaws.com "test -d \"$projectPath2/$dataFile\" && echo 'true' || echo 'false'"
-
-#     # if ($fileExists -eq 'true') {
-#     #     Write-Output "O arquivo $dataFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-#     # } else {
-#     #     Write-Output "Transferindo o arquivo $dataFile para a instância de nome de tag $tagNameInstance"
-#     #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dataFilePath\$dataFile" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$projectPath2
-#     # }
-# } else {
-#     Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-# }
+    if ($fileExists -eq 'true') {
+        Write-Output "O arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    } else {
+        Write-Output "Transferindo o arquivo $deploymentFile2 para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile2" ubuntu@ec2-$ipEc2.compute-1.amazonaws.com:$vmProjectPath2k8s
+    }
+} else {
+    Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
+    aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+}
 
 }
 
@@ -554,165 +522,165 @@ if ($resposta -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS Identity and Access Management (IAM)"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "ROLE EKS"
-# Write-Output "Verificando se existe a role $roleNameEks..."
-# if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName").Count -gt 1) {
-#     Write-Output "A role $roleNameEks já foi criada!"
-#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName" --output text
-# } else {
-#     Write-Output "Listando todas as roles criadas"
-#     aws iam list-roles --query 'Roles[].RoleName' --output text
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS Identity and Access Management (IAM)"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "ROLE EKS"
+Write-Output "Verificando se existe a role $roleNameEks..."
+if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName").Count -gt 1) {
+    Write-Output "A role $roleNameEks já foi criada!"
+    aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName" --output text
+} else {
+    Write-Output "Listando todas as roles criadas"
+    aws iam list-roles --query 'Roles[].RoleName' --output text
 
-#     Write-Output "Criando a role $roleNameEks"
-#     aws iam create-role --role-name $roleNameEks --no-cli-pager --assume-role-policy-document '{
-#     "Version": "2012-10-17",
-#     "Statement": [
-#         {
-#             "Effect": "Allow",
-#             "Principal": {
-#                 "Service": "eks.amazonaws.com"
-#             },
-#             "Action": "sts:AssumeRole"
-#         }
-#     ]
-#     }'
+    Write-Output "Criando a role $roleNameEks"
+    aws iam create-role --role-name $roleNameEks --no-cli-pager --assume-role-policy-document '{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+    }'
 
-#     Write-Output "Adicionando a Policy AmazonEKSClusterPolicy a role $roleNameEks para liberar o serviço do EKS"
-#     aws iam attach-role-policy --role-name $roleNameEks --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+    Write-Output "Adicionando a Policy AmazonEKSClusterPolicy a role $roleNameEks para liberar o serviço do EKS"
+    aws iam attach-role-policy --role-name $roleNameEks --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
 
-#     Write-Output "Listando apenas a role $roleNameEks"
-#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName" --output text
-# }
+    Write-Output "Listando apenas a role $roleNameEks"
+    aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].RoleName" --output text
+}
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "ROLE EC2"
-# Write-Output "Verificando se existe a role $roleNameEc2..."
-# if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Count -gt 1) {
-#     Write-Output "A role $roleNameEc2 já foi criada!"
-#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName" --output text
-# } else {
-#     Write-Output "Listando todas as roles criadas"
-#     aws iam list-roles --query 'Roles[].RoleName' --output text
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "ROLE EC2"
+Write-Output "Verificando se existe a role $roleNameEc2..."
+if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Count -gt 1) {
+    Write-Output "A role $roleNameEc2 já foi criada!"
+    aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName" --output text
+} else {
+    Write-Output "Listando todas as roles criadas"
+    aws iam list-roles --query 'Roles[].RoleName' --output text
 
-#     Write-Output "Criando a role $roleNameEc2"
-#     aws iam create-role --role-name $roleNameEc2 --no-cli-pager --assume-role-policy-document '{
-#     "Version": "2012-10-17",
-#     "Statement": [
-#         {
-#             "Effect": "Allow",
-#             "Principal": {
-#                 "Service": "ec2.amazonaws.com"
-#             },
-#             "Action": "sts:AssumeRole"
-#         }
-#     ]
-#     }'
+    Write-Output "Criando a role $roleNameEc2"
+    aws iam create-role --role-name $roleNameEc2 --no-cli-pager --assume-role-policy-document '{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+    }'
 
-#     Write-Output "Adicionando a Policy AmazonEKS_CNI_Policy a role $roleNameEc2 para o EKS gerenciar recursos de rede"
-#     aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+    Write-Output "Adicionando a Policy AmazonEKS_CNI_Policy a role $roleNameEc2 para o EKS gerenciar recursos de rede"
+    aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
 
-#     Write-Output "Adicionando a Policy AmazonEKSWorkerNodePolicy a role $roleNameEc2 para liberar a conexão do EC2 com EKS"
-#     aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+    Write-Output "Adicionando a Policy AmazonEKSWorkerNodePolicy a role $roleNameEc2 para liberar a conexão do EC2 com EKS"
+    aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
 
-#     Write-Output "Adicionando a Policy AmazonEC2ContainerRegistryReadOnly a role $roleNameEc2 para liberar a permissão de leitura do EC2 com ECS"
-#     aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+    Write-Output "Adicionando a Policy AmazonEC2ContainerRegistryReadOnly a role $roleNameEc2 para liberar a permissão de leitura do EC2 com ECS"
+    aws iam attach-role-policy --role-name $roleNameEc2 --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
 
-#     Write-Output "Listando apenas a role $roleNameEc2"
-#     aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName" --output text
-# }
-
-
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS CloudFormation"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "STACK"
-# Write-Output "Verificando se existe a stack $stackName (Ignorando erro)..."
-# if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" 2>&1) -match "ValidationError"){
-#     Write-Output "A $stackName não foi encontrada!"
-
-#     Write-Output "Listando todas as stacks criadas"
-#     aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
-
-#     Write-Output "Criando a stack $stackName"
-#     aws cloudformation create-stack --stack-name $stackName --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
-
-#     Write-Output "Listando apenas a stack $stackName"
-#     aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
-# } else {
-#     Write-Output "Verificando se existe a stack $stackName..."
-#     if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName").Count -gt 1) {
-#         Write-Output "A stack $stackName já foi criada!"
-#         aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
-#     } else {
-#         Write-Output "Listando todas as stacks criadas"
-#         aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
-
-#         Write-Output "Criando a stack $stackName"
-#         aws cloudformation create-stack --stack-name $stackName --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
-
-#         Write-Output "Listando apenas a stack $stackName"
-#         aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
-#     }
-# }
+    Write-Output "Listando apenas a role $roleNameEc2"
+    aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName" --output text
+}
 
 
-# Write-Output "Aguardando 40 segundos para garantir que toda a rede foi construída pelo Cloud Formation..."
-# Start-Sleep -Seconds 40
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS CloudFormation"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "STACK"
+Write-Output "Verificando se existe a stack $stackName (Ignorando erro)..."
+if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" 2>&1) -match "ValidationError"){
+    Write-Output "A $stackName não foi encontrada!"
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "CLUSTER"
-# Write-Output "Verificando se existe o cluster $clusterName (Ignorando erro)..."
-# if ((aws eks describe-cluster --name $clusterName --query "cluster.name" 2>&1) -match "ResourceNotFoundException"){
-#     Write-Output "O cluster $clusterName não foi encontrado!"
+    Write-Output "Listando todas as stacks criadas"
+    aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
 
-#     Write-Output "Listando todos os clusters criados"
-#     aws eks list-clusters --query "clusters" --output text
+    Write-Output "Criando a stack $stackName"
+    aws cloudformation create-stack --stack-name $stackName --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
 
-#     Write-Output "Criando o cluster $clusterName"
-#     $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].Arn" --output text
-#     $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcNameProf" --query "Vpcs[].VpcId" --output text
-#     $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#     $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#     $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#     $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#     $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
-#     aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
+    Write-Output "Listando apenas a stack $stackName"
+    aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+} else {
+    Write-Output "Verificando se existe a stack $stackName..."
+    if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName").Count -gt 1) {
+        Write-Output "A stack $stackName já foi criada!"
+        aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+    } else {
+        Write-Output "Listando todas as stacks criadas"
+        aws cloudformation describe-stacks --query "Stacks[].StackName" --output text
 
-#     # eksctl create cluster --name $clusterName --region $region --cfn-role-arn $arnRole --vpc-public-subnets "$subnetPub1Id,$subnetPub2Id" --vpc-private-subnets "$subnetPriv1Id,$subnetPriv2Id" 
+        Write-Output "Criando a stack $stackName"
+        aws cloudformation create-stack --stack-name $stackName --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
 
-#     Write-Output "Listando apenas o cluster $clusterName"
-#     aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
-# } else {
-#     Write-Output "Verificando se existe o cluster $clusterName..."
-#     if ((aws eks describe-cluster --name $clusterName --query "cluster.name" --output text).Count -gt 0) {
-#         Write-Output "O cluster $clusterName já foi criado!"
-#         aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
-#     } else {
-#         Write-Output "Listando todos os clusters criados"
-#         aws eks list-clusters --query "clusters" --output text
+        Write-Output "Listando apenas a stack $stackName"
+        aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[].StackName" --output text
+    }
+}
 
-#         Write-Output "Criando o cluster $clusterName"
-#         $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].Arn" --output text
-#         $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcNameProf" --query "Vpcs[].VpcId" --output text
-#         $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#         $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#         $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#         $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
-#         $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
-#         aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
 
-#         Write-Output "Listando apenas o cluster $clusterName"
-#         aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
-#     }
-# }
+Write-Output "Aguardando 40 segundos para garantir que toda a rede foi construída pelo Cloud Formation..."
+Start-Sleep -Seconds 40
 
-# Write-Output "Aguardando 500 segundos para garantir que o cluster foi criado..."
-# Start-Sleep -Seconds 500
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "CLUSTER"
+Write-Output "Verificando se existe o cluster $clusterName (Ignorando erro)..."
+if ((aws eks describe-cluster --name $clusterName --query "cluster.name" 2>&1) -match "ResourceNotFoundException"){
+    Write-Output "O cluster $clusterName não foi encontrado!"
+
+    Write-Output "Listando todos os clusters criados"
+    aws eks list-clusters --query "clusters" --output text
+
+    Write-Output "Criando o cluster $clusterName"
+    $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].Arn" --output text
+    $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcNameProf" --query "Vpcs[].VpcId" --output text
+    $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+    $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+    $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+    $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+    $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
+    aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
+
+    # eksctl create cluster --name $clusterName --region $region --cfn-role-arn $arnRole --vpc-public-subnets "$subnetPub1Id,$subnetPub2Id" --vpc-private-subnets "$subnetPriv1Id,$subnetPriv2Id" 
+
+    Write-Output "Listando apenas o cluster $clusterName"
+    aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
+} else {
+    Write-Output "Verificando se existe o cluster $clusterName..."
+    if ((aws eks describe-cluster --name $clusterName --query "cluster.name" --output text).Count -gt 0) {
+        Write-Output "O cluster $clusterName já foi criado!"
+        aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
+    } else {
+        Write-Output "Listando todos os clusters criados"
+        aws eks list-clusters --query "clusters" --output text
+
+        Write-Output "Criando o cluster $clusterName"
+        $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEks'].Arn" --output text
+        $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcNameProf" --query "Vpcs[].VpcId" --output text
+        $subnetPub1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+        $subnetPub2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPub2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+        $subnetPriv1Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv1NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+        $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
+        $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
+        aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
+
+        Write-Output "Listando apenas o cluster $clusterName"
+        aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
+    }
+}
+
+Write-Output "Aguardando 500 segundos para garantir que o cluster foi criado..."
+Start-Sleep -Seconds 500
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "NODE GROUP"
@@ -790,26 +758,3 @@ Set-Location $buildEnvPath
 
 
 }
-
-
-
-
-
-
-
-# Write-Output "Aguardando 200 segundos para garantir que todos os arquivos foram enviados!"
-# Start-Sleep -Seconds 200
-
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SSH / PUTTY (REMOTE ACCESS)"
-# if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp").Count -gt 1) {
-#     Write-Output "Extraindo o IP público da instância de nome de tag $tagNameInstance"
-#     $ipEc2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-#     $ipEc2 = $ipEc2.Replace(".", "-")
-
-#     Write-Output "Alterando para diretório do projeto e implantando a infraestrutura com o arquivo serverless"
-#     ssh -i "$keyPairPath\$keyPairName.pem" "ubuntu@ec2-$ipEc2.compute-1.amazonaws.com" "cd $projectPath && docker build -t conversao-temperatura ."
-# } else {
-#     Write-Output "Não foi fornecido IP público da instância de nome de tag $tagNameInstance"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-# }

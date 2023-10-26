@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: web-page
-          image: fabricioveronez/web-page:blue
+          image: fabricioveronez/web-color:blue
           ports:
             - containerPort: 80
 ---

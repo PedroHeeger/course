@@ -2,7 +2,7 @@
 # PATHS
 $coursePath = "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081"
 $buildEnvPath = "$coursePath\automation"
-$projectPath = "$coursePath\imersao-devops-cloud-02-main"
+$projectPath = "$coursePath\imersao-devops-cloud-02"
 
 # FOLDERS PATHS
 $resourcesPath = "$buildEnvPath\resources"
@@ -13,7 +13,7 @@ $vmPath = "/home/ubuntu"
 $vmProjectPath = "$vmPath/imersao-devops-cloud-02"
 $vmProjectPath1 = "$vmProjectPath/conversao-temperatura"
 $vmProjectPath1Src = "$vmProjectPath1/src"
-$vmProjectPath2 = "$vmProjectPath2/kube-news"
+$vmProjectPath2 = "$vmProjectPath/kube-news"
 $vmProjectPath2k8s = "$vmProjectPath2/k8s"
 $vmProjectPath2src = "$vmProjectPath2/src"
 
@@ -43,7 +43,7 @@ $keyPairName = "remoteAccessEc2"
 $instanceTypeCash = "t3.medium"
 
 # DATA: AULA 1 E 2
-$tagNameInstance = "ec2DevOps2"
+$tagNameInstance = "ec2DevOps1"
 # $imageId = "ami-053b0d53c279acc90"
 $imageId = "ami-0fc5d935ebf8bc3bc"
 $instanceType = "t2.micro"

@@ -1,5 +1,5 @@
 
-POST http://184.73.97.118:8080/api/post
+POST http://localhost:4503/api/post
 Content-Type: application/json
 
 {

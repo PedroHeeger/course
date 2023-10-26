@@ -8,42 +8,42 @@ if ($resposta -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS VPC"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "INBOUND AND OUTBOUND RULES"
-# Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
-# $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
-# $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
-# if (($existRule).Count -gt 1) {
-#     Write-Output "Removendo a regra de entrada determinada no grupo de segurança padrão"
-#     aws ec2 revoke-security-group-ingress --group-id $securityGroupId --protocol tcp --port 8080 --cidr 0.0.0.0/0
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS VPC"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "INBOUND AND OUTBOUND RULES"
+Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
+$securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+$existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
+if (($existRule).Count -gt 1) {
+    Write-Output "Removendo a regra de entrada determinada no grupo de segurança padrão"
+    aws ec2 revoke-security-group-ingress --group-id $securityGroupId --protocol tcp --port 8080 --cidr 0.0.0.0/0
 
-#     Write-Output "Listando as regras do grupo de segurança padrão"
-#     aws ec2 describe-security-group-rules --no-cli-pager
-# } else {
-#     Write-Output "O grupo de segurança padrão não possui essa regra de entrada!"
-# }
+    Write-Output "Listando as regras do grupo de segurança padrão"
+    aws ec2 describe-security-group-rules --no-cli-pager
+} else {
+    Write-Output "O grupo de segurança padrão não possui essa regra de entrada!"
+}
 
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS EC2"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
-# Write-Output "Verificando se existe a instância $tagNameInstance..."
-# if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
-#     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS EC2"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
+Write-Output "Verificando se existe a instância $tagNameInstance..."
+if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
+    Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
+    aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 
-#     Write-Output "Removendo a instância criada de nome de tag $tagNameInstance"
-#     $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
-#     aws ec2 terminate-instances --instance-ids $instanceId1 --no-dry-run --no-cli-pager
+    Write-Output "Removendo a instância criada de nome de tag $tagNameInstance"
+    $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
+    aws ec2 terminate-instances --instance-ids $instanceId1 --no-dry-run --no-cli-pager
 
-#     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
-# } else {
-#     Write-Output "Não existe instâncias com o nome de tag $tagNameInstance!"
-# }
+    Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
+    aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
+} else {
+    Write-Output "Não existe instâncias com o nome de tag $tagNameInstance!"
+}
 
 # "-----//-----//-----//-----//-----//-----//-----"
 # Write-Output "KEY PAIR"
@@ -347,45 +347,45 @@ if ($resposta -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "DEPLOY PROJECT"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "DEPLOY PROJECT"
 
-# Write-Output "Verificando os nodes do cluster"
-# kubectl get nodes
+Write-Output "Verificando os nodes do cluster"
+kubectl get nodes
 
-# Write-Output "Alterando para o diretório do projeto"
-# Set-Location $projectPath/kube-news/k8s
+Write-Output "Alterando para o diretório do projeto"
+Set-Location $projectPath/kube-news/k8s
 
-# Write-Output "Removendo a aplicação"
-# kubectl delete -f deployment2.yaml
+Write-Output "Removendo a aplicação"
+kubectl delete -f deployment2.yaml
 
-# Write-Output "Alterando para o diretório automation"
-# Set-Location $buildEnvPath
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath
 
 
-# Write-Output "Aguardando 40 segundos para garantir aplicação foi removida do cluster..."
-# Start-Sleep -Seconds 40
+Write-Output "Aguardando 40 segundos para garantir aplicação foi removida do cluster..."
+Start-Sleep -Seconds 40
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "NODE GROUP"
-# Write-Output "Verificando se existe o node group $nodeGroupName..."
-# if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text).Count -gt 0) {
-#     Write-Output "Listando todos os node groups criados"
-#     aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "NODE GROUP"
+Write-Output "Verificando se existe o node group $nodeGroupName..."
+if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text).Count -gt 0) {
+    Write-Output "Listando todos os node groups criados"
+    aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
 
-#     Write-Output "Removendo o node group $nodeGroupName"
-#     aws eks delete-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --no-cli-pager
+    Write-Output "Removendo o node group $nodeGroupName"
+    aws eks delete-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --no-cli-pager
 
-#     Write-Output "Listando todos os node groups criados"
-#     aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
-# } else {
-#     Write-Output "Não existe o node group $nodeGroupName!"
-# }
+    Write-Output "Listando todos os node groups criados"
+    aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
+} else {
+    Write-Output "Não existe o node group $nodeGroupName!"
+}
 
-# Write-Output "Aguardando 200 segundos para garantir que o node group foi removido..."
-# Start-Sleep -Seconds 200
+Write-Output "Aguardando 200 segundos para garantir que o node group foi removido..."
+Start-Sleep -Seconds 200
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "CLUSTER"
@@ -474,14 +474,5 @@ if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Cou
 } else {
     Write-Output "Não existe a role $roleNameEc2!"
 }
-
-
-
-
-
-
-
-
-
 
 }
