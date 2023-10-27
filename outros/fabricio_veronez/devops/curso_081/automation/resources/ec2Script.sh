@@ -85,9 +85,9 @@ echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Alterando o proprietario e grupo da pasta do projeto para o usuario ubuntu"
 sudo chown -R ubuntu:ubuntu /home/ubuntu/imersao-devops-cloud-02
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Removendo o arquivo popula-dados.http da pasta do projeto principal"
-rm /home/ubuntu/imersao-devops-cloud-02/kube-news/popula-dados.http
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Removendo o arquivo popula-dados.http da pasta do projeto principal"
+# rm /home/ubuntu/imersao-devops-cloud-02/kube-news/popula-dados.http
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Criando o sub-diretorio k8s na pasta do projeto principal"
@@ -101,18 +101,6 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/imersao-devops-cloud-02/kube-news/k8s
 end_time=$(date +%s)
 runtime=$((end_time - start_time))
 echo "TEMPO ETAPA 1: $runtime segundos"
-
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Baixando pacote Nodejs versão 20.x"
-# curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Instalando o Nodejs v20 e o NPM v10.1.0"
-# sudo apt-get install nodejs -y
-# sudo apt-get install npm -y
-# sudo npm install -g npm@10.1.0
-
-# sudo npm install
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Baixando e instalando os pacotes necessarios para instalacao do Docker"
@@ -244,8 +232,8 @@ sleep 100
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Realizando uma alteracao de URL para insercao de dados na aplicacao"
-# sed -i 's|fabricioveronez/web-color:blue|fabricioveronez/web-color:green|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/deployment1.yaml"
-sed -i 's|fabricioveronez/web-page:blue|fabricioveronez/web-page:green|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/deployment1.yaml"
+sed -i 's|fabricioveronez/web-color:blue|fabricioveronez/web-color:green|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/deployment1.yaml"
+# sed -i 's|fabricioveronez/web-page:blue|fabricioveronez/web-page:green|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/deployment1.yaml"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando o arquivo de Manifesto YAML"
