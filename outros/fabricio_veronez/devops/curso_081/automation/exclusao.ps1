@@ -332,9 +332,6 @@ if ((aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcName" --query "Vp
     Write-Output "A VPC de nome de tag $vpcName não existe!"
 }
 
-
-
-
 }
 
 
@@ -353,10 +350,10 @@ Write-Output "DEPLOY PROJECT"
 Write-Output "Verificando os nodes do cluster"
 kubectl get nodes
 
-Write-Output "Alterando para o diretório do projeto"
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
 Set-Location $projectPath/kube-news/k8s
 
-Write-Output "Removendo a aplicação"
+Write-Output "Removendo a aplicação a partir do arquivo de manifesto"
 kubectl delete -f deployment2.yaml
 
 Write-Output "Alterando para o diretório automation"
@@ -474,5 +471,65 @@ if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Cou
 } else {
     Write-Output "Não existe a role $roleNameEc2!"
 }
+
+}
+
+
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 5 - ETAPA 1"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "TERRAFORM"
+
+Write-Output "Removendo o projeto Terraform"
+terraform destory "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+
+Write-Output "Renomeando o primeiro arquivo de manifesto Terraform para o nome main1.tf"
+Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main.tf" -Destination "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main1.tf"
+
+}
+
+
+ssh-keygen -t rsa -b 2048 -f "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\secrets\meu-kp"
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 5 - ETAPA 2"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "DEPLOY PROJECT"
+
+Write-Output "Verificando os nodes do cluster"
+kubectl get nodes
+
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+Set-Location $projectPath/kube-news/k8s
+
+Write-Output "Removendo a aplicação a partir do arquivo de manifesto"
+kubectl delete -f deployment2.yaml
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath  
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "TERRAFORM"
+
+Write-Output "Removendo o projeto Terraform"
+terraform destory "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+
+Write-Output "Renomeando o segundo arquivo de manifesto Terraform para o nome main2.tf"
+Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main.tf" -Destination "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main2.tf"
 
 }

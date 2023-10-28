@@ -747,14 +747,202 @@ Start-Sleep -Seconds 20
 Write-Output "Verificando os nodes do cluster"
 kubectl get nodes
 
-Write-Output "Alterando para o diretório do projeto"
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
 Set-Location $projectPath/kube-news/k8s
 
-Write-Output "Verificando os nodes do cluster"
+Write-Output "Executando a aplicação a partir do arquivo de manifesto"
 kubectl apply -f deployment2.yaml
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath
 
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 4"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "GITHUB ACTIONS"
+
+Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para do meu repositório"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+    $_ -replace 'fabricioveronez/kube-news:v1', 'pedroheeger/kube-news:v1'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
+
+# Write-Output "Criando um arquivo de texto que funcionará como trigger para acionar o Workflow"
+# "start deployment" | Out-File -FilePath "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\start.txt"
+
+Write-Output "Inserindo o arquivo de Workflow na pasta do GitHub Actions"
+Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\curso_081.yaml" -Destination "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
+
+Write-Output "Realizando o procedimento de envio para o GitHub"
+git add .github\workflows\curso_081.yaml
+git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o Workflow para executar as Pipelines no GitHub Actions, realizando a aula 4 do curso"
+git push -u origin main
+
+Write-Output "Verificando os pods do cluster"
+kubectl get pods
+
+Write-Output "Aguardando 40 segundos para verificar a aplicação..."
+Start-Sleep -Seconds 40
+
+Write-Output "Realizando uma alteração na aplicação para versão 2 (Sem título)"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
+    $_ -replace '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
+
+# Write-Output "Criando um arquivo de texto que funcionará como trigger para acionar o Workflow"
+# "start deployment" | Out-File -FilePath "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\start.txt"
+
+Write-Output "Realizando o procedimento de envio para o GitHub"
+git add .github\workflows\curso_081.yaml .outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs
+git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o Workflow para executar as Pipelines no GitHub Actions, realizando a aula 4 do curso"
+git push -u origin main
+
+Write-Output "Verificando os pods do cluster"
+# watch 'kubectl get pods'
+$processoWatch =  Start-Process -FilePath 'watch' -ArgumentList 'kubectl get pods' -PassThru -NoNewWindow
+
+Write-Output "Aguardando 40 segundos para verificar a aplicação..."
+Start-Sleep -Seconds 40
+
+Write-Output "Encerrando o processo de watch"
+Stop-Process -Id $processoWatch.Id
+
+# Write-Output "Removendo o arquivo de texto que funcionará como trigger para acionar o Workflow"
+# Remove-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\start.txt"
+
+Write-Output "Removendo o arquivo de texto que funcionará como trigger para acionar o Workflow"
+Remove-Item -Path "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
+
+Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para o repositório do professor"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+    $_ -replace 'pedroheeger/kube-news:v1', 'fabricioveronez/kube-news:v1'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
+
+Write-Output "Retornando a aplicação para versão 1 (Com título)"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
+    $_ -replace '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath
+
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 5 - ETAPA 1"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "TERRAFORM"
+
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+Set-Location $resourcesPath/iac
+
+Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome padrão"
+$fileToRename = "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\manifesto1.txt"
+$newName = "main.tf"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $fileToRename -PathType Leaf) {
+    Rename-Item -Path $fileToRename -NewName $newName
+    Write-Host "Arquivo renomeado com sucesso."
+} else {
+    Write-Host "O arquivo $fileToRename não existe."
+}
+# Rename-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\manifesto1.txt" -NewName "main.txt"
+
+# Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome padrão"
+# $fileToRename = "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\terraform.txt"
+# $newName = "terraform.tfvars"
+# # Verifica se o arquivo existe antes de tentar renomeá-lo
+# if (Test-Path $fileToRename -PathType Leaf) {
+#     Rename-Item -Path $fileToRename -NewName $newName
+#     Write-Host "Arquivo renomeado com sucesso."
+# } else {
+#     Write-Host "O arquivo $fileToRename não existe."
+# }
+
+Write-Output "Inicializando o projeto Terraform a partir do arquivo de manifesto"
+terraform init
+
+Write-Output "Exibindo o plano de execução do projeto Terraform"
+terraform plan
+
+Write-Output "Executando o projeto Terraform"
+terraform apply
+
+Write-Output "Exibindo o output do projeto Terraform"
+terraform output
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath
+
+# Write-Output "Aguardando 120 segundos para verificar a aplicação..."
+# Start-Sleep -Seconds 120
+
+}
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 5 - ETAPA 2"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "TERRAFORM"
+
+Write-Output "Renomeando o segundo arquivo de manifesto YAML para o nome padrão"
+Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main2.tf" -NewName "main.tf"
+
+Write-Output "Inicializando o projeto Terraform a partir do arquivo de manifesto"
+terraform init "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+
+Write-Output "Exibindo o plano de execução do projeto Terraform"
+terraform plan
+
+Write-Output "Executando o projeto Terraform"
+terraform apply "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+
+Write-Output "Aguardando 40 segundos para o projeto ser executado..."
+Start-Sleep -Seconds 40
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "DEPLOY PROJECT"
+
+Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
+aws eks update-kubeconfig --name $clusterName
+
+Write-Output "Aguardando 20 segundos para garantir o arquivo kubeconfig foi atualizado..."
+Start-Sleep -Seconds 20
+
+Write-Output "Verificando os nodes do cluster"
+kubectl get nodes
+
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+Set-Location $projectPath/kube-news/k8s
+
+Write-Output "Executando a aplicação a partir do arquivo de manifesto"
+kubectl apply -f deployment2.yaml
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath
 
 }
