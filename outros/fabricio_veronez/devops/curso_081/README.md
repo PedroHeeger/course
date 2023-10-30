@@ -428,7 +428,12 @@ Continuando no script de criação, alguns segundos foram aguardados para que o 
 
 
 
-<a name="item04"><h4>Aula 5 - Terraform: Produtividade com automações Infra as Code</h4></a>[Back to summary](#item0)
+<a name="item05"><h4>Aula 5 - Terraform: Produtividade com automações Infra as Code</h4></a>[Back to summary](#item0)
 
 
 ssh-keygen -t rsa -b 2048 -f "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\secrets\meu-kp"
+
+
+
+
+<a name="item06"><h4>Monitoramento com Prometheus e Grafana + Abertura de Matrículas DevOps Pro</h4></a>[Back to summary](#item0)

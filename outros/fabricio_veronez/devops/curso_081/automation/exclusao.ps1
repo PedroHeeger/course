@@ -489,16 +489,46 @@ if ($resposta -ne 'y') {
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "TERRAFORM"
 
-Write-Output "Removendo o projeto Terraform"
-terraform destory "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+Set-Location $iac
 
-Write-Output "Renomeando o primeiro arquivo de manifesto Terraform para o nome main1.tf"
-Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main.tf" -Destination "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main1.tf"
+Write-Output "Removendo o projeto Terraform"
+terraform destroy -auto-approve
+
+Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome $terraformFile1"
+$file = "$iac\main.tf"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $file -PathType Leaf) {
+    Rename-Item -Path $file -NewName $terraformFile1
+    Write-Host "Arquivo main.tf renomeado para $terraformFile1."
+} else {
+    Write-Host "O arquivo main.tf não existe."
+}
+
+# Write-Output "Renomeando o primeiro arquivo de manifesto Terraform para o nome $terraformFile1"
+# Rename-Item -Path "$iac\main.tf" -Destination "$iac\$terraformFile1"
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SSH KEY"
+
+Write-Output "Removendo o arquivo de chave ssh se existir"
+$file = "$secretsPath\$keyPairName2.pub"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $file -PathType Leaf) {
+    Remove-Item -Path "$secretsPath\$keyPairName2.pub"
+    Remove-Item -Path "$secretsPath\$keyPairName2"
+    Write-Host "Os arquivos de chave ssh foram removidos com sucesso."
+} else {
+    Write-Host "O arquivo de chave ssh não existe!"
+}
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath
 
 }
 
 
-ssh-keygen -t rsa -b 2048 -f "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\secrets\meu-kp"
+
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AULA 5 - ETAPA 2"

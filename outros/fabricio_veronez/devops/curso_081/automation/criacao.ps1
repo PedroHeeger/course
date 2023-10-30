@@ -848,33 +848,34 @@ if ($resposta -ne 'y') {
 } else {
 
 "-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SSH KEY"
+
+Write-Output "Gerando o arquivo de chave ssh se não houver"
+$file = "$secretsPath\$keyPairName2.pub"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $file -PathType Leaf) {
+    Write-Host "O arquivo de chave ssh já existe!"
+} else {
+    Write-Host "O arquivo de chave ssh não existe. Gerando o arquivo."
+    ssh-keygen -t rsa -b 2048 -f "$secretsPath\$keyPairName2"
+}
+
+"-----//-----//-----//-----//-----//-----//-----"
 Write-Output "TERRAFORM"
 
 Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $resourcesPath/iac
+Set-Location $iac
 
 Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome padrão"
-$fileToRename = "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\manifesto1.txt"
-$newName = "main.tf"
+$file = "$iac\$terraformFile1"
 # Verifica se o arquivo existe antes de tentar renomeá-lo
-if (Test-Path $fileToRename -PathType Leaf) {
-    Rename-Item -Path $fileToRename -NewName $newName
-    Write-Host "Arquivo renomeado com sucesso."
+if (Test-Path $file -PathType Leaf) {
+    Rename-Item -Path $file -NewName "main.tf"
+    Write-Host "Arquivo $terraformFile1 renomeado para main.tf."
 } else {
-    Write-Host "O arquivo $fileToRename não existe."
+    Write-Host "O arquivo $terraformFile1 não existe!"
 }
 # Rename-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\manifesto1.txt" -NewName "main.txt"
-
-# Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome padrão"
-# $fileToRename = "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\terraform.txt"
-# $newName = "terraform.tfvars"
-# # Verifica se o arquivo existe antes de tentar renomeá-lo
-# if (Test-Path $fileToRename -PathType Leaf) {
-#     Rename-Item -Path $fileToRename -NewName $newName
-#     Write-Host "Arquivo renomeado com sucesso."
-# } else {
-#     Write-Host "O arquivo $fileToRename não existe."
-# }
 
 Write-Output "Inicializando o projeto Terraform a partir do arquivo de manifesto"
 terraform init
@@ -883,16 +884,14 @@ Write-Output "Exibindo o plano de execução do projeto Terraform"
 terraform plan
 
 Write-Output "Executando o projeto Terraform"
-terraform apply
+# terraform apply
+terraform apply -auto-approve
 
 Write-Output "Exibindo o output do projeto Terraform"
 terraform output
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath
-
-# Write-Output "Aguardando 120 segundos para verificar a aplicação..."
-# Start-Sleep -Seconds 120
 
 }
 
@@ -907,19 +906,53 @@ if ($resposta -ne 'y') {
 } else {
 
 "-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SSH KEY"
+
+Write-Output "Gerando o arquivo de chave ssh se não houver"
+$file = "$secretsPath\$keyPairName2.pub"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $file -PathType Leaf) {
+    Write-Host "O arquivo de chave ssh já existe!"
+} else {
+    Write-Host "O arquivo de chave ssh não existe. Gerando o arquivo."
+    ssh-keygen -t rsa -b 2048 -f "$secretsPath\$keyPairName2"
+}
+
+"-----//-----//-----//-----//-----//-----//-----"
 Write-Output "TERRAFORM"
 
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+Set-Location $iac
+
 Write-Output "Renomeando o segundo arquivo de manifesto YAML para o nome padrão"
-Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main2.tf" -NewName "main.tf"
+$file = "$iac\$terraformFile2"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $file -PathType Leaf) {
+    Rename-Item -Path $file -NewName "main.tf"
+    Write-Host "Arquivo $terraformFile2 renomeado para main.tf."
+} else {
+    Write-Host "O arquivo $terraformFile2 não existe!"
+}
+
+Write-Output "Renomeando o arquivo de variáveis do projeto Terraform para o nome padrão"
+$file = "$iac\$terraformVariablesFile"
+# Verifica se o arquivo existe antes de tentar renomeá-lo
+if (Test-Path $file -PathType Leaf) {
+    Rename-Item -Path $file -NewName "terraform.tfvars"
+    Write-Host "Arquivo $terraformVariablesFile renomeado para terraform.tfvars."
+} else {
+    Write-Host "O arquivo de variáveis $terraformVariablesFile não existe!"
+}
 
 Write-Output "Inicializando o projeto Terraform a partir do arquivo de manifesto"
-terraform init "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+terraform init
 
 Write-Output "Exibindo o plano de execução do projeto Terraform"
 terraform plan
 
 Write-Output "Executando o projeto Terraform"
-terraform apply "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+# terraform apply
+terraform apply -auto-approve
 
 Write-Output "Aguardando 40 segundos para o projeto ser executado..."
 Start-Sleep -Seconds 40

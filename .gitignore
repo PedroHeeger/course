@@ -1,3 +1,4 @@
+.github/
 alura/
 cev/
 cisco/
@@ -58,6 +59,10 @@ hashtag/vba
 
 microsoft_learn/
 
+outros/fabricio_veronez/devops/curso_081/automation/resources/iac/.terraform
+outros/fabricio_veronez/devops/curso_081/automation/resources/iac/.terraform.lock.hcl
+outros/fabricio_veronez/devops/curso_081/automation/resources/iac/terraform.tfstate.backup
+outros/fabricio_veronez/devops/curso_081/automation/resources/iac/terraform.tfstate
 outros/fabricio_veronez/devops/curso_081/automation/secrets/
 
 outros/karine_lago/curso_072/*

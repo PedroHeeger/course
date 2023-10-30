@@ -7,6 +7,7 @@ $projectPath = "$coursePath\imersao-devops-cloud-02"
 # FOLDERS PATHS
 $resourcesPath = "$buildEnvPath\resources"
 $secretsPath = "$buildEnvPath\secrets"
+$iac = "$resourcesPath\iac"
 
 # VM PATHS
 $vmPath = "/home/ubuntu"
@@ -28,21 +29,23 @@ $deploymentFilePath = "$resourcesPath"
 $dataFilePath = "$resourcesPath"
 
 # FILES
+
+
+
+
+# DATA: AULA 1, 2 E 3
 $userDataFile = "ec2Script.sh"
 $awsCliFolder = ".aws"
 $dockerHubFolder = ".docker"
+$keyPairName = "remoteAccessEc2"
+$instanceTypeCash = "t3.medium"
+
+# DATA: AULA 1 E 2
 $dockerFile = "Dockerfile"
 $deploymentFile1 = "deployment1.yaml"
 $deploymentFile2 = "deployment2.yaml"
 $dataFile = "popula-dados.http"
 $userDataFile2 = "ec2Script2.sh"
-
-
-# DATA: AULA 1, 2 E 3
-$keyPairName = "remoteAccessEc2"
-$instanceTypeCash = "t3.medium"
-
-# DATA: AULA 1 E 2
 $tagNameInstance = "ec2DevOps1"
 # $imageId = "ami-053b0d53c279acc90"
 $imageId = "ami-0fc5d935ebf8bc3bc"
@@ -82,4 +85,9 @@ $securityGroupKeyProf = "aws:cloudformation:stack-name"
 $securityGroupNameProf = "curso081Stack"
 
 
+# DATA: AULA 5 - ETAPA 1
+$terraformFile1 = "manifesto1.txt"
+$terraformFile2 = "manifesto2.txt"
+$terraformVariablesFile = "terraform.txt"
+$keyPairName2 = "meu-kp"
 
