@@ -7,10 +7,10 @@ name: CI-CD
 
 on:
   push:
-    # paths:
+    paths:
       # - './outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/k8s/start.text'
       # - './outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/curso_081.yaml'
-      # - './.github/workflows/curso_081.yaml'
+      - ./.github/workflows/curso_081.yaml
   workflow_dispatch:
 
 jobs:
