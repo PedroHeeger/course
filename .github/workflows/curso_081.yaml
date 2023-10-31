@@ -9,7 +9,8 @@ on:
   push:
     paths:
       # - './outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/k8s/start.text'
-      - './.github/workflows/curso_081.yaml'
+      - './outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/curso_081.yaml'
+      # - './.github/workflows/curso_081.yaml'
   workflow_dispatch:
 
 jobs:
