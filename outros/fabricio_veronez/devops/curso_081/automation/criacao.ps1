@@ -8,72 +8,72 @@ if ($resposta -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS EC2"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "KEY PAIR"
-# Write-Output "Verificando se existe o par de chaves $keyPairName..."
-# if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName']").Count -gt 1) {
-#     Write-Output "O par de chaves $keyPairName já foi criado!"
-#     aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
-# } else {
-#     Write-Output "Listando todos os pares de chaves criados"
-#     aws ec2 describe-key-pairs --query "KeyPairs[*].KeyName" --output text
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS EC2"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "KEY PAIR"
+Write-Output "Verificando se existe o par de chaves $keyPairName..."
+if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName']").Count -gt 1) {
+    Write-Output "O par de chaves $keyPairName já foi criado!"
+    aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
+} else {
+    Write-Output "Listando todos os pares de chaves criados"
+    aws ec2 describe-key-pairs --query "KeyPairs[*].KeyName" --output text
 
-#     Write-Output "Criando o par de chaves $keyPairName"
-#     aws ec2 create-key-pair --key-name $keyPairName --query 'KeyMaterial' --output text > "$keyPairPath\$keyPairName.pem"
+    Write-Output "Criando o par de chaves $keyPairName"
+    aws ec2 create-key-pair --key-name $keyPairName --query 'KeyMaterial' --output text > "$keyPairPath\$keyPairName.pem"
 
-#     Write-Output "Listando apenas o par de chave $keyPairName"
-#     aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
-# }
+    Write-Output "Listando apenas o par de chave $keyPairName"
+    aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
+}
 
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
-# Write-Output "Verificando se existe a instância $tagNameInstance..."
-# if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
-#     Write-Output "Já existe uma instância EC2 com esse nome de tag $tagNameInstance!"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstance'].Value" --output text
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AWS ELASTIC COMPUTE CLOUD (EC2)"
+Write-Output "Verificando se existe a instância $tagNameInstance..."
+if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
+    Write-Output "Já existe uma instância EC2 com esse nome de tag $tagNameInstance!"
+    aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstance'].Value" --output text
 
-#     Write-Output "Listando o IP público de todas as instâncias EC2 criadas"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-# } else {
-#     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
+    Write-Output "Listando o IP público de todas as instâncias EC2 criadas"
+    aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+} else {
+    Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
+    aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 
-#     Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
-#     $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
-#     $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$availabilityZone'].SubnetId" --output text
-#     aws ec2 run-instances --image-id $imageId --instance-type $instanceTypeCash --key-name $keyPairName --security-group-ids $securityGroupId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
+    Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
+    $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+    $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$availabilityZone'].SubnetId" --output text
+    aws ec2 run-instances --image-id $imageId --instance-type $instanceTypeCash --key-name $keyPairName --security-group-ids $securityGroupId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
 
-#     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
+    Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
+    aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 
-#     Write-Output "Listando o IP público de todas as instâncias EC2 criadas"
-#     aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-# }
-
-
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "SERVIÇO: AWS VPC"
-# "-----//-----//-----//-----//-----//-----//-----"
-# Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
-# Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
-# $securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
-# $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
-# if (($existRule).Count -gt 1) {
-#     Write-Output "Já existe a regra de entrada liberando a porta 8080 no grupo de segurança padrão!"
-#     $existRule
-# } else {
-#     Write-Output "Listando o Id de todas as regras de entrada e saída do grupo de segurança padrão"
-#     aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$securityGroupId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
-
-#     Write-Output "Adicionando uma regra de entrada ao grupo de segurança padrão para liberação da porta 8080"
-#     aws ec2 authorize-security-group-ingress --group-id $securityGroupId --protocol tcp --port 8080 --cidr 0.0.0.0/0 --no-cli-pager
-# }
+    Write-Output "Listando o IP público de todas as instâncias EC2 criadas"
+    aws ec2 describe-instances --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+}
 
 
-# Write-Output "Aguardando 200 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
-# Start-Sleep -Seconds 200
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "SERVIÇO: AWS VPC"
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "INBOUND AND OUTBOUND RULES - PORT 8080"
+Write-Output "Verificando se existe uma regra liberando a porta 8080 do Security Group padrão..."
+$securityGroupId = aws ec2 describe-security-groups --query "SecurityGroups[].GroupId" --output text
+$existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$securityGroupId' && !IsEgress && IpProtocol=='tcp' && to_string(FromPort)=='8080' && to_string(ToPort)=='8080' && CidrIpv4=='0.0.0.0/0']"
+if (($existRule).Count -gt 1) {
+    Write-Output "Já existe a regra de entrada liberando a porta 8080 no grupo de segurança padrão!"
+    $existRule
+} else {
+    Write-Output "Listando o Id de todas as regras de entrada e saída do grupo de segurança padrão"
+    aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$securityGroupId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
+
+    Write-Output "Adicionando uma regra de entrada ao grupo de segurança padrão para liberação da porta 8080"
+    aws ec2 authorize-security-group-ingress --group-id $securityGroupId --protocol tcp --port 8080 --cidr 0.0.0.0/0 --no-cli-pager
+}
+
+
+Write-Output "Aguardando 200 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
+Start-Sleep -Seconds 200
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SCP / PSCP (FILE TRANSFER)"
@@ -851,31 +851,20 @@ if ($resposta -ne 'y') {
 Write-Output "SSH KEY"
 
 Write-Output "Gerando o arquivo de chave ssh se não houver"
-$file = "$secretsPath\$keyPairName2.pub"
+$file = "$keyPairPath\$keyPairName2.pub"
 # Verifica se o arquivo existe antes de tentar renomeá-lo
 if (Test-Path $file -PathType Leaf) {
     Write-Host "O arquivo de chave ssh já existe!"
 } else {
     Write-Host "O arquivo de chave ssh não existe. Gerando o arquivo."
-    ssh-keygen -t rsa -b 2048 -f "$secretsPath\$keyPairName2"
+    ssh-keygen -t rsa -b 2048 -N "" -f "$keyPairPath\$keyPairName2"
 }
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "TERRAFORM"
 
 Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $iac
-
-Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome padrão"
-$file = "$iac\$terraformFile1"
-# Verifica se o arquivo existe antes de tentar renomeá-lo
-if (Test-Path $file -PathType Leaf) {
-    Rename-Item -Path $file -NewName "main.tf"
-    Write-Host "Arquivo $terraformFile1 renomeado para main.tf."
-} else {
-    Write-Host "O arquivo $terraformFile1 não existe!"
-}
-# Rename-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\manifesto1.txt" -NewName "main.txt"
+Set-Location $iac1
 
 Write-Output "Inicializando o projeto Terraform a partir do arquivo de manifesto"
 terraform init
@@ -884,7 +873,6 @@ Write-Output "Exibindo o plano de execução do projeto Terraform"
 terraform plan
 
 Write-Output "Executando o projeto Terraform"
-# terraform apply
 terraform apply -auto-approve
 
 Write-Output "Exibindo o output do projeto Terraform"
@@ -909,40 +897,20 @@ if ($resposta -ne 'y') {
 Write-Output "SSH KEY"
 
 Write-Output "Gerando o arquivo de chave ssh se não houver"
-$file = "$secretsPath\$keyPairName2.pub"
+$file = "$keyPairPath\$keyPairName2.pub"
 # Verifica se o arquivo existe antes de tentar renomeá-lo
 if (Test-Path $file -PathType Leaf) {
     Write-Host "O arquivo de chave ssh já existe!"
 } else {
     Write-Host "O arquivo de chave ssh não existe. Gerando o arquivo."
-    ssh-keygen -t rsa -b 2048 -f "$secretsPath\$keyPairName2"
+    ssh-keygen -t rsa -b 2048 -f "$keyPairPath\$keyPairName2"
 }
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "TERRAFORM"
 
 Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $iac
-
-Write-Output "Renomeando o segundo arquivo de manifesto YAML para o nome padrão"
-$file = "$iac\$terraformFile2"
-# Verifica se o arquivo existe antes de tentar renomeá-lo
-if (Test-Path $file -PathType Leaf) {
-    Rename-Item -Path $file -NewName "main.tf"
-    Write-Host "Arquivo $terraformFile2 renomeado para main.tf."
-} else {
-    Write-Host "O arquivo $terraformFile2 não existe!"
-}
-
-Write-Output "Renomeando o arquivo de variáveis do projeto Terraform para o nome padrão"
-$file = "$iac\$terraformVariablesFile"
-# Verifica se o arquivo existe antes de tentar renomeá-lo
-if (Test-Path $file -PathType Leaf) {
-    Rename-Item -Path $file -NewName "terraform.tfvars"
-    Write-Host "Arquivo $terraformVariablesFile renomeado para terraform.tfvars."
-} else {
-    Write-Host "O arquivo de variáveis $terraformVariablesFile não existe!"
-}
+Set-Location $iac2
 
 Write-Output "Inicializando o projeto Terraform a partir do arquivo de manifesto"
 terraform init
@@ -951,11 +919,10 @@ Write-Output "Exibindo o plano de execução do projeto Terraform"
 terraform plan
 
 Write-Output "Executando o projeto Terraform"
-# terraform apply
 terraform apply -auto-approve
 
-Write-Output "Aguardando 40 segundos para o projeto ser executado..."
-Start-Sleep -Seconds 40
+Write-Output "Aguardando 20 segundos para o projeto ser executado..."
+Start-Sleep -Seconds 20
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "DEPLOY PROJECT"
@@ -973,7 +940,10 @@ Write-Output "Alterando para o diretório do manifesto do Kubernetes"
 Set-Location $projectPath/kube-news/k8s
 
 Write-Output "Executando a aplicação a partir do arquivo de manifesto"
-kubectl apply -f deployment2.yaml
+kubectl apply -f $deploymentFile3
+
+Write-Output "Verificando os serviços do cluster"
+kubectl get services
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath

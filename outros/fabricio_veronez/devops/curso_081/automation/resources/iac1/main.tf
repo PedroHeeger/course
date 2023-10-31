@@ -22,7 +22,7 @@ resource "aws_vpc" "minha-vpc" {
 
 # Subnet
 resource "aws_subnet" "minha-subnet" {
-  vpc_id     = aws_vpc.minha-vpc.id
+  vpc_id = aws_vpc.minha-vpc.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a"
 
@@ -56,7 +56,7 @@ resource "aws_route_table" "minha-rt" {
 
 # Route Table Association
 resource "aws_route_table_association" "minha-rt-association" {
-  subnet_id      = aws_subnet.minha-subnet.id
+  subnet_id = aws_subnet.minha-subnet.id
   route_table_id = aws_route_table.minha-rt.id
 }
 
@@ -88,25 +88,25 @@ resource "aws_security_group" "meu-sg" {
   }
 }
 
-# resource "aws_key_pair" "meu-kp" {
-#   key_name   = "meu-kp"
-#   public_key = file("G:\\Meu Drive\\4_PROJ\\course\\outros\\fabricio_veronez\\devops\\curso_081\\automation\\secrets\\meu-kp.pub")
-# }
+resource "aws_key_pair" "meu-kp" {
+  key_name   = "meu-kp"
+  public_key = file("G:\\Meu Drive\\4_PROJ\\course\\outros\\fabricio_veronez\\devops\\curso_081\\automation\\secrets\\keyPair\\curso081KeyPair2.pub")
+}
 
-# resource "aws_instance" "minha-ec2" {
-#   ami           = "ami-0fc5d935ebf8bc3bc"
-#   instance_type = "t2.micro"
-#   subnet_id = aws_subnet.minha-subnet.id
-#   associate_public_ip_address = true
-#   key_name = aws_key_pair.meu-kp.key_name
-#   vpc_security_group_ids = [aws_security_group.meu-sg.id]
+resource "aws_instance" "minha-ec2" {
+  ami           = "ami-0fc5d935ebf8bc3bc"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.minha-subnet.id
+  associate_public_ip_address = true
+  key_name = aws_key_pair.meu-kp.key_name
+  vpc_security_group_ids = [aws_security_group.meu-sg.id]
 
 
-#   tags = {
-#     Name = "minha-ec2"
-#   }
-# }
+  tags = {
+    Name = "minha-ec2"
+  }
+}
 
-# output "ip_ec2" {
-#     value = aws_instance.minha-ec2.public_ip  
-# }
+output "ip_ec2" {
+    value = aws_instance.minha-ec2.public_ip  
+}

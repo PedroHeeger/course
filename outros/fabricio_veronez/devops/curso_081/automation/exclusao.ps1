@@ -490,33 +490,21 @@ if ($resposta -ne 'y') {
 Write-Output "TERRAFORM"
 
 Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $iac
+Set-Location $iac1
 
 Write-Output "Removendo o projeto Terraform"
 terraform destroy -auto-approve
 
-Write-Output "Renomeando o primeiro arquivo de manifesto YAML para o nome $terraformFile1"
-$file = "$iac\main.tf"
-# Verifica se o arquivo existe antes de tentar renomeá-lo
-if (Test-Path $file -PathType Leaf) {
-    Rename-Item -Path $file -NewName $terraformFile1
-    Write-Host "Arquivo main.tf renomeado para $terraformFile1."
-} else {
-    Write-Host "O arquivo main.tf não existe."
-}
-
-# Write-Output "Renomeando o primeiro arquivo de manifesto Terraform para o nome $terraformFile1"
-# Rename-Item -Path "$iac\main.tf" -Destination "$iac\$terraformFile1"
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SSH KEY"
 
 Write-Output "Removendo o arquivo de chave ssh se existir"
-$file = "$secretsPath\$keyPairName2.pub"
+$file = "$keyPairPath\$keyPairName2.pub"
 # Verifica se o arquivo existe antes de tentar renomeá-lo
 if (Test-Path $file -PathType Leaf) {
-    Remove-Item -Path "$secretsPath\$keyPairName2.pub"
-    Remove-Item -Path "$secretsPath\$keyPairName2"
+    Remove-Item -Path "$keyPairPath\$keyPairName2.pub"
+    Remove-Item -Path "$keyPairPath\$keyPairName2"
     Write-Host "Os arquivos de chave ssh foram removidos com sucesso."
 } else {
     Write-Host "O arquivo de chave ssh não existe!"
@@ -547,19 +535,19 @@ Write-Output "Alterando para o diretório do manifesto do Kubernetes"
 Set-Location $projectPath/kube-news/k8s
 
 Write-Output "Removendo a aplicação a partir do arquivo de manifesto"
-kubectl delete -f deployment2.yaml
-
-Write-Output "Alterando para o diretório automation"
-Set-Location $buildEnvPath  
+kubectl delete -f $deploymentFile2
 
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "TERRAFORM"
 
-Write-Output "Removendo o projeto Terraform"
-terraform destory "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac"
+Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+Set-Location $iac2
 
-Write-Output "Renomeando o segundo arquivo de manifesto Terraform para o nome main2.tf"
-Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main.tf" -Destination "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\iac\main2.tf"
+Write-Output "Removendo o projeto Terraform"
+terraform destroy
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath  
 
 }

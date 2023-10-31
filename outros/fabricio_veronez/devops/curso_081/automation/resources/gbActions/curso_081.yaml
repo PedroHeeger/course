@@ -26,15 +26,15 @@ jobs:
       with:
         username: ${{secrets.DOCKERHUB_USER}}
         password: ${{secrets.DOCKERHUB_PASSWORD}}      
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v5.0.0
-      with:
-        context: ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/src
-        file: ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/src/Dockerfile
-        push: true
-        tags: |
-          pedroheeger/curso081_kube-news:${{github.run_number}}
-          pedroheeger/curso081_kube-news:latest
+    # - name: Build and push Docker images
+    #   uses: docker/build-push-action@v5.0.0
+    #   with:
+    #     context: ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/src
+    #     file: ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/src/Dockerfile
+    #     push: true
+    #     tags: |
+    #       pedroheeger/curso081_kube-news:${{github.run_number}}
+    #       pedroheeger/curso081_kube-news:latest
 
 
 
@@ -55,12 +55,12 @@ jobs:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
         aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
         aws-region: us-east-1
-    - name: Configurar o KubeConfig
-      run: aws eks update-kubeconfig --name curso081Cluster --region us-east-1
-    - name: Deploy to Kubernetes cluster
-      uses: Azure/k8s-deploy@v4.9
-      with:
-        manifests: 
-          ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml
-        images:
-          pedroheeger/curso081_kube-news:${{github.run_number}}
+    # - name: Configurar o KubeConfig
+    #   run: aws eks update-kubeconfig --name curso081Cluster --region us-east-1
+    # - name: Deploy to Kubernetes cluster
+    #   uses: Azure/k8s-deploy@v4.9
+    #   with:
+    #     manifests: 
+    #       ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml
+    #     images:
+    #       pedroheeger/curso081_kube-news:${{github.run_number}}

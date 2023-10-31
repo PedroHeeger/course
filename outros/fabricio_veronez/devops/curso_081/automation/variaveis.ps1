@@ -7,7 +7,7 @@ $projectPath = "$coursePath\imersao-devops-cloud-02"
 # FOLDERS PATHS
 $resourcesPath = "$buildEnvPath\resources"
 $secretsPath = "$buildEnvPath\secrets"
-$iac = "$resourcesPath\iac"
+
 
 # VM PATHS
 $vmPath = "/home/ubuntu"
@@ -20,13 +20,15 @@ $vmProjectPath2src = "$vmProjectPath2/src"
 
 
 # FILES PATHS
-$keyPairPath = "$secretsPath"
-$userDataPath = "$resourcesPath"
+$keyPairPath = "$secretsPath\keyPair"
 $awsCliPath = "$secretsPath"
 $dockerHubPath = "$secretsPath"
-$dockerFilePath = "$resourcesPath"
-$deploymentFilePath = "$resourcesPath"
-$dataFilePath = "$resourcesPath"
+$userDataPath = "$resourcesPath\bash"
+$dockerFilePath = "$resourcesPath\docker"
+$deploymentFilePath = "$resourcesPath\kubernetes"
+# $dataFilePath = "$resourcesPath"
+$iac1 = "$resourcesPath\iac1"
+$iac2 = "$resourcesPath\iac2"
 
 # FILES
 
@@ -65,6 +67,7 @@ $tagNameInstancePub = "curso081Ec2Pub2"
 $tagNameInstancePriv = "curso081Ec2Priv2"
 
 # DATA: AULA 3 - ETAPA 2
+$deploymentFile3 = "deployment3.yaml"
 $roleNameEks = "curso081RoleEks"
 $roleNameEc2 = "curso081RoleEc2"
 $stackName = "curso081Stack"
@@ -89,5 +92,5 @@ $securityGroupNameProf = "curso081Stack"
 $terraformFile1 = "manifesto1.txt"
 $terraformFile2 = "manifesto2.txt"
 $terraformVariablesFile = "terraform.txt"
-$keyPairName2 = "meu-kp"
+$keyPairName2 = "curso081KeyPair2"
 
