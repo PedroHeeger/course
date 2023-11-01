@@ -423,9 +423,17 @@ Continuando no script de criação, alguns segundos foram aguardados para que o 
 
 <a name="item04"><h4>Aula 4 - Github Actions - Eficiência em entregas automatizadas</h4></a>[Back to summary](#item0)
 
+Na quarta aula foi introduzido o software **GitHub Actions** para construção de pipelines de integração contínua (CI) e entrega contínua (CD). Para execução dos pipelines, a infraestrutura tinha que está construída ou ser construída, portanto, três formas eram possíveis. A primeira executando a aula 3 etapa 2, onde a infraestrutura de rede foi criada pelo serviço **AWS CloudFormation** e a infraestrutura do cluster **Kubernetes** através de comandos **AWS CLI** no **PowerShell** da maquina física **Windows**. Na segunda forma seria semelhante a primeira, porém com a execução da aula 5 etapa 5, no qual ao invés de parte da infraestrutura ser desenvolvida pelo **AWS CloudFormation** e parte pelo script de criação com comandos **AWS CLI**, agora toda a infraestrutura tanto de rede como do cluster **Kubernetes** foi construída pelo **Terraform**. Nesses dois casos, o deploy e gerenciamento da aplicação foi feito através de comandos do **Kubectl** também no **PowerShell** da maquina física utilizados no script de criação. Nestas formas, toda a infraestrutura estava na cloud da **AWS** e a pasta do projeto na maquina física, com a conexão do **Kubectl** com o cluster no serviço **AWS EKS** a aplicação foi implantada no cluster.
 
+Com toda a infraestrutura pronta, um arquivo de manifesto **YAML** para o **GitHub Actions** foi elaborado para montagem do Workflow. Neste Workflow dois jobs eram criados, um para execução do pipeline de CI e outro para o pipeline de CD, sendo o de CD dependente do pipeline de CI. No job de integração conítnua, três steps foram realizados para construção de imagens **Docker** e envio para o repositório do **Docker Hub**. O primeiro step foi a verificação dos arquivos do repositório onde este curso estava, em seguida, foi realizando o login no **Docker Hub**, e por último, a criação de duas imagens, uma na versão `latest` e outra na versão de mesmo número de execução do Workflow, sendo enviadas para o repositório **Docker**.
 
+O segundo job, onde o pipeline de CD foi executado, conteve quantro steps. O primeiro step também foi para a verificação dos arquivos do repositório, em seguida, foi feito o credenciamento do usuário administrador da conta da **AWS** para que fosse possível acessá-la com este usuário. No terceiro passo foi realizado a conexão do **Kubectl** da maquina física com o cluster **Kubernetes** em execução no serviço **AWS EKS**. Por fim, foi realizado do deploy da aplicação no cluster através da indicação do arquivo de manifesto **YAML** [deployment3.yaml](./imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml) que estava na pasta do projeto e indicação da imagem **Docker** utilizada que já estava no repositório **Docker Hub**, realizado pelo pipeline de CI.
 
+Com esse Workflow, toda a parte de deploy da aplicação foi automatizada e caso seja feito alguma alteração na aplicação, o próprio **GitHub Actions** executa os pipelines para trocar a versão em execução da aplicação no cluster **Kubernetes**. Neste arquivo de Workflow foi definido como uma trigger, o envio do próprio arquivo [curso_081.yaml](./automation/resources/gbActions/curso_081.yaml), que estava armazenado na sub-pasta `resources/gbActions` para a pasta de `.github/workflows`. Esta é uma pasta que o **GitHub** usa para armazenar os arquivos de Workflow.
+
+Para automatizar esse processo dentro do script de criação, no bloco da aula 4 foram executados os comandos `git add`, `git commit` e `git push`, para adicionar o arquivo Workflow que agora estava dentro da pasta de Workflow, commitá-lo e enviá-lo para o repositório remoto no **GitHub**. Como a trigger que aciona este arquivo foi um `push` para o repositório padrão de `Workflow`, todo o pipeline foi executado e aplicação ficou disponível no endpoint do `service`. Um ponto importante, é que tanto na aula 3 etapa 2 e aula 5 etapa 2, após a construção da infraestrutura é realizado o deploy da aplicação. Então para que esse primeiro deploy fosse executado pelos pipelines foi necessário comentar essa parte no script de criação, de forma manual.
+
+Após o primeiro deploy, o próprio script de criação alterou o arquivo `header.ejs` que integra a aplicação, comentando a linha que contém o título `Kube-News` e então os comandos **Git** para envio do arquivo Workflow e também do arquivo `header.ejs` foram executados. Assim, o Workflow foi acionado novamente e os pipelines foram executados, construindo a imagem **Docker** em uma nova versão contendo essa alteração, em seguida, essa alteração foi enviada para aplicação em execução no cluster.
 
 
 
@@ -467,17 +475,67 @@ Na segunda etapa desta aula, o processo foi o mesmo da etapa 1. Seguindo o scrip
 
 Este projeto **Terraform** foi dividido em dois módulos e realizou a mesma construção do serviço **AWS CloudFormation** da aula 3 etapa 2, com a adição da criação do cluster. O primeiro módulo provisionou uma VPC com duas sub-redes públicas e duas privadas e NAT Gateway. Já o segundo módulo construiu um cluster Kubernetes no serviço **AWS EKS** utilizando as sub-redes privadas da VPC elaborada e a própria VPC. Também foram definidos a geração de um endpoint de acesso, a quantidade de nós mínimo, máximo e desejado no cluster e o tipo de instância que esses nós executariam, que no caso, teve que ser `t3.micro`. Foram definidos valores padrões para as variáveis, que no caso foram os IPs das sub-redes, porém com a declaração dessas variáveis no arquivo de variáveis do **Terraform**, esses valores foram substituídos pelo do arquivo.
 
-Dando sequência, agora foi a vez de configurar o arquivo de configuração do **Kubectl** da maquina local para se conectar com o cluster no serviço **AWS EKS**. Para isso, o comando `aws eks update-kubeconfig --name $clusterName` foi utilizado. Poucos segundos foram aguardados para que essa configuração fosse realizada. Então com o comando `kubectl get nodes` foram exibidos os nós do cluster. O diretório corrente foi alterado para o diretório `k8s` do projeto `kube-news`, onde estava o arquivo `deployment3.yaml` utilizado na aula 3 etapa 2. Com o comando `kubectl apply -f $deploymentFile3` foi realizado a implantação da aplicação que pode ser acessada pelo IP externo fornecido pelo `service` da aplicação, sendo visualizado através do comando `kubectl get services`. Por fim, foi retornado para o diretório `automation`. Com o script de exclusão, ambos os projetos eram removidos.
+Dando sequência, agora foi a vez de configurar o arquivo de configuração do **Kubectl** da maquina local para se conectar com o cluster no serviço **AWS EKS**. Para isso, o comando `aws eks update-kubeconfig --name $clusterName` foi utilizado. Poucos segundos foram aguardados para que essa configuração fosse realizada. Então com o comando `kubectl get nodes` foram exibidos os nós do cluster. O diretório corrente foi alterado para o diretório `k8s` do projeto `kube-news`, onde estava o arquivo `deployment3.yaml` utilizado na aula 3 etapa 2. Com o comando `kubectl apply -f $deploymentFile3` foi realizado a implantação da aplicação que pode ser acessada pelo IP externo fornecido pelo `service` da aplicação, sendo visualizado através do comando `kubectl get services`. Por fim, foi retornado para o diretório `automation`. Com o script de exclusão, ambos os projetos eram removidos. Na imagem 55 é exibido a aplicação em execução no cluster, sendo acessada pelo navegador da maquina física **Windows** no IP externo fornecido pelo `service`. Já na imagem 56, através do **PowerShell** é listado todos os objetos desse cluster.
 
 <div align="Center"><figure>
-    <img src="./0-aux/img50.png" alt="img50"><br>
-    <figcaption>Imagem 50.</figcaption>
+    <img src="./0-aux/img55.png" alt="img55"><br>
+    <figcaption>Imagem 55.</figcaption>
 </figure></div><br>
 
 <div align="Center"><figure>
-    <img src="./0-aux/img51.png" alt="img51"><br>
-    <figcaption>Imagem 51.</figcaption>
+    <img src="./0-aux/img56.png" alt="img56"><br>
+    <figcaption>Imagem 56.</figcaption>
 </figure></div><br>
+
+
+As próximas imagens evidenciam a criação de toda infraestrutura tanto de rede como do cluster **Kubernentes** utilizando o **Terraform**, são elas: VPC (Imagem 56), Subnets (Imagem 57), Route Tables (Imagem 58), Internet Gateway (Imagem 59), Elastic IP (Imagem 60), NAT Gateway (Imagem 61), Security Group (Imagem 62), Instâncias EC2 (Imagem 63) e Cluster Kubernetes no serviço **AWS EKS** (Imagem 64).
+
+<div align="Center"><figure>
+    <img src="./0-aux/img56.png" alt="img56"><br>
+    <figcaption>Imagem 56.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img57.png" alt="img57"><br>
+    <figcaption>Imagem 57.</figcaption>
+</figure></div><br>
+
+
+<div align="Center"><figure>
+    <img src="./0-aux/img58.png" alt="img58"><br>
+    <figcaption>Imagem 58.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img59.png" alt="img59"><br>
+    <figcaption>Imagem 59.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img60.png" alt="img60"><br>
+    <figcaption>Imagem 60.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img61.png" alt="img61"><br>
+    <figcaption>Imagem 61.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img62.png" alt="img62"><br>
+    <figcaption>Imagem 62.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img63.png" alt="img63"><br>
+    <figcaption>Imagem 63.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img64.png" alt="img64"><br>
+    <figcaption>Imagem 64.</figcaption>
+</figure></div><br>
+
 
 
 <a name="item06"><h4>Monitoramento com Prometheus e Grafana + Abertura de Matrículas DevOps Pro</h4></a>[Back to summary](#item0)
