@@ -1,29 +1,21 @@
 name: CI-CD
 
-# on:
-#   push:
-#     branches: ["main"]
-#   workflow_dispatch:
-
 on:
   push:
     branches: ["main"]
     paths:
-      # - ./.github/workflows/curso_081.yaml
       - 'outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/start.txt'
-  # workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-    # - name: Checkout do repositório
-    #   uses: actions/checkout@v4.1.1
     - name: Checkout do repositório
       uses: actions/checkout@v4.1.1
       with:
-        path: './'
-        # path: ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02
+        # path: './'
+        path: ./outros/fabricio_veronez/devops/curso_081
     - name: Docker Login
       uses: docker/login-action@v3.0.0
       with:
@@ -49,8 +41,8 @@ jobs:
     - name: Checkout do repositório
       uses: actions/checkout@v4.1.1
       with:
-        path: './'
-        # path: ./outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02
+        # path: './'
+        path: ./outros/fabricio_veronez/devops/curso_081
     - name: Configuração da credencial da AWS
       uses: aws-actions/configure-aws-credentials@v4
       with:
