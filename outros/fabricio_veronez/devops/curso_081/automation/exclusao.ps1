@@ -568,51 +568,65 @@ if ($resposta -ne 'y') {
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "GITHUB ACTIONS"
 
-Write-Output "Removendo o arquivo de Workflow"
-Remove-Item "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
+Write-Output "Removendo o arquivo de Workflow se existir"
+$filePath = "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
+if (Test-Path $filePath) {Remove-Item $filePath} else { Write-Output "O arquivo de Workflow não existe."}
 
-Write-Output "Removendo o arquivo de trigger do Workflow"
-Remove-Item "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
-
-Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para o repositório do professor"
-(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
-    $_ -replace 'pedroheeger/kube-news:v1', 'fabricioveronez/kube-news:v1'
-} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
+Write-Output "Removendo o arquivo de trigger do Workflow se existir"
+$filePath = "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
+if (Test-Path $filePath) {Remove-Item $filePath} else { Write-Output "O arquivo de trigger não existe."}
 
 Write-Output "Retornando a aplicação para versão 1 (Com título)"
 (Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
-    $_ -replace '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
+    $_ -replace '<!-- <img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" /> -->', '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
 } | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
 
 Write-Output "Alterando para o diretório do repositório do GitHub"
 Set-Location "G:\Meu Drive\4_PROJ\course"
 
-Write-Output "Realizando o procedimento de envio para o GitHub"
+Write-Output "Verificando se os arquivos estão (untracked, modified ou deleted)"
 # Caminho do arquivo que você deseja verificar
-$fileWorkflow = ".github\workflows\curso_081.yaml"
-$fileTrigger = ".\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
-$fileApplication = ".\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
+$fileWorkflow = ".github/workflows/curso_081.yaml"
+$fileTrigger = "outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/start.txt"
+$fileApplication = "outros/fabricio_veronez/devops/curso_081/imersao-devops-cloud-02/kube-news/src/views/partial/header.ejs"
 
 # Executa git status e procura pelo caminho do arquivo
 $resultadoWorkflow = git status --porcelain $fileWorkflow
 $resultadoTrigger = git status --porcelain $fileTrigger
 $resultadoApplication = git status --porcelain $fileApplication
 
-# Verifica se os arquivos estão em vermelho (untracked ou modified)
-if ($resultadoWorkflow -match "M $fileWorkflow" -or $resultadoWorkflow -match "\?\? $fileWorkflow" `
- -and $resultadoTrigger -match "M $fileTrigger" -or $resultadoTrigger -match "\?\? $fileTrigger" `
- -and $resultadoApplication -match "M $fileApplication" -or $resultadoApplication -match "\?\? $fileApplication") {
-    # Adiciona os arquivos
-    git add $fileWorkflow $fileTrigger $fileApplication
-    Write-Host "Arquivos adicionados ao staging."
+if ($resultadoWorkflow -match "M $fileWorkflow" -or $resultadoWorkflow -match "\?\? $fileWorkflow" -or $resultadoWorkflow -match "D $fileWorkflow") {
+    git add $fileWorkflow
+    Write-Host "Arquivo $fileWorkflow adicionado ao staging."
 } else {
-    Write-Host "Nenhum dos arquivos está em vermelho no git status."
+    Write-Host "Não houve alteração no arquivo!"
 }
 
-# git add .github\workflows\curso_081.yaml .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt .outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs
+if ($resultadoTrigger -match "M $fileTrigger" -or $resultadoTrigger -match "\?\? $fileTrigger" -or $resultadoTrigger -match "D $fileTrigger") {
+    git add $fileTrigger
+    Write-Host "Arquivo $fileTrigger adicionado ao staging."
+} else {
+    Write-Host "Não houve alteração no arquivo!"
+}
+
+if ($resultadoApplication -match "M $fileApplication" -or $resultadoApplication -match "\?\? $fileApplication") {
+    git add $fileApplication
+    Write-Host "Arquivo $fileApplication adicionado ao staging."
+} else {
+    Write-Host "Não houve alteração no arquivo!"
+}
+
 Write-Output "Realizando o procedimento de envio para o GitHub"
-git commit -m "Execute course_081 (Atividade em execução)" -m "Removendo o arquivo de trigger do Workflow e o Workflow, desfazendo a alteração na aplicação e trocando a imagem docker para do repositório do professor"
+git commit -m "Execute course_081 (Atividade em execução)" -m "Removendo o arquivo de trigger do Workflow e o Workflow, e desfazendo a alteração na aplicação"
 git push -u origin main
+
+Write-Output "Removendo a conexão do Kubectl com o EKS"
+kubectl config delete-context "arn:aws:eks:us-east-1:005354053245:cluster/$clusterName"
+
+Write-Output "Alterando a imagem Docker do arquivo de manifesto do Kubernetes do meu repositório para o repositório do professor"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+    $_ -replace 'pedroheeger/curso081_kube-news:v1', 'fabricioveronez/kube-news:v1'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath  

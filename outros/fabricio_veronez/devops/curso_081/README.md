@@ -32,8 +32,6 @@
 - Cluster Management Software:
   - Kubernetes   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="kubernetes" width="auto" height="25">
   - K3D   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/kubernetes_k3d.png" alt="kubernetes_k3d" width="auto" height="25">
-- Observability:
-    - Prometheus   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt="prometheus" width="auto" height="25">
 - Configuration Management (CM):
   - Terraform   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="terraform" width="auto" height="25">
 - Language:
@@ -41,8 +39,6 @@
   - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
   - Node.js   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="nodejs" width="auto" height="25">
   - YAML   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/yaml.png" alt="yaml" width="auto" height="25">
-- BI Tool:
-  - Grafana   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="grafana" width="auto" height="25">
 - Integrated Development Environment (IDE) and Text Editor:
   - Nano   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/nano.png" alt="nano" width="auto" height="25">
   - Visual Studio Code (VS Code)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
@@ -521,20 +517,62 @@ As próximas imagens evidenciam a criação de toda infraestrutura tanto de rede
 
 <a name="item04"><h4>Aula 4 - Github Actions - Eficiência em entregas automatizadas</h4></a>[Back to summary](#item0)
 
-Na quarta aula foi introduzido o software **GitHub Actions** para construção de pipelines de integração contínua (CI) e entrega contínua (CD). Para execução dos pipelines, a infraestrutura tinha que está construída ou ser construída, tanto a infraestrutura de rede como a do cluster **Kubernetes**. Portanto, esta aula teve que ser executada após as aulas 3 etapa 2 e 5 etapa 2, no qual as infraestruturas eram construídas. 
+Na quarta aula foi introduzido o software **GitHub Actions** para construção de pipelines de integração contínua (CI) e entrega contínua (CD). Para execução dos pipelines, a infraestrutura tinha que está construída, tanto a infraestrutura de rede como a do cluster **Kubernetes**. Portanto, esta aula teve que ser executada após as aulas 3 etapa 2 e 5 etapa 2, no qual as infraestruturas eram construídas. 
 
-Na aula 3 etapa 2, a infraestrutura de rede foi criada pelo serviço **AWS CloudFormation** e a infraestrutura do cluster **Kubernetes** através de comandos **AWS CLI** no **PowerShell** da maquina física **Windows**, sendo executados de forma automatizada no script de criação. A aula 5 etapa 2, a infraestrutura foi elaborada de forma semelhante a anterior, porém ao invés de parte da infraestrutura ser desenvolvida pelo **AWS CloudFormation** e parte pelo script de criação com comandos **AWS CLI**, agora toda a infraestrutura tanto de rede como do cluster **Kubernetes** foi construída pelo **Terraform**. Nesses dois casos, o deploy e gerenciamento da aplicação foi feito através de comandos do **Kubectl** também no **PowerShell** da maquina física utilizados no script de criação. Por isso, foi adicionado nessa parte, nos dois casos, uma verificação se o usuário gostaria ou não de realizar o deploy, pois uma outra forma seria realizar o deploy através da aula 4 com o **GitHub Actions**. Nestas duas formas, toda a infraestrutura estava na cloud da **AWS** e a pasta do projeto na maquina física, com a conexão do **Kubectl** com o cluster no serviço **AWS EKS** a aplicação foi implantada no cluster.
+Na aula 3 etapa 2, a infraestrutura de rede foi criada pelo serviço **AWS CloudFormation** e a infraestrutura do cluster **Kubernetes** através de comandos **AWS CLI** no **PowerShell** da maquina física **Windows**, sendo executados de forma automatizada no script de criação. Na aula 5 etapa 2, a infraestrutura foi elaborada de forma semelhante a anterior, porém ao invés de parte da infraestrutura ser desenvolvida pelo **AWS CloudFormation** e parte pelo script de criação com comandos **AWS CLI**, agora toda a infraestrutura tanto de rede como do cluster **Kubernetes** foi construída pelo **Terraform**. Nesses dois casos, o deploy e gerenciamento da aplicação foi feito através de comandos do **Kubectl** também no **PowerShell** da maquina física utilizados no script de criação. Por isso, foi adicionado nessa parte, nos dois casos, uma verificação se o usuário gostaria ou não de realizar o deploy, pois uma outra forma seria realizar o deploy através da aula 4 com o **GitHub Actions**. Nestas duas formas, toda a infraestrutura estava na cloud da **AWS** e a pasta do projeto na maquina física e também no meu **GitHub**.
 
-Com toda a infraestrutura pronta, um arquivo de manifesto **YAML** para o **GitHub Actions** foi elaborado manualmente para montagem do Workflow. Neste Workflow dois jobs eram criados, um para execução do pipeline de CI e outro para o pipeline de CD, sendo o de CD dependente do pipeline de CI. No job de integração conítnua (CI), três steps foram realizados para construção das imagens **Docker** e envio para o repositório do **Docker Hub**. O primeiro step foi a verificação dos arquivos do repositório onde este curso estava, em seguida, foi realizando o login no **Docker Hub** utilizando variáveis cadastradas no **GitHub**, e por último, a criação de duas imagens, uma na versão `latest` e outra na versão de mesmo número de execução do Workflow, sendo enviadas para o repositório **Docker**.
+Com toda a infraestrutura pronta, um arquivo de manifesto **YAML** para o **GitHub Actions** foi elaborado manualmente para montagem do Workflow. Neste Workflow dois jobs eram criados, um para execução do pipeline de CI e outro para o pipeline de CD, sendo o de CD dependente do pipeline de CI. No job de integração conítnua (CI), três steps foram realizados para construção das imagens **Docker** e envio para o repositório do **Docker Hub**. O primeiro step foi a verificação dos arquivos do repositório deste curso, em seguida foi realizando o login no **Docker Hub** utilizando variáveis cadastradas no **GitHub**, e por último, a criação de duas imagens, uma na versão `latest` e outra na versão de mesmo número de execução do Workflow, sendo enviadas para o repositório **Docker**. A cada nova execução desse pipeline, o número da versão iria aumentando de um em um.
 
-O segundo job, onde o pipeline de CD foi executado, conteve quantro steps. O primeiro step também foi para a verificação dos arquivos do repositório, em seguida, foi feito o credenciamento do usuário administrador da conta da **AWS** para que fosse possível acessá-la com este usuário, também utilizando variáveis cadastradas no **GitHub**. No terceiro passo foi realizado a conexão do **Kubectl** da maquina virtual do **GitHub** com o cluster **Kubernetes** em execução no serviço **AWS EKS**. Por fim, foi realizado o deploy da aplicação no cluster através da indicação do arquivo de manifesto **YAML** [deployment3.yaml](./imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml) que estava na pasta do projeto e indicação da imagem **Docker** utilizada que já estava no repositório **Docker Hub** realizado pelo pipeline de CI.
+O segundo job, onde o pipeline de CD foi executado, conteve quantro steps. O primeiro step também foi para a verificação dos arquivos do repositório, em seguida foi feito o credenciamento do usuário administrador da conta da **AWS** para que fosse possível acessá-la com este usuário, também utilizando variáveis cadastradas no **GitHub**. No terceiro passo foi realizado a conexão do **Kubectl** da maquina virtual do **GitHub** com o cluster **Kubernetes** em execução no serviço **AWS EKS**. Por fim, foi realizado o deploy da aplicação no cluster através da indicação do arquivo de manifesto **YAML** [deployment3.yaml](./imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml) que estava na pasta do projeto já versionada no **GitHub**, e da indicação da imagem **Docker** utilizada que já estava no repositório **Docker Hub** realizado pelo pipeline de CI. Este pipeline substituía a imagem declarada no arquivo **YAML** pela imagem declarada no próprio arquivo de Workflow.
 
-Este Workflow automatizou toda a parte de deploy da aplicação e caso fosse feito alguma alteração na aplicação, o próprio **GitHub Actions** executava os pipelines para trocar a versão em execução da aplicação no cluster **Kubernetes**. Para que o Workflow fosse executado, uma trigger deveria indicada neste arquivo. A trigger determinada foi quando um Push para o **GitHub** do arquivo `./automation/resources/gbActions/start.txt` fosse realizada. Porém esse arquivo só seria construindo quando, no script de criação, a aula 4 fosse executada. Nesse arquivo, seria especificado qual versão da aplicação estava sendo desenvolvida e seria armazenado na sub-pasta `resources/gbActions`, mesma pasta onde o arquivo de Workflow foi elaborado. 
+Este Workflow automatizou toda a parte de deploy da aplicação e caso fosse feito alguma alteração na aplicação, o próprio **GitHub Actions** executava os pipelines para trocar a versão da aplicação em execução no cluster **Kubernetes**. Para que o Workflow fosse executado, uma trigger deveria indicada neste arquivo. A trigger determinada foi quando um Push para o **GitHub** do arquivo `./automation/resources/gbActions/start.txt` fosse realizada. Porém esse arquivo só seria construindo quando, no script de criação, a aula 4 fosse executada. Nesse arquivo, seria especificado qual versão da aplicação estava sendo desenvolvida e seria armazenado na sub-pasta `resources/gbActions`, mesma pasta onde o arquivo de Workflow foi elaborado. 
 
-A aula 4 no script de criação iniciou com a conexão do **Kubectl** da maquina física com o cluster **Kubernetes** já construído no serviço **AWS EKS**. Em seguida, no arquivo de manifesto do **Kubernetes** do projeto `kube-news`, a imagem **Docker** utilizada seria alterada do repositório do professor para o do meu repositório
+A aula 4 no script de criação iniciou com a conexão do **Kubectl** da maquina física com o cluster **Kubernetes** já construído no serviço **AWS EKS**. Em seguida, foi feito uma cópia do arquivo de Workflow para pasta `.github\workflows` onde o **GitHub** armazena todos os arquivos de Workflow do repositório. O arquivo de trigger `start.txt` foi criado com o texto `V1` na sub-pasta `resources/gbActions`. Então a pasta corrente foi alterada para a do repositório de cursos (`course`) e comandos **Git** foram executados. Com o comando `git add` foi adicionado a área de staging o arquivo de Workflow que foi copiado para a pasta de `.github/workflows` e o arquivo de trigger `start.txt`. Após isso, foram executados os comandos `git commit` e `git push` para enviar as alterações para o repositório remoto no **GitHub**. Como o arquivo de trigger estava sofrendo um Push, que foi justamente a trigger estabelecida no arquivo de Workflow, e este arquivo de Workflow estava sendo enviado para pasta correta no **GitHub**, ele foi acionado e seus pipelines foram executados.
 
-Em seguida, foi feito uma cópia do arquivo de Workflow para pasta `.github\workflows` onde o **GitHub** armazena todos os arquivos de Workflow do repositório. O arquivo de trigger `start.txt` foi criado com o texto `V1` na sub-pasta `resources/gbActions`. Então a pasta corrente foi alterada para a do repositório de cursos (`course`) e comandos **Git** foram executados. Com o comando `git add` foi adicionado a área de staging o arquivo de Workflow que foi copiado para a pasta de Workflow e o arquivo de trigger `start.txt`. Após isso, foram executados os comandos `git commit` e `git push` para enviar as alterações para o repositório remoto no **GitHub**. Como o arquivo de trigger estava sofrendo um Push, que foi justamente a trigger estabelecida no arquivo de Workflow, este arquivo foi acionado e os pipelines executados.
+Enquanto isso, no script de criação alguns segundos foram aguardados para que esse processo fosse executado pelo **GitHub** de forma automática. Após isso, todos os elementos do cluster foram verificados com o comando `kubectl get all` (Imagem 58) e a aplicação, em execução no cluster **Kubernetes**, pode ser acessada utilizando o IP Externo disponibilizado pelo `service` da aplicação no navegador da maquina física (Imagem 59). A imagem 60 mostra os pipelines concluídos. Enquanto na imagens 61 é possível visualizar as imagens construídas no repositório **Docker Hub**, nas versões `latest` e era para ser a versão `1`, mas como foram realizados vários testes com o mesmo arquivo Workflow, o número de execuções foi aumentando e portanto a imagem do **Docker** corresponde ao número da execução no exato momento. Por mais que fosse apagado o arquivo de Workflow, o **GitHub** mantem armazenado todo o histórico de execuções e então não reinicia a contagem. Para a contagem ser reiniciada teria que mudar o nome do arquivo.
 
-Enquanto isso, no script de criação alguns segundos foram aguardados para que esse processo fosse executado pelo **GitHub** de forma automática. Após isso, todos os elementos do cluster foram verificados com o comando `kubectl get all` e a aplicação pode ser acessada utilizando o IP Externo disponibilizado pelo `service` da aplicação no navegador da maquina física.
+<div align="Center"><figure>
+    <img src="./0-aux/img58.png" alt="img58"><br>
+    <figcaption>Imagem 58.</figcaption>
+</figure></div><br>
 
-Após o primeiro deploy, o próprio script de criação alterou o arquivo `header.ejs` que integra a aplicação, comentando a linha que contém o título `Kube-News` e também alterou o arquivo de trigger trocando o texto para `V2` para que ele pudesse sofrer um Push novamente. Então os comandos **Git** foram executados, porém no comando `git add`, dessa vez, foi adicionado o arquivo de trigger e o arquivo da aplicação que foi alterado, o arquivo de Workflow não teve alterações e por isso não foi adicionado. Em seguida, os comandos `git commit` e `git push` foram realizados e os arquivos enviados para o repositório remoto, acionando pela segunda vez os pipelines. Agora chegou na parte final, onde uma série de dois comandos eram executados intercaladamente, um solicitando que um tempo fosse aguardado e outro para exibição dos pods do cluster, que nesse momemnto estavam sendo alterados recebendo a nova versão da aplicação. Por fim, o diretório corrente foi alterado para a pasta `automation`.
+<div align="Center"><figure>
+    <img src="./0-aux/img59.png" alt="img59"><br>
+    <figcaption>Imagem 59.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img60.png" alt="img60"><br>
+    <figcaption>Imagem 60.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img61.png" alt="img61"><br>
+    <figcaption>Imagem 61.</figcaption>
+</figure></div><br>
+
+Após o primeiro deploy, o próprio script de criação alterou o arquivo `header.ejs` que integra a aplicação, comentando a linha que contém o título `Kube-News` e também alterou o arquivo de trigger trocando o texto para `V2` para que ele pudesse sofrer um Push novamente. Então os comandos **Git** foram executados, porém no comando `git add`, dessa vez, foi adicionado o arquivo de trigger e o arquivo da aplicação que foi alterado, o arquivo de Workflow não teve alterações e por isso não foi adicionado. Em seguida, os comandos `git commit` e `git push` foram realizados e os arquivos enviados para o repositório remoto, acionando pela segunda vez os pipelines. Agora chegou na parte final, onde uma série de dois comandos eram executados intercaladamente, um solicitando que um tempo fosse aguardado e outro para exibição dos pods do cluster, que nesse momemnto estavam sendo alterados recebendo a nova versão da aplicação, como mostrado na imagem 62 abaixo. Por fim, o diretório corrente foi alterado para a pasta `automation`. Na imagem 63 é evidenciado a aplicação na versão 2, onde o título não aparece. Já a imagem 64 mostra o repositório **Docker Hub** com mais uma imagem criada, que deveria ser a versão `2`. Enquanto a imagem 65 é exibido este segundo pipeline concluído.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img62.png" alt="img62"><br>
+    <figcaption>Imagem 62.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img63.png" alt="img63"><br>
+    <figcaption>Imagem 63.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img64.png" alt="img64"><br>
+    <figcaption>Imagem 64.</figcaption>
+</figure></div><br>
+
+
+aws eks update-kubeconfig --name curso081Cluster --unset
+kubectl config --kubeconfig=C:\Users\pedro\.kube\config get-contexts
+kubectl config delete-context arn:aws:eks:us-east-1:005354053245:cluster/curso081Cluster
+
+
+a226bfbdb9e3843f5a72c7d36172c705-1117313089.us-east-1.elb.amazonaws.com
+https://a226bfbdb9e3843f5a72c7d36172c705-1117313089.us-east-1.elb.amazonaws.com/
