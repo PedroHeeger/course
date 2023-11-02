@@ -914,7 +914,7 @@ Write-Output "Alterando para o diretório do repositório do GitHub"
 Set-Location "G:\Meu Drive\4_PROJ\course"
 
 Write-Output "Realizando o procedimento de envio (Push) para o GitHub"
-git add .github\workflows\curso_081.yaml .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt
+git add .github\workflows\curso_081.yaml .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt .\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml
 git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o arquivo de Workflow para executar as Pipelines no GitHub Actions (Realizando a aula 4 do curso)"
 git push -u origin main
 
@@ -949,30 +949,6 @@ git add .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbAction
 git add .\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs
 git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o arquivo Workflow para executar as Pipelines no GitHub Actions, realizadas na aula 4 do curso, criando uma nova versão da aplicação"
 git push -u origin main
-
-# Write-Output "Aguardando 65 segundos para verificar a troca de versão da aplicação..."
-# Start-Sleep -Seconds 65
-
-# Write-Output "Verificando os pods do cluster"
-# kubectl get pods
-
-# Write-Output "Aguardando 10 segundos para os Pods atualizarem..."
-# Start-Sleep -Seconds 10
-
-# Write-Output "Verificando os pods do cluster"
-# kubectl get pods
-
-# Write-Output "Aguardando 10 segundos para os Pods atualizarem..."
-# Start-Sleep -Seconds 10
-
-# Write-Output "Verificando os pods do cluster"
-# kubectl get pods
-
-# Write-Output "Aguardando 10 segundos para os Pods atualizarem..."
-# Start-Sleep -Seconds 10
-
-# Write-Output "Verificando os pods do cluster"
-# kubectl get pods
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath
