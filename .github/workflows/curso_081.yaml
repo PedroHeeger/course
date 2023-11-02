@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/start.txt
+      - 'outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/start.txt'
   workflow_dispatch:
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.0.0
       with:
-        context: imersao-devops-cloud-02/kube-news/src
-        file: imersao-devops-cloud-02/kube-news/src/Dockerfile
+        context: ./imersao-devops-cloud-02/kube-news/src
+        file: ./imersao-devops-cloud-02/kube-news/src/Dockerfile
         push: true
         tags: |
           pedroheeger/curso081_kube-news:${{github.run_number}}
@@ -55,6 +55,6 @@ jobs:
       uses: Azure/k8s-deploy@v4.9
       with:
         manifests: 
-          imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml
+          ./imersao-devops-cloud-02/kube-news/k8s/deployment3.yaml
         images:
           pedroheeger/curso081_kube-news:${{github.run_number}}
