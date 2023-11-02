@@ -10,7 +10,7 @@ on:
     branches: ["main"]
     paths:
       # - ./.github/workflows/curso_081.yaml
-      - './outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/start.txt'
+      - 'outros/fabricio_veronez/devops/curso_081/automation/resources/gbActions/start.txt'
   # workflow_dispatch:
 
 jobs:
