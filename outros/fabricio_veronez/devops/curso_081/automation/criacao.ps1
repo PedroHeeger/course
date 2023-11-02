@@ -899,10 +899,10 @@ Write-Output "GITHUB ACTIONS - APLICAÇÃO V1"
 Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
 aws eks update-kubeconfig --name $clusterName
 
-Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para do meu repositório"
-(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
-    $_ -replace 'fabricioveronez/kube-news:v1', 'pedroheeger/kube-news:v1'
-} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
+# Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para do meu repositório"
+# (Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+#     $_ -replace 'fabricioveronez/kube-news:v1', 'pedroheeger/kube-news:v1'
+# } | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
 
 Write-Output "Inserindo o arquivo de Workflow na pasta do GitHub Actions"
 Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\curso_081.yaml" -Destination "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
@@ -918,11 +918,13 @@ git add .github\workflows\curso_081.yaml .\outros\fabricio_veronez\devops\curso_
 git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o arquivo de Workflow para executar as Pipelines no GitHub Actions (Realizando a aula 4 do curso)"
 git push -u origin main
 
-Write-Output "Verificando os pods do cluster"
-kubectl get pods
-
 Write-Output "Aguardando 150 segundos para garantir a execução dos Pipelines e verificação da aplicação em execução no cluster..."
 Start-Sleep -Seconds 150
+
+Write-Output "Verificando todos os elementos do cluster"
+kubectl get all
+
+
 
 
 "-----//-----//-----//-----//-----//-----//-----"
@@ -943,8 +945,11 @@ git add .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbAction
 git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o arquivo Workflow para executar as Pipelines no GitHub Actions, realizadas na aula 4 do curso, criando uma nova versão da aplicação"
 git push -u origin main
 
-Write-Output "Aguardando 40 segundos para verificar a troca de versão da aplicação..."
-Start-Sleep -Seconds 40
+Write-Output "Verificando os pods do cluster"
+kubectl get pods
+
+Write-Output "Aguardando 20 segundos para verificar a troca de versão da aplicação..."
+Start-Sleep -Seconds 20
 
 Write-Output "Verificando os pods do cluster"
 kubectl get pods
