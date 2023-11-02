@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "5.23.1"
+      version = "5.21.0"
     }
   }
 }
@@ -26,16 +26,16 @@ module "vpc" {
   enable_nat_gateway = true
 
   tags = {
-    "kubernetes.io/cluster/imersao-eks" = "shared"
+    "kubernetes.io/cluster/curso081Cluster" = "shared"
   }
 
   public_subnet_tags = {
-    "kubernetes.io/cluster/imersao-eks" = "shared"
+    "kubernetes.io/cluster/curso081Cluster" = "shared"
     "kubernetes.io/role/elb" = 1
   }
 
   private_subnet_tags = {
-    "kubernetes.io/cluster/imersao-eks" = "shared"
+    "kubernetes.io/cluster/curso081Cluster" = "shared"
     "kubernetes.io/role/internal-elb" = 1
   }
 }

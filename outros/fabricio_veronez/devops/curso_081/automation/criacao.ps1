@@ -627,8 +627,8 @@ if ((aws cloudformation describe-stacks --stack-name $stackName --query "Stacks[
 }
 
 
-Write-Output "Aguardando 40 segundos para garantir que toda a rede foi construída pelo Cloud Formation..."
-Start-Sleep -Seconds 40
+# Write-Output "Aguardando 140 segundos para garantir que toda infraestrutura de rede foi construída pelo Cloud Formation..."
+# Start-Sleep -Seconds 140
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
@@ -650,8 +650,6 @@ if ((aws eks describe-cluster --name $clusterName --query "cluster.name" 2>&1) -
     $subnetPriv2Id = aws ec2 describe-subnets --filters "Name=tag:Name,Values=$subnetPriv2NameProf" "Name=vpc-id,Values=$vpcId" --query "Subnets[].SubnetId" --output text
     $securityGroupId = aws ec2 describe-security-groups --filters "Name=tag:$securityGroupKeyProf,Values=$securityGroupNameProf" "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupId[]" --output text
     aws eks create-cluster --name $clusterName --role-arn $arnRole --resources-vpc-config "subnetIds=$subnetPub1Id,$subnetPub2Id,$subnetPriv1Id,$subnetPriv2Id,securityGroupIds=$securityGroupId" --no-cli-pager
-
-    # eksctl create cluster --name $clusterName --region $region --cfn-role-arn $arnRole --vpc-public-subnets "$subnetPub1Id,$subnetPub2Id" --vpc-private-subnets "$subnetPriv1Id,$subnetPriv2Id" 
 
     Write-Output "Listando apenas o cluster $clusterName"
     aws eks describe-cluster --name $clusterName --query "cluster.name" --output text
@@ -679,8 +677,9 @@ if ((aws eks describe-cluster --name $clusterName --query "cluster.name" 2>&1) -
     }
 }
 
-Write-Output "Aguardando 500 segundos para garantir que o cluster foi criado..."
-Start-Sleep -Seconds 500
+
+# Write-Output "Aguardando 700 segundos para garantir que o cluster foi criado..."
+# Start-Sleep -Seconds 700
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "NODE GROUP"
@@ -704,17 +703,17 @@ if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $no
     aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
 
     Write-Output "Exibindo o endpoint do cluster $clusterName para acesso a aplicação"
-    aws eks describe-cluster --cluster-name $clusterName --query "cluster.endpoint" --output text
+    aws eks describe-cluster --name $clusterName --query "cluster.endpoint" --output text
 } else {
     Write-Output "Verificando se existe o node group $nodeGroupName..."
-    if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName").Count -gt 1) {
+    if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text).Count -gt 0) {
         Write-Output "O node group $nodeGroupName já foi criado!"
         aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
     } else {
         Write-Output "Listando todos os node groups criados"
         # aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName
         # eksctl get nodegroup --cluster $clusterName --region $region
-
+        
         Write-Output "Criando o node group $nodeGroupName"
         $arnRole = aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].Arn" --output text
         $vpcId = aws ec2 describe-vpcs --filters "Name=tag:Name,Values=$vpcNameProf" --query "Vpcs[].VpcId" --output text
@@ -727,7 +726,7 @@ if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $no
         aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $nodeGroupName --query "nodegroup.nodegroupName" --output text
 
         Write-Output "Exibindo o endpoint do cluster $clusterName para acesso a aplicação"
-        aws eks describe-cluster --cluster-name $clusterName --query "cluster.endpoint" --output text
+        aws eks describe-cluster --name $clusterName --query "cluster.endpoint" --output text
     }
 }
 
@@ -735,107 +734,37 @@ if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $no
 Write-Output "Aguardando 20 segundos para garantir que o node group foi criado..."
 Start-Sleep -Seconds 20
 
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "DEPLOY PROJECT"
+    $resposta = Read-Host "Digite 'y' se deseja fazer o deploy da aplicação, 'n' para pular"
+    if ($resposta -ne 'y') {
+        Write-Host "Implantação não realizada!"
+    } else {
+        "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "DEPLOY PROJECT"
 
-Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
-aws eks update-kubeconfig --name $clusterName
+        Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
+        aws eks update-kubeconfig --name $clusterName
 
-Write-Output "Aguardando 20 segundos para garantir o arquivo kubeconfig foi atualizado..."
-Start-Sleep -Seconds 20
+        Write-Output "Aguardando 20 segundos para garantir o arquivo kubeconfig foi atualizado..."
+        Start-Sleep -Seconds 20
 
-Write-Output "Verificando os nodes do cluster"
-kubectl get nodes
+        Write-Output "Verificando os nodes do cluster"
+        kubectl get nodes
 
-Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $projectPath/kube-news/k8s
+        Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+        Set-Location $projectPath/kube-news/k8s
 
-Write-Output "Executando a aplicação a partir do arquivo de manifesto"
-kubectl apply -f deployment2.yaml
+        Write-Output "Executando a aplicação a partir do arquivo de manifesto"
+        kubectl apply -f deployment3.yaml
 
-Write-Output "Alterando para o diretório automation"
-Set-Location $buildEnvPath
-
+        Write-Output "Alterando para o diretório automation"
+        Set-Location $buildEnvPath
+    }
 }
 
 
 
 
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "AULA 4"
-$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
-if ($resposta -ne 'y') {
-    Write-Host "Bloco de código não executado. Pulando para o próximo..."
-} else {
 
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "GITHUB ACTIONS"
-
-Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para do meu repositório"
-(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
-    $_ -replace 'fabricioveronez/kube-news:v1', 'pedroheeger/kube-news:v1'
-} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
-
-# Write-Output "Criando um arquivo de texto que funcionará como trigger para acionar o Workflow"
-# "start deployment" | Out-File -FilePath "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\start.txt"
-
-Write-Output "Inserindo o arquivo de Workflow na pasta do GitHub Actions"
-Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\curso_081.yaml" -Destination "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
-
-Write-Output "Realizando o procedimento de envio para o GitHub"
-git add .github\workflows\curso_081.yaml
-git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o Workflow para executar as Pipelines no GitHub Actions, realizando a aula 4 do curso"
-git push -u origin main
-
-Write-Output "Verificando os pods do cluster"
-kubectl get pods
-
-Write-Output "Aguardando 40 segundos para verificar a aplicação..."
-Start-Sleep -Seconds 40
-
-Write-Output "Realizando uma alteração na aplicação para versão 2 (Sem título)"
-(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
-    $_ -replace '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
-} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
-
-# Write-Output "Criando um arquivo de texto que funcionará como trigger para acionar o Workflow"
-# "start deployment" | Out-File -FilePath "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\start.txt"
-
-Write-Output "Realizando o procedimento de envio para o GitHub"
-git add .github\workflows\curso_081.yaml .outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs
-git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o Workflow para executar as Pipelines no GitHub Actions, realizando a aula 4 do curso"
-git push -u origin main
-
-Write-Output "Verificando os pods do cluster"
-# watch 'kubectl get pods'
-$processoWatch =  Start-Process -FilePath 'watch' -ArgumentList 'kubectl get pods' -PassThru -NoNewWindow
-
-Write-Output "Aguardando 40 segundos para verificar a aplicação..."
-Start-Sleep -Seconds 40
-
-Write-Output "Encerrando o processo de watch"
-Stop-Process -Id $processoWatch.Id
-
-# Write-Output "Removendo o arquivo de texto que funcionará como trigger para acionar o Workflow"
-# Remove-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\start.txt"
-
-Write-Output "Removendo o arquivo de texto que funcionará como trigger para acionar o Workflow"
-Remove-Item -Path "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
-
-Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para o repositório do professor"
-(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
-    $_ -replace 'pedroheeger/kube-news:v1', 'fabricioveronez/kube-news:v1'
-} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
-
-Write-Output "Retornando a aplicação para versão 1 (Com título)"
-(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
-    $_ -replace '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
-} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
-
-Write-Output "Alterando para o diretório automation"
-Set-Location $buildEnvPath
-
-}
 
 
 
@@ -903,7 +832,7 @@ if (Test-Path $file -PathType Leaf) {
     Write-Host "O arquivo de chave ssh já existe!"
 } else {
     Write-Host "O arquivo de chave ssh não existe. Gerando o arquivo."
-    ssh-keygen -t rsa -b 2048 -f "$keyPairPath\$keyPairName2"
+    ssh-keygen -t rsa -b 2048 -N "" -f "$keyPairPath\$keyPairName2"
 }
 
 "-----//-----//-----//-----//-----//-----//-----"
@@ -921,29 +850,123 @@ terraform plan
 Write-Output "Executando o projeto Terraform"
 terraform apply -auto-approve
 
-Write-Output "Aguardando 20 segundos para o projeto ser executado..."
-Start-Sleep -Seconds 20
+    $resposta = Read-Host "Digite 'y' se deseja fazer o deploy da aplicação, 'n' para pular"
+    if ($resposta -ne 'y') {
+        Write-Host "Implantação não realizada!"
+    } else {
+        "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "DEPLOY PROJECT"
+
+        Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
+        aws eks update-kubeconfig --name $clusterName
+
+        Write-Output "Aguardando 20 segundos para garantir o arquivo kubeconfig foi atualizado..."
+        Start-Sleep -Seconds 20
+
+        Write-Output "Verificando os nodes do cluster"
+        kubectl get nodes
+
+        Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+        Set-Location $projectPath/kube-news/k8s
+
+        Write-Output "Executando a aplicação a partir do arquivo de manifesto"
+        kubectl apply -f $deploymentFile3
+
+        Write-Output "Aguardando 30 segundos para garantir que o service da aplicação tenha um IP externo..."
+        Start-Sleep -Seconds 30
+
+        Write-Output "Verificando os serviços do cluster"
+        kubectl get services
+
+        Write-Output "Alterando para o diretório automation"
+        Set-Location $buildEnvPath
+    }
+}
+
+
+
 
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "DEPLOY PROJECT"
+Write-Output "AULA 4"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "GITHUB ACTIONS - APLICAÇÃO V1"
 
 Write-Output "Atualizando o arquivo kubeconfig para se conectar com o EKS"
 aws eks update-kubeconfig --name $clusterName
 
-Write-Output "Aguardando 20 segundos para garantir o arquivo kubeconfig foi atualizado..."
-Start-Sleep -Seconds 20
+Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para do meu repositório"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+    $_ -replace 'fabricioveronez/kube-news:v1', 'pedroheeger/kube-news:v1'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
 
-Write-Output "Verificando os nodes do cluster"
-kubectl get nodes
+Write-Output "Inserindo o arquivo de Workflow na pasta do GitHub Actions"
+Copy-Item -Path "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\curso_081.yaml" -Destination "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
 
-Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $projectPath/kube-news/k8s
+Write-Output "Criando o arquivo de trigger para acionar o Workflow na pasta do GitHub Actions"
+"V1" | Out-File -FilePath "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
 
-Write-Output "Executando a aplicação a partir do arquivo de manifesto"
-kubectl apply -f $deploymentFile3
+Write-Output "Alterando para o diretório do repositório do GitHub"
+Set-Location "G:\Meu Drive\4_PROJ\course"
 
-Write-Output "Verificando os serviços do cluster"
-kubectl get services
+Write-Output "Realizando o procedimento de envio (Push) para o GitHub"
+git add .github\workflows\curso_081.yaml .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt
+git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o arquivo de Workflow para executar as Pipelines no GitHub Actions (Realizando a aula 4 do curso)"
+git push -u origin main
+
+Write-Output "Verificando os pods do cluster"
+kubectl get pods
+
+Write-Output "Aguardando 150 segundos para garantir a execução dos Pipelines e verificação da aplicação em execução no cluster..."
+Start-Sleep -Seconds 150
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "GITHUB ACTIONS - APLICAÇÃO V2"
+
+Write-Output "Realizando uma alteração no arquivo header.ejs da aplicação para versão 2 (Sem título)"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
+    $_ -replace '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
+
+Write-Output "Alterando o arquivo de trigger para versão 2 (Sem título)"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt") | ForEach-Object {
+    $_ -replace 'V1', 'V2'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
+
+Write-Output "Realizando o procedimento de envio para o GitHub"
+git add .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt .outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs
+git commit -m "Execute course_081 (Atividade em execução)" -m "Enviando o arquivo Workflow para executar as Pipelines no GitHub Actions, realizadas na aula 4 do curso, criando uma nova versão da aplicação"
+git push -u origin main
+
+Write-Output "Aguardando 40 segundos para verificar a troca de versão da aplicação..."
+Start-Sleep -Seconds 40
+
+Write-Output "Verificando os pods do cluster"
+kubectl get pods
+
+Write-Output "Aguardando 5 segundos para os Pods atualizarem..."
+Start-Sleep -Seconds 5
+
+Write-Output "Verificando os pods do cluster"
+kubectl get pods
+
+# Write-Output "Removendo o arquivo de texto que funcionará como trigger para acionar o Workflow"
+# Remove-Item -Path "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
+
+# Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para o repositório do professor"
+# (Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+#     $_ -replace 'pedroheeger/kube-news:v1', 'fabricioveronez/kube-news:v1'
+# } | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
+
+# Write-Output "Retornando a aplicação para versão 1 (Com título)"
+# (Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
+#     $_ -replace '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
+# } | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath

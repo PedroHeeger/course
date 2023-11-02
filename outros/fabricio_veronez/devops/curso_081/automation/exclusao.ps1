@@ -344,24 +344,29 @@ if ($resposta -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
-"-----//-----//-----//-----//-----//-----//-----"
-Write-Output "DEPLOY PROJECT"
+    $resposta = Read-Host "Digite 'y' se deseja desfazer o deploy da aplicação caso esteja sido implantada, 'n' para pular"
+    if ($resposta -ne 'y') {
+        Write-Host "Implantação não realizada!"
+    } else {
+        "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "DEPLOY PROJECT"
 
-Write-Output "Verificando os nodes do cluster"
-kubectl get nodes
+        Write-Output "Verificando os nodes do cluster"
+        kubectl get nodes
 
-Write-Output "Alterando para o diretório do manifesto do Kubernetes"
-Set-Location $projectPath/kube-news/k8s
+        Write-Output "Alterando para o diretório do manifesto do Kubernetes"
+        Set-Location $projectPath/kube-news/k8s
 
-Write-Output "Removendo a aplicação a partir do arquivo de manifesto"
-kubectl delete -f deployment2.yaml
+        Write-Output "Removendo a aplicação a partir do arquivo de manifesto"
+        kubectl delete -f deployment3.yaml
 
-Write-Output "Alterando para o diretório automation"
-Set-Location $buildEnvPath
+        Write-Output "Alterando para o diretório automation"
+        Set-Location $buildEnvPath
+    }
 
 
-Write-Output "Aguardando 40 segundos para garantir aplicação foi removida do cluster..."
-Start-Sleep -Seconds 40
+# Write-Output "Aguardando 20 segundos para garantir aplicação foi removida do cluster..."
+# Start-Sleep -Seconds 20
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "SERVIÇO: AWS Elastic Kubernetes Service (EKS)"
@@ -381,8 +386,8 @@ if ((aws eks describe-nodegroup --cluster-name $clusterName --nodegroup-name $no
     Write-Output "Não existe o node group $nodeGroupName!"
 }
 
-Write-Output "Aguardando 200 segundos para garantir que o node group foi removido..."
-Start-Sleep -Seconds 200
+# Write-Output "Aguardando 500 segundos para garantir que o node group foi removido..."
+# Start-Sleep -Seconds 500
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "CLUSTER"
@@ -477,8 +482,6 @@ if ((aws iam list-roles --query "Roles[?RoleName=='$roleNameEc2'].RoleName").Cou
 
 
 
-
-
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "AULA 5 - ETAPA 1"
 $resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
@@ -535,7 +538,7 @@ Write-Output "Alterando para o diretório do manifesto do Kubernetes"
 Set-Location $projectPath/kube-news/k8s
 
 Write-Output "Removendo a aplicação a partir do arquivo de manifesto"
-kubectl delete -f $deploymentFile2
+kubectl delete -f $deploymentFile3
 
 
 "-----//-----//-----//-----//-----//-----//-----"
@@ -545,9 +548,75 @@ Write-Output "Alterando para o diretório do manifesto do Kubernetes"
 Set-Location $iac2
 
 Write-Output "Removendo o projeto Terraform"
-terraform destroy
+terraform destroy -auto-approve
 
 Write-Output "Alterando para o diretório automation"
 Set-Location $buildEnvPath  
 
 }
+
+
+
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "AULA 4"
+$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
+if ($resposta -ne 'y') {
+    Write-Host "Bloco de código não executado. Pulando para o próximo..."
+} else {
+
+"-----//-----//-----//-----//-----//-----//-----"
+Write-Output "GITHUB ACTIONS"
+
+Write-Output "Removendo o arquivo de Workflow"
+Remove-Item "G:\Meu Drive\4_PROJ\course\.github\workflows\curso_081.yaml"
+
+Write-Output "Removendo o arquivo de trigger do Workflow"
+Remove-Item "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
+
+Write-Output "Realizando a troca de imagem do arquivo de manifesto deployment3 para o repositório do professor"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml") | ForEach-Object {
+    $_ -replace 'pedroheeger/kube-news:v1', 'fabricioveronez/kube-news:v1'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\k8s\deployment3.yaml"
+
+Write-Output "Retornando a aplicação para versão 1 (Com título)"
+(Get-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs") | ForEach-Object {
+    $_ -replace '#<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />', '<img class="logo" src="/img/kubenews-logo.svg" alt="Kubenews" srcset="" />'
+} | Set-Content "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
+
+Write-Output "Alterando para o diretório do repositório do GitHub"
+Set-Location "G:\Meu Drive\4_PROJ\course"
+
+Write-Output "Realizando o procedimento de envio para o GitHub"
+# Caminho do arquivo que você deseja verificar
+$fileWorkflow = ".github\workflows\curso_081.yaml"
+$fileTrigger = ".\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt"
+$fileApplication = ".\outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs"
+
+# Executa git status e procura pelo caminho do arquivo
+$resultadoWorkflow = git status --porcelain $fileWorkflow
+$resultadoTrigger = git status --porcelain $fileTrigger
+$resultadoApplication = git status --porcelain $fileApplication
+
+# Verifica se os arquivos estão em vermelho (untracked ou modified)
+if ($resultadoWorkflow -match "M $fileWorkflow" -or $resultadoWorkflow -match "\?\? $fileWorkflow" `
+ -and $resultadoTrigger -match "M $fileTrigger" -or $resultadoTrigger -match "\?\? $fileTrigger" `
+ -and $resultadoApplication -match "M $fileApplication" -or $resultadoApplication -match "\?\? $fileApplication") {
+    # Adiciona os arquivos
+    git add $fileWorkflow $fileTrigger $fileApplication
+    Write-Host "Arquivos adicionados ao staging."
+} else {
+    Write-Host "Nenhum dos arquivos está em vermelho no git status."
+}
+
+# git add .github\workflows\curso_081.yaml .\outros\fabricio_veronez\devops\curso_081\automation\resources\gbActions\start.txt .outros\fabricio_veronez\devops\curso_081\imersao-devops-cloud-02\kube-news\src\views\partial\header.ejs
+Write-Output "Realizando o procedimento de envio para o GitHub"
+git commit -m "Execute course_081 (Atividade em execução)" -m "Removendo o arquivo de trigger do Workflow e o Workflow, desfazendo a alteração na aplicação e trocando a imagem docker para do repositório do professor"
+git push -u origin main
+
+Write-Output "Alterando para o diretório automation"
+Set-Location $buildEnvPath  
+
+}
+
+
