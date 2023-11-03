@@ -1,9 +1,9 @@
-# Linux Fundamentals   <img src="./0-aux/logo_course.jpg" alt="curso_077" width="auto" height="45">
+# Linux Essentials   <img src="./0-aux/logo_course.jpg" alt="curso_083" width="auto" height="45">
 
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">dio   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/dio.jpeg" alt="dio" width="auto" height="25"></a>   
 ### Software/Subject: <a href="../">linux   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="linux" width="auto" height="25"></a>
-### Course: <a href="./">curso_077 (Linux Fundamentals)   <img src="./0-aux/logo_course.jpg" alt="curso_077" width="auto" height="25"></a>
+### Course: <a href="./">curso_083 (Linux Essentials)   <img src="./0-aux/logo_course.jpg" alt="curso_083" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/os/linux/(23-08-22)%20Linux%20Fundamentals%20PH%204.Linux.pdf">Certificate</a>
 
