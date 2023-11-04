@@ -26,6 +26,9 @@
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
   - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
 - Integrated Development Environment (IDE) and Text Editor:
+  - Nano   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/nano.png" alt="nano" width="auto" height="25">
+  - Vi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/vi.png" alt="vi" width="auto" height="25">
+  - VI iMproved (Vim)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="vim" width="auto" height="25">
   - Visual Studio Code (VS Code)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
 - Versioning: 
   - Git   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="auto" height="25">
@@ -33,49 +36,89 @@
   - GitHub   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github" width="auto" height="25">
 - Command Line Interpreter (CLI):
   - Bash e Sh   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="bash_sh" width="auto" height="25">
+- Tools:
+  - Advanced Package Tool (Apt)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/apt.png" alt="apt" width="auto" height="25">
+  - Advanced Package Tool (Apt-Get)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/apt-get.jpg" alt="apt-get" width="auto" height="25">
+  - Tar   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/tar_gz.jpeg" alt="tar_gz" width="auto" height="25">
+  - Unrar   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/unrar.png" alt="unrar" width="auto" height="25">
+  - Bzip2/Bunzip2
+  - Xz/Unxz
+  - Gzip/Gunzip
+  - Cpio
+  - Dnf
+  - Yum
+  - Dkpg
+  - ZYpp
+  - Aptitude
+  - Joe
+  - Mcedit
+  - Emacs
+  - Ed
+  - Pico
+
 
 ---
 
-### Course Structure
-1. Aula 01: Bem-vindo ao Maravilhoso Mundo do Linux
-2. Aula 02: Primeiros passos no Linux
-3. Aula 03: Obtendo ajuda no Linux
-4. Filesystem Hierarchy Standard e Comandos Indispensáveis 
+<a name="item0"><h3>Course Strcuture:</h3></a>
+1. <a href="#item01">Aula 01: Editores de Texto</a><br>
+2. <a href="#item02">Aula 02: Gerenciamento de Pacotes</a><br>
+3. <a href="#item03">Aula 03: Empacotadores e Compactadores de Arquivos</a><br>
+4. <a href="#item04">Aula 04: Raio-X do seu Hardware e Gerenciamento de Processos</a><br>
 
 ---
 
 ### Objective:
-Esse curso teve como objeto apresentar as ferramentas e comandos básicos do sistema operacional Linux.
+Esse curso teve como objeto abordar os seguintes assuntos do sistema operacional **GNU/Linux**: editores de textos, 
 
 ### Structure:
 - O curso foi dividido em quatro aulas e três laboratórios (dentro da plataforma do curso).
 
 ### Development:
 
-Todo conteúdo foi explicado neste arquivo de README, não sendo necessário nenhum outro arquivo. O acompanhamento do curso foi realizado em uma maquina virtual **Linux Ubuntu** com ambiente gráfico instanciada através do software **VM Virtual Box**. Os laboratórios foram executado na maquina virtual da plataforma do curso.
+Todo conteúdo foi explicado neste arquivo de README, não sendo necessário nenhum outro arquivo. Os laboratórios foram executado na maquina virtual da plataforma do curso.
 
-#### Class 1:
-Na primeira aula foram apresentados alguns assuntos teóricos inicias como: o mercado para o sistema Linux, os tipos de certificaçÕes Linux, a história do Linux, as licenças OpenSource, a evolução do sistema Linux e algumas distribuições existentes. Também foi apresentado o terminal e explicado superficialmente como funciona o sistema linux: representação por arquivos (tudo no Linux é arquivo), aspecto case-sensitive, permissões para executar arquivos, arquivos e diretórios ocultos, divisão em camadas, superusuário (root) e aspecto multitarefa / multiusuário.
+<a name="item01"><h4>Aula 01: Editores de Texto</h4></a>[Back to summary](#item0)
 
-#### Class 2:
-A aula 2 foi inciada com uma explicação dos componentes básicos de uma rede (gateway, broadcast e máscara de rede) e a estrutura de um sistema operacional (Terminais Virtuas-TTY, Display Manager-DM, Sessões, Interface de Linha de Comando-CLI, etc.). Em seguida, foram introduzidos alguns comandos básicos (`shutdown`, `halt -p`, `poweroff`, `init 0`, `init 6`, `reboot`, `exit`, `logout`), foi explicado também como criar novas sessões no mesmo terminal e como sair delas, a diferença entre usuário comum e superusuário. Foi apresentado os conceitos de Shell, variáveis locais, variáveis globais e alias. Também foi ensinado sobre os arquivos de configuração do Shell. Por fim, o último tópico foi com relação aos caminhos e diretórios do Linux, utilizando comandos como `ls`, `cd`, `pwd`, entre outros.
+Na primeira aula deste curso, que foi teórica, foi abordado sobre os editores de textos do sistema operacional **Linux**. Foi explicado sobre os principais editores de texto existentes para sistemas GNU/Linux: **Vi**, **Vim**, **Nano**, **Joe**, **Pico**, **Mcedit**, **Ed** e **Emacs**. Desses citados, foi apresentado os comandos e atalhos do **Nano** que é o editor de texto padrão do **Debian** e as distribuições baseadas nele. Também foi mostrado comandos e atalhos do editor de texto **Vim** que é a versão aprimorada do editor **Vi**. O **Vim** tem uma particularidade que é essencial para o aprendizado, que são seus modos de trabalho: modo de comandos e modo de edição. No modo de comando, o **Vim** é utilizado para manipular o arquivo, podendo executar tarefas de automação, como copiar ou apagar uma sequência de linhas, ou tarefas de gerenciamento do próprio arquivo, como salvar o arquivo simplesmente ou salvá-lo com nome e caminho diferentes, entre outras tarefas. Já no modo de edição é quando o texto será realmente escrito.
 
-#### Class 3:
+<a name="item02"><h4>Aula 02: Gerenciamento de Pacotes</h4></a>[Back to summary](#item0)
 
-Na terceira aula 3, o primeiro conteúdo apresentado foi as formas de documentação, que podem ser três: Howto's, Manuais e Documentação. No segundo conteúdo foi utilizado alguns comandos de ajuda como `help`, `apropos` e `whatis`. No assunto seguinte, foi explicado sobre o comando `man`, que guarda os manuais mais completos sobre determinados comandos, sendo divididos em nove pastas. O próximo conteúdo exibiu os comandos de informação `info`, `whereis` e `which`, além de apresentar outros programas como `yelp`, com ele é possível acessar manuais de forma gráfica, desde que esteja em uma distribuição Linux com ambiente gráfico. O software `xman`, que é um front-end para o comando `man`, que tenta facilitar o acesso as `man pages`, também através de uma interface gráfica.
+Na segunda aula que também foi teórica, foi explicado sobre o gerenciamento de pacotes e mostrado alguns dos principais gerenciados de pacotes e para quel distribuição **Linux** eles são. O **Apt-Get** e **Aptitude** são gerenciadores de alto nível para distribuições baseada em **Debian**, enquanto o **Dkpg** é o gerenciador padrão de baixo nível para essa distribuição.  O **Yum** que é bastante parecido com os gerenciadores apt-get e aptitude, é usado nas distribuições **Red Hat**. Já o **Dnf** é a ferramenta de gerenciamento de pacotes usada no **Fedora**, é um fork do yum. Também foi apresentado os principais comandos desses softwares e onde ficam armazenados seu arquivo de configuração e os repositórios instalados por eles.
 
-#### Class 4:
+<a name="item03"><h4>Aula 03: Empacotadores e Compactadores de Arquivos</h4></a>[Back to summary](#item0)
 
-Na última aula, foi explicado sobre o **File Hierarchy Standard (FHS)** e a estrutura principal de diretórios do sistema, definindo cada diretório da raíz. Também foi mostrado alguns caracteres coringas que podem ser utilizados com os comandos, alguns deles são `*`, `!`, `?` e `[]`. No último conteúdo foi explorado o comando `find` com diversas flags existentes.
+Na terceira aula, mais uma aula teórica, foi abordado sobre os softwares empacotadores e compactadores e seus principais comandos. Entre os softwares empacotadores foi apresentado o **Tar** e o **Cpio**. O **Tar** pode ser utilizado junto com compactadores, logo o arquivo é empacotado e compactado. O empacotamento é o ato de aglutinar arquivos e diretórios em um único arquivo. Já a compressão/compactação toma um conjunto de dados e codifica-o de uma maneira que permita seu armazenamento num espaço menor. Entre os compactadores foi explicado sobre o **Gzip** e o **Bzip2**. Ambos possuem um comando adicional só para a realizar a descompactação/descompressão que é utilizando o **Gunzip** e **Bunzip2**. Também foi mostrado o utilitário **Xz** que é utilizado para compressão, enquanto o **Unxz** realiza a descompressão. Por fim, foi explicado sobre backup e os três tipos existentes: backup completo, bakcup incremental e bakcup diferencial. O backup completo salva todos os dados, independente de já terem sido salvos ou não em backups anteriores, portanto os objetos são armazenados completamente. Os backups incremental e diferencial podem ser definidos pela sua relação com o último backup completo realizado. O backup diferencial salva as diferenças em relação ao backup completo, de forma que serão salvos, em cada backup diferencial, os dados adicionais ao último backup completo.
+
+<a name="item04"><h4>Aula 04: Raio-X do seu Hardware e Gerenciamento de Processos</h4></a>[Back to summary](#item0)
+
+
+
+
 
 #### Lab 1: 15:03
 
-Com a conclusão da primeira e segunda aula, foi realizado o laboratório 1, onde foram executados os seguintes comandos: `pwd`, `man ls`, `cd`, `cd -`, `apropos print`, `clear`, `ls /usr/share/man`, `fc -l -3`, `cd /`, `which halt` e `shutdown -r 15`.
+Com a conclusão da primeira, foi realizado o laboratório 1, onde foram executados algumas ações utilizando alguns comandos. Primeiro foi criado um arquivo de texto com o software editor de texto **Vim**, escrevendo uma mensagem nele, salvando e fechando o arquivo. Depois, foi novamente aberto o arquivo e no modo de comandos (digitar `esc` para esse modo) foi digitado o comando `:%s/Software/Source/g` para alterar a palavra `Software` por `Source`. No exercício seguinte foi aberto o arquivo de novo no modo de comandos, copiado e colado a primeira linha com o comando `yyp`, e então digitando o comando `:1;2y` foi copiado o intervalo da linha 1 até a 2 e colado esse intervalo com `p`, salvando e saindo do arquivo com o comando `:wq`. Continuando, foi aberto o arquivo e no modo de comandos digitado `?4Linux` para procurar esse conjunto de caracteres de baixo para cima, confirmando com `enter` e subindo com o `n`. Novamente no arquivo no modo de comandos foi utilizado o comando `:set hlsearch` que serve para localizar palavras iguais. Já com o comando `:!cat /etc/issue.net` foi inserido o comando `cat /etc/issue.net` no final do arquivo. Por fim, foi criado um novo arquivo com o **Vim** e ativado o modo de sytanx com o comando `: sytanx on`, e então foi escrito um comando python.
 
-#### Lab 2: 11:21
+#### Lab 2: 12:03
 
-Com a conclusão da terceira aula, foi realizado o laboratório 2, onde foram executados os seguintes comandos: `touch /tmp/auditoria.log`, `mkdir /etc/skel/Documentos`, `mkdir /etc/skel/Planilhas`, `mkdir /etc/skel/Lixeira`, `ls -R /etc/skel`, `ls -a /etc`, `cp /var/log/*.log /tmp`, `cp /etc/profile /tmp`, `mv /tmp/profile /tmp/perfil`, `find /etc/*.conf` e `rm -rf /tmp/*`.
+Com a conclusão da segunda aula, foi realizado o laboratório 2. Neste laboratório foi inserido um repositório na soruces.list, em seguida, foi executado os comandos `apt-get update` para atualização dos pacotes e `apt-get upgrade` para atualização do sistema. Com o comando `apt-get remove nmap` foi desinstalado o software **Nmap**. Com o comando `apt-get clean` foi realizado a limpeza do cache do **Apt-Get**. Na sequência, com o comando `aptitude search make` foi localizado o pacote **Make**. Já com o comando `aptitude show make` foi exibindo as informações desse pacote. Com o comando `aptitude install figlet` foi instalado o pacote **Figlet**. Enquanto com o comando `aptitude purge ntp`, o ntp foi removido. Por fim, com o comando `aptitude -f install` foi corrijido as dependências de instalação dos pacotes caso houvesse algum erro.
 
-#### Lab 3: 11:00
+#### Lab 3: 06:28
 
-Com a conclusão da quarta aula, foi realizado o último laboratório, onde foram executados os seguintes comandos: `cat /etc/passwd | wc -l`, `w`, `uname -r`, `df -h`, `file /etc/passwd`, `file /usr/bin/passwd`, `env`, `free -m` e `echo $HISTSIZE`.
+Com a conclusão da quarta aula foi realizado o último laboratório. Com o comando `pstree` foi exibido os processos em formato de árvore.
+
+ps aux filtra as informações sobre os processos
+
+com ps aux, encontre o pid do processo `tail -f /dev/random para prioridade 10` e renice -n 10 pid
+
+pausar o mesmo processo ps aux e kill -19 pid
+
+listar os processos em segundo plano -  jobs
+
+Execute o comando para enviar o processo tail -f /dev/random para o primeiro plano e interrompa sua execução   jobs   e   fg 2 e interrompe ele
+
+Execute o comando e o deixe rodando em segundo plano para continuar executando o comando ping após o fechamento da sessão
+nohup ping 4linux.com.br &
+
+Execute o comando para exibir informações do usuário que executou o ping
+fuser -u /bin/ping
