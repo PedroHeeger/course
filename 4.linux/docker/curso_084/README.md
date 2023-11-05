@@ -1,9 +1,9 @@
-# Linux Essentials   <img src="./0-aux/logo_course.jpg" alt="curso_083" width="auto" height="45">
+# Containers Fundamentals   <img src="./0-aux/logo_course.jpg" alt="curso_084" width="auto" height="45">
 
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">4.Linux   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/4.linux.png" alt="4.linux" width="auto" height="25"></a>   
-### Software/Subject: <a href="../">linux   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="linux" width="auto" height="25"></a>
-### Course: <a href="./">curso_083 (Linux Essentials)   <img src="./0-aux/logo_course.jpg" alt="curso_083" width="auto" height="25"></a>
+### Software/Subject: <a href="../">docker   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="docker" width="auto" height="25"></a>
+### Course: <a href="./">curso_084 (Containers Fundamentals)   <img src="./0-aux/logo_course.jpg" alt="curso_084" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/os/linux/(23-08-22)%20Linux%20Fundamentals%20PH%204.Linux.pdf">Certificate</a>
 
@@ -74,29 +74,15 @@ Todo conteúdo foi explicado neste arquivo de README, não sendo necessário nen
 
 <a name="item01"><h4>Aula 01: Editores de Texto</h4></a>[Back to summary](#item0)
 
-Na primeira aula deste curso, que foi teórica, foi abordado sobre os editores de textos do sistema operacional **Linux**. Foi explicado sobre os principais editores de texto existentes para sistemas GNU/Linux: **Vi**, **Vim**, **Nano**, **Joe**, **Pico**, **Mcedit**, **Ed** e **Emacs**. Desses citados, foi apresentado os comandos e atalhos do **Nano** que é o editor de texto padrão do **Debian** e as distribuições baseadas nele. Também foi mostrado comandos e atalhos do editor de texto **Vim** que é a versão aprimorada do editor **Vi**. O **Vim** tem uma particularidade que é essencial para o aprendizado, que são seus modos de trabalho: modo de comandos e modo de edição. No modo de comando, o **Vim** é utilizado para manipular o arquivo, podendo executar tarefas de automação, como copiar ou apagar uma sequência de linhas, ou tarefas de gerenciamento do próprio arquivo, como salvar o arquivo simplesmente ou salvá-lo com nome e caminho diferentes, entre outras tarefas. Já no modo de edição é quando o texto será realmente escrito.
-
 <a name="item02"><h4>Aula 02: Gerenciamento de Pacotes</h4></a>[Back to summary](#item0)
 
-Na segunda aula que também foi teórica, foi explicado sobre o gerenciamento de pacotes e mostrado alguns dos principais gerenciados de pacotes e para quel distribuição **Linux** eles são. O **Apt-Get** e **Aptitude** são gerenciadores de alto nível para distribuições baseada em **Debian**, enquanto o **Dkpg** é o gerenciador padrão de baixo nível para essa distribuição.  O **Yum** que é bastante parecido com os gerenciadores apt-get e aptitude, é usado nas distribuições **Red Hat**. Já o **Dnf** é a ferramenta de gerenciamento de pacotes usada no **Fedora**, é um fork do yum. Também foi apresentado os principais comandos desses softwares e onde ficam armazenados seu arquivo de configuração e os repositórios instalados por eles.
 
 <a name="item03"><h4>Aula 03: Empacotadores e Compactadores de Arquivos</h4></a>[Back to summary](#item0)
 
-Na terceira aula, mais uma aula teórica, foi abordado sobre os softwares empacotadores e compactadores e seus principais comandos. Entre os softwares empacotadores foi apresentado o **Tar** e o **Cpio**. O **Tar** pode ser utilizado junto com compactadores, logo o arquivo é empacotado e compactado. O empacotamento é o ato de aglutinar arquivos e diretórios em um único arquivo. Já a compressão/compactação toma um conjunto de dados e codifica-o de uma maneira que permita seu armazenamento num espaço menor. Entre os compactadores foi explicado sobre o **Gzip** e o **Bzip2**. Ambos possuem um comando adicional só para a realizar a descompactação/descompressão que é utilizando o **Gunzip** e **Bunzip2**. Também foi mostrado o utilitário **Xz** que é utilizado para compressão, enquanto o **Unxz** realiza a descompressão. Por fim, foi explicado sobre backup e os três tipos existentes: backup completo, bakcup incremental e bakcup diferencial. O backup completo salva todos os dados, independente de já terem sido salvos ou não em backups anteriores, portanto os objetos são armazenados completamente. Os backups incremental e diferencial podem ser definidos pela sua relação com o último backup completo realizado. O backup diferencial salva as diferenças em relação ao backup completo, de forma que serão salvos, em cada backup diferencial, os dados adicionais ao último backup completo.
+
 
 <a name="item04"><h4>Aula 04: Raio-X do seu Hardware e Gerenciamento de Processos</h4></a>[Back to summary](#item0)
 
-Na última aula do curso, foi explicado sobre como é organizado o hardware de um sistema operacional **GNU/Linux**. Entre os pontos explanados, foi apresentado o subdiretório `/dev`
-que é um sistema de arquivos especial onde estão localizados todos os arquivos referentes aos dispositivos do computador, exceto a interface de rede, manipulada diretamente
-no nível do kernel. Fora ela, praticamente todos os dispositivos de hardware têm um arquivo correspondente no diretório `/dev`. Também foi comentado sobre os arquivos de dispositivos, no qual um dispositivo é acessado por meio de seu respectivo arquivo de dispositivo no diretório `/dev`, e como são organizados os dispositivos de armazenamento. Outro ponto da aula que foi explicado foi a diferença entre os gerenciadores de dispositivos desse sistema operacional, o `udev` e o `devfs`. Com relação ao sistemas de arquivos foi ensiando sobre a sua estrutura básica e como é feito o gerenciamento através de ferramentas específicas.
-
-Já sobre os processos, primeiramente é importante definir o que é um processo. Um processo pode ser um programa ou comando que, ao ser executado, passa a consumir determinados recursos do sistema e de hardware. Sempre que houver o consumo de algum tipo de recurso por parte de alguma aplicação, programa, comando, etc., teremos, então, um processo.
-
-
-Os comandos udevmonitor ou udevadm monitor,
-dependendo da versão do sistema, permitem monitorar os eventos armazenados no sistema
-de arquivos lógico chamado SysFS, onde são registradas as informações de identificação dos
-dispositivos.
 
 
 
