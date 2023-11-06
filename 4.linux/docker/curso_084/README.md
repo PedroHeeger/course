@@ -22,6 +22,8 @@
   - Oracle VM VirtualBox   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/vm_virtualbox.png" alt="vm_virtualbox" width="auto" height="25">
 - Cloud Services:
   - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
+- Containerization: 
+  - Docker   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="docker" width="auto" height="25">
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
   - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
@@ -39,55 +41,77 @@
 - Tools:
   - Advanced Package Tool (Apt)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/apt.png" alt="apt" width="auto" height="25">
   - Advanced Package Tool (Apt-Get)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/apt-get.jpg" alt="apt-get" width="auto" height="25">
-  - Aptitude   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/aptitude.webp" alt="aptitude" width="auto" height="25">
-  - Bzip2/Bunzip2   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/bzip2.png" alt="bzip2" width="auto" height="25">
-  - Cpio   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/cpio.webp" alt="cpio" width="auto" height="25">
-  - Dandified YUM (DNF)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/dnf.jpeg" alt="dnf" width="auto" height="25">
-  - DPKG   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/dpkg.webp" alt="dpkg" width="auto" height="25">
-  - Gzip/Gunzip   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/gzip.png" alt="gzip" width="auto" height="25">
   - Tar   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/tar.jpeg" alt="tar" width="auto" height="25">
   - Unrar   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/unrar.png" alt="unrar" width="auto" height="25">
-  - XZ Utils/Unxz   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/xz.png" alt="xz" width="auto" height="25">
-  - Yellowdog Updater Modified (YUM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/yum.jpg" alt="yum" width="auto" height="25">
-  - Zen / YaST Packages Patches Patterns Products (Zypp)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/zypp.webp" alt="zypp" width="auto" height="25">
-
+  
 ---
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
-1. <a href="#item01">Aula 01: Editores de Texto</a><br>
-2. <a href="#item02">Aula 02: Gerenciamento de Pacotes</a><br>
-3. <a href="#item03">Aula 03: Empacotadores e Compactadores de Arquivos</a><br>
-4. <a href="#item04">Aula 04: Raio-X do seu Hardware e Gerenciamento de Processos</a><br>
-5. <a href="#item05">Laboratórios</a><br>
+1. <a href="#item01">Aula 01: Introdução</a><br>
+2. <a href="#item02">Aula 02: Contêiner</a><br>
+3. <a href="#item03">Aula 03: Mercado</a><br>
+4. <a href="#item04">Aula 04: Microsserviços</a><br>
+5. <a href="#item05">Aula 05: O SysAdmin, o Programador e o DBA</a><br>
+6. <a href="#item06">Aula 06: Docker - Teoria</a><br>
+7. <a href="#item07">Aula 07: Docker - Primeiros Passos</a><br>
+8. <a href="#item08">Aula 08: Docker - Caminhando Sozinho</a><br>
+9. <a href="#item09">Aula 09: Final</a><br>
 
 ---
 
 ### Objective:
-Esse curso teve como objeto abordar os seguintes assuntos do sistema operacional **GNU/Linux**: editores de textos, gerenciadores de pacotes, empacotadores e compactadores de arquivos, gerenciamento de processos e como é organizado o sistema operacional **GNU/Linux**. 
+Esse curso teve como objeto abordar sobre o assunto container, explicando seu conceito e como funcionam os containers, tendo como foco a principal ferramenta que é o **Docker**.
 
 ### Structure:
-- O curso foi dividido em quatro aulas e três laboratórios (dentro da plataforma do curso).
+- O curso foi dividido em nove aulas.
 
 ### Development:
 
 Todo conteúdo foi explicado neste arquivo de README, não sendo necessário nenhum outro arquivo. Os laboratórios foram executado na maquina virtual da plataforma do curso.
 
-<a name="item01"><h4>Aula 01: Editores de Texto</h4></a>[Back to summary](#item0)
+<a name="item01"><h4>Aula 01: Introdução</h4></a>[Back to summary](#item0)
 
-<a name="item02"><h4>Aula 02: Gerenciamento de Pacotes</h4></a>[Back to summary](#item0)
+A primeira aula foi teórica assim como todas as outras do curso, no qual foi apresentado o assunto do curso que foi sobre containers, cujo o foco seria na principal ferramenta de containers hoje no mercado, o **Docker**. Contudo, existem outras ferramentas equivalentes ao Docker como o **LXD** e o **Podman**, além de ferramentas de outras categorias como o **Containerd**, **Katacontainer** e **Cri-o**. Estas estão atreladas a um tipo de arquitetura mais complexa, geralmente distribuída e possuem um propósito diferente.
 
+<a name="item02"><h4>Aula 02: Contêiner</h4></a>[Back to summary](#item0)
 
-<a name="item03"><h4>Aula 03: Empacotadores e Compactadores de Arquivos</h4></a>[Back to summary](#item0)
+Na aula 2 foi explicado sobre o conceito de containers que são pequenos pacotes de software com todas as dependências dentro de si, leves e fáceis de mover entre os mais variados tipos de infraestrutura. Os containers são baseados em imagens que possuem camadas que podem ser compartilhadas entre si. Logo, foram abordados também os conceitos de imagens e camadas. Foi explanado a diferença entre maquinas virtuais e containers, como que é a infraestrutura de cada uma dels e como elas funcionam, sendo a maior diferença entre elas, o seu tamanho que o container é bem mais leve. Por fim, foi explicado porque o nome container foi adotado para essa tecnologia, ou melhor, um conjunto de tecnologias do kernel do **Linux**.
 
-
-
-<a name="item04"><h4>Aula 04: Raio-X do seu Hardware e Gerenciamento de Processos</h4></a>[Back to summary](#item0)
-
+<a name="item03"><h4>Aula 03: Mercado</h4></a>[Back to summary](#item0)
 
 
 
+<a name="item04"><h4>Aula 04: Microsserviços</h4></a>[Back to summary](#item0)
 
-<a name="item05"><h4>Laboratórios</h4></a>[Back to summary](#item0)
+
+<a name="item05"><h4>Aula 05: O SysAdmin, o Programador e o DBA</h4></a>[Back to summary](#item0)
+
+
+<a name="item06"><h4>Aula 06: Docker - Teoria</h4></a>[Back to summary](#item0)
+
+
+<a name="item07"><h4>Aula 07: Docker - Primeiros Passos</h4></a>[Back to summary](#item0)
+
+
+
+<a name="item08"><h4>Aula 08: Docker - Caminhando Sozinho</h4></a>[Back to summary](#item0)
+
+
+
+
+<a name="item09"><h4>Aula 09: Final</h4></a>[Back to summary](#item0)
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##### Lab 1: (15:03)
 Com a conclusão da primeira, foi realizado o laboratório 1, onde foram executados algumas ações utilizando alguns comandos. Primeiro foi criado um arquivo de texto com o software editor de texto **Vim**, escrevendo uma mensagem nele, salvando e fechando o arquivo. Depois, foi novamente aberto o arquivo e no modo de comandos (digitar `esc` para esse modo) foi digitado o comando `:%s/Software/Source/g` para alterar a palavra `Software` por `Source`. No exercício seguinte foi aberto o arquivo de novo no modo de comandos, copiado e colado a primeira linha com o comando `yyp`, e então digitando o comando `:1;2y` foi copiado o intervalo da linha 1 até a 2 e colado esse intervalo com `p`, salvando e saindo do arquivo com o comando `:wq`. Continuando, foi aberto o arquivo e no modo de comandos digitado `?4Linux` para procurar esse conjunto de caracteres de baixo para cima, confirmando com `enter` e subindo com o `n`. Novamente no arquivo no modo de comandos foi utilizado o comando `:set hlsearch` que serve para localizar palavras iguais. Já com o comando `:!cat /etc/issue.net` foi inserido o comando `cat /etc/issue.net` no final do arquivo. Por fim, foi criado um novo arquivo com o **Vim** e ativado o modo de sytanx com o comando `: sytanx on`, e então foi escrito um comando python.
