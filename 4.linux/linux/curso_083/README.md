@@ -90,16 +90,7 @@ Na última aula do curso, foi explicado sobre como é organizado o hardware de u
 que é um sistema de arquivos especial onde estão localizados todos os arquivos referentes aos dispositivos do computador, exceto a interface de rede, manipulada diretamente
 no nível do kernel. Fora ela, praticamente todos os dispositivos de hardware têm um arquivo correspondente no diretório `/dev`. Também foi comentado sobre os arquivos de dispositivos, no qual um dispositivo é acessado por meio de seu respectivo arquivo de dispositivo no diretório `/dev`, e como são organizados os dispositivos de armazenamento. Outro ponto da aula que foi explicado foi a diferença entre os gerenciadores de dispositivos desse sistema operacional, o `udev` e o `devfs`. Com relação ao sistemas de arquivos foi ensiando sobre a sua estrutura básica e como é feito o gerenciamento através de ferramentas específicas.
 
-Já sobre os processos, primeiramente é importante definir o que é um processo. Um processo pode ser um programa ou comando que, ao ser executado, passa a consumir determinados recursos do sistema e de hardware. Sempre que houver o consumo de algum tipo de recurso por parte de alguma aplicação, programa, comando, etc., teremos, então, um processo.
-
-
-Os comandos udevmonitor ou udevadm monitor,
-dependendo da versão do sistema, permitem monitorar os eventos armazenados no sistema
-de arquivos lógico chamado SysFS, onde são registradas as informações de identificação dos
-dispositivos.
-
-
-
+Já sobre os processos foi explicado a definição de um processo, que pode ser um programa ou comando que, ao ser executado, passa a consumir determinados recursos do sistema e de hardware. Sempre que houver o consumo de algum tipo de recurso por parte de alguma aplicação, programa, comando, etc., teremos, então, um processo. Foram apresentados os seguintes comandos relacionados a processo e como utilizá-los: `top`, `htop`, `ps`, `pidof`, `pstree`, `jobs`, `bg`, `fg`, `kill`, `killall`, `nice`, `renice` e `nohup`. 
 
 <a name="item05"><h4>Laboratórios</h4></a>[Back to summary](#item0)
 

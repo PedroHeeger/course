@@ -9,4 +9,4 @@
 This folder refers to all the courses I took on the 4.Linux platform regarding the Docker software.
 
 ### Courses:
-- <a href="./curso_084">curso_084 (Containers Fundamentals)   <img src="./curso_084-aux/logo_course.jpg" alt="curso_084" width="auto" height="25"></a>
+- <a href="./curso_084">curso_084 (Containers Fundamentals)   <img src="./curso_084/0-aux/logo_course.jpg" alt="curso_084" width="auto" height="25"></a>
