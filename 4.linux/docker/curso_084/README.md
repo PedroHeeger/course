@@ -79,15 +79,26 @@ Na aula 2 foi explicado sobre o conceito de containers que são pequenos pacotes
 
 <a name="item03"><h4>Aula 03: Mercado</h4></a>[Back to summary](#item0)
 
-
+Na terceira aula a temática foi referente ao mercado de containers, onde foram apresentadas diversas pesquisas de como está o cenário do uso de containers e explicado o motivo de adotar containers do ponto de vista do negócio. A utilização de containers propicia economia e agilidade sem sacrificar a estabilidade. Foi realizado a introdução do conceito de orquestradores de containers, que são ferramentas capazes de gerenciar e monitorar os containers com a capacidade de movê-los de um lugar para o outro caso algo errado aconteça, balancear a carga entre as réplicas existentes, fornecer uma espécie de “auto discovery” (descoberta automática) para novos serviços, entre outras coisas. Por fim, foi apresentada a ferramenta mais utilizada hoje no mercado de orquestração que é o **Kubernetes**. 
 
 <a name="item04"><h4>Aula 04: Microsserviços</h4></a>[Back to summary](#item0)
 
+Na aula de número 4 deste curso foi abordado sobre as arquiteturas de desenvolvimento. A primeira delas, foi a arquitetura monolítica que é muito comum e quase sempre mais simples de conceber. Este tipo de arquitetura é como se todo o software fosse um grande pacote com tudo junto e esse é o grande problema desta arquitetura, pois caso haja qualquer problema com a aplicação, todo software terá que ser alterado. A segunda arquitetura é a orientada a serviços que surgiu antes dos anos 2000 e é uma abordagem para separar as aplicacões monolíticas em serviços independentes que utilizou uma forma de comunicação entre processos chamada SOAP (Simple Object Access Protocol). Contundo essa forma de comunicação não possuía um padrão, dificultando alterações e novas implementações. Para solucionar esse problema surgiu a figura do ESB (Enterprise Service Bus), uma espécie de tradutor comum para padronizar essa comunicação, porém o mesmo passou a ser um gargalo entre as aplicações e suas mensagens. 
+
+Diversas abordagens para evitar o problema do ESB surgiram, mas a que acabou se tornando uma forma de implementação foi a arquitetura de microsserviços. Os microsserviços são uma implementação específica do SOA em que os serviços conversam diretamente entre si, sem a utilização do ESB, no lugar dele utiliza um protocolo e formato de dados padrão conhecido como APIs RET. Este tipo de arquitetura permite fragmentar a infraestrutura em pedaços, muito mais fácil e econômico para gerenciar. Os containers facilitaram drasticamente a adoção deste tipo de arquitetura.
 
 <a name="item05"><h4>Aula 05: O SysAdmin, o Programador e o DBA</h4></a>[Back to summary](#item0)
 
+Nesta aula foi explicado qual papel de um Sysadmin, de um Programador e de um DBA e o porque os três precisam ter conhecimento de containers. O papel do sysadmin, ou o time de operações, é trabalhar com os orquestradores, como **Kubernetes** ou **Docker Swarm**, e também trabalhar com as máquinas que possuem contêineres soltos, que apesar de não ser o cenário ideal, é bastante comum. O papel do programador, ou do time de desenvolvimento, é criar imagens e testá-las. Isso inclui praticamente todos os comandos e possibilidades disponíveis no **Docker**. Já o DBA, apesar de ser um pouco menos, também precisa ter conhecimento de containers já que nos últimos anos as comunidades do **MySQL**, **MongoDB** e **PostgreSQL** criaram formas de automatizar e gerenciar os bancos dentro do Kubernetes através do que chamamos de Operators, controlando-os de uma maneira mais inteligente e facilitando tarefas como backups e replicação.
 
 <a name="item06"><h4>Aula 06: Docker - Teoria</h4></a>[Back to summary](#item0)
+
+Nesta aula foi dado uma breve introdução sobre o software **Docker** foco deste curso e a ferramenta mais utilizada do mercado quando o assunto é containers. Foi explicado que um 
+Docker utiliza de algumas tecnologias presentes no kernel do Linux como `Namespaces`, `Cgroups` e `Union Filesystems (UnionFS)` para criar containers através de imagens preexistentes. A imagem, por sua vez, é imutável e pode ser formada por diversas camadas que podem ser compartilhadas entre si, no qual essas camadas são de apenas leitura (R). A camada de leitura e escrita (RW) é justamente a camada do container quando ele é criado, sendo possível criar diversos containers a partir de uma mesma imagem. Dentro das imagens há um pequeno sistema operacional que compartilha o kernel com a máquina hospedeira, além da aplicação, binários, bibliotecas e qualquer outro tipo de arquivo especificado durante a criação desta imagem.
+
+Através do `Namespaces` os processos do container ficam isolados do sistema operacional, isso significa que os processos dos containers podem ser vistos da máquina hospedeira, mas os processos da máquina hospedeira não podem ser vistos pelo container. O mesmo funciona para a interface de rede, por padrão um container **Docker** acredita que é o “localhost” e possui sua própria interface de rede física. Mas esta interface pode ser vista da máquina hospedeira como uma interface virtual começando com o prefixo `veth`. O `Union Filesystems (UnionFS)` é um tipo de `Union Mount`, um sistema de arquivos formado por todas as camadas tanto da imagem como do próprio container, sendo este também isolado do sistema de arquivos da maquina hospedeira. Já o `Cgroups` é o responsável por fazer a limitação de recurso computacional, limitação de CPU, limitação de memória.
+
+
 
 
 <a name="item07"><h4>Aula 07: Docker - Primeiros Passos</h4></a>[Back to summary](#item0)
@@ -104,20 +115,3 @@ Na aula 2 foi explicado sobre o conceito de containers que são pequenos pacotes
 
 
 
-
-
-
-
-
-
-
-
-
-##### Lab 1: (15:03)
-Com a conclusão da primeira, foi realizado o laboratório 1, onde foram executados algumas ações utilizando alguns comandos. Primeiro foi criado um arquivo de texto com o software editor de texto **Vim**, escrevendo uma mensagem nele, salvando e fechando o arquivo. Depois, foi novamente aberto o arquivo e no modo de comandos (digitar `esc` para esse modo) foi digitado o comando `:%s/Software/Source/g` para alterar a palavra `Software` por `Source`. No exercício seguinte foi aberto o arquivo de novo no modo de comandos, copiado e colado a primeira linha com o comando `yyp`, e então digitando o comando `:1;2y` foi copiado o intervalo da linha 1 até a 2 e colado esse intervalo com `p`, salvando e saindo do arquivo com o comando `:wq`. Continuando, foi aberto o arquivo e no modo de comandos digitado `?4Linux` para procurar esse conjunto de caracteres de baixo para cima, confirmando com `enter` e subindo com o `n`. Novamente no arquivo no modo de comandos foi utilizado o comando `:set hlsearch` que serve para localizar palavras iguais. Já com o comando `:!cat /etc/issue.net` foi inserido o comando `cat /etc/issue.net` no final do arquivo. Por fim, foi criado um novo arquivo com o **Vim** e ativado o modo de sytanx com o comando `: sytanx on`, e então foi escrito um comando python.
-
-##### Lab 2: (12:03)
-Com a conclusão da segunda aula, foi realizado o laboratório 2. Neste laboratório foi inserido um repositório na soruces.list, em seguida, foi executado os comandos `apt-get update` para atualização dos pacotes e `apt-get upgrade` para atualização do sistema. Com o comando `apt-get remove nmap` foi desinstalado o software **Nmap**. Com o comando `apt-get clean` foi realizado a limpeza do cache do **Apt-Get**. Na sequência, com o comando `aptitude search make` foi localizado o pacote **Make**. Já com o comando `aptitude show make` foi exibindo as informações desse pacote. Com o comando `aptitude install figlet` foi instalado o pacote **Figlet**. Enquanto com o comando `aptitude purge ntp`, o ntp foi removido. Por fim, com o comando `aptitude -f install` foi corrijido as dependências de instalação dos pacotes caso houvesse algum erro.
-
-##### Lab 3: (06:28)
-Com a conclusão da quarta aula foi realizado o último laboratório. Com o comando `pstree` foi exibido os processos em formato de árvore. Já com o comando `ps aux` foram filtradas as informações sobre os processos. Na atividade seguinte foi utilizado o comando `ps aux` novamente para identificar o número do processo (`pid`) `tail -f /dev/random` e alterar a prioridade do processo com o comando `renice -n 10 pid`. Para pausar o processo foi utilizado o comando `kill -19 pid`. Já com o comando `jobs`, todos os processos em segundo plano eram listados. O processo `tail -f /dev/random` que estava em segundo plano ao ser pausado foi enviado de volta para o primeiro plano com o comando `fg 2`, sendo `2` o número do processo listado no comando `jobs`. Como este comando ficava preso, foi utilizado o atalho `Ctrl + C` para interrompe-lo. Na atividade seguinte, foi executado o comando `nohup ping 4linux.com.br &` que ficava rodando em segundo plano. Por fim, com o comando `fuser -u /bin/ping` foi exibido o usuário que executou o comando `ping`.
