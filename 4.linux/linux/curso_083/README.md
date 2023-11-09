@@ -66,11 +66,12 @@
 Esse curso teve como objeto abordar os seguintes assuntos do sistema operacional **GNU/Linux**: editores de textos, gerenciadores de pacotes, empacotadores e compactadores de arquivos, gerenciamento de processos e como é organizado o sistema operacional **GNU/Linux**. 
 
 ### Structure:
-- O curso foi dividido em quatro aulas e três laboratórios (dentro da plataforma do curso).
+A estrutura do curso é formada por:
+- Este arquivo de README.md.
+- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
 
 ### Development:
-
-Todo conteúdo foi explicado neste arquivo de README, não sendo necessário nenhum outro arquivo. Os laboratórios foram executado na maquina virtual da plataforma do curso.
+Este curso foi realizado em quatro aulas e três laboratórios, sendo estes últimos executados na maquina virtual da plataforma do curso.
 
 <a name="item01"><h4>Aula 01: Editores de Texto</h4></a>[Back to summary](#item0)
 

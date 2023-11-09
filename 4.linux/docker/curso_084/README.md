@@ -68,6 +68,7 @@ Esse curso teve como objeto abordar sobre o assunto container, explicando seu co
 
 ### Structure:
 A estrutura do curso (Imagem 01) é formada por:
+- Este arquivo de README.md.
 - Um arquivo `Dockerfile` para criação de uma imagem **Docker**.
 - Um arquivo `docker-compose.yaml` para construção da infraestrutura de containers.
 - A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
