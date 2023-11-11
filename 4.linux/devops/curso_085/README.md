@@ -106,8 +106,9 @@ Esta aula resumiu-se a apenas apresentar algumas ferramentas para cada etapa da 
 
 <a name="item07"><h4>Aula 07: Primeiros Passos com DevOps (Laboratório GitOps)</h4></a>[Back to summary](#item0)
 
+curso085devops
 
-
+ssh-keygen
 
 <a name="item08"><h4>Aula 08: Próximos Passos</h4></a>[Back to summary](#item0)
 
