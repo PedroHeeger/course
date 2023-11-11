@@ -10,11 +10,12 @@ jobs:
 
   lint:
     runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
         with:
-          path: 'devOpsLab-HelloWorld'
+          path: './'
       # - uses: actions/checkout@v2
 
       - name: Set up Python 3.9
@@ -37,14 +38,18 @@ jobs:
   tests:
     needs: lint
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: '4.linux/devops/curso_085/devOpsLab-HelloWorld/'
     strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
         with:
-          path: 'devOpsLab-HelloWorld'
+          path: './'
       # - uses: actions/checkout@v2
 
       - name: Set up Python ${{ matrix.python-version }}
@@ -86,11 +91,12 @@ jobs:
   deploy:
     needs: tests
     runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
         with:
-          path: 'devOpsLab-HelloWorld'
+          path: './'
       # - uses: actions/checkout@v2
 
       - name: Set up Python 3.9
