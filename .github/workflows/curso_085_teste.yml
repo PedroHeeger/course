@@ -52,6 +52,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: List directory contents
+        run: |
+          pwd
+          ls -R    
+
       - name: Upgrade Pip
         run: |
           python -m pip install --upgrade pip
@@ -71,7 +76,7 @@ jobs:
       #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Integrations Test
-        working-directory: course/4.linux/devops/curso_085/devOpsLab-HelloWorld
+        # working-directory: course/4.linux/devops/curso_085/devOpsLab-HelloWorld
         run: |
           python test.py
 
