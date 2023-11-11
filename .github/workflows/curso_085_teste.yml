@@ -54,11 +54,11 @@ jobs:
 
       - name: List directory contents
         run: |
-          pwd  
+          ls -R  
           
-      - name: List directory contents
-        run: |
-          ls -a 
+      # - name: List directory contents
+      #   run: |
+      #     ls -a 
 
       - name: Upgrade Pip
         run: |
@@ -79,7 +79,7 @@ jobs:
       #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Integrations Test
-        # working-directory: course/4.linux/devops/curso_085/devOpsLab-HelloWorld
+        working-directory: 4.linux/devops/curso_085/devOpsLab-HelloWorld
         run: |
           python test.py
 
