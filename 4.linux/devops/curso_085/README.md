@@ -62,6 +62,8 @@ Esse curso teve como objeto abordar sobre o assunto **DevOps** que é uma cultur
 ### Structure:
 A estrutura do curso é formada por:
 - Este arquivo de README.md.
+- A pasta do projeto **Python** fornecida pela plataforma do curso, cujo nome é `devOpsLab-HelloWorld`.
+- O diretório `workflows` contendo o único arquivo de workflow para execução da Pipeline.
 - A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
 
 <div align="Center"><figure>
