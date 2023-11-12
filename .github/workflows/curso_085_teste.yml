@@ -97,7 +97,7 @@ jobs:
 
       - name: Set up Heroku buildpacks
         run: |
-          heroku buildpacks:add heroku/python
+          heroku buildpacks:add --app ${{secrets.HEROKU_APP_NAME}} heroku/python
 
       - name: deploy into heroku
         uses: akhileshns/heroku-deploy@v3.12.12
