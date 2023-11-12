@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   aplicacao:
-    image: flask # ou hectorvido/flask
+    image: pedroheeger/curso084-flask:v1
     environment:
     - 'DB_HOST=banco'
     - 'DB_USER=container'

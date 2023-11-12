@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">docker   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="docker" width="auto" height="25"></a>
 ### Course: <a href="./">curso_084 (Containers Fundamentals)   <img src="./0-aux/logo_course.jpg" alt="curso_084" width="auto" height="25"></a>
 
-#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/os/linux/(23-08-22)%20Linux%20Fundamentals%20PH%204.Linux.pdf">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/os/virtualization/docker/(23-11-09)%20Containers%20Fundamentals%20PH%204.Linux.pdf">Certificate</a>
 
 ---
 
@@ -46,6 +46,8 @@
 - Tools:
   - Alpine Package Keeper (APK)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/apk.webp" alt="apk" width="auto" height="25">
   - Curl   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/curl.png" alt="curl" width="auto" height="25">
+- Frameworks:
+  - Flask   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="flask" width="auto" height="25">
   
 ---
 
@@ -249,7 +251,7 @@ Percebe-se que os dados cadastrados anteriormente já existiam, pois o container
     <figcaption>Imagem 17.</figcaption>
 </figure></div><br>
 
-A última etapa foi realizar esse mesmo projeto agora com a utilização do **Docker Compose** que é um arquivo **YAML** onde é declarado toda a estrutura de containers. Dessa forma, tanto o container da aplicação como do de banco de dados foram criados a partir do arquivo [docker-compose.yaml](docker-compose.yaml). As definições de imagens, variáveis de ambiente, port bind e compartilhamento de volumes foi tudo realizado direto no arquivo. O único ponto que precisa de atenção foi a definição da imagem da aplicação, que, neste momento, como já tinha a imagem da aplicação no meu repositório, foi ela a imagem utilizada `pedroheeger/curso084-flask:v1`. Caso não tenha, será necessário fazer o build da imagem e enviá-la para um repositório no **Docker Hub**.
+A última etapa foi realizar esse mesmo projeto agora com a utilização do **Docker Compose** que é um arquivo **YAML** onde é declarado toda a estrutura de containers. Dessa forma, tanto o container da aplicação como do de banco de dados foram criados a partir do arquivo [docker-compose.yaml](docker-compose.yaml). As definições de imagens, variáveis de ambiente, port bind e compartilhamento de volumes foi tudo realizado direto no arquivo. O único ponto que precisa de atenção foi a definição da imagem da aplicação, que, neste momento, como já tinha a imagem da aplicação no meu repositório, foi ela a imagem utilizada (`pedroheeger/curso084-flask:v1`). Caso não tenha, será necessário fazer o build da imagem e enviá-la para um repositório no **Docker Hub**.
 
 Para executar o arquivo `docker-compose.yaml`, uma nova sessão na plataforma **Docker Playground** foi gerada e com o editor de texto **Vim** foi criado o arquivo compose. No diretório onde este arquivo estava armazenado foi executado o comando `docker-compose up` para implantar os containers. O comando `docker-compose up -d` realiza o mesmo procedimento, só que envia o processo para background, deixando o terminal livre para uso. Já o comando `docker-compose ps` lista todos os compose criados conforme visualizado na imagem 18.
 
@@ -258,7 +260,7 @@ Para executar o arquivo `docker-compose.yaml`, uma nova sessão na plataforma **
     <figcaption>Imagem 18.</figcaption>
 </figure></div><br>
 
-Por padrão, ao criar os containers, uma rede também é construída para conectar os serviços da infraestrutura, assim o container da aplicação consegue se comunicar com o banco pelo seu nome, sem a necessidade de utilizar endereço de IP. Também foi necessário liberar a porta `5000`, onde a aplicação estava rodando para que fosse possível acessá-la pelo navegador da maquina física, conforme imagem 19. Por fim, para remover a estrutura de containers desenvolvida através do arquivo compose foi utilizado o comando `docker-compose down`.
+Por padrão, ao criar os containers, uma rede também é construída para conectar os serviços da infraestrutura, assim o container da aplicação consegue se comunicar com o banco pelo seu nome, sem a necessidade de utilizar endereço de IP. Também foi necessário liberar a porta `5000`, onde a aplicação estava rodando para que fosse possível acessá-la pelo navegador da maquina física, conforme imagem 19. Observe que como estava sendo executada pela primeira vez, nenhuma requisição tinha sido feita, logo o container de banco de dados não possuía nenhum dado. Por fim, para remover a estrutura de containers desenvolvida através do arquivo compose foi utilizado o comando `docker-compose down`. Também foi removido a imagem do **Docker Hub**, caso deseje executar esse projeto, deve-se realizar o build da imagem da aplicação anteriormente.
 
 <div align="Center"><figure>
     <img src="./0-aux/img19.png" alt="img19"><br>
