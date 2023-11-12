@@ -91,8 +91,8 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Set Buildpack
-        run: heroku buildpacks:set heroku/python --app ${{secrets.HEROKU_APP_NAME}}
+      # - name: Set Buildpack
+      #   run: heroku buildpacks:set heroku/python --app ${{secrets.HEROKU_APP_NAME}}
 
       - name: deploy into heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
@@ -100,3 +100,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_USER_EMAIL}}
+          buildpack: heroku/python
