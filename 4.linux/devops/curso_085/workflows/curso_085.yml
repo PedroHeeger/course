@@ -1,21 +1,21 @@
 name: CI - Lint / Tests / Deploy
-# on: [push]
+
 on:
   push:
     branches: ["main"]
     paths:
-      - '4.linux/devops/curso_085/devOpsLab-HelloWorld/**'
+      - '4.linux/devops/curso_085/devOpsLab-HelloWorld/start.txt'
 
 jobs:
 
   lint:
     runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
         with:
-          path: 'course/4.linux/devops/curso_085/devOpsLab-HelloWorld'
-      # - uses: actions/checkout@v2
+          path: './'
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
@@ -32,31 +32,43 @@ jobs:
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --
-          statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
   tests:
     needs: lint
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: '4.linux/devops/curso_085/devOpsLab-HelloWorld/'
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
         with:
-          path: 'course/4.linux/devops/curso_085/devOpsLab-HelloWorld'
-      # - uses: actions/checkout@v2
+          path: './'
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
+      - name: List directory contents
+        run: |
+          ls -R  
+          
+      - name: Upgrade Pip
         run: |
           python -m pip install --upgrade pip
+
+      - name: Install flake8 and pytest
+        run: |
           pip install flake8 pytest
+
+      - name: Install dependencies
+        run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Integrations Test
@@ -66,12 +78,13 @@ jobs:
   deploy:
     needs: tests
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: '4.linux/devops/curso_085/devOpsLab-HelloWorld/'
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
-        with:
-          path: 'course/4.linux/devops/curso_085/devOpsLab-HelloWorld'
-      # - uses: actions/checkout@v2
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
@@ -79,8 +92,9 @@ jobs:
           python-version: 3.9
 
       - name: deploy into heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
+        uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_USER_EMAIL}}
+          appdir: "4.linux/devops/curso_085/devOpsLab-HelloWorld/"
