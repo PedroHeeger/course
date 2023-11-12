@@ -78,6 +78,9 @@ jobs:
   deploy:
     needs: tests
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: '4.linux/devops/curso_085/devOpsLab-HelloWorld/'
 
     steps:
       - name: Checkout do repositório
@@ -94,3 +97,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_USER_EMAIL}}
+          appdir: "4.linux/devops/curso_085/devOpsLab-HelloWorld/"
