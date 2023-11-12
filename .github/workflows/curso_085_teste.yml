@@ -92,7 +92,7 @@ jobs:
           python-version: 3.9
 
       - name: Set Buildpack
-        run: heroku buildpacks:set heroku/python
+        run: heroku buildpacks:set heroku/python --app ${{secrets.HEROKU_APP_NAME}}
 
       - name: deploy into heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
