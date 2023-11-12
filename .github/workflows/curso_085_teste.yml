@@ -91,13 +91,13 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Set up Heroku CLI
-        run: |
-          curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+      # - name: Set up Heroku CLI
+      #   run: |
+      #     curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
       - name: Set up Heroku buildpacks
         run: |
-          heroku buildpacks:set heroku/python
+          heroku buildpacks:add heroku/python
 
       - name: deploy into heroku
         uses: akhileshns/heroku-deploy@v3.12.12
