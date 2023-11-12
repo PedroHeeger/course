@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - '4.linux/devops/curso_085/devOpsLab-HelloWorld/**'
+      - '4.linux/devops/curso_085/devOpsLab-HelloWorld/start.txt'
 
 jobs:
 
@@ -42,7 +42,7 @@ jobs:
         working-directory: '4.linux/devops/curso_085/devOpsLab-HelloWorld/'
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
       - name: Checkout do repositório
