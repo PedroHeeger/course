@@ -95,9 +95,8 @@ jobs:
       #   run: |
       #     curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
-      - name: Set up Heroku buildpacks
-        run: |
-          heroku buildpacks:add --app ${{secrets.HEROKU_APP_NAME}} heroku/python
+      - name: Add Python Buildpack
+        run: heroku buildpacks:add heroku/python --app ${{secrets.HEROKU_APP_NAME}}
 
       - name: deploy into heroku
         uses: akhileshns/heroku-deploy@v3.12.12
