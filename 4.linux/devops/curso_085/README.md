@@ -72,7 +72,7 @@ A estrutura do curso é formada por:
 </figure></div><br>
 
 ### Development:
-Este cuso foi realizado em nove aulas, sendo a aula 9 apenas conclusão e todas as demais aulas teóricas, não havendo aulas práticas.
+Este cuso foi realizado em nove aulas, sendo a aula 9 apenas conclusão, a aula 7 prática e todas as demais aulas teóricas.
 
 <a name="item01"><h4>Aula 01: A Cultura DevOps</h4></a>[Back to summary](#item0)
 
