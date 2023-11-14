@@ -51,8 +51,8 @@
 ---
 
 <h3>Course Strcuture:</h3>
-1. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 01
-2. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 02
+1. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 01   
+2. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 02   
 3. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 03
 
 ---
@@ -73,6 +73,3 @@ Este cuso foi realizado em três aulas, porém todo o projeto já veio pronto. A
 O projeto consistiu em três etapas, sendo cada etapa executada em uma aula. Na primeira aula foi realizado a construção da infraestrutura na cloud da **AWS** através do software **Terraform**. Todos arquivos de código para o provisionamento da infraestrutura foi armazenado na sub-pasta do projeto de nome `iac`. Basicamente, os serviços utilizados na **AWS** foram: **Amazon ECR**, **Amazon EKS**, **Amazon Route53** e **Amazon S3**. Também foi utilizado a plataforma **Terraform Cloud** que é uma espécie de interface gráfica na internet para monitoramento e gerenciamento da infraestrutura construída pelo **Terraform**.
 
 Na segunda aula com a sub-pasta do projeto de nome `pipelines_ci_cd` foram enviados dois arquivos de workflow para o **GitHub** para que os pipelines fossem executados através do **GitHub Actions**. Esses pipelines foram de teste de uma aplicação. Na última aula do curso, foi utilizado o CLI **Kubectl** para interagir da maquina local com o cluster criado na cloud da **AWS** e então criar o `volume`, o `deployment` da aplicação e o `service` a partir de arquivos de manifestos **YAML** elaborados previamente. O cluster pode ser monitorado tanto pelo serviço **Amazon EKS**, onde ele foi criado, como também pela plataforma do **Rancher**. A sub-pasta desta etapa foi a `kubernetes`.
-
-
-
