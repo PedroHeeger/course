@@ -51,8 +51,8 @@
 ---
 
 <h3>Course Strcuture:</h3>
-1. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 01   
-2. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 02   
+1. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 01<br> 
+2. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 02<br>
 3. Jornada DevOps: Do projeto de provisionamento até a aplicação escalável - Dia 03
 
 ---
