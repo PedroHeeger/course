@@ -8,6 +8,10 @@ avanti/devops/curso_089/avanti-masterclass-devops
 
 cloud_treinamentos/aws/curso_080/secrets
 
+cubo_tres/power_bi/curso_091/*
+!cubo_tres/power_bi/curso_091/README.md
+!cubo_tres/power_bi/curso_091/0-aux
+
 empowerdata/excel/curso_065/*
 !empowerdata/excel/curso_065/README.md
 !empowerdata/excel/curso_065/0-aux
