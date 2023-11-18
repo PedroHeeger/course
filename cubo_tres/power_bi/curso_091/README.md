@@ -56,7 +56,7 @@ A estrutura (Imagem 01) deste curso é composta por:
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
 
 <div align="Center"><figure>
-    <img src="./0-aux/img01.PNG" alt="img01"><br>
+    <img src="./0-aux/img01.png" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
