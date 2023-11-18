@@ -54,7 +54,6 @@ A estrutura (Imagem 01) deste curso é composta por:
 - A pasta `base_dados` com os três arquivos em **Excel** de base de dados para construção dos reports.
 - A pasta `resources` com alguns arquivos de recursos utilizados como backgrounds.
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
-- Obs.: A logomarca do curso foi criada apenas para fins didáticos com o uso do site de inteligência artificial **Brandmark**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img01.PNG" alt="img01"><br>
