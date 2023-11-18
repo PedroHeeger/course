@@ -1,7 +1,7 @@
-# Cubo Três  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_três.jpg" alt="cubo_três" width="auto" height="45"></a>
+# Cubo Três  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_três.jpeg" alt="cubo_três" width="auto" height="45"></a>
 
 ### Repository: [course](../)
-### Platform: <a href="./">cubo_três   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_três.jpg" alt="cubo_três" width="auto" height="25"></a>
+### Platform: <a href="./">cubo_três   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_três.jpeg" alt="cubo_três" width="auto" height="25"></a>
 
 ---
 

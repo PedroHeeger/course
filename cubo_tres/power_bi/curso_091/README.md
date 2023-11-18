@@ -1,7 +1,7 @@
 # Semana Power BI   <img src="./0-aux/logo_course.png" alt="curso_091" width="auto" height="45">
 
 ### Repository: [course](../../../)
-### Platform: <a href="../../">cubo_tres   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_tres.jpg" alt="cubo_tres" width="auto" height="25"></a>
+### Platform: <a href="../../">cubo_tres   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_tres.jpeg" alt="cubo_tres" width="auto" height="25"></a>
 ### Software/Subject: <a href="../">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 ### Course: <a href="./">curso_091 (Semana Power BI)   <img src="./0-aux/logo_course.png" alt="curso_091" width="auto" height="25"></a>
 
@@ -41,7 +41,7 @@
 1. <a href="#item01">SEMANA POWER BI - Aula 1: O Poder dos Dados + Dashboard Comercial</a><br>
 2. <a href="#item02">SEMANA POWER BI - Aula 2: Simulação de Cenários + Dashboard de Análise de Produtos</a><br>
 3. <a href="#item03">SEMANA POWER BI - Aula 3: Recursos Interativos + Dashboard de Fluxo de Caixa</a><br>
-4. <a href="#item04">SEMANA POWER BI - Programa Detalhado de Desenvolvimento em Power BI</a><br>
+4. SEMANA POWER BI - Programa Detalhado de Desenvolvimento em Power BI
 
 ---
 
@@ -51,8 +51,8 @@ O objetivo deste curso foi introduzir sobre o software **Power BI**, apresentand
 ### Structure:
 A estrutura (Imagem 01) deste curso é composta por:
 - Este arquivo de README.md.
-- A pasta [base_dados](./base_dados/) com os três arquivos em **Excel** de base de dados para construção dos reports.
-- A pasta [resources](./resources/) com alguns arquivos de recursos utilizados como backgrounds.
+- A pasta `base_dados` com os três arquivos em **Excel** de base de dados para construção dos reports.
+- A pasta `resources` com alguns arquivos de recursos utilizados como backgrounds.
 - A pasta **0-aux**, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
 - Obs.: A logomarca do curso foi criada apenas para fins didáticos com o uso do site de inteligência artificial **Brandmark**.
 
@@ -66,7 +66,7 @@ Este projeto foi desenvolvido em quatro aulas, sendo a última aula apenas infor
 
 <a name="item01"><h4>SEMANA POWER BI - Aula 1: O Poder dos Dados + Dashboard Comercial</h4></a>[Back to summary](#item0)
 
-Na primeira aula deste curso foi desenvolvido um report comercial no software **Power BI** através da base de dados ([Comercial](./base_dados/Comercial.xlsx)) fornecida pela plataforma do curso em **Excel**. Os dados dessa base foram carregados para o **Power BI Desktop**, onde foram selecionadas as três tabelas desse arquivo (`Vendas`, `Vendedores` e `Produtos`). A tabela `Vendas` era formada pelas seguintes colunas: `Data.Pedido`, `Vendedor`, `Gerente`, `Unidade`, `Cliente`, `Grupo.Cliente`, `Produto`, `Qtde`, `Vl.Unit` e `Vl.Frete`. A tabela `Vendedores`era composta por: `Cod.Vendedor`, `Vendedor`, `Foto`. Já a tabela `Produtos` tinha as colunas: `Cod.Produto`, `Produto`, `Categoria`, `Foto`. Essas tabelas selecionadas tornaram-se queries no **Power Query** e o processo de **ETL (Extract, Transform e Load)** foi iniciado.
+Na primeira aula deste curso foi desenvolvido um report comercial no software **Power BI** através da base de dados `Comercial` fornecida pela plataforma do curso em **Excel**. Os dados dessa base foram carregados para o **Power BI Desktop**, onde foram selecionadas as três tabelas desse arquivo (`Vendas`, `Vendedores` e `Produtos`). A tabela `Vendas` era formada pelas seguintes colunas: `Data.Pedido`, `Vendedor`, `Gerente`, `Unidade`, `Cliente`, `Grupo.Cliente`, `Produto`, `Qtde`, `Vl.Unit` e `Vl.Frete`. A tabela `Vendedores`era composta por: `Cod.Vendedor`, `Vendedor`, `Foto`. Já a tabela `Produtos` tinha as colunas: `Cod.Produto`, `Produto`, `Categoria`, `Foto`. Essas tabelas selecionadas tornaram-se queries no **Power Query** e o processo de **ETL (Extract, Transform e Load)** foi iniciado.
 
 A primeira consulta que foram realizadas alterações foi a de `Vendas`. Nas colunas `Vendedor` e `Produto` foi extraído o texto antes do delimitador, cujo delimitador era `-`, para manter na coluna apenas os códigos e remover os nomes, pois esses códigos seriam utilizados para relacionar com as outras duas queries. Em seguida, foi criada uma nova coluna de nome `Vl.Total` que realizou a multiplicação das colunas `Qtde` e `VI.Unitario`. A próxima coluna criada foi uma coluna condicional de nome `Tipo.Frete` que criou uma condicional referenciando a coluna `VI.Frete` que caso os valores fossem maiores do que zero, o resultado seria `Pago`, caso constrário, seria `Grátis`. Após isso, foi verificado em todas as queries se em todas as colunas o tipo de dados tinha sido identificado, caso não fosse, seria feito a definição do tipo de dado da coluna. Por fim, as consultas foram carregadas no **Power BI** na forma de tabelas.
 
@@ -81,7 +81,7 @@ Para utilização nos cartões foram desenvolvidas algumas medidas, com a utiliz
 
 <a name="item02"><h4>SEMANA POWER BI - Aula 2: Simulação de Cenários + Dashboard de Análise de Produtos</h4></a>[Back to summary](#item0)
 
-Na segunda aula foi dado continuidade ao projeto realizado no arquivo de **Power BI** na aula 1, construindo uma segunda página para o report cuja temática agora foi sobre análise de produtos. Para esse report foi necessário importar para o **Power BI** o arquivo de base de dados em **Excel** de nome [Devolucoes](./base_dados/Devolucoes.xlsx). Neste arquivo, a única tabela existente foi a selecionada e importada para o **Power Query** para iniciar o processo de **ETL**. A tabela de nome `Devolucoes` continha as seguintes colunas: `Pedido`, `Data.Devolucao`, `Unidade`, `Produto`, `Qtde`, `Vl.Unitário`, `Vl.Total` e `Motivo`. O único tratamento foi verificar se em todas as colunas o tipo de dado foi identificado, caso não fosse, era necessário definí-lo. Após isso, a query foi importada para o **Power BI**.
+Na segunda aula foi dado continuidade ao projeto realizado no arquivo de **Power BI** na aula 1, construindo uma segunda página para o report cuja temática agora foi sobre análise de produtos. Para esse report foi necessário importar para o **Power BI** o arquivo de base de dados em **Excel** de nome `Devolucoes`. Neste arquivo, a única tabela existente foi a selecionada e importada para o **Power Query** para iniciar o processo de **ETL**. A tabela de nome `Devolucoes` continha as seguintes colunas: `Pedido`, `Data.Devolucao`, `Unidade`, `Produto`, `Qtde`, `Vl.Unitário`, `Vl.Total` e `Motivo`. O único tratamento foi verificar se em todas as colunas o tipo de dado foi identificado, caso não fosse, era necessário definí-lo. Após isso, a query foi importada para o **Power BI**.
 
 A próxima etapa foi conferir se o relacionamento da tabela dimensão `Produtos` com essa nova tabela fato foi realizado automaticamente. Na tabela de medidas foi organizada todas as medidas criadas na aula 1 para a pasta `Aula01`. Em seguida, foi gerada uma nova tabela vazia e inserido a **Expressão DAX** `Calendario = CALENDARAUTO()` para construção de uma tabela calendário de forma automática. A coluna `Date` desta tabela foi relacionada com as colunas `Data.Pedido` e `Data.Devolucao` das tabelas fato `Vendas` e `Devolucoes` respectivamente. Por causa desta nova tabela foi necessário ir no report comercial, no gráfico de área e alterar a data para a da tabela `Calendario`.
 
@@ -96,11 +96,45 @@ Um gráfico de colunas foi inserido para realizar uma simulação do faturamento
     <figcaption>Imagem 03: Report Análise de Produtos.</figcaption>
 </figure></div><br>
 
-
 <a name="item03"><h4>SEMANA POWER BI - Aula 3: Recursos Interativos + Dashboard de Fluxo de Caixa</h4></a>[Back to summary](#item0)
 
+Na terceira aula foi desenvolvido a terceira página do report cuja temática foi sobre fluxo de caixa. Para isso o processo inicial foi o mesmo, definição do arquivo de background fornecido pela plataforma do curso, e importação para o **Power BI** o arquivo de excel de base de dados de nome `Fluxo`. Neste arquivo não existiam tabelas, existia duas abas, sendo a primeira de nome `Lançamentos` e a segunda de nome `Fluxo`, portanto teve que selecionar essas duas opções. Essas duas estruturas originaram duas queries, de mesmo nome das abas da planilha, no **Power Query**. A consulta `Lançamentos` possuía as seguintes colunas: `Data`, `Categoria`, `Cod.Mov` e `Valor`. Já a query `Fluxo` apenas as colunas: `Cod.Mov` e `Descrição`. Assim inicia o processo de **ETL**.
 
+Na etapa de transformação, a única ação a ser executada foi verificar se os tipos de dados tinham sido definidos automaticamente. Após isso, os dados foram carregados no **Power BI** resultando em duas novas tabelas (`Lançamentos` e `Fluxo`). Em seguida, foi conferido se o relacionamento entre estas duas tabelas foi identificado automaticamente através da coluna `Cod.Mov` e relacionado a coluna `Data` da tabela fato `Lancamentos` com a coluna `Date` da tabela `Calendario`. Também foi organizado as medidas construídas na aula 2 na pasta `Aula02` criada dentro da tabela de `Medidas`, para que não fosse misturadas com as medidas que seriam criadas nesta aula.
 
+A primeira medida elaborada foi soma de todos os lançamentos através da expressão `Soma Lançamentos = sum(Lancamentos[Valor])`. As duas medidas seguintes utilizou a expressão `CALCULATE` para executar a medida anterior, se uma condição fosse atendida, ou seja, para somar todos os lançamentos que atendessem a condição estabelecida. A medida `Entradas` somou todos os lançamentos que fossem maiores que zero, ou seja, as entradas (`Entradas = CALCULATE([Soma Lançamentos], Lancamentos[Valor]>0)`). Já a medida `Saída` fez o contrário, somou todos os lançamentos menores que zero (`Saídas = CALCULATE([Soma Lançamentos], Lancamentos[Valor]<0)`) e para não ficar com sinal negativo multiplicou-se por `-1`. Com essas três medidas, três visuais de cartão foram construídos.
 
+Após isso, foi desenvolvida uma segmentação de dados para filtragem por ano e então foi criada uma coluna na tabela `Calendario` de nome `Nome do Mês` com a seguinte **Expressão DAX** `Nome do Mês = FORMAT(Calendario[Date], "mmm")`. Esta expressão formatou para essa nova coluna o nome do mês com três letras a partir da coluna de data. Uma segunda coluna foi construída também, cuja fórmula foi `Mês = MONTH([Date])`, apenas para extrair o número do mês da coluna de data e utilizá-la para classificar a nova coluna `Nome do Mês` a partir dela. Com as medidas de `Entradas` e `Saída` foi desenvolvido um gráfico de colunas clusterizadas para análise comparativa entre ambas por mês.
 
-<a name="item04"><h4>SEMANA POWER BI - Programa Detalhado de Desenvolvimento em Power BI</h4></a>[Back to summary](#item0)
+Agora na tabela `Fluxo`, a coluna `Descrição` foi classificada com base na coluna `Cod.Mov` para manter a ordem atual da tabela. Em seguida algumas medidas um pouco mais complexas foram elaboradas com as **Expressões DAX**. A primeira delas foi a medida `Saldo Operacional` que calculou a soma dos lançamentos cujo código de movimentação era 1 ou 2, ou seja, a soma de todos os lançamentos de entradas e saídas. Esta medida utilizou a expressão `ALL(Fluxo)` para remover todos os filtros e então filtrar apenas os códigos 1 e 2, excluindo os códigos 3, 4 e 5, pois o saldo operacional era só a soma das entradas e saídas. A segunda medida foi `Saldo Inicial` que calculou a soma de todos os lançamentos, removendo todos os filtros do calendário com a expressão `ALL(Calendario)` e filtrando apenas as datas inferiores a data atual, ou seja, somou todos os lançamentos até o mês atual. Já a medida `Saldo Final` foi a soma das duas medidas.
+
+```
+Saldo Operacional = CALCULATE([Soma Lançamentos], ALL(Fluxo), Lancamentos[Cod.Mov] = 1 || Lancamentos[Cod.Mov] = 2)
+Saldo Inicial = CALCULATE([Soma Lançamentos], ALL(Calendario), Calendario[Date] < MIN(Calendario[Date]))
+Saldo Final = [Saldo Inicial] + [Saldo Operacional]
+```
+
+Uma outra medida de nome `Fluxo` foi desenvolvida para determinar para cada opção de descrição um resultado específico, sendo utilizada as três medidas anteriores para as opções 3, 4 e 5 da tabela `Fluxo`, pois as opções 1 e 2 seriam calculadas através do resultado padrão já que os códigos delas duas estavam na tabela `Lançamentos`, as demais não existiam lá.
+
+```
+Fluxo = 
+SWITCH(
+    SELECTEDVALUE(Fluxo[Descrição]),
+    "SALDO OPERACIONAL", [Saldo Operacional],
+    "SALDO INICIAL", [Saldo Inicial],
+    "SALDO FINAL", [Saldo Final],
+    [Soma Lançamentos]
+)
+```
+
+Todas essas medidas elaboradas foram utilizadas para montar um visual de matriz para análise do fluxo de caixa por mês. Um outro gráfico foi inserido para análise da evolução do caixa, ou seja, utlizou a medida `Saldo Final`, sendo este um gráfico de linha. Após isso, as medidas criadas nesta aula foram armazenadas em uma nova pasta de nome `Aula03`. A última etapa foi a inserção de seis botões em cada página, sendo três para direcionar para as redes sociais (Linkedin, Instagram e Youtube, no meu caso, coloquei o link do GitHub no lugar do Youtube), e os outros três para navegar entre as páginas do report. A imagem 04 abaixo evidencia a conclusão da página 3 do report. Já a imagem 05 mostra como ficou a modelagem das tabelas.
+
+<div align="Center"><figure>
+    <img src="./0-aux/rep_curso_091.3_fluxo_caixa.png" alt="img04"><br>
+    <figcaption>Imagem 04: Report Fluxo de Caixa.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img05.png" alt="img05"><br>
+    <figcaption>Imagem 05.</figcaption>
+</figure></div><br>

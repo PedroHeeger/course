@@ -1,7 +1,7 @@
 # Power BI   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="45">
 
 ### Repository: [course](../../)
-### Platform: <a href="../">cubo_tres   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_tres.jpg" alt="cubo_tres" width="auto" height="25"></a>
+### Platform: <a href="../">cubo_tres   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/cubo_tres.jpeg" alt="cubo_tres" width="auto" height="25"></a>
 ### Software/Subject: <a href="./">power_bi   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_powerbi.png" alt="power_bi" width="auto" height="25"></a>
 
 ---
