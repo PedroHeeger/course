@@ -20,6 +20,11 @@
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - Amazon CloudFront   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudfront.svg" alt="aws_cloudfront" width="auto" height="25">
+  - Amazon CloudWatch   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudwatch.svg" alt="aws_cloudwatch" width="auto" height="25">
+  - Amazon DB Accelerator (DAX)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_dax.svg" alt="aws_dax" width="auto" height="25">
+  - Amazon DocumentDB   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_documentdb.svg" alt="aws_documentdb" width="auto" height="25">
+  - Amazon DynamoDB   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_dynamodb.svg" alt="aws_dynamodb" width="auto" height="25">
+  - Amazon ElastiCache   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elasticache.svg" alt="aws_elasticache" width="auto" height="25">
   - Amazon Elastic Block Store (EBS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ebs.svg" alt="aws_ebs" width="auto" height="25">
   - Amazon Elastic Compute Cloud (EC2)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ec2.svg" alt="aws_ec2" width="auto" height="25">
   - Amazon Elastic Container Registry (ECR)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecr.svg" alt="aws_ecr" width="auto" height="25">
@@ -27,6 +32,9 @@
   - Amazon Elastic File System (EFS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_efs.svg" alt="aws_efs" width="auto" height="25">
   - Amazon Elastic Kubernetes Service (EKS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_eks.png" alt="aws_eks" width="auto" height="25">
   - Amazon Elastic Load Balancing (ELB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elb.svg" alt="aws_elb" width="auto" height="25">
+  - Amazon Managed Blockchain   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_managed_blackchain.jpeg" alt="aws_managed_blackchain" width="auto" height="25">
+  - Amazon Neptune   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_neptune.svg" alt="aws_neptune" width="auto" height="25">
+  - Amazon Quantum Ledger Database (QLDB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_qldb.png" alt="aws_qldb" width="auto" height="25">
   - Amazon Redshift   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_redshift.svg" alt="aws_redshift" width="auto" height="25">
   - Amazon Relational Database Service (RDS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_rds.svg" alt="aws_rds" width="auto" height="25">
   - Amazon Route 53   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_route_53.svg" alt="aws_route_53" width="auto" height="25">
@@ -35,16 +43,26 @@
   - Amazon Simple Storage Service (S3)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_s3.svg" alt="aws_s3" width="auto" height="25">
   - Amazon Virtual Private Cloud (VPC)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_vpc.svg" alt="aws_vpc" width="auto" height="25">
   - AWS Auto Scaling; Amazon EC2 Auto Scaling   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_auto_scaling.svg" alt="aws_auto_scaling" width="auto" height="25">
-  - AWS Console Mobile Application   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws_console_mobile" width="auto" height="25">
+  - AWS Budgets  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_budgets.png" alt="aws_budget" width="auto" height="25">
   - AWS CloudFormation   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudformation.svg" alt="aws_cloudformation" width="auto" height="25">
+  - AWS Config   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_config.svg" alt="aws_config" width="auto" height="25">
+  - AWS Console Mobile Application   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws_console_mobile" width="auto" height="25">
+  - AWS Cost Explorer  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cost_explorer.webp" alt="aws_cost_explorer" width="auto" height="25">
+  - AWS Database Migration Service (DMS)  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_codecommit.svg" alt="aws_dms" width="auto" height="25">
+  - AWS Direct Connect   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_direct_connect.svg" alt="aws_direct_connect" width="auto" height="25">
   - AWS Elastic Beanstalk   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elastic_beanstalk.svg" alt="aws_elastic_beanstalk" width="auto" height="25">
   - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
+  - AWS Identity and Access Management (IAM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam.svg" alt="aws_iam" width="auto" height="25">
   - AWS Lambda   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_lambda.svg" alt="aws_lambda" width="auto" height="25">
   - AWS Management Console   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_management_console.svg" alt="aws_management_console" width="auto" height="25">
+  - AWS Organization  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_organizations.svg" alt="aws_organization" width="auto" height="25">
   - AWS Outposts   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_outposts.jpeg" alt="aws_outposts" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Java   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_java.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Node.js   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_nodejs.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Python   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
+  - AWS Web Application Firewall   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_waf.svg" alt="aws_waf" width="auto" height="25">
+  - AWS Well-Architected  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_well_architected.png" alt="aws_well_architected" width="auto" height="25">
+  - Network Access Control List (NACL)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_nacl.svg" alt="aws_nacl" width="auto" height="25">
 
 
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
@@ -101,12 +119,60 @@
     4.3 <a href="#item04.3">Sub-redes e listas de controle de acesso à rede</a><br>
     4.4 <a href="#item04.4">Redes globais</a><br>
     4.5 Resumo do módulo 4
-5. <a href="#item04">Módulo 5: Armazenamento e Banco de Dados</a><br>
+5. <a href="#item05">Módulo 5: Armazenamento e Banco de Dados</a><br>
     5.1 <a href="#item05.1">Introdução ao módulo 5</a><br>
-    5.2 <a href="#item05.2">Conectividade com a AWS</a><br>
-    5.3 <a href="#item05.3">Sub-redes e listas de controle de acesso à rede</a><br>
-    5.4 <a href="#item05.4">Redes globais</a><br>
-    5.5 Resumo do módulo 4
+    5.2 <a href="#item05.2">Armazenamento de instância e Amazon Elastic Block Store (Amazon EBS)</a><br>
+    5.3 <a href="#item05.3">Amazon Simple Storage Service (Amazon S3)</a><br>
+    5.4 <a href="#item05.4">Amazon Elastic File System (Amazon EFS)</a><br>
+    5.5 <a href="#item05.5">Amazon Relational Database Service (Amazon RDS)</a><br>
+    5.6 <a href="#item05.6">Amazon DynamoDB</a><br>
+    5.7 <a href="#item05.7">Amazon Redshift</a><br>
+    5.8 <a href="#item05.8">AWS Database Migration Service</a><br>
+    5.9 <a href="#item05.9">Serviços de banco de dados adicionais</a><br>
+    5.10 Resumo do módulo 5
+6. <a href="#item06">Módulo 6: Segurança</a><br>
+    6.1 <a href="#item06.1">Introdução ao módulo 6</a><br>
+    6.2 <a href="#item06.2">Modelo de responsabilidade compartilhada da AWS</a><br>
+    6.3 <a href="#item06.3">Permissões de usuário e acesso</a><br>
+    6.4 <a href="#item06.4">AWS Organizations</a><br>
+    6.5 <a href="#item06.5">Conformidade</a><br>
+    6.6 <a href="#item06.6">Ataques de negação de serviço</a><br>
+    6.7 <a href="#item06.7">Serviços de segurança adicionais</a><br>
+    6.8 Resumo do módulo 6
+7. <a href="#item07">Módulo 7: Monitoramento e Análise</a><br>
+    7.1 <a href="#item07.1">Introdução ao módulo 7</a><br>
+    7.2 <a href="#item07.2">Amazon CloudWatch</a><br>
+    7.3 <a href="#item07.3">AWS CloudTrail</a><br>
+    7.4 <a href="#item07.4">AWS Trusted Advisor</a><br>
+    7.5 Resumo do módulo 7
+8. <a href="#item08">Módulo 8: Definição de Preços e Suporte</a><br>
+    8.1 <a href="#item08.1">Introdução ao módulo 8</a><br>
+    8.2 <a href="#item08.2">Nível gratuito da AWS</a><br>
+    8.3 <a href="#item08.3">Conceitos de definição de preço da AWS</a><br>
+    8.4 <a href="#item08.4">Painel de cobrança</a><br>
+    8.5 <a href="#item08.5">Cobrança consolidada</a><br>
+    8.6 <a href="#item08.6">AWS Budgets</a><br>
+    8.7 <a href="#item08.7">AWS Cost Explorer</a><br>
+    8.8 <a href="#item08.8">Planos do AWS Support</a><br>
+    8.9 <a href="#item08.9">AWS Marketplace</a><br>
+    8.10 Resumo do módulo 8
+9. <a href="#item09">Módulo 9: Migração e Inovação</a><br>
+    9.1 <a href="#item09.1">Introdução ao módulo 9</a><br>
+    9.2 <a href="#item09.2">AWS Cloud Adoption Framework (AWS CAF)</a><br>
+    9.3 <a href="#item09.3">Estratégias de migração</a><br>
+    9.4 <a href="#item09.4">AWS Snow Family</a><br>
+    9.5 <a href="#item09.5">Inovação com a AWS</a><br>
+    9.6 Resumo do módulo 9
+10. <a href="#item10">Módulo 10: A Jornada para a Nuvem</a><br>
+    10.1 <a href="#item010.1">Introdução ao módulo 10</a><br>
+    10.2 <a href="#item010.2">O AWS Well-Architected Framework</a><br>
+    10.3 <a href="#item010.3">Benefícios da nuvem AWS</a><br>
+    10.4 Resumo do módulo 10
+11. <a href="#item11">Módulo 10: A Jornada para a Nuvem</a><br>
+    11.1 <a href="#item011.1">Introdução ao módulo 11</a><br>
+    11.2 <a href="#item011.2">Detalhes do exame</a><br>
+    11.3 <a href="#item011.3">Estratégias do exame</a><br>
+    11.4 Resumo do módulo 11
 
 ---
 
@@ -209,33 +275,116 @@ Na primeira aula deste módulo foi introduzido os assuntos que seriam abordados:
 
 <a name="item04.2"><h4>Conectividade com a AWS</h4></a>[Back to summary](#item0)
 
+Nesta aula foi explicado sobre o serviço **Amazon Virtual Private Cloud (VPC)** que é um serviço de rede que pode ser utilizado para definir limites para os recursos **AWS**. Ele permite o provisionamento de uma seção isolada da nuvem **AWS**, ou seja, uma rede virtual privada, e nela execute os recursos que definir. Em uma VPC, é possível organizar os recursos em sub-redes. Uma *sub-rede* é uma seção de uma VPC que pode conter recursos como instâncias do **Amazon EC2**.
 
+Em uma VPC, para permitir acesso ao tráfego público da internet é necessário anexá-la a um *gateway de internet*. Um *gateway da internet* é o recurso responsável por se conectar com a internet. Já para o acesso a recursos privados existe o *gateway privado virtual* que é o componente que permite que o tráfego protegido da internet ingresse na VPC. Este tráfego protegido é uma conexão de rede privada virtual (VPN) que criptografa (ou protege) o tráfego de internet de todas as outras solicitações ao redor.
+
+Além disso, existe o **AWS Direct Connect** que é um serviço que permite estabelecer uma conexão privada dedicada entre o data center e uma VPC. A conexão privada do **AWS Direct Connect** ajuda a reduzir os custos de rede e a aumentar a quantidade de largura de banda que pode trafegar pela rede.
 
 <a name="item04.3"><h4>Sub-redes e listas de controle de acesso à rede</h4></a>[Back to summary](#item0)
 
+Na terceira aula deste módulo foram apresentados alguns recursos que compõe uma VPC. O primeiro deles foi as *sub-redes (subnets)* que é uma seção de uma VPC na qual é possível agrupar recursos com base em necessidades operacionais ou de segurança. As sub-redes podem ser públicas ou privadas, podendo uma se comunicar com a outra já que fazem parte da mesma rede. As sub-redes públicas contêm recursos que precisam ser acessíveis ao público, como o site de uma loja on-line. Já as sub-redes privadas contêm recursos que devem ser acessíveis apenas pela rede privada, como um banco de dados que contém informações pessoais dos clientes e históricos de pedidos.
 
+Com relação ao tráfego de rede em uma VPC, tudo começa quando um cliente solicita dados de um aplicativo hospedado na nuvem **AWS**, essa solicitação é enviada como um pacote. Um pacote é uma unidade de dados enviada pela internet ou por uma rede. Este pacote entra em uma VPC por um *gateway de internet*. Antes de um pacote poder entrar ou sair em uma *sub-rede*, a lista de controle de acesso de rede (NACL) ou ACL de rede verifica as permissões do pacote. Essas permissões indicam quem enviou o pacote e como ele tenta se comunicar com os recursos em uma sub-rede. 
 
+A **Network Access Control List (NACL)** é um firewall virtual que controla o tráfego de entrada e saída no nível de sub-rede. Cada conta **AWS** tem uma ACL de rede padrão, contudo existe a possibilidade de criar ACLs de rede personalizadas. Por padrão, a ACL de rede da conta permite todo o tráfego de entrada e saída, mas é possível adicionar regras específicas. Para ACLs de rede personalizadas, todo o tráfego de entrada e saída é negado até que seja adicionado regras para especificar qual tráfego permitir. Além disso, todas as ACLs de rede têm uma regra de negação explícita, garantindo que se um pacote não corresponder a nenhuma das outras regras na lista, ele será negado. As ACLs de rede executam a filtragem de pacotes stateless, ou seja, elas não se lembram de nada e verificam os pacotes que atravessam a fronteira da sub-rede em todos os sentidos: entrada e saída. 
 
+Já o *grupo de segurança (security group)* é um firewall virtual que controla o tráfego de entrada e saída de a nível de instância EC2. Por padrão, um grupo de segurança nega todo o tráfego de entrada e permite todo o tráfego de saída, mas regras personalizadas para configurar o tráfego que será permitido podem ser adicionadas. Os grupos de segurança fazem a filtragem de pacotes stateful, se lembrando das decisões anteriores tomadas para pacotes recebidos não sendo necessário verificá-lo novamente.
 
 <a name="item04.4"><h4>Redes globais</h4></a>[Back to summary](#item0)
 
+O serviço explicado nesta aula foi o **Amazon Route 53** que é um serviço da web de DNS. Ele oferece aos desenvolvedores e empresas uma maneira confiável de rotear os usuários finais para aplicativos da internet hospedados na **AWS**. O **Amazon Route 53** conecta solicitações de usuários à infraestrutura em execução na cloud (como instâncias do **Amazon EC2** e balanceadores de carga), e também pode direcionar os usuários para a infraestrutura fora da AWS. Outro recurso do Route 53 é a capacidade de gerenciar os registros DNS para nomes de domínio, sendo possível registrar novos nomes de domínio diretamente ou transferir registros DNS para nomes de domínio existentes gerenciados por outras empresas de registro de domínio. Assim, com este serviço é possível gerenciar todos os nomes de domínio em um único local.
 
-
-
+Um sistema de nomes de domínio (DNS) nada mais é que um servidor capaz de executar o processo de conversão de um nome de domínio para um endereço IP. Na resolução de DNS, o resolvedor DNS do cliente se comunica com um servidor DNS que executa o processo e devolve para o cliente o número de IP do domínio procurado.
 
 <a name="item05.1"><h4>Introdução ao módulo 5</h4></a>[Back to summary](#item0)
 
-
-
+Na primeira aula deste módulo foi exibido quais assuntos seriam apresentados, sendo eles: Resumir o conceito básico de armazenamento e bancos de dados; Descrever os benefícios do **Amazon Elastic Block Store (Amazon EBS)**; Descrever os benefícios do **Amazon Simple Storage Service (Amazon S3)**; Descrever os benefícios do **Amazon Elastic File System (Amazon EFS)**; Resumir várias soluções de armazenamento; Descrever os benefícios do **Amazon Relational Database Service (Amazon RDS)**; Descrever os benefícios do **Amazon DynamoDB**; Resumir vários serviços de banco de dados.
 
 <a name="item05.2"><h4>Armazenamento de instância e Amazon Elastic Block Store (Amazon EBS)</h4></a>[Back to summary](#item0)
 
+Nesta aula foi iniciado o assunto de armazenamento sendo apresentadas duas formas de armazenamento em bloco. A primeira é o *armazenamento de instância (instance store)* que é um meio temporário de armazenamento a nível de bloco para uma instância do **Amazon EC2**. Os volumes de armazenamento a nível de bloco se comportam como discos rígidos físicos. Um armazenamento de instância é o armazenamento em disco fisicamente anexo ao computador host para uma instância do EC2 e, portanto, tem a mesma vida útil da instância. Dessa forma os dados estão na instância, quando ela é interrompida, os dados são apagados.
 
+A outra forma de armazenamento é através do serviço **Amazon Elastic Block Store (EBS)**. Este fornece volumes de armazenamento a nível de bloco que pode ser utilizado com instâncias do **Amazon EC2**, porém quando a instância é interrompida os dados permanecem disponíveis. Como os volumes do EBS são para dados que precisam perdurar, é importante fazer backup dos dados que pode ser realizado através de snapshots do **Amazon EBS**. Um snapshot do EBS é um backup incremental, no qual o primeiro backup de um volume copia todos os dados e os backups subsequentes copia somente os blocos de dados que foram alterados desde o snapshot mais recente.
 
 <a name="item05.3"><h4>Amazon Simple Storage Service (Amazon S3)</h4></a>[Back to summary](#item0)
 
+Na aula 3 do módulo 5, a forma de armazenamento explicada foi de armazenamento de objetos, onde cada objeto consiste em dados, metadados e uma chave. Os dados podem ser uma imagem, vídeo, documento de texto ou qualquer outro tipo de arquivo. Os metadados contêm informações sobre o que são os dados, como eles são usados, o tamanho do objeto e assim por diante. A chave de um objeto é seu identificador exclusivo. Neste tipo de armazenamento quando um objeto é modificado, todo o objeto é atualizado. O serviço **Amazon S3** é o responsável por fornecer este armazenamento a nível do objeto, onde os dados são armazenados como objetos em buckets.
 
-
-
+É possível fazer upload de qualquer tipo de arquivo para o **Amazon S3**, como imagens, vídeos, arquivos de texto e assim por diante. O **Amazon S3** oferece espaço de armazenamento ilimitado e o tamanho máximo de arquivo para um objeto é de 5 TB. Também é possível definir permissões para controlar a visibilidade e o acesso aos objetos ou usar o recurso de versionamento para rastrear alterações nos objetos ao longo do tempo. Existem diversas classes de armazenamento no **Amazon S3** específicas para cada necessidade de negócio e de custo. É importante determinar os dois seguintes fatores ao decidir qual classe utilizar: com que frequência planeja-se recuperar os dados e se os dados precisam estar muito ou pouco disponíveis. Após isso é só escolher uma das seguintes classes: *S3 Standard*, *S3 Standard-Infrequent Access (S3 Standard-IA)*, *S3 One Zone-Infrequent Access (S3 One Zone-IA)*, *S3 Intelligent-Tiering*, *S3 Glacier Instant Retrievel*, *S3 Glacier Flexible Retrievel*, *S3 Glacier Deep Archive* e *S3 Outposts*.
 
 <a name="item05.4"><h4>Amazon Elastic File System (Amazon EFS)</h4></a>[Back to summary](#item0)
+
+No armazenamento de arquivos, vários clientes (como usuários, aplicações, servidores, etc.) podem acessar os dados armazenados em pastas de arquivos compartilhadas. Nessa abordagem, um servidor de armazenamento usa armazenamento em bloco com um sistema de arquivos local para organizar os arquivos. Os clientes acessam dados por meio de caminhos de arquivo. Comparado ao armazenamento em blocos e ao armazenamento de objetos, o armazenamento de arquivos é ideal para casos de uso em que um grande número de serviços e recursos precisam acessar os mesmos dados ao mesmo tempo. Para esta forma de armazenamento existe o **Amazon Elastic File System (EFS)** que é um sistema de arquivos dimensionável usado com os AWS Cloud Services e recursos on-premises. Ele é um serviço recurso regional, o que significa que qualquer instância do EC2 presente na região pode gravar no sistema de arquivos do EFS. O **Amazon Elastic File System** é dimensionado automaticamente quando mais dados são gravados nele, podendo chegar a valores de petabytes sem interromper os aplicativos.
+
+<a name="item05.5"><h4>Amazon Relational Database Service (Amazon RDS)</h4></a>[Back to summary](#item0)
+
+Na quinta aula foi abordado sobre os bancos de dados relacionais, onde neste tipo de banco os dados são armazenados de modo que se relacionam a outros dados. Bancos de dados relacionais usam linguagem de consulta estruturada (SQL) para armazenar e consultar dados. Essa abordagem permite que os dados sejam armazenados de forma facilmente compreensível, consistente e dimensionável. Na **AWS** o serviço que permite executar banco de dados relacional é o **Amazon Relational Database Service (RDS)**. O **Amazon RDS** é um serviço gerenciado que automatiza tarefas como provisão de hardware, configuração de banco de dados, patch e backups, podendo integrar com outros serviços para atender às necessidades de negócios e operacionais. O **Amazon RDS** tem inúmeras opções de segurança diferentes. Muitos mecanismos de banco de dados do **Amazon RDS** oferecem criptografia em repouso (protegendo os dados enquanto estão armazenados) e criptografia em trânsito (protegendo os dados enquanto estão sendo enviados e recebidos). Os mecanismos de banco de dados compatíveis com **Amazon RDS** são: **Amazon Aurora**, **PostgreSQL**, **MySQL**, **MariaDB**, **Oracle Database** e **Microsoft SQL Server**.
+
+O **Amazon Aurora** é um banco de dados relacional de nível empresarial, compatível com os bancos de dados relacionais **MySQL** e **PostgreSQL**, sendo até cinco vezes mais rápido do que os bancos de dados **MySQL** comuns e até três vezes mais rápido do que os bancos de dados **PostgreSQL** comuns. O **Amazon Aurora** ajuda a reduzir os custos do banco de dados reduzindo operações desnecessárias de entrada/saída (E/S), garantindo que os recursos do banco de dados permaneçam confiáveis e disponíveis. Para alta disponibilidade, o **Amazon Aurora** é uma ótima opção, pois ele replica seis cópias de seus dados em três zonas de disponibilidade e faz backup contínuo de seus dados para o **Amazon S3**.
+
+<a name="item05.6"><h4>Amazon DynamoDB</h4></a>[Back to summary](#item0)
+
+Nesta aula o assunto ensinado foi banco de dados não relacionais, onde não há relacionamento entre as tabelas. Bancos de dados não relacionais também são chamados de “bancos de dados NoSQL” porque usam estruturas diferentes de linhas e colunas para organizar dados. Um tipo de abordagem estrutural para bancos de dados não relacionais é o uso de pares de chave-valor. Com pares de chave-valor, os dados são organizados em itens (chaves) e cada item tem um atributo (valores). Em um banco de dados de chave-valor, você pode adicionar ou remover atributos de itens na tabela a qualquer momento. Além disso, nem todos os itens na tabela precisam ter os mesmos atributos. 
+
+Para atender essa necessidade, o serviço responsável de banco de dados não relacional é o **Amazon DynamoDB** que é do tipo chave-valor. Ele oferece um desempenho de um dígito de milissegundo em qualquer scaling e à medida que o tamanho do banco de dados expande ou retrai, o DynamoDB é dimensionado automaticamente para se ajustar às alterações na capacidade e, ao mesmo tempo, manter o desempenho consistente. Isso o torna uma escolha adequada para casos de uso que exigem alto desempenho durante o scaling.
+
+<a name="item05.7"><h4>Amazon Redshift</h4></a>[Back to summary](#item0)
+
+Na aula 7 foi explicado sobre o serviço **Amazon Redshift** que é um serviço de data warehouse que pode ser usado para análise de Big Data. Ele oferece a capacidade de coletar dados de muitas fontes além de ajudar a entender relações e tendências em todos os dados. Com relação ao Data Warehouse, ele é um repositório centralizado de dados orientado a assuntos, consolidado de diferentes fontes, que é projetado para suportar análises e tomadas de decisão em uma organização.
+
+<a name="item05.8"><h4>AWS Database Migration Service</h4></a>[Back to summary](#item0)
+
+O serviço apresentado nesta aula foi o **AWS Database Migration Service (DMS)** que permite migrar bancos de dados relacionais e não relacionais e outros tipos de armazenamentos de dados. Com o **AWS DMS**, existe a possibilidade de mover os dados entre bancos de dados de origem e de destino, podendo estes serem do mesmo tipo ou não. Durante a migração, o banco de dados de origem permanece operacional, reduzindo o tempo de inatividade em qualquer aplicativo que dependa do banco de dados. Quando as migrações dos dados entre os bancos de dados são do mesmo tipo é chamada de migrações homogêneas, onde o processo é bem simples, pois a estrutura dos schemas e tipos de dados e código do banco de dados são compatíveis entre a origem e o destino. 
+
+Já quando os tipos de bancos são diferentes é chamado de migração heterogênea e possui duas etapas. Como as estruturas do schema, tipos de dados e código de banco de dados são diferentes entre origem e destino, eles devem ser convertidos previamente pelo **AWS Schema Convertion Tool** para corresponderem aos do banco de dados do destino. A próxima etapa é usar o DMS para migrar os dados do banco de dados de origem para o banco de dados de destino.
+
+O banco de dados de origem pode estar no on-premises, instâncias do **Amazon EC2** ou pode ser um banco de dados do **Amazon RDS**. O destino em si pode ser um banco de dados no EC2 ou um RDS. Além disso, o **AWS DMS** inclui migração de bancos de dados de desenvolvimento e teste, consolidação de bancos de dados e até mesmo replicação contínua de banco de dados.
+
+<a name="item05.9"><h4>Serviços de banco de dados adicionais</h4></a>[Back to summary](#item0)
+
+Nesta aula para finalizar o assunto de armazenamento foram apresentados alguns outros serviços de banco de dados da **AWS**. O **Amazon DocumentDB** é um serviço de banco de dados de documentos compatível com cargas de trabalho do MongoDB (MongoDB é um programa de banco de dados de documentos.). O **Amazon Neptune** é um serviço de banco de dados de grafo utilizado para criar e executar aplicações que funcionam com conjuntos de dados altamente conectados, como mecanismos de recomendação, detecção de fraude e grafos de conhecimento. O **Amazon Managed Blockchain** é um serviço para criar e gerenciar redes de blockchain com frameworks de código aberto. O Blockchain é um sistema de registro distribuído que permite que várias partes executem transações e compartilhem dados sem uma autoridade central. O **Amazon Quantum Ledger Database (QLDB)** é um serviço de banco de dados ledger utilizado para ver um histórico completo de todas as alterações feitas nos dados da aplicação. Já o **Amazon ElastiCache** é um serviço que adiciona camadas de cache sobre bancos de dados para ajudar a melhorar os tempos de leitura de solicitações comuns, sendo compatível com dois tipos de armazenamentos de dados: Redis e Memcached. Por fim, o **Amazon DynamoDB Accelerator** é um cache em memória do DynamoDB, que ajuda a melhorar os tempos de resposta de milissegundos para microssegundos.
+
+<a name="item06.1"><h4>Introdução ao módulo 6</h4></a>[Back to summary](#item0)
+
+Na primeira aula deste módulo foram apresentados os seguintes conteúdos que seriam abordados: Explicar os benefícios do modelo de responsabilidade compartilhada usando exemplos do mundo real; Descrever a autenticação multifator (MFA); Diferenciar os níveis de segurança do **AWS Identity and Access Management (IAM)**; Explicar os principais benefícios do **AWS Organizations**; Descrever as políticas de segurança em um nível básico; Resumir os benefícios da conformidade com a **AWS**; Explicar serviços de segurança adicionais da **AWS** em um nível básico.
+
+
+<a name="item06.2"><h4>Modelo de responsabilidade compartilhada da AWS</h4></a>[Back to summary](#item0)
+<a name="item06.3"><h4>Permissões de usuário e acesso</h4></a>[Back to summary](#item0)
+<a name="item06.4"><h4>AWS Organizations</h4></a>[Back to summary](#item0)
+<a name="item06.5"><h4>Conformidade</h4></a>[Back to summary](#item0)
+<a name="item06.6"><h4>Ataques de negação de serviço</h4></a>[Back to summary](#item0)
+<a name="item06.7"><h4>Serviços de segurança adicionais</h4></a>[Back to summary](#item0)
+
+
+
+<a name="item07.1"><h4>Introdução ao módulo 7</h4></a>[Back to summary](#item0)
+<a name="item07.2"><h4>Amazon CloudWatch</h4></a>[Back to summary](#item0)
+<a name="item07.3"><h4>AWS CloudTrail</h4></a>[Back to summary](#item0)
+<a name="item07.4"><h4>AWS Trusted Advisor</h4></a>[Back to summary](#item0)
+
+
+<a name="item08.1"><h4>Introdução ao módulo 8</h4></a>[Back to summary](#item0)
+<a name="item08.2"><h4>Nível gratuito da AWS</h4></a>[Back to summary](#item0)
+<a name="item08.3"><h4>Conceitos de definição de preço da AWS</h4></a>[Back to summary](#item0)
+<a name="item08.4"><h4>Painel de cobrança</h4></a>[Back to summary](#item0)
+<a name="item08.5"><h4>Cobrança consolidada</h4></a>[Back to summary](#item0)
+<a name="item08.6"><h4>AWS Budgets</h4></a>[Back to summary](#item0)
+<a name="item08.7"><h4>AWS Cost Explorer</h4></a>[Back to summary](#item0)
+<a name="item08.8"><h4>Planos do AWS Support</h4></a>[Back to summary](#item0)
+<a name="item08.9"><h4>AWS Marketplace</h4></a>[Back to summary](#item0)
+
+<a name="item09.1"><h4>Introdução ao módulo 9</h4></a>[Back to summary](#item0)
+<a name="item09.2"><h4>AWS Cloud Adoption Framework (AWS CAF)</h4></a>[Back to summary](#item0)
+<a name="item09.3"><h4>Estratégias de migração</h4></a>[Back to summary](#item0)
+<a name="item09.4"><h4>AWS Snow Family</h4></a>[Back to summary](#item0)
+<a name="item09.5"><h4>Inovação com a AWS</h4></a>[Back to summary](#item0)
+
+<a name="item10.1"><h4>Introdução ao módulo 10</h4></a>[Back to summary](#item0)
+<a name="item10.2"><h4>O AWS Well-Architected Framework</h4></a>[Back to summary](#item0)
+<a name="item10.3"><h4>Benefícios da nuvem AWS</h4></a>[Back to summary](#item0)
+
+<a name="item11.1"><h4>Introdução ao módulo 11</h4></a>[Back to summary](#item0)
+<a name="item11.2"><h4>Detalhes do exame</h4></a>[Back to summary](#item0)
+<a name="item11.3"><h4>Estratégias do exame</h4></a>[Back to summary](#item0)
