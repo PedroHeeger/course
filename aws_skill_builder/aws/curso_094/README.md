@@ -34,7 +34,7 @@
   - Amazon Elastic Load Balancing (ELB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elb.svg" alt="aws_elb" width="auto" height="25">
   - Amazon GuardDuty   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_guardduty.png" alt="aws_guardduty" width="auto" height="25">
   - Amazon Inspector   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_inspector.svg" alt="aws_inspector" width="auto" height="25">
-  - Amazon Managed Blockchain   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_managed_blackchain.jpeg" alt="aws_managed_blackchain" width="auto" height="25">
+  - Amazon Managed Blockchain   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_managed_blockchain.jpeg" alt="aws_managed_blockchain" width="auto" height="25">
   - Amazon Neptune   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_neptune.svg" alt="aws_neptune" width="auto" height="25">
   - Amazon Quantum Ledger Database (QLDB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_qldb.png" alt="aws_qldb" width="auto" height="25">
   - Amazon Redshift   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_redshift.svg" alt="aws_redshift" width="auto" height="25">
@@ -46,7 +46,9 @@
   - Amazon Virtual Private Cloud (VPC)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_vpc.svg" alt="aws_vpc" width="auto" height="25">
   - AWS Artifact   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_artifact.svg" alt="aws_artifact" width="auto" height="25">
   - AWS Auto Scaling; Amazon EC2 Auto Scaling   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_auto_scaling.svg" alt="aws_auto_scaling" width="auto" height="25">
+  - AWS Billing   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_billing.svg" alt="aws_billing" width="auto" height="25">
   - AWS Budgets  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_budgets.png" alt="aws_budget" width="auto" height="25">
+  - AWS Cloud Adoption Framework (CAF)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_caf.jpeg" alt="aws_caf" width="auto" height="25">
   - AWS CloudFormation   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudformation.svg" alt="aws_cloudformation" width="auto" height="25">
   - AWS CloudTrail   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudtrail.svg" alt="aws_cloud_trail" width="auto" height="25">
   - AWS Config   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_config.svg" alt="aws_config" width="auto" height="25">
@@ -56,16 +58,23 @@
   - AWS Direct Connect   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_direct_connect.svg" alt="aws_direct_connect" width="auto" height="25">
   - AWS Elastic Beanstalk   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elastic_beanstalk.svg" alt="aws_elastic_beanstalk" width="auto" height="25">
   - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
+  - AWS Free Tier   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_free_tier.webp" alt="aws_free_tier" width="auto" height="25">
   - AWS Identity and Access Management (IAM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam.svg" alt="aws_iam" width="auto" height="25">
   - AWS Key Management Service (KMS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_kms.svg" alt="aws_kms" width="auto" height="25">
   - AWS Lambda   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_lambda.svg" alt="aws_lambda" width="auto" height="25">
   - AWS Management Console   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_management_console.svg" alt="aws_management_console" width="auto" height="25">
+  - AWS Marketplace   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_marketplace.jpeg" alt="aws_marketplace" width="auto" height="25">
   - AWS Organizations  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_organizations.svg" alt="aws_organizations" width="auto" height="25">
   - AWS Outposts   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_outposts.jpeg" alt="aws_outposts" width="auto" height="25">
+  - AWS Pricing Calculator   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_pricing_calculator.png" alt="aws_pricing_calculator" width="auto" height="25">
   - AWS Shield   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_shield.svg" alt="aws_shield" width="auto" height="25">
+  - AWS Snowball  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_snowball.svg" alt="aws_snowball" width="auto" height="25">
+  - AWS Snowcone  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_snowcone.webp" alt="aws_snowcone" width="auto" height="25">
+  - AWS Snowmobille  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_snowmobile.png" alt="aws_snowmobile" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Java   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_java.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Node.js   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_nodejs.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Python   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
+  - AWS Support   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_support.png" alt="aws_support" width="auto" height="25">
   - AWS Trusted Advisor   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_trusted_advisor.svg" alt="aws_trusted_advisor" width="auto" height="25">
   - AWS Web Application Firewall (WAF)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_waf.svg" alt="aws_waf" width="auto" height="25">
   - AWS Well-Architected  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_well_architected.png" alt="aws_well_architected" width="auto" height="25">
@@ -398,34 +407,75 @@ Na primeira aula deste módulo foram introduzidos os assuntos que seriam abordad
 
 <a name="item07.2"><h4>Amazon CloudWatch</h4></a>[Back to summary](#item0)
 
-
-
+Nesta aula o serviço apresentado foi o **Amazon CloudWatch** que permite monitorar e gerenciar várias métricas e configurar ações de alarme de acordo com os dados dessas métricas. O CloudWatch usa métricas para representar os pontos de dados para os recursos. Os serviços **AWS** enviam as métricas ao CloudWatch, e ele usa essas métricas para criar automaticamente gráficos que mostram como o desempenho mudou ao longo do tempo. Através desse serviço é possível criar alarmes que vão executar ações automaticamente se o valor da métrica ultrapassar ou for inferior a um limite predefinido. O recurso de painel do CloudWatch permite que acessar todas as métricas dos recursos em um único local.
 
 <a name="item07.3"><h4>AWS CloudTrail</h4></a>[Back to summary](#item0)
 
-
+Na aula três deste módulo foi explicado sobre o **AWS CloudTrail** que é um serviço que registra as chamadas de API realizadas na conta da **AWS**. As informações gravadas são identidade do chamador da API, hora da chamada da API, endereço IP de origem do chamador da API e muito mais. Lembre-se de que é possível utilizar as chamadas de API para provisionar, gerenciar e configurar os recursos da **AWS**. Com o CloudTrail, torna-se possível visualizar um histórico completo de atividades do usuário e chamadas de API dos aplicativos e recursos, sendo viável filtrar eventos especificando a hora e a data em que uma chamada de API ocorreu, o usuário que solicitou a ação, o tipo de recurso envolvido na chamada de API, entre outros.
 
 <a name="item07.4"><h4>AWS Trusted Advisor</h4></a>[Back to summary](#item0)
 
-
-
-
+Na quarta aula foi introduzido o serviço da web **AWS Trusted Advisor** que inspeciona o ambiente **AWS** e faz recomendações em tempo real de acordo com as práticas recomendadas da **AWS**. O Trusted Advisor compara as descobertas com as práticas recomendadas da **AWS** em cinco categorias: otimização de custos, desempenho, segurança, tolerância a falhas e limites de serviço. Para as verificações em cada categoria, o Trusted Advisor oferece uma lista de ações recomendadas e recursos adicionais para saber mais sobre as práticas recomendadas da **AWS**. No painel do **AWS Trusted Advisor**, a marca de verificação verde indica o número de itens para os quais nenhum problema foi detectado, o triângulo laranja representa o número de investigações recomendadas, o círculo vermelho representa o número de ações recomendadas e o círculo cinza indica as verificações com itens excluídos, ou seja, que deverão ser ocultados do resultado.
 
 <a name="item08.1"><h4>Introdução ao módulo 8</h4></a>[Back to summary](#item0)
+
+Os conteúdos que seriam apresentados durante esse módulo foram exibidos na primeira aula, sendo eles: descrever os modelos de definição de preço e suporte **AWS**; descrever o nível gratuito da **AWS**; descrever os principais benefícios do **AWS Organizations** e da cobrança consolidada; Explicar os benefícios do **AWS Budgets**; Explicar os benefícios do **AWS Cost Explorer**; Explicar os principais benefícios da Calculadora de Preços **AWS**; Distinguir entre os vários planos do **AWS Support**; Descrever os benefícios do **AWS Marketplace**.
+
 <a name="item08.2"><h4>Nível gratuito da AWS</h4></a>[Back to summary](#item0)
+
+Na aula 2 deste módulo foi explicado sobre o *nível gratuito (free tier) da AWS*. A **AWS** disponibiliza os três seguintes tipos de ofertas de gratuidades: sempre gratuito, 12 meses gratuitos e versão de teste. A oferta *sempre gratuito* nunca expira e está disponível para todos os clientes **AWS**. A oferta *12 meses gratuitos* vigora pelo período de 12 meses a partir da data de criação da conta. Já a oferta *versão de teste* são de curto prazo e começam na data em que determinado serviço é ativado. A duração de cada teste pode variar de acordo com o número de dias ou a quantidade de uso do serviço.
+
 <a name="item08.3"><h4>Conceitos de definição de preço da AWS</h4></a>[Back to summary](#item0)
+
+Nesta aula foi abordado sobre como funciona a definição de preço da **AWS**. Existe três categorias com relação a preços, a primeira delas é a *pague somente pelo que usar*, esta é a mais tradicional cujo o pagamento é feito conforme o uso. A segunda categoria é a *pague menos ao fazer reserva*, neste caso, descontos são fornecidos quando se opta por fazer reservas dos serviços. A última categoria é a *pague menos com descontos baseados em volume, quando usar mais*, aqui os descontos são fornecidos quanto mais recurso se utiliza. A **AWS** disponibiliza a ferramenta **AWS Pricing Calculator** que como o nome já diz é uma calculadora que serve para orçar quanto seria gastado com o provisionamento de determinados recursos na cloud.
+
 <a name="item08.4"><h4>Painel de cobrança</h4></a>[Back to summary](#item0)
+
+Na quarta aula foi exibido como verificar os gastos na conta da **AWS** no serviço **AWS Billing**. O **AWS Billing** é o painel faturamento e gerenciamento de custos para pagar a fatura da **AWS**, monitorar o uso e analisar e controlar os custos.
+
 <a name="item08.5"><h4>Cobrança consolidada</h4></a>[Back to summary](#item0)
+
+Nesta aula foi explicado como funciona a cobrança consolidade que é um recurso do **AWS Organizations** visto em módulos anteriores. O recurso de cobrança consolidada do **AWS Organizations** permite que receber uma única fatura para todas as contas **AWS** da organização criada. Ao consolidar, é possível rastrear facilmente os custos combinados de todas as contas vinculadas na organização. O número máximo de contas-padrão permitido para uma organização é quatro, mas existe a possibilidade de entrar em contato com o **AWS Support** para aumentar a cota, se necessário. Outro benefício da cobrança consolidada é a capacidade de compartilhar preços de desconto por volume, Savings Plans e instâncias reservadas nas contas da organização criada.
+
 <a name="item08.6"><h4>AWS Budgets</h4></a>[Back to summary](#item0)
+
+O **AWS Budgets** foi o serviço ensinado nesta aula. Com ele é possível criar orçamentos para planejar o uso do serviço, os custos de serviço e as reservas de instâncias. As informações do **AWS Budgets** são atualizadas três vezes por dia, o que ajuda a definir com precisão a proximidade entre o uso e os valores orçados ou limites de nível gratuito da **AWS**. Também pode ser definido alertas personalizados para quando o uso exceder (ou estiver prestes a exceder) o valor orçado.
+
 <a name="item08.7"><h4>AWS Cost Explorer</h4></a>[Back to summary](#item0)
+
+Na aula 7 deste módulo foi apresentado o serviço **AWS Cost Explorer** que é uma ferramenta que permite visualizar, interpretar e gerenciar os custos e uso da **AWS** ao longo do tempo. Ele inclui um relatório-padrão dos custos e do uso dos cinco principais serviços da **AWS** de acúmulo de custos, sendo possível aplicar filtros e grupos personalizados para analisar os dados.
+
 <a name="item08.8"><h4>Planos do AWS Support</h4></a>[Back to summary](#item0)
+
+Nesta aula foram mostrados os planos do **AWS Support**. A **AWS** oferece quatro planos de suporte diferentes para ajudar a solucionar problemas, reduzir custos e usar os serviços da **AWS** de maneira eficiente. Os planos oferecidos são: Basic, Desenvolvedor, Empresarial, Empresarial Rápido e Empresarial de Grande Porte. O Basic Support é gratuito para todos os clientes da **AWS** e inclui acesso a whitepapers, documentação e comunidades de suporte. Com o Basic Support, é possível também entrar em contato com a **AWS** para tratar de questões de cobrança e aumento do limite de serviço. Com ele, o acesso a uma seleção limitada de verificações do **AWS Trusted Advisor** é disponibilizado. Além disso, pode ser utilizado o **AWS Personal Health Dashboard**, que é uma ferramenta com alertas e orientações de correção quando a **AWS** enfrenta eventos que podem afetar o cliente. 
+
+Os planos do Support Desenvolvedor, Empresarial, Empresarial Rápido e Empresarial de Grande Porte têm todos os benefícios do Support Basic, além de poder abrir um número irrestrito de casos de suporte técnico. Esses planos do Support têm pagamento mensal e não exigem contratos de longo prazo. Em geral, para definição de preço, o plano Desenvolvedor tem o menor custo, os planos Empresarial e Empresarial Rápido são intermediários e o plano Empresarial de Grande Porte tem o custo mais alto.
+
 <a name="item08.9"><h4>AWS Marketplace</h4></a>[Back to summary](#item0)
 
+Na nona aula do módulo foi apresentado o **AWS Marketplace** que é um catálogo digital com milhares de ofertas de software de provedores independentes de software, no qual pode ser utilizado para encontrar, testar e comprar software que pode ser executado na **AWS**. Para cada oferta no **AWS Marketplace**, são exibidas as informações detalhadas sobre opções de definição de preço, suporte disponível e avaliações de outros clientes **AWS**.
+
 <a name="item09.1"><h4>Introdução ao módulo 9</h4></a>[Back to summary](#item0)
+
+Na aula 1 deste módulo foram introduzidos os assuntos que seriam abordados, sendo eles: compreender a migração e a inovação na nuvem **AWS**; resumir o **AWS Cloud Adoption Framework (AWS CAF)**; resumir os seis principais fatores de uma estratégia de migração para a nuvem; descrever os benefícios das soluções de migração de dados da **AWS**, com o **AWS Snowcone**, o **AWS Snowball** e o **AWS Snowmobile**; resumir o amplo escopo de soluções inovadoras que a **AWS** oferece.
+
 <a name="item09.2"><h4>AWS Cloud Adoption Framework (AWS CAF)</h4></a>[Back to summary](#item0)
+
+
+
+
 <a name="item09.3"><h4>Estratégias de migração</h4></a>[Back to summary](#item0)
+
+
+
 <a name="item09.4"><h4>AWS Snow Family</h4></a>[Back to summary](#item0)
+
+
+
 <a name="item09.5"><h4>Inovação com a AWS</h4></a>[Back to summary](#item0)
+
+
+
 
 <a name="item10.1"><h4>Introdução ao módulo 10</h4></a>[Back to summary](#item0)
 <a name="item10.2"><h4>O AWS Well-Architected Framework</h4></a>[Back to summary](#item0)
