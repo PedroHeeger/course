@@ -32,6 +32,8 @@
   - Amazon Elastic File System (EFS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_efs.svg" alt="aws_efs" width="auto" height="25">
   - Amazon Elastic Kubernetes Service (EKS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_eks.png" alt="aws_eks" width="auto" height="25">
   - Amazon Elastic Load Balancing (ELB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elb.svg" alt="aws_elb" width="auto" height="25">
+  - Amazon GuardDuty   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_guardduty.png" alt="aws_guardduty" width="auto" height="25">
+  - Amazon Inspector   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_inspector.svg" alt="aws_inspector" width="auto" height="25">
   - Amazon Managed Blockchain   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_managed_blackchain.jpeg" alt="aws_managed_blackchain" width="auto" height="25">
   - Amazon Neptune   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_neptune.svg" alt="aws_neptune" width="auto" height="25">
   - Amazon Quantum Ledger Database (QLDB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_qldb.png" alt="aws_qldb" width="auto" height="25">
@@ -42,9 +44,11 @@
   - Amazon Simple Queue Service (SQS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sqs.svg" alt="aws_sqs" width="auto" height="25">
   - Amazon Simple Storage Service (S3)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_s3.svg" alt="aws_s3" width="auto" height="25">
   - Amazon Virtual Private Cloud (VPC)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_vpc.svg" alt="aws_vpc" width="auto" height="25">
+  - AWS Artifact   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_artifact.svg" alt="aws_artifact" width="auto" height="25">
   - AWS Auto Scaling; Amazon EC2 Auto Scaling   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_auto_scaling.svg" alt="aws_auto_scaling" width="auto" height="25">
   - AWS Budgets  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_budgets.png" alt="aws_budget" width="auto" height="25">
   - AWS CloudFormation   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudformation.svg" alt="aws_cloudformation" width="auto" height="25">
+  - AWS CloudTrail   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudtrail.svg" alt="aws_cloud_trail" width="auto" height="25">
   - AWS Config   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_config.svg" alt="aws_config" width="auto" height="25">
   - AWS Console Mobile Application   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws_console_mobile" width="auto" height="25">
   - AWS Cost Explorer  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cost_explorer.webp" alt="aws_cost_explorer" width="auto" height="25">
@@ -53,14 +57,17 @@
   - AWS Elastic Beanstalk   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elastic_beanstalk.svg" alt="aws_elastic_beanstalk" width="auto" height="25">
   - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
   - AWS Identity and Access Management (IAM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam.svg" alt="aws_iam" width="auto" height="25">
+  - AWS Key Management Service (KMS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_kms.svg" alt="aws_kms" width="auto" height="25">
   - AWS Lambda   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_lambda.svg" alt="aws_lambda" width="auto" height="25">
   - AWS Management Console   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_management_console.svg" alt="aws_management_console" width="auto" height="25">
-  - AWS Organization  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_organizations.svg" alt="aws_organization" width="auto" height="25">
+  - AWS Organizations  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_organizations.svg" alt="aws_organizations" width="auto" height="25">
   - AWS Outposts   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_outposts.jpeg" alt="aws_outposts" width="auto" height="25">
+  - AWS Shield   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_shield.svg" alt="aws_shield" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Java   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_java.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Node.js   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_nodejs.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Python   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
-  - AWS Web Application Firewall   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_waf.svg" alt="aws_waf" width="auto" height="25">
+  - AWS Trusted Advisor   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_trusted_advisor.svg" alt="aws_trusted_advisor" width="auto" height="25">
+  - AWS Web Application Firewall (WAF)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_waf.svg" alt="aws_waf" width="auto" height="25">
   - AWS Well-Architected  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_well_architected.png" alt="aws_well_architected" width="auto" height="25">
   - Network Access Control List (NACL)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_nacl.svg" alt="aws_nacl" width="auto" height="25">
 
@@ -349,20 +356,59 @@ Nesta aula para finalizar o assunto de armazenamento foram apresentados alguns o
 
 Na primeira aula deste módulo foram apresentados os seguintes conteúdos que seriam abordados: Explicar os benefícios do modelo de responsabilidade compartilhada usando exemplos do mundo real; Descrever a autenticação multifator (MFA); Diferenciar os níveis de segurança do **AWS Identity and Access Management (IAM)**; Explicar os principais benefícios do **AWS Organizations**; Descrever as políticas de segurança em um nível básico; Resumir os benefícios da conformidade com a **AWS**; Explicar serviços de segurança adicionais da **AWS** em um nível básico.
 
-
 <a name="item06.2"><h4>Modelo de responsabilidade compartilhada da AWS</h4></a>[Back to summary](#item0)
+
+Nesta aula foi explicado sobre o modelo de responsabilidade compartilhada da **AWS**, no qual é dividido em responsabilidades do cliente (chamadas de “segurança na nuvem”) e responsabilidades da AWS (chamadas de “segurança da nuvem”). Os clientes são responsáveis pela segurança de tudo o que criam e colocam na nuvem **AWS**, como: dados do cliente, plataforma, aplicações, Identity and Access Management (IAM), configuração de sistemas operacionais, rede e firewall, criptografia de dados no lado do cliente e no lado do servidor, e proteção de tráfego de rede. Já a **AWS** é responsável pela segurança da nuvem, especificamente a infraestrutura física que hospeda os recursos, que incluem: segurança física dos data centers, infraestrutura de hardware (regiões, zona de disponibilidade, locais de borda) e software (computação, armazenamento, banco de dados, rede), infraestrutura de rede e infraestrutura de virtualização.
+
 <a name="item06.3"><h4>Permissões de usuário e acesso</h4></a>[Back to summary](#item0)
+
+Na terceira aula deste módulo foi apresentado o serviço **AWS Identity and Access Management (IAM)** que permite gerenciar o acesso aos serviços e recursos da **AWS** com segurança. O IAM oferece a flexibilidade de configurar o acesso com base nas necessidades operacionais e de segurança específicas da empresa. É possível fazer isso utilizando uma combinação dos recursos do IAM como: usuários (users), grupos (groups), perfis do IAM (roles), políticas do IAM (polices) e autenticação multifator (MFA). Ao criar uma conta **AWS** pela primeira vez, é fornecida uma identidade conhecida como *usuário-raiz (root user)*, no qual esta identidade tem acesso completo a todos os serviços e recursos na conta. Ele pode ser acessado através do endereço de e-mail e da senha utilizados para criar a conta **AWS**. Não se deve utilizar o usuário-raiz para tarefas cotidianas, neste caso, o ideal é criar um usuário do IAM e conceder permissões de administrador e a partir deste usuário administrador criar outros usuários. A utilização do usuário-raiz deve ser somente quando for preciso executar tarefas muito específicas que envolvam controle da conta da **AWS**.
+
+Já um *usuário do IAM* é uma identidade que consiste em um nome e credenciais, e pode ser criada para uma pessoa ou o aplicativo para interação com os serviços e recursos **AWS**. Por padrão, ao criar um novo usuário do IAM, não há permissões associadas a ele, sendo necessário conceder permissões para que ele possa executar as ações específicas desejadas. O recomendado é que para cada pessoa que precise acessar a cloud, crie-se um usuário do IAM individual para ela. Um *grupo do IAM* é um conjunto de usuários do IAM, no qual pode ser definido uma política do IAM para todo o grupo, assim todos os usuários terão esta política.
+
+Com relação as *políticas do IAM*, pode-se dizer que é um documento que concede ou nega permissões para serviços e recursos **AWS**. Com elas é possível personalizar os níveis de acesso dos usuários aos recursos. Uma prática recomendada é seguir sempre o princípio de segurança de menor privilégio ao conceder permissões, assim cada usuário do IAM ou perfil de usuário terá apenas a permissão necessária para desempenhar a tarefa que é destinado a ele, evitando conceder permissões desnecessárias. Um *perfil do IAM (função do IAM)* é uma identidade que pode ser assumida para obter acesso temporário a permissões, porém para que um usuário, aplicação ou serviço do IAM possa assumir um perfil do IAM, ele precisa receber permissões para alternar para o perfil. Assim, quando alguém assume uma função do IAM, ele abandona todas as permissões anteriores que tinha em uma função anterior e assume as permissões da nova função. Esse recurso do IAM é ideal para situações em que o acesso a serviços ou recursos precisa ser concedido temporariamente, em vez de por longo prazo.
+
+Por fim, a *autenticação com multifator* é uma camada extra de segurança para a conta **AWS**, pois além das credenciais padrões de acesso, um token é gerado e solicitado para a efetivação do acesso. Este token é gerado por um dispositivo MFA cadastrado na **AWS**, podendo esse dispositivo ser uma chave de segurança de hardware, um dispositivo de hardware ou uma aplicação de MFA em um dispositivo, como um smartphone. O MFA pode ser ativado tanto para o usuário-raiz como para os usuários do IAM, o ideal é que todos tenham o MFA cadastrado na conta. 
+
 <a name="item06.4"><h4>AWS Organizations</h4></a>[Back to summary](#item0)
+
+Nesta aula foi explicado sobre o serviço **AWS Organizations** que pode ser usado para consolidar e gerenciar múltiplas contas **AWS** em um local central. Quando uma organização é criada, o **AWS Organizations** cria automaticamente uma raiz, que é o contêiner primário para todas as contas da organização. Com este serviço é possível controlar de maneira centralizada as permissões para as contas em da organização usando as políticas de controle de serviço (SCPs). As SCPs permitem que seja definido restrições nos serviços, recursos e ações individuais de API que os usuários e funções em cada conta podem acessar. As contas no **AWS Organizations** podem ser agrupadas em unidades organizacionais (UO) para facilitar o gerenciamento de contas com requisitos de negócios ou segurança semelhantes. Ao aplicar uma política a uma UO, todas as contas na UO herdam automaticamente as permissões especificadas na política.
+
 <a name="item06.5"><h4>Conformidade</h4></a>[Back to summary](#item0)
+
+Com relação a conformidade, existe o serviço **AWS Artifact** que concede acesso sob demanda a relatórios de segurança e conformidade da **AWS** e a contratos on-line selecionados. O **AWS Artifact** consiste em duas seções principais: **AWS Artifact Agreements** e o **AWS Artifact Reports**. No **AWS Artifact Agreements** é possível ver, aceitar e gerenciar contratos para uma conta individual e para todas as contas no **AWS Organizations**. Já o **AWS Artifact Reports** oferece relatórios de conformidade por auditores terceirizados que testaram e verificaram se a **AWS** está em conformidade com diversas normas e regulamentações de segurança globais, regionais e específicas do setor. 
+
+O centro de conformidade para o cliente contém recursos que ajudam a saber mais sobre a conformidade da **AWS**. No centro de conformidade para o cliente, existe a possibilidade de ler histórias de conformidade dos clientes para descobrir como as empresas de setores regulamentados resolveram vários desafios de conformidade, governança e auditoria. Também é disponibilizado os whitepapers e documentação de conformidade sobre tópicos como: respostas da **AWS** aos principais problemas de conformidade, uma visão geral do risco e da conformidade da **AWS**; uma lista de verificação da segurança de auditoria. Além disso, o centro de conformidade para o cliente inclui um plano de aprendizagem para auditores. Esse plano de aprendizagem foi elaborado para indivíduos em funções jurídicas, de auditoria e de conformidade que desejam saber mais sobre como as operações internas podem demonstrar conformidade usando a nuvem **AWS**.
+
 <a name="item06.6"><h4>Ataques de negação de serviço</h4></a>[Back to summary](#item0)
+
+Nesta aula foram ensinados dois conceitos para apresentar o serviço **AWS Shield**. O primeiro conceito foi o *ataque de negação de serviço (DoS)* que é uma tentativa deliberada de tornar um site ou aplicação indisponível para os usuários, inundando a aplicação com tráfego excessivo de rede até que haja uma sobrecarga e a aplicação não seja mais capaz de responder, tornando-se indisponível para usuários legítimos que tentam acessá-la. Enquanto o ataque DoS se origina de uma fonte única, o *ataque distribuído de negação de serviço (DDoS)* tem origem em várias fontes, cujo propósito é o mesmo. Este ataque pode ser feito por um grupo de invasores, ou até mesmo um único invasor que utiliza várias computadores infectados (também conhecidos como “bots”) para enviar tráfego excessivo a um site ou aplicação.
+
+A **AWS** fornece o serviço **AWS Shield** que protege aplicações contra ataques DDoS. O **AWS Shield** oferece dois níveis de proteção: Standard e Advanced. O **AWS Shield Standard** protege automaticamente todos os clientes **AWS** sem nenhum custo contra os tipos de ataques DDoS mais comuns e frequentes. Já o **AWS Shield Advanced** é um serviço pago que fornece diagnósticos detalhados de ataques e a capacidade de detectar e mitigar ataques elaborados de DDoS. Também é possível integrá-lo a outros serviços, como o **Amazon CloudFront**, o **Amazon Route 53** e o **Amazon Elastic Load Balancing**. 
+
 <a name="item06.7"><h4>Serviços de segurança adicionais</h4></a>[Back to summary](#item0)
 
+Outros serviços relacionados a segurança foram apresentados na sétima aula. O serviço **AWS Key Management Service (KMS)** permite que executar operações de criptografia usando chaves de criptografia. Ele pode ser utilizado para criar, gerenciar e usar chaves de criptografia, e também controlar o uso de chaves em uma ampla gama de serviços e em aplicações. Uma chave de criptografia é uma cadeia aleatória de dígitos usada para bloquear (criptografar) e desbloquear (descriptografar) dados. O serviço **AWS Web Application Firewall (WAF)** é um firewall de aplicação web que permite monitorar solicitações de rede que entram em aplicações web, utilizando uma lista de controle de acesso (ACL) web para proteger os recursos da **AWS**.
 
+O **Amazon Inspector** ajuda a melhorar a segurança e a conformidade das aplicações executando avaliações de segurança automatizadas. Ele verifica os aplicativos quanto a vulnerabilidades de segurança e desvios das práticas recomendadas de segurança, como acesso aberto a instâncias do **Amazon EC2** e instalações de versões de software vulneráveis. Depois que o **Amazon Inspector** faz uma avaliação, ele apresenta uma lista de descobertas de segurança priorizando por nível de gravidade com uma descrição detalhada de cada problema de segurança e uma recomendação sobre como corrigi-lo. Já o **Amazon GuardDuty** é um serviço que realiza detecção inteligente de ameaças para a infraestrutura e os recursos **AWS**. Ele identifica ameaças monitorando continuamente a atividade da rede e o comportamento da conta no ambiente **AWS**.
 
 <a name="item07.1"><h4>Introdução ao módulo 7</h4></a>[Back to summary](#item0)
+
+Na primeira aula deste módulo foram introduzidos os assuntos que seriam abordados, sendo eles: resumir abordagens para monitorar o ambiente **AWS**; Descrever os benefícios do **Amazon CloudWatch**; Descrever os benefícios do **AWS CloudTrail**; Descrever os benefícios do **AWS Trusted Advisor**.
+
 <a name="item07.2"><h4>Amazon CloudWatch</h4></a>[Back to summary](#item0)
+
+
+
+
 <a name="item07.3"><h4>AWS CloudTrail</h4></a>[Back to summary](#item0)
+
+
+
 <a name="item07.4"><h4>AWS Trusted Advisor</h4></a>[Back to summary](#item0)
+
+
+
 
 
 <a name="item08.1"><h4>Introdução ao módulo 8</h4></a>[Back to summary](#item0)
