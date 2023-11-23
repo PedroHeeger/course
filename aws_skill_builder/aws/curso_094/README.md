@@ -5,7 +5,7 @@
 #### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_094 (Elementos essenciais do AWS Cloud Practitioner)   <img src="./0-aux/logo_course.png" alt="curso_094" width="auto" height="25"></a>
 
-#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/05-particip/data/power_bi/(23-05-22)%20Cert%20Power%20BI%20e%20Excel%20PH%20Simplifica%20Trein.pdf">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-11-22)%20Elementos%20essenciais%20do%20AWS%20Cloud%20Practitioner%20PH%20AWSSB.pdf">Certificate</a>
 
 ---
 
@@ -18,8 +18,12 @@
 - Cloud:
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
+  - Amazon AppStream 2.0   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_appstream_20.svg" alt="aws_appstream_20" width="auto" height="25">
+  - Amazon Augmented AI (A2I)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_a2i.png" alt="aws_a2i" width="auto" height="25">
   - Amazon CloudFront   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudfront.svg" alt="aws_cloudfront" width="auto" height="25">
   - Amazon CloudWatch   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudwatch.svg" alt="aws_cloudwatch" width="auto" height="25">
+  - Amazon CodeWhisperer   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_codewhisperer.jpg" alt="aws_codewhisperer" width="auto" height="25">
+  - Amazon Comprehend   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_comprehend.svg" alt="aws_comprehend" width="auto" height="25">
   - Amazon DB Accelerator (DAX)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_dax.svg" alt="aws_dax" width="auto" height="25">
   - Amazon DocumentDB   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_documentdb.svg" alt="aws_documentdb" width="auto" height="25">
   - Amazon DynamoDB   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_dynamodb.svg" alt="aws_dynamodb" width="auto" height="25">
@@ -31,6 +35,7 @@
   - Amazon Elastic File System (EFS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_efs.svg" alt="aws_efs" width="auto" height="25">
   - Amazon Elastic Kubernetes Service (EKS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_eks.png" alt="aws_eks" width="auto" height="25">
   - Amazon Elastic Load Balancing (ELB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elb.svg" alt="aws_elb" width="auto" height="25">
+  - Amazon Fraud Detector   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fraud_detector.jpeg" alt="aws_fraud_detector" width="auto" height="25">
   - Amazon GuardDuty   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_guardduty.png" alt="aws_guardduty" width="auto" height="25">
   - Amazon Inspector   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_inspector.svg" alt="aws_inspector" width="auto" height="25">
   - Amazon Managed Blockchain   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_managed_blockchain.jpeg" alt="aws_managed_blockchain" width="auto" height="25">
@@ -42,6 +47,8 @@
   - Amazon Simple Notification Service (SNS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sns.svg" alt="aws_sns" width="auto" height="25">
   - Amazon Simple Queue Service (SQS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sqs.svg" alt="aws_sqs" width="auto" height="25">
   - Amazon Simple Storage Service (S3)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_s3.svg" alt="aws_s3" width="auto" height="25">
+  - Amazon Textract   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_textract.png" alt="aws_textract" width="auto" height="25">
+  - Amazon Transcribe   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_transcribe.png" alt="aws_transcribe" width="auto" height="25">
   - Amazon Virtual Private Cloud (VPC)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_vpc.svg" alt="aws_vpc" width="auto" height="25">
   - AWS Artifact   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_artifact.svg" alt="aws_artifact" width="auto" height="25">
   - AWS Auto Scaling; Amazon EC2 Auto Scaling   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_auto_scaling.svg" alt="aws_auto_scaling" width="auto" height="25">
@@ -54,11 +61,13 @@
   - AWS Console Mobile Application   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws_console_mobile" width="auto" height="25">
   - AWS Cost Explorer  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cost_explorer.webp" alt="aws_cost_explorer" width="auto" height="25">
   - AWS Database Migration Service (DMS)  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_codecommit.svg" alt="aws_dms" width="auto" height="25">
+  - AWS DeepRacer   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_deepracer.png" alt="aws_deepracer" width="auto" height="25">
   - AWS Direct Connect   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_direct_connect.svg" alt="aws_direct_connect" width="auto" height="25">
   - AWS Elastic Beanstalk   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elastic_beanstalk.svg" alt="aws_elastic_beanstalk" width="auto" height="25">
   - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
   - AWS Free Tier   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_free_tier.webp" alt="aws_free_tier" width="auto" height="25">
   - AWS Identity and Access Management (IAM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam.svg" alt="aws_iam" width="auto" height="25">
+  - AWS IoT Greengrass   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iot_greengrass.png" alt="aws_iot_greengrass" width="auto" height="25">
   - AWS Key Management Service (KMS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_kms.svg" alt="aws_kms" width="auto" height="25">
   - AWS Lambda   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_lambda.svg" alt="aws_lambda" width="auto" height="25">
   - AWS Management Console   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_management_console.svg" alt="aws_management_console" width="auto" height="25">
@@ -73,6 +82,7 @@
   - AWS Software Development Kit (SDK) - Java   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_java.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Node.js   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_nodejs.svg" alt="aws_sdk" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Python   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
+  - AWS Storage Gateway   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_storage_gateway.svg" alt="aws_storage_gateway" width="auto" height="25">
   - AWS Support   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_support.png" alt="aws_support" width="auto" height="25">
   - AWS Trusted Advisor   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_trusted_advisor.svg" alt="aws_trusted_advisor" width="auto" height="25">
   - AWS Web Application Firewall (WAF)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_waf.svg" alt="aws_waf" width="auto" height="25">
@@ -96,10 +106,10 @@
 ---
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
-1. <a href="#item01">Módulo 1: Introdução à Amazon Web Services</a><br>
+1. <a href="item01">Módulo 1: Introdução à Amazon Web Services</a><br>
     1.1 <a href="#item01.1">Introdução ao módulo 1</a><br>
     1.2 <a href="#item01.2">Computação em nuvem</a><br>
-2. <a href="#item02">Módulo 2: Introdução à Amazon Web Services</a><br>
+2. <a href="item02">Módulo 2: Introdução à Amazon Web Services</a><br>
     2.1 <a href="#item02.1">Introdução ao módulo 2</a><br>
     2.2 <a href="#item02.2">Tipos de instâncias do Amazon EC2</a><br>
     2.3 <a href="#item02.3">Definição de preços do Amazon EC2</a><br>
@@ -108,19 +118,19 @@
     2.6 <a href="#item02.6">Sistema de mensagens e enfileiramento</a><br>
     2.7 <a href="#item02.7">Outros serviços de computação</a><br>
     2.8 Resumo do módulo 2
-3. <a href="#item03">Módulo 3: Infraestrutura Global e Confiabilidade</a><br>
+3. <a href="item03">Módulo 3: Infraestrutura Global e Confiabilidade</a><br>
     3.1 <a href="#item03.1">Introdução ao módulo 3</a><br>
     3.2 <a href="#item03.2">Infraestrutura global da AWS</a><br>
     3.3 <a href="#item03.3">Locais de borda</a><br>
     3.4 <a href="#item03.4">Como provisionar recursos AWS</a><br>
     3.5 Resumo do módulo 3
-4. <a href="#item04">Módulo 4: Redes</a><br>
+4. <a href="item04">Módulo 4: Redes</a><br>
     4.1 <a href="#item04.1">Introdução ao módulo 4</a><br>
     4.2 <a href="#item04.2">Conectividade com a AWS</a><br>
     4.3 <a href="#item04.3">Sub-redes e listas de controle de acesso à rede</a><br>
     4.4 <a href="#item04.4">Redes globais</a><br>
     4.5 Resumo do módulo 4
-5. <a href="#item05">Módulo 5: Armazenamento e Banco de Dados</a><br>
+5. <a href="item05">Módulo 5: Armazenamento e Banco de Dados</a><br>
     5.1 <a href="#item05.1">Introdução ao módulo 5</a><br>
     5.2 <a href="#item05.2">Armazenamento de instância e Amazon Elastic Block Store (Amazon EBS)</a><br>
     5.3 <a href="#item05.3">Amazon Simple Storage Service (Amazon S3)</a><br>
@@ -131,7 +141,7 @@
     5.8 <a href="#item05.8">AWS Database Migration Service</a><br>
     5.9 <a href="#item05.9">Serviços de banco de dados adicionais</a><br>
     5.10 Resumo do módulo 5
-6. <a href="#item06">Módulo 6: Segurança</a><br>
+6. <a href="item06">Módulo 6: Segurança</a><br>
     6.1 <a href="#item06.1">Introdução ao módulo 6</a><br>
     6.2 <a href="#item06.2">Modelo de responsabilidade compartilhada da AWS</a><br>
     6.3 <a href="#item06.3">Permissões de usuário e acesso</a><br>
@@ -140,13 +150,13 @@
     6.6 <a href="#item06.6">Ataques de negação de serviço</a><br>
     6.7 <a href="#item06.7">Serviços de segurança adicionais</a><br>
     6.8 Resumo do módulo 6
-7. <a href="#item07">Módulo 7: Monitoramento e Análise</a><br>
+7. <a href="item07">Módulo 7: Monitoramento e Análise</a><br>
     7.1 <a href="#item07.1">Introdução ao módulo 7</a><br>
     7.2 <a href="#item07.2">Amazon CloudWatch</a><br>
     7.3 <a href="#item07.3">AWS CloudTrail</a><br>
     7.4 <a href="#item07.4">AWS Trusted Advisor</a><br>
     7.5 Resumo do módulo 7
-8. <a href="#item08">Módulo 8: Definição de Preços e Suporte</a><br>
+8. <a href="item08">Módulo 8: Definição de Preços e Suporte</a><br>
     8.1 <a href="#item08.1">Introdução ao módulo 8</a><br>
     8.2 <a href="#item08.2">Nível gratuito da AWS</a><br>
     8.3 <a href="#item08.3">Conceitos de definição de preço da AWS</a><br>
@@ -157,19 +167,19 @@
     8.8 <a href="#item08.8">Planos do AWS Support</a><br>
     8.9 <a href="#item08.9">AWS Marketplace</a><br>
     8.10 Resumo do módulo 8
-9. <a href="#item09">Módulo 9: Migração e Inovação</a><br>
+9. <a href="item09">Módulo 9: Migração e Inovação</a><br>
     9.1 <a href="#item09.1">Introdução ao módulo 9</a><br>
     9.2 <a href="#item09.2">AWS Cloud Adoption Framework (AWS CAF)</a><br>
     9.3 <a href="#item09.3">Estratégias de migração</a><br>
     9.4 <a href="#item09.4">AWS Snow Family</a><br>
     9.5 <a href="#item09.5">Inovação com a AWS</a><br>
     9.6 Resumo do módulo 9
-10. <a href="#item10">Módulo 10: A Jornada para a Nuvem</a><br>
+10. <a href="item10">Módulo 10: A Jornada para a Nuvem</a><br>
     10.1 <a href="#item10.1">Introdução ao módulo 10</a><br>
     10.2 <a href="#item10.2">O AWS Well-Architected Framework</a><br>
     10.3 <a href="#item10.3">Benefícios da nuvem AWS</a><br>
     10.4 Resumo do módulo 10
-11. <a href="#item11">Módulo 10: A Jornada para a Nuvem</a><br>
+11. <a href="item11">Módulo 10: A Jornada para a Nuvem</a><br>
     11.1 <a href="#item11.1">Introdução ao módulo 11</a><br>
     11.2 <a href="#item11.2">Detalhes do exame</a><br>
     11.3 <a href="#item11.3">Estratégias do exame</a><br>
