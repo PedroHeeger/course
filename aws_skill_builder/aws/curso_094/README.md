@@ -106,10 +106,10 @@
 ---
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
-1. <a href="item01">Módulo 1: Introdução à Amazon Web Services</a><br>
+1. <a name="item01">Módulo 1: Introdução à Amazon Web Services</a><br>
     1.1 <a href="#item01.1">Introdução ao módulo 1</a><br>
     1.2 <a href="#item01.2">Computação em nuvem</a><br>
-2. <a href="item02">Módulo 2: Introdução à Amazon Web Services</a><br>
+2. <a name="item02">Módulo 2: Introdução à Amazon Web Services</a><br>
     2.1 <a href="#item02.1">Introdução ao módulo 2</a><br>
     2.2 <a href="#item02.2">Tipos de instâncias do Amazon EC2</a><br>
     2.3 <a href="#item02.3">Definição de preços do Amazon EC2</a><br>
@@ -118,19 +118,19 @@
     2.6 <a href="#item02.6">Sistema de mensagens e enfileiramento</a><br>
     2.7 <a href="#item02.7">Outros serviços de computação</a><br>
     2.8 Resumo do módulo 2
-3. <a href="item03">Módulo 3: Infraestrutura Global e Confiabilidade</a><br>
+3. <a name="item03">Módulo 3: Infraestrutura Global e Confiabilidade</a><br>
     3.1 <a href="#item03.1">Introdução ao módulo 3</a><br>
     3.2 <a href="#item03.2">Infraestrutura global da AWS</a><br>
     3.3 <a href="#item03.3">Locais de borda</a><br>
     3.4 <a href="#item03.4">Como provisionar recursos AWS</a><br>
     3.5 Resumo do módulo 3
-4. <a href="item04">Módulo 4: Redes</a><br>
+4. <a name="item04">Módulo 4: Redes</a><br>
     4.1 <a href="#item04.1">Introdução ao módulo 4</a><br>
     4.2 <a href="#item04.2">Conectividade com a AWS</a><br>
     4.3 <a href="#item04.3">Sub-redes e listas de controle de acesso à rede</a><br>
     4.4 <a href="#item04.4">Redes globais</a><br>
     4.5 Resumo do módulo 4
-5. <a href="item05">Módulo 5: Armazenamento e Banco de Dados</a><br>
+5. <a name="item05">Módulo 5: Armazenamento e Banco de Dados</a><br>
     5.1 <a href="#item05.1">Introdução ao módulo 5</a><br>
     5.2 <a href="#item05.2">Armazenamento de instância e Amazon Elastic Block Store (Amazon EBS)</a><br>
     5.3 <a href="#item05.3">Amazon Simple Storage Service (Amazon S3)</a><br>
@@ -141,7 +141,7 @@
     5.8 <a href="#item05.8">AWS Database Migration Service</a><br>
     5.9 <a href="#item05.9">Serviços de banco de dados adicionais</a><br>
     5.10 Resumo do módulo 5
-6. <a href="item06">Módulo 6: Segurança</a><br>
+6. <a name="item06">Módulo 6: Segurança</a><br>
     6.1 <a href="#item06.1">Introdução ao módulo 6</a><br>
     6.2 <a href="#item06.2">Modelo de responsabilidade compartilhada da AWS</a><br>
     6.3 <a href="#item06.3">Permissões de usuário e acesso</a><br>
@@ -150,13 +150,13 @@
     6.6 <a href="#item06.6">Ataques de negação de serviço</a><br>
     6.7 <a href="#item06.7">Serviços de segurança adicionais</a><br>
     6.8 Resumo do módulo 6
-7. <a href="item07">Módulo 7: Monitoramento e Análise</a><br>
+7. <a name="item07">Módulo 7: Monitoramento e Análise</a><br>
     7.1 <a href="#item07.1">Introdução ao módulo 7</a><br>
     7.2 <a href="#item07.2">Amazon CloudWatch</a><br>
     7.3 <a href="#item07.3">AWS CloudTrail</a><br>
     7.4 <a href="#item07.4">AWS Trusted Advisor</a><br>
     7.5 Resumo do módulo 7
-8. <a href="item08">Módulo 8: Definição de Preços e Suporte</a><br>
+8. <a name="item08">Módulo 8: Definição de Preços e Suporte</a><br>
     8.1 <a href="#item08.1">Introdução ao módulo 8</a><br>
     8.2 <a href="#item08.2">Nível gratuito da AWS</a><br>
     8.3 <a href="#item08.3">Conceitos de definição de preço da AWS</a><br>
@@ -167,19 +167,19 @@
     8.8 <a href="#item08.8">Planos do AWS Support</a><br>
     8.9 <a href="#item08.9">AWS Marketplace</a><br>
     8.10 Resumo do módulo 8
-9. <a href="item09">Módulo 9: Migração e Inovação</a><br>
+9. <a name="item09">Módulo 9: Migração e Inovação</a><br>
     9.1 <a href="#item09.1">Introdução ao módulo 9</a><br>
     9.2 <a href="#item09.2">AWS Cloud Adoption Framework (AWS CAF)</a><br>
     9.3 <a href="#item09.3">Estratégias de migração</a><br>
     9.4 <a href="#item09.4">AWS Snow Family</a><br>
     9.5 <a href="#item09.5">Inovação com a AWS</a><br>
     9.6 Resumo do módulo 9
-10. <a href="item10">Módulo 10: A Jornada para a Nuvem</a><br>
+10. <a name="item10">Módulo 10: A Jornada para a Nuvem</a><br>
     10.1 <a href="#item10.1">Introdução ao módulo 10</a><br>
     10.2 <a href="#item10.2">O AWS Well-Architected Framework</a><br>
     10.3 <a href="#item10.3">Benefícios da nuvem AWS</a><br>
     10.4 Resumo do módulo 10
-11. <a href="item11">Módulo 10: A Jornada para a Nuvem</a><br>
+11. <a name="item11">Módulo 10: A Jornada para a Nuvem</a><br>
     11.1 <a href="#item11.1">Introdução ao módulo 11</a><br>
     11.2 <a href="#item11.2">Detalhes do exame</a><br>
     11.3 <a href="#item11.3">Estratégias do exame</a><br>
