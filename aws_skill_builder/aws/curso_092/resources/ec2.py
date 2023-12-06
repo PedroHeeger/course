@@ -103,7 +103,7 @@ print("EC2 EXCLUSION")
 
 print("-----//-----//-----//-----//-----//-----//-----")
 print("Definindo variáveis")
-tagNameInstance = "ec2Test1"
+tagNameInstance = "ec2Test0"
 
 print("-----//-----//-----//-----//-----//-----//-----")
 resposta = input("Deseja executar o código? (y/n) ")
