@@ -19,6 +19,7 @@
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - AWS Identity and Access Management (IAM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam.svg" alt="aws_iam" width="auto" height="25">
+  - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
@@ -46,7 +47,13 @@ O objetivo desse curso foi apresentar a arquitetura e a terminologia básicas do
 ### Structure:
 A estrutura do curso é formada por:
 - Este arquivo de README.md.
-- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
+- A pasta [resources](./resources/) contendo os arquivos de scripts em **Python** para interação com a **AWS**.
+- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img01.png" alt="img01"><br>
+    <figcaption>Imagem 01.</figcaption>
+</figure></div><br>
 
 ### Development:
 
@@ -74,3 +81,50 @@ Cada recurso da **AWS** tem um nome de recurso da Amazon, ou "ARN", exclusivo. O
 
 Políticas baseadas em recursos são aplicadas a um serviço ou recurso. Casos de uso típicos incluem: uma política de bucket do S3, um tópico do SNS ou uma fila SQS. Use políticas baseadas em recursos quando não precisar gerenciar credenciais de usuários individuais em nível granular. Já as políticas baseadas em identidades são associadas a um usuário ou um grupo do IAM. Permissões no nível do recurso referem-se à capacidade de especificar não só que ações os usuários podem executar, mas em quais recursos eles têm permissão para executá-las. Esse é um nível de permissões mais granular. Por exemplo, com permissões no nível do recurso, é possível especificar se um usuário só deve ter permissão para interromper uma instância do EC2 com um ARN específico.
 
+Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com três arquivos de scripts em **Python** para criar uma role e uma policy, e anexar a policy criada a role desenvolvida. Essa role possuíu na sua política de confiança (*Trust Policy*), o usuário do IAM criado no curso [curso_099](../curso_099/). Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamPolicy.py](./resources/iamPolicy.py) para criar a policy personalizada, [iamRole.py](./resources/iamRole.py) para criar a role e [iamRolePolicy.py](./resources/iamRolePolicy.py) para adicionar a policy criada à role. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código. 
+
+Tanto no arquivo da role como da policy, no script de criação, existem dois blocos de criação desses elementos, sendo um onde é passado o **JSON** direto no comando e outro onde é indicado um arquivo **JSON**. A primeira opção foi a executada, sendo a segunda opção comentada. Caso queira utilizá-la, é preciso comentar a primeira opção e descomentar a segunda, além de conferir a variável com o caminho correto para o arquivo **JSON** e verificar o próprio arquivo **JSON**.
+
+Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação dos três arquivos **Python**. Nas imagens 04, 05, 06 e 07 é evidenciado no console da **AWS** a policy e a role criada, além da anexação dessa policy a role e a política de confiança (*Trust Policy*), ou seja, a entidade que pode assumir essa role que no caso é o usuário do IAM criado no curso [curso_099](../curso_099/)
+
+<div align="Center"><figure>
+    <img src="./0-aux/img02.png" alt="img02"><br>
+    <figcaption>Imagem 02.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img03.png" alt="img03"><br>
+    <figcaption>Imagem 03.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img04.png" alt="img04"><br>
+    <figcaption>Imagem 04.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img05.png" alt="img05"><br>
+    <figcaption>Imagem 05.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img06.png" alt="img06"><br>
+    <figcaption>Imagem 06.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img07.png" alt="img07"><br>
+    <figcaption>Imagem 07.</figcaption>
+</figure></div><br>
+
+Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img08.png" alt="img08"><br>
+    <figcaption>Imagem 08.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img09.png" alt="img09"><br>
+    <figcaption>Imagem 09.</figcaption>
+</figure></div><br>
