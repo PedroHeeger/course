@@ -5,7 +5,7 @@
 #### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_100 (AWS Identity and Access Management - Architecture and Terminology)   <img src="./0-aux/logo_course.png" alt="curso_100" width="auto" height="25"></a>
 
-#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-11-23)%20Introduction...(CLI)%20PH%20AWSSB.pdf">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-12-11)%20AWS%20IAM%20Architecture%20and%20Terminology%20PH%20AWSSB.pdf">Certificate</a>
 
 ---
 
@@ -73,3 +73,4 @@ Uma função do IAM tem duas partes distintas. A política de confiança (*Trust
 Cada recurso da **AWS** tem um nome de recurso da Amazon, ou "ARN", exclusivo. Os ARNs ajudam a especificar um recurso em toda a cloud, como em políticas de IAM, tags do Amazon RDS ou chamadas de API. Normalmente, um ARN está no seguinte formato `arn:partition:service:region:account-id:resourcetype/resource`. A partição é "aws". O serviço é IAM. Na região como o IAM é um serviço global, ela é ignorada ficando vazia `::`. Em seguida o id da conta é o numéro de identificação da conta da **AWS**. O tipo de recurso é "user", e o recurso é o nome do recurso utilizado.
 
 Políticas baseadas em recursos são aplicadas a um serviço ou recurso. Casos de uso típicos incluem: uma política de bucket do S3, um tópico do SNS ou uma fila SQS. Use políticas baseadas em recursos quando não precisar gerenciar credenciais de usuários individuais em nível granular. Já as políticas baseadas em identidades são associadas a um usuário ou um grupo do IAM. Permissões no nível do recurso referem-se à capacidade de especificar não só que ações os usuários podem executar, mas em quais recursos eles têm permissão para executá-las. Esse é um nível de permissões mais granular. Por exemplo, com permissões no nível do recurso, é possível especificar se um usuário só deve ter permissão para interromper uma instância do EC2 com um ARN específico.
+
