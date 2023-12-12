@@ -2,7 +2,7 @@
 
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">aws_skill_builder   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/aws_skill_builder.png" alt="aws_skill_builder" width="auto" height="25"></a>
-#### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
+### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_094 (Elementos essenciais do AWS Cloud Practitioner)   <img src="./0-aux/logo_course.png" alt="curso_094" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-11-22)%20Elementos%20essenciais%20do%20AWS%20Cloud%20Practitioner%20PH%20AWSSB.pdf">Certificate</a>
