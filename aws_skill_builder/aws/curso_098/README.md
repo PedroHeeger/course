@@ -36,7 +36,7 @@
 ---
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
-1. <a href="#item01">AWS Identity and Access Management - Basics</a><br>
+1. <a href="#item01">AWS Identity and Access Management - Basics (Portuguese)</a><br>
 
 ---
 
@@ -50,7 +50,7 @@ A estrutura do curso é formada por:
 
 ### Development:
 
-<a name="item01"><h4>AWS Identity and Access Management - Basics</h4></a>[Back to summary](#item0)
+<a name="item01"><h4>AWS Identity and Access Management - Basics (Portuguese)</h4></a>[Back to summary](#item0)
 
 O **AWS Identity and Access Management (IAM)**, permite controlar acesso a serviços de computação, armazenamento, banco de dados e aplicativos na nuvem **AWS**. O IAM usa conceitos de controle de acesso, como usuários, grupos e permissões que são aplicados a chamadas de API individuais para que possam ser especificada permissões para controlar quais usuários podem acessar serviços específicos, os tipos de ações que podem executar e quais recursos estão disponíveis, desde maquinas virtuais, instâncias de banco de dados e até a capacidade de filtrar resultados de consulta de banco de dados.
 
