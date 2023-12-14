@@ -16,3 +16,4 @@ This folder refers to all the courses I took on the AWS Skill Builder platform r
 - <a href="./curso_099">curso_099 (Introduction to AWS Identity and Access Management (IAM))   <img src="./curso_099/0-aux/logo_course.png" alt="curso_099" width="auto" height="25"></a>
 - <a href="./curso_100">curso_100 (AWS Identity and Access Management - Architecture and Terminology)   <img src="./curso_100/0-aux/logo_course.png" alt="curso_100" width="auto" height="25"></a>
 - <a href="./curso_101">curso_101 (Authentication and Authorization with AWS Identity and Access Management)   <img src="./curso_101/0-aux/logo_course.png" alt="curso_101" width="auto" height="25"></a>
+- <a href="./curso_102">curso_102 (Introduction to Amazon Elastic Container Registry)   <img src="./curso_102/0-aux/logo_course.png" alt="curso_102" width="auto" height="25"></a>
