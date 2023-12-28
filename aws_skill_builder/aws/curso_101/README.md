@@ -50,7 +50,7 @@ A estrutura do curso é formada por:
 
 ### Development:
 
-<a name="item01"><h4>AWS Identity and Access Management - Architecture and Terminology (Portuguese)</h4></a>[Back to summary](#item0)
+<a name="item01"><h4>Authentication and Authorization with AWS Identity and Access Management (Portuguese)</h4></a>[Back to summary](#item0)
 
 Entender como as permissões funcionam na **AWS** significa entender como a gestão de identidade e acesso, IAM, opera internamente. O **AWS Identity and Access Management (IAM)** possui alguns elementos fundamentais para seu funcionamento. Um *IAM user* é um operador permanente, que pode ser humano ou maquina, não importa quem seja. O importante é que as credenciais são permanentes e permanecem com esse usuário até que haja uma rotatividade forçada, seja em um nome e senha, seja em uma access key, secret key ou combinação, o que for. Este é um método de autenticação para usuários nomeados no sistema. Já um *IAM group* é um conjunto de usuários do IAM. Os gruposs podem ter muitos usuários e os usuários podem pertencer a muitos grupos.
 
