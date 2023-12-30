@@ -146,3 +146,8 @@ Para o playground de image, o modelo utilizado foi o *SDXL 1.0  v1.0* da **Stabi
 </figure></div><br>
 
 Como o **Amazon Bedrock** é um serviço novo, ainda não existe comandos do **AWS CLI** para interagir com a API dele, caso que ocorre também com o **Amazon Q** que é explicado no curso [curso_112](../curso_112/). Então para interagir com o Bedrock via API, foi utilizado o SDK da Amazon para linguagem de programação **Python** que é o **Boto3**. Para isso foi criado o arquivo [bedrock.py](./resources/bedrock.py) no sub-diretório [resources](./resources/), no qual este arquivo conteve dois scripts **Python** que utilizam o **Boto3** para interagir com o Bedrock. No primeiro script, o objetivo é enviar um prompt para o foundation model (FM) escolhido responder a pergunta e então exibir essa resposta na tela. Já o segundo script, o objetivo é listar todos os FMs existentes, informando qual tipo de input ele recebe e de qual provedor ele é. O primeiro utiliza o `bedrock-runtime` como client, enquanto o segundo utiliza apenas o `bedrock`. A estrutura dos scripts seguem as mesmas realizadas nos cursos da **AWS Skill Builder**, sempre uma estrutura condicional na frente dos scripts para o usuário decidir se executa ou não o bloco de código. Não houve verificações de existência de algum elemento, pois o objetivo aqui não foi criar e excluir algo, e sim interagir. A imagem 07 abaixo mostra o output dos dois scripts.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img07.png" alt="img07"><br>
+    <figcaption>Imagem 07.</figcaption>
+</figure></div><br>
