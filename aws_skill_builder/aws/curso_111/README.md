@@ -19,10 +19,12 @@
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - Amazon Bedrock   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_bedrock.png" alt="aws_bedrock" width="auto" height="25">
+  - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
   - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
+  - Python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="25">
 - Integrated Development Environment (IDE) and Text Editor:
   - Visual Studio Code (VS Code)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
 - Versioning: 
@@ -46,7 +48,13 @@ O objetivo desse curso foi apresentar o serviço **Amazon Bedrock** explicando s
 ### Structure:
 A estrutura do curso é formada por:
 - Este arquivo de README.md.
-- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
+- A pasta [resources](./resources/) contendo um arquivo de script em **Python** para interação com a **Amazon Bedrock**.
+- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img01.png" alt="img01"><br>
+    <figcaption>Imagem 01.</figcaption>
+</figure></div><br>
 
 ### Development:
 
@@ -101,3 +109,40 @@ Os consumidores interagem com o **Amazon Bedrock** no console para atividades de
   - Sequências de parada: Uma sequência de parada é uma sequência de caracteres. Se o modelo encontrar uma sequência de parada, ele para de gerar mais tokens. Diferentes modelos aceitam diferentes tipos de caracteres em uma sequência de parada, diferentes comprimentos máximos de sequência e podem aceitar a definição de várias sequências de parada.
 
 ##### Prática
+
+Como parte prática desse curso, foram realizados alguns playgrounds disponíveis no **Amazon Bedrock**. Os três tipos de playgrounds existentes são: Chat, Text e Image. Para utilizá-los é necessário ter disponívels os foundation models (FMs) do Bedrock. Na aba *Model access* é listado vários FMs de diversos providers para várias modalidades. Ao clicar em *Manage model access* é possível escolher quais modelos devem ser liberados o acesso e então salvar. Para fazer isso é necessário permissões do IAM caso o usuário não tenha, como neste caso é o usuário administrador, não foi necessário. A depender do FM escolhido pode levar alguns minutos para ser liberado. Na imagem 02 é exibido a aba de *Model access** com os FMs que já foram permitidos o acesso.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img02.png" alt="img02"><br>
+    <figcaption>Imagem 02.</figcaption>
+</figure></div><br>
+
+Após os FMs liberados, ele já é listado no respectivo playground, sendo necessário selecioná-lo e então começar utilizar o playground. O primeiro playground testado foi o de chat com o FM *Titan Text G1 - Express  v1* da própria **Amazon**. Na imagem 03 é ilustrado a primeira interação com o playground de chat.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img03.png" alt="img03"><br>
+    <figcaption>Imagem 03.</figcaption>
+</figure></div><br>
+
+Observe que essa primeira interação foi feita com as configurações padrões, porém é possível alterar alguns parâmetros disponíveis no lado direito, modificando a aleatoriedade e a diversidade das respostas geradas pelo modelo. Na imagem 04 abaixo um mesmo prompt foi enviado duas vezes, sendo a primeira vez com a temperatura 0 (mais preciso) e o segundo com a temperatura de 1 (menos preciso). Em algumas situações, uma configuração de temperatura alta resulta em respostas imprecisas ou até mesmo totalmente erradas. Isso é chamado de "alucinação". 
+
+<div align="Center"><figure>
+    <img src="./0-aux/img04.png" alt="img04"><br>
+    <figcaption>Imagem 04.</figcaption>
+</figure></div><br>
+
+O próximo playground executado foi o de text. A diferença entre o playground de chat e o playground de texto é que no primeiro é para casos de uso de conversação e o segundo é para casos de uso com base em prompt de texto individual, como resumos. Para utilizá-lo é da mesma forma que o anterior, seleciona a FM que será utilizada, caso não tenha, necessário solicitar o acesso. O FM escolhido para esse playground foi o *Titan Text G1 - Lite  v1* que também é da **Amazon**. No plaground de texto, cada pergunta ou consulta, é considerada um prompt exclusivo para o modelo, diferente do playground de chat, onde os prompts tem relação um com o outro. A imagem 05 mostra a execução no segundo playground.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img05.png" alt="img05"><br>
+    <figcaption>Imagem 05.</figcaption>
+</figure></div><br>
+
+Para o playground de image, o modelo utilizado foi o *SDXL 1.0  v1.0* da **Stability AI**, o processo é basicamente o mesmo dos outros. O playground de imagem permite que seja gerado imagens a partir de uma entrada de texto. Ele possui várias configurações específicas para interação com imagens. A imagem 06 exibe a criação de uma imagem a partir do prompt estabelecido.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img06.png" alt="img06"><br>
+    <figcaption>Imagem 06.</figcaption>
+</figure></div><br>
+
+Como o **Amazon Bedrock** é um serviço novo, ainda não existe comandos do **AWS CLI** para interagir com a API dele, caso que ocorre também com o **Amazon Q** que é explicado no curso [curso_112](../curso_112/). Então para interagir com o Bedrock via API, foi utilizado o SDK da Amazon para linguagem de programação **Python** que é o **Boto3**. Para isso foi criado o arquivo [bedrock.py](./resources/bedrock.py) no sub-diretório [resources](./resources/), no qual este arquivo conteve dois scripts **Python** que utilizam o **Boto3** para interagir com o Bedrock. No primeiro script, o objetivo é enviar um prompt para o foundation model (FM) escolhido responder a pergunta e então exibir essa resposta na tela. Já o segundo script, o objetivo é listar todos os FMs existentes, informando qual tipo de input ele recebe e de qual provedor ele é. O primeiro utiliza o `bedrock-runtime` como client, enquanto o segundo utiliza apenas o `bedrock`. A estrutura dos scripts seguem as mesmas realizadas nos cursos da **AWS Skill Builder**, sempre uma estrutura condicional na frente dos scripts para o usuário decidir se executa ou não o bloco de código. Não houve verificações de existência de algum elemento, pois o objetivo aqui não foi criar e excluir algo, e sim interagir. A imagem 07 abaixo mostra o output dos dois scripts.

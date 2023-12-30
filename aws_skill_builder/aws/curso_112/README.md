@@ -23,6 +23,7 @@
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
   - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
+  - Python   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python" width="auto" height="25">
 - Integrated Development Environment (IDE) and Text Editor:
   - Visual Studio Code (VS Code)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
 - Versioning: 
@@ -44,7 +45,12 @@ O objetivo desse curso foi apresentar o serviço **Amazon CodeWhisperer** explic
 A estrutura do curso é formada por:
 - Este arquivo de README.md.
 - A pasta [resources](./resources/) contendo os arquivos de scripts em **Python** para interação com a **Amazon CodeWhisperer**.
-- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
+- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img01.png" alt="img01"><br>
+    <figcaption>Imagem 01.</figcaption>
+</figure></div><br>
 
 ### Development:
 
@@ -146,7 +152,7 @@ def verify_email(email):
 print(verify_email("test@example.com"))
 ```
 
-No exemplo três, é incorporado serviços da AWS utilizando o SDK **Boto3** do **Python** com o comando `import boto3`. Após a importação, o primeiro prompt é criado solicitando que seja criado um cliente SES e então é confirmada a sugestão. No segundo prompt é solicitado que crie uma função para verificar endereço de email. Caso, nenhuma sugestão seja dada automaticamente, pode ser utilizado o atalho `Alt + C` para solicitar sugestões de códigos. O terceiro script é visualizado abaixo.
+No exemplo três cujo arquivo foi o [test3.py](./resources/test3.py), é incorporado serviços da AWS utilizando o SDK **Boto3** do **Python** com o comando `import boto3`. Após a importação, o primeiro prompt é criado solicitando que seja criado um cliente SES e então é confirmada a sugestão. No segundo prompt é solicitado que crie uma função para verificar endereço de email. Caso, nenhuma sugestão seja dada automaticamente, pode ser utilizado o atalho `Alt + C` para solicitar sugestões de códigos. O terceiro script é visualizado abaixo.
 
 ```python
 import boto3
@@ -173,3 +179,22 @@ No VS Code ao instalar e configurar a extensão, um ícone próprio do **Amazon 
     <img src="./0-aux/img03.png" alt="img03"><br>
     <figcaption>Imagem 03.</figcaption>
 </figure></div><br>
+
+No console de gerenciamento da AWS, o **Amazon Q** é utilizado através do painel lateral direito onde existe um ícone desse serviço, que ao clicar esse painel expande e é possível interagir com o chatboot, criar novos chats e fazer perguntas. A imagem 04 abaixo ilustra a realização de uma interação pelo console de gerenciamento da AWS.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img04.png" alt="img04"><br>
+    <figcaption>Imagem 04.</figcaption>
+</figure></div><br>
+
+Existe também o *Amazon Q network troubleshooting* que é um recurso do **Amazon Q** que permite aos usuários diagnosticar problemas de conectividade de rede para aplicações que são executadas em suas redes virtuais privadas (VPCs). O **Amazon Q** ainda se encontra em fase preview, portanto não suporta a lingua portuguesa e não possui comandos do **AWS CLI** para interagir com ela, porém pelo que pude perceber a ideia é que seja possível criar chatboots para fins específicos passando fontes de dados específicas. 
+
+Fiz um teste criando uma aplicação com **Amazon Q** direto pelo console da AWS, determinando o retriever (recuperador) como nativo, porém é possível utilizar o **Amazon Kendra** como recuperador.
+
+#### TODO: Concluir a utilização do serviço Amazon Q
+
+
+A retriever is an index from which we can get data in real time. To connect documents to your application, choose a retriever.
+
+
+O **Amazon Q** pode ser usado com outros serviços como é o caso do **AmazonQuickSight**. O **AmazonQuickSight**  é um serviço unificado de business intelligence (BI) desenvolvido para a nuvem que oferece painéis interativos, relatórios paginados e análises incorporadas, além de recursos de consulta em linguagem natural. O **Amazon Q** no QuickSight aumenta a produtividade de analistas de negócios e usuários de negócios usando recursos de BI generativo para criar rapidamente recursos visuais atraentes, resumir insights, responder perguntas sobre dados e criar histórias de dados usando linguagem natural.
