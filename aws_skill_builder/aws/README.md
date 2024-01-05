@@ -19,5 +19,7 @@ This folder refers to all the courses I took on the AWS Skill Builder platform r
 - <a href="./curso_102">curso_102 (Introduction to Amazon Elastic Container Service)   <img src="./curso_102/0-aux/logo_course.png" alt="curso_102" width="auto" height="25"></a>
 - <a href="./curso_103">curso_103 (Introduction to Amazon Elastic Container Registry)   <img src="./curso_103/0-aux/logo_course.png" alt="curso_103" width="auto" height="25"></a>
 - <a href="./curso_104">curso_104 (Introduction to AWS Fargate)   <img src="./curso_104/0-aux/logo_course.png" alt="curso_104" width="auto" height="25"></a>
+- <a href="./curso_105">curso_105 (Amazon Elastic Container Service (ECS) Primer)   <img src="./curso_105/0-aux/logo_course.png" alt="curso_105" width="auto" height="25"></a>
+- <a href="./curso_110">curso_110 (Introduction to Amazon Elastic Load Balancer - Application)   <img src="./curso_110/0-aux/logo_course.png" alt="curso_110" width="auto" height="25"></a>
 - <a href="./curso_111">curso_111 (Introdução ao Amazon Bedrock)   <img src="./curso_111/0-aux/logo_course.png" alt="curso_111" width="auto" height="25"></a>
 - <a href="./curso_112">curso_112 (Amazon CodeWhisperer: Introdução)   <img src="./curso_112/0-aux/logo_course.png" alt="curso_112" width="auto" height="25"></a>

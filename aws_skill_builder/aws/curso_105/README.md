@@ -48,7 +48,7 @@
 ---
 
 ### Objective:
-O objetivo desse curs vai além dos conceitos e benefícios básicos da conteinerização e ensina mais sobre o **Amazon Elastic Container Service (ECS)**. Nele é explicado sobre a implementação de contêineres na **AWS** usando o ECS e serviços complementares, como o **Amazon Elastic Container Registry (ECR)** e também sobre cenários comuns de microsserviços. Descreve a importância da programação para workloads baseadas em contêiner e os padrões de integração com workloads comuns baseadas em contêiner na AWS. O curso ainda explica sobre os componentes básicos que compõem o ECS, as diferenças entre os tipos de execução do **AWS Fargate** e do **Amazon Elastic Compute Cloud (EC2)**, como selecionar as estratégias apropriadas de posicionamento de tarefas e como aplicar segurança em tarefas do ECS.
+O objetivo desse curso vai além dos conceitos e benefícios básicos da conteinerização e ensina mais sobre o **Amazon Elastic Container Service (ECS)**. Nele é explicado sobre a implementação de contêineres na **AWS** usando o ECS e serviços complementares, como o **Amazon Elastic Container Registry (ECR)** e também sobre cenários comuns de microsserviços. Descreve a importância da programação para workloads baseadas em contêiner e os padrões de integração com workloads comuns baseadas em contêiner na AWS. O curso ainda explica sobre os componentes básicos que compõem o ECS, as diferenças entre os tipos de execução do **AWS Fargate** e do **Amazon Elastic Compute Cloud (EC2)**, como selecionar as estratégias apropriadas de posicionamento de tarefas e como aplicar segurança em tarefas do ECS.
 
 ### Structure:
 A estrutura do curso é formada por:

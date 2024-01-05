@@ -18,7 +18,9 @@
 - Cloud:
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
+  - Amazon CloudWatch   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudwatch.svg" alt="aws_cloudwatch" width="auto" height="25">
   - Amazon Elastic Container Service (ECS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecs.svg" alt="aws_ecs" width="auto" height="25">
+  - AWS IAM Identity Center   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam_identity_center.jpg" alt="aws_iam_identity_center" width="auto" height="25">
   - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
@@ -82,25 +84,11 @@ Do ponto de vista do caso de uso, o Fargate se aplica ao amplo espectro de casos
 
 Há alguns casos de uso em que a implantação da tarefa usando o tipo de execução do **Amazon EC2** faz mais sentido do que usar o Fargate hoje. Se o cliente for um usuário frequente do EC2 Spot ou tiver pago por instâncias reservadas, poderá optar por usar o tipo de execução EC2 para as suas tarefas do ECS. Já que o Fargate está gerenciando toda a infraestrutura em seu nome e cobrando pelo consumo de CPU e memória por segundo. Hoje não existe uma maneira de converter isso para Spot ou instâncias reservadas. Em segundo lugar, se os serviços e aplicativos que está sendp implantado são executados em contêineres baseados no **Microsoft Windows**. O tipo de execução EC2 ainda é a melhor opção para implantação, pois permite que seja utilizado AMIs baseados no **Windows** e configurações no cluster, que atualmente não é compatível com o Fargate.
 
+##### Prática
 
+Com relação a parte prática deste curso foi realizado um deployment no serviço **Amazon Elastic Container Service (ECS)**, utilizando o **AWS Fargate** como infraestrutura, de uma tarefa com dois contêiners sendo cada um com um imagem do **Docker Hub**, o primeiro container com uma imagem de uma aplicação realizada em outro curso e o segundo com a imagem do servidor web **Apache HTTP (Httpd)**. Todos os arquivos utilizados para esse projeto estão armazenados no diretório [resources](./resources/) e foram desenvolvidos em linguagem **Python** utilizando o SDK **Boto3** para interagir com as APIs dos serviços da cloud **AWS**. Cada arquivo deste possui dois scripts, um para criação de algo e outro para a exclusão, sendo eles precedidos de estruturas de condição que aguarda uma entrada do usuário para verificar se executa ou não o script.
 
-
-
-
-
-
-
-
-
-
-
-
-
-Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com três arquivos de scripts em **Python** para criar uma role e uma policy, e anexar a policy criada a role desenvolvida. Essa role possuíu na sua política de confiança (*Trust Policy*), o usuário do IAM criado no curso [curso_099](../curso_099/). Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamPolicy.py](./resources/iamPolicy.py) para criar a policy personalizada, [iamRole.py](./resources/iamRole.py) para criar a role e [iamRolePolicy.py](./resources/iamRolePolicy.py) para adicionar a policy criada à role. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código. 
-
-Tanto no arquivo da role como da policy, no script de criação, existem dois blocos de criação desses elementos, sendo um onde é passado o **JSON** direto no comando e outro onde é indicado um arquivo **JSON**. A primeira opção foi a executada, sendo a segunda opção comentada. Caso queira utilizá-la, é preciso comentar a primeira opção e descomentar a segunda, além de conferir a variável com o caminho correto para o arquivo **JSON** e verificar o próprio arquivo **JSON**.
-
-Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação dos três arquivos **Python**. Nas imagens 04, 05, 06 e 07 é evidenciado no console da **AWS** a policy e a role criada, além da anexação dessa policy a role e a política de confiança (*Trust Policy*), ou seja, a entidade que pode assumir essa role que no caso é o usuário do IAM criado no curso [curso_099](../curso_099/)
+O projeto inicia com a execução dos arquivos da sub-pasta [suport](./resources/suport/), o primeiro deles a ser executado foi o [iamRoleService.py](./resources/suport/iamRoleService.py) que criou uma role para as tasks do ECS. Logo em seguida, com o arquivo [iamRolePolicy.py](./resources/suport/iamRolePolicy.py) a política `AmazonECSTaskExecutionRolePolicy` foi adicionada a essa role. Esta política permitiu a criação de um log stream no serviço **Amazon CloudWatch**. Cada log stream é uma sequência de eventos de log que compartilham a mesma origem, como uma instância do Amazon EC2, um contêiner ou uma aplicação específica. A política também permitiu a inserção de eventos de log, além de baixar imagens do **Amazon Elastic Container Registry (ECR)**. Para completar esta etapa, com o arquivo [logGroup.py](./resources/suport/logGroup.py) foi criado o log group que seria utilizado para armazenar os eventos de log, que neste caso eram dos contêineres das tarefas. Nas três primeiras imagens (02, 03 e 04) é evidenciada a criação da role, a anexação da policy na role e a construção do log group.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -117,22 +105,30 @@ Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação d
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
+A próxima etapa foi executar os arquivos do diretório principal (`resources`). O primeiro deles foi o [ecsClusterFargate.py](./resources/ecsClusterFargate.py) que criou um cluster que utilizava como infraestrutura o Fargate. Por conta disso, o tipo de rede teve que ser definida como `awsvpc`, pois assim o Fargate consegue criar uma interface de rede elástica (*Elastic Network Interface-ENI*) para cada tarefa que for implantada possibilitando a comunicação com a VPC que for definida. Também foi habilitado o `containerInsights` que é um recurso da AWS que permite a observação e monitoramento avançado de contêineres em serviços gerenciados, como o **Amazon Elastic Container Service (ECS)** e o **Amazon Elastic Kubernetes Service (EKS)**. Ele oferece insights detalhados sobre o desempenho, uso de recursos e comportamento dos contêineres em sua infraestrutura. Na imagem 05 é mostrado o cluster criado.
+
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
     <figcaption>Imagem 05.</figcaption>
 </figure></div><br>
+
+Com o arquivo [ecsTaskFargate.py](./resources/ecsTaskFargate.py) é construída a definição de tarefa ou *task definition*, sendo necessário informar alguns parâmetros. O modo de rede teve que ser definido como `awsvpc` e `requiresCompatibilities` como `FARGATE`, pois foi o configurado no cluster e é o que seria usado. O ARN da role elaborada teve que ser informado no `executionRoleArn` que é uma role destinada para a permissão da interação do ECS com alguns outros serviços da AWS como o CloudWatch e o ECR. Já a task role que não foi utilizada, é uma role destinada para a permissão das tarefas. Os parâmetros de `cpu`, `memory`, `cpuArchitecture` e `operatingSystemFamily` são configurações de capacidade computacional e de sistema. 
+
+O último parâmetro é o `containerDefinitions` que é um arquivo **JSON** com toda a configuração dos contêineres que serão criados na tarefa. Dentro os mais relevantes, existe o `image` para definição da imagem do container, `cpu` e `memory` para limitar uma quantidade máxima de recursos que cada contêiner vai utilizar da tarefa, logo a soma desses parâmetros em todos os contêineres tem que ser menor ou igual ao valor definido na tarefa. Existe também o `portMappings` para realizar um bind de portas, onde foi definida o bind de portas `8080:8080` para o contêiner 1 que era a aplicação desenvolvida no outro curso e `80:80` para o contêiner 2 que possuia a imagem do servidor web Apache. Com o Fargate, quandoa porta do host não é definida, ele aloca uma porta aleatoriamente. Ainda na definição dos contêineres, tem o `essential` para determinar se o contêiner é essencial para a tarefa, ou seja, se ele não subir, toda a tarefa falha, e a parte de `logConfiguration` que é justamente para enviar os logs para o grupo criado no CloudWatch. A imagem 06 mostram a definição de tarefa criada, a versão dela está neste número pois várias tarefas anteriores de teste foram criadas e excluídas, porém a AWS armazena essa contagem sequencial mesmo com a remoção das tarefas, sendo a única forma de zerar a contagem seria alterado para um novo nome não utilizado ainda.
 
 <div align="Center"><figure>
     <img src="./0-aux/img06.png" alt="img06"><br>
     <figcaption>Imagem 06.</figcaption>
 </figure></div><br>
 
+Agora foi a hora de realizar a implantação da tarefa através da definição de tarefa construída no cluster e para isso duas formas são possíveis. A primeira delas é implantar a tarefa diretamente no cluster e isso foi realizado com o arquivo [ecsClusterTaskFargate.py](./resources/ecsClusterTaskFargate.py). Nessa forma de implantação, ao executar a tarefa no cluster foi necessário informar a definição de tarefa e a versão dela que seria executada, em qual cluster seria feito o deploy, o tipo de infraestrutura utilizada que neste caso era o Fargate e as configurações de rede do mode escolhido que foi o `awsvpc`. Então foi preciso informar quais sub-redes seriam utilizadas que no caso foi as sub-redes das zonas `us-east-1a` e `us-east-1b` da VPC padrão da região, o grupo de segurança que também foi o padrão da VPC da região, e por fim habilitar a atribuição de IP público, para que a tarefa tivesse um IP público para acessar os containers. Na imagem 07 abaixo é visualizado a tarefa em execução no cluster com seus dois contêineres em operação.
+
 <div align="Center"><figure>
     <img src="./0-aux/img07.png" alt="img07"><br>
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
-Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
+Para acessar os contêineres, bastava ter o IP público da tarefa com a porta em que esse contêiner estava rodando e então era possível acessar pelo navegador da maquina física **Windons**, já que no bind port determinado nas definições dos contêineres, a mesma porta que operava no contêiner seria a mesma que funcionaria para o host. Um ponto fundamental era garantir que as portas estabelecidas estavam abertas no securty group da VPC utilizada, que foi o grupo de segurança padrão da VPC da região. Assim, com o arquivo [vpcSgRule.py](./resources/suport/vpcSgRule.py) era verificado se já existia uma regra permitindo o acesso a porta determinada. Na imagem 08 é exibido todas as regras deste grupo de segurança, mostrando que as portas `80` e `8080` estavam liberadas para qualquer IP que é representado por `0.0.0.0/0`. Já nas imagens 09 e 10 é realizado o acesso às aplicações dos contêineres através do navegador da maquina física. Na imagem 11 é exibido os logs gerado pelos contêineres no grupo criado no CloudWatch.
 
 <div align="Center"><figure>
     <img src="./0-aux/img08.png" alt="img08"><br>
@@ -142,4 +138,60 @@ Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
 <div align="Center"><figure>
     <img src="./0-aux/img09.png" alt="img09"><br>
     <figcaption>Imagem 09.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.png" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img11.png" alt="img11"><br>
+    <figcaption>Imagem 11.</figcaption>
+</figure></div><br>
+
+Esta foi a primeira forma de implantação, para a segunda forma ser realizada foi necessário remover essa tarefa do cluster com o mesmo arquivo de código que a implantou. Sem a tarefa em execução no cluster, a segunda forma pôde ser iniciada. Esta consistiu na implantação de um service, no qual era indicado o cluster onde ele seria implantado, o nome que ele receberia, a definição de tarefa e versão utilizada, a quantidade de tarefas desejadas, que neste caso foram 2, ou seja, duas tarefas idênticas com os mesmos contêineres seriam implantadas. Também foram definidos o tipo de implantação que era o Fargate, a versão da plataforma do ECS que o serviço vai utilizar, a estratégia de agendamento que foi `REPLICA`, ou seja, o ECS deve garantir que o número especificado de réplicas da tarefa seja executado nas instâncias. Além do conjunto de parâmetro `deploymentConfiguration` que é utilizado para configurar como as atualizações de serviço são implantadas no Amazon ECS, onde o parâmetro `minimumHealthyPercent` definiu a porcentagem mínima de tarefas em execução que devem permanecer saudáveis durante uma atualização, e o parâmetro `maximumPercent` definiu a porcentagem máxima de tarefas do serviço que podem ser interrompidas durante uma atualização. Por fim, o último parâmetro foi o `networkConfiguration` que são as configurações de rede, onde é definido as sub-redes utilizadas, o grupo de segurança e a atribuição de IP público, sendo todos eles os mesmos utilizados na forma de implantação anterior. Nas imagens 12 e 13 é evidenciada a criação do service com duas tasks sendo cada uma delas com dois contêineres.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img12.png" alt="img12"><br>
+    <figcaption>Imagem 12.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img13.png" alt="img13"><br>
+    <figcaption>Imagem 13.</figcaption>
+</figure></div><br>
+
+Como nesta forma de implantação duas tarefas foram executadas, cada uma dela tera seu IP público com seus dois contêineres rodando nas portas estabelecidas. Para acessar a aplicação desses contêineres o processo é o mesmo da forma anterior, garantir que as portas do grupo de segurança estavam liberadas e acessar no navegador da maquina física o IP público de cada tarefa com a porta de cada contêiner, logo como foram duas tarefas e cada tarefa com dois contêineres, totalizando 4 contêineres, foram 4 acessos que são exibidos nas imagens 14 e 15 (contêiner 1), 16 e 17 (contêiner 2).
+
+<div align="Center"><figure>
+    <img src="./0-aux/img14.png" alt="img14"><br>
+    <figcaption>Imagem 14.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img16.png" alt="img16"><br>
+    <figcaption>Imagem 16.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img17.png" alt="img17"><br>
+    <figcaption>Imagem 17.</figcaption>
+</figure></div><br>
+
+A imagem 18 mostra os logs gerados pelos contêineres das tarefas do service no grupo de log construído no CloudWatch. Na imagem 19 é visualizado os eventos de log do segundo contêiner de uma das tarefas do serviço.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img18.png" alt="img18"><br>
+    <figcaption>Imagem 18.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img19.png" alt="img19"><br>
+    <figcaption>Imagem 19.</figcaption>
 </figure></div><br>

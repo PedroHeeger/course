@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_111 (Introdução ao Amazon Bedrock)   <img src="./0-aux/logo_course.png" alt="curso_111" width="auto" height="25"></a>
 
-#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-12-28)%20Introdu%C3%A7%C3%A3o%20ao%20Amazon%20Bedrock%20PH%20AWSSB.pdf">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-12-28)_Introducao_ao_Amazon_Bedrock_PH_AWSSB.pdf">Certificate</a>
 
 ---
 
