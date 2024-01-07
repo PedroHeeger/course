@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_096 (Introduction to AWS Command Line Interface (CLI))   <img src="./0-aux/logo_course.png" alt="curso_096" width="auto" height="25"></a>
 
-#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-11-23)%20Introduction...(CLI)%20PH%20AWSSB.pdf">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-11-23)_Introduction...(CLI)_PH_AWSSB.pdf">Certificate</a>
 
 ---
 

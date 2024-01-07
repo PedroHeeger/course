@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_101 (Authentication and Authorization with AWS Identity and Access Management)   <img src="./0-aux/logo_course.png" alt="curso_101" width="auto" height="25"></a>
 
-#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-12-12)%20Authentication%20and%20Authorization...%20PH%20AWSSB.pdf">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-12-12)_Authentication_and_Authorization..._PH_AWSSB.pdf">Certificate</a>
 
 ---
 
