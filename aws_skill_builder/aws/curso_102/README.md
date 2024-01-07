@@ -82,31 +82,13 @@ Um serviço do Amazon ECS é onde todas essas funcionalidades estão conectadas 
 
 Para que é utilizado exatamente o Amazon ECS? Os contêineres em geral são perfeitos para microsserviços e o Amazon ECS simplifica ainda mais essa arquitetura. Os contêineres facilitam a modelagem do serviço em uma imagem atribuível com todas as suas dependências. Os contêineres podem usar qualquer aplicativo e linguagem de programação, e a imagem do contêiner é um artefato de versão, para que seja possível rastrear as imagens do contêiner até seus locais de origem. Os contêineres do Docker são particularmente adequados para cargas de trabalho em lote. Geralmente, os trabalhos em lote são de curta duração e executados em paralelo. Existe a possiblidade de empacotar o aplicativo de processamento em lote em uma imagem do Docker, para implatá-la em qualquer lugar, como na tarefa do Amazon ECS. Por fim, a integração e a implantação contínuas são processos comuns baseados em contêineres do Docker, onde pode ser criado um pipeline que executa as seguintes ações: monitorar alterações em um repositório de códigos-fonte, criar uma nova imagem do Docker a partir dessa fonte, enviar essa imagem para um repositório de imagens, como o aplicativo do Amazon ECR ou Docker e atualizar os serviços do Amazon ECS para utilizar a nova imagem no aplicativo.
 
+##### Prática
 
+Para a parte prática deste curso foi realizado um deployment no serviço **Amazon Elastic Container Service (ECS)**, utilizando das instâncias do **Amazon Elastic Compute Cloud (EC2)** como infraestrutura, de uma tarefa com dois contêiners **Docker**, sendo o primeiro com uma imagem do **Docker Hub** de uma aplicação realizada em outro curso e o segundo com a imagem do repositório de imagens **Amazon Elastic Container Registry (ECR)** de um servidor web **Nginx**. Para verificar o mesmo deployment utilizando como infraestrutura o **AWS Fargate** consulte o curso [curso_104](../curso_104/). Todos os arquivos utilizados para esse projeto estão armazenados no diretório [resources](./resources/) e foram desenvolvidos em linguagem **Python** utilizando o SDK **Boto3** para interagir com as APIs dos serviços da cloud **AWS**. Cada arquivo deste possui dois scripts, um para criação de algo e outro para a exclusão, sendo eles precedidos de estruturas de condição que aguarda uma entrada do usuário para verificar se executa ou não o script.
 
+Diferente da execução com o **AWS Fargate**, neste curso, duas sub-pastas de suporte foram necessárias. Na sub-pasta [suport1](./resources/suport1) foram os arquivos relativos a permissões do ECS para interagir com outros serviços da AWS, liberação de portas do firewall e criação de grupo de logs. Já na sub-pasta [suport2](./resources/suport2) foram os arquivos referente a criação das instâncias EC2 e permissão para interação com o ECS.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com três arquivos de scripts em **Python** para criar uma role e uma policy, e anexar a policy criada a role desenvolvida. Essa role possuíu na sua política de confiança (*Trust Policy*), o usuário do IAM criado no curso [curso_099](../curso_099/). Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamPolicy.py](./resources/iamPolicy.py) para criar a policy personalizada, [iamRole.py](./resources/iamRole.py) para criar a role e [iamRolePolicy.py](./resources/iamRolePolicy.py) para adicionar a policy criada à role. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código. 
-
-Tanto no arquivo da role como da policy, no script de criação, existem dois blocos de criação desses elementos, sendo um onde é passado o **JSON** direto no comando e outro onde é indicado um arquivo **JSON**. A primeira opção foi a executada, sendo a segunda opção comentada. Caso queira utilizá-la, é preciso comentar a primeira opção e descomentar a segunda, além de conferir a variável com o caminho correto para o arquivo **JSON** e verificar o próprio arquivo **JSON**.
-
-Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação dos três arquivos **Python**. Nas imagens 04, 05, 06 e 07 é evidenciado no console da **AWS** a policy e a role criada, além da anexação dessa policy a role e a política de confiança (*Trust Policy*), ou seja, a entidade que pode assumir essa role que no caso é o usuário do IAM criado no curso [curso_099](../curso_099/)
+Na sub-pasta `suport1`, o primeiro arquivo executado foi o [iamRoleService.py](./resources/suport1/iamRoleService.py) para criação de uma role que permitisse interação do **Amazon Elastic Container Service (ECS)** com outros serviços da AWS. Em seguida, foi adicionada a policy `AmazonECSTaskExecutionRolePolicy` a esta role com o arquivo [iamRolePolicy.py](./resources/suport1/iamRolePolicy.py) Esta política permitiu a criação de um log stream no serviço **Amazon CloudWatch**. Cada log stream é uma sequência de eventos de log que compartilham a mesma origem, como uma instância do Amazon EC2, um contêiner ou uma aplicação específica. A política também permitiu a inserção de eventos de log, além de baixar imagens do **Amazon Elastic Container Registry (ECR)**. Para completar esta etapa, com o arquivo [logGroup.py](./resources/suport1/logGroup.py) foi criado o log group que seria utilizado para armazenar os eventos de log, que neste caso eram dos contêineres das tarefas. Nas três primeiras imagens (02, 03 e 04) é evidenciada a criação da role, a anexação da policy na role e a construção do log group.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -123,6 +105,8 @@ Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação d
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
+Na sub-pasta `suport2`, o primeiro arquivo utilizado foi o [iamRoleService.py](./resources/suport2/iamRoleService.py) para construir uma outra role que concedesse permissão as instâncias EC2 que seriam criadas a interagir com o ECS. Com o arquivo [iamRolePolicy.py](./resources/suport2/iamRolePolicy.py), a política `AmazonECS_FullAccess` que concedia essa permissão foi adicionada a role. O arquivo [iamInstanceProfile.py](./resources/suport2/iamInstanceProfile.py) foi necessário para criar um perfil de instância para instâncias EC2 com essa role anexada. As próximas três imagens (05, 06 e 07) mostram a role desenvolvida, a anexação da policy na role e o output da criação do instance profile com esta role.
+
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
     <figcaption>Imagem 05.</figcaption>
@@ -138,7 +122,7 @@ Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação d
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
-Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
+Com a base dos recursos configurados foi iniciada a parte principal deste curso, começando com a criação de um cluster através do arquivo [ecsCusterEC2.py](./resources/ecsClusterEC2.py). Nesse código, em relação ao Fargate, foi removido o parâmetro `capacityProviders`, pois a infraestrutura será instâncias de contêineres, que são instâncias EC2 adicionadas ao cluster. A imagem 08 abaixo mostra o cluster criado, porém ainda sem instâncias de contêineres. Para criar essas instâncias foi utilizado o arquivo [ec2ContainerInstance.py](./resources/suport2/ec2ContainerInstance.py). Este arquivo contém um script para instanciação de maquinas no serviço **Amazon Elastic Compute Cloud (EC2)**, porém neste curso foi realizado alterações nesse script para criar duas instâncias simultâneas, sendo o nome de tag delas um nome padrão acrescido de um índice contador, resultando em: `ec2ContainerInstanceTest1` e `ec2ContainerInstanceTest2`. Uma outra alteração foi com relação ao parâmetro `UserData` que foi passado direto no código e não como um arquivo externo. Este foi um pequeno script em **Bash** para instalar o agente do ECS nas instâncias e vinculá-los ao cluster anteriormente construído. A imagem 09 ilustra as duas instâncias criadas com nome de tag padronizado. Já a imagem 10 evidencia elas dentro do cluster como infraestrutura deste.
 
 <div align="Center"><figure>
     <img src="./0-aux/img08.png" alt="img08"><br>
@@ -148,4 +132,93 @@ Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
 <div align="Center"><figure>
     <img src="./0-aux/img09.png" alt="img09"><br>
     <figcaption>Imagem 09.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.png" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+Com a etapa da infraestrutura do cluster pronta, chegou a hora criar a definição de tarefa (`task definition`) que seria implantada neste cluster. O arquivo utilizado foi o [ecsTaskEC2.py](./resources/ecsTaskEC2.py), onde alguns parâmetros foi necessário informar. O modo de rede foi definido como `bridge`, mas poderia ser `awsvpc`. A diferença prinicpal entre eles, quando utilizado como infraestrutura EC2, é o compartilhamento de IP de uma tarefa, no qual no modo `bridge` todos os contêineres em uma tarefa compartilham o mesmo espaço de endereços IP da instância EC2 subjacente. Já no modo `awsvpc` cada tarefa tem sua própria interface de rede elástica (`Elastic Network Interface-ENI`) e seu próprio endereço IP, separado das instâncias EC2. O `requiresCompatibilities` foi definido como `EC2`, pois foi a infraestrutura utilizada. O ARN da role elaborada, que foi `ecsTaskExecutionRole`, teve que ser informado no `executionRoleArn` que é uma role destinada para a permissão da interação do ECS com alguns outros serviços da AWS como o CloudWatch e o ECR. Já a task role que não foi utilizada, é uma role destinada para a permissão das tarefas. Os parâmetros de `cpu`, `memory`, `cpuArchitecture` e `operatingSystemFamily` são configurações de capacidade computacional e de sistema.
+
+O último parâmetro é o `containerDefinitions` que é um arquivo **JSON** com toda a configuração dos contêineres que foram criados na tarefa. Dentro os mais relevantes, existe o `image` para definição da imagem do container, `cpu` e `memory` para limitar uma quantidade máxima de recursos que cada contêiner vai utilizar da tarefa, logo a soma desses parâmetros em todos os contêineres tem que ser menor ou igual ao valor definido na tarefa. Existe também o `portMappings` para realizar um bind de portas, onde foi definida o bind de portas `8080:8080` para o contêiner 1 que era a aplicação desenvolvida no outro curso e `80:80` para o contêiner 2 que possuia a imagem do servidor web Nginx. Ainda na definição dos contêineres, tem o `essential` para determinar se o contêiner é essencial para a tarefa, ou seja, se ele não subir, toda a tarefa falha, e a parte de `logConfiguration` que é justamente para enviar os logs para o grupo criado no CloudWatch. A imagem 11 mostram a definição de tarefa criada, a versão dela está neste número pois várias tarefas anteriores de teste foram criadas e excluídas, porém a AWS armazena essa contagem sequencial mesmo com a remoção das tarefas, sendo a única forma de zerar a contagem seria alterado para um novo nome não utilizado ainda.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img11.png" alt="img11"><br>
+    <figcaption>Imagem 11.</figcaption>
+</figure></div><br>
+
+Agora foi a hora de realizar a implantação da tarefa através da definição de tarefa construída no cluster e para isso duas formas são possíveis. A primeira delas é implantar a tarefa diretamente no cluster e isso foi realizado com o arquivo [ecsClusterTaskEC2.py](./resources/ecsClusterTaskEC2.py). Nessa forma de implantação, ao executar a tarefa no cluster foi necessário informar a definição de tarefa e a versão dela que seria executada, em qual cluster seria feito o deploy, o tipo de infraestrutura utilizada que neste caso era o EC2. As configurações de rede não eram necessárias, pois o modo escolhido foi o `bridge` e como a tarefa era implantada em uma das instâncias, as configurações de rede seguiriam as das próprias instâncias. Na imagem 12 abaixo é visualizado a tarefa em execução no cluster com seus dois contêineres em operação.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img12.png" alt="img12"><br>
+    <figcaption>Imagem 12.</figcaption>
+</figure></div><br>
+
+Para acessar os contêineres, bastava ter o IP público da tarefa com a porta em que esse contêiner estava rodando e então era possível acessar pelo navegador da maquina física **Windons**, já que no bind port determinado nas definições dos contêineres, a mesma porta que operava no contêiner seria a mesma que funcionaria para o host. Um ponto fundamental era garantir que as portas estabelecidas estavam abertas no securty group da VPC utilizada, que foi o grupo de segurança padrão da VPC da região. Assim, com o arquivo [vpcSgRule.py](./resources/suport1/vpcSgRule.py) era verificado se já existia uma regra permitindo o acesso a porta determinada. Na imagem 13 é exibido todas as regras deste grupo de segurança, mostrando que as portas `80` e `8080` estavam liberadas para qualquer IP que é representado por `0.0.0.0/0`. Já nas imagens 14 e 15 é realizado o acesso as aplicações dos contêineres através do navegador da maquina física. Na imagem 16 é exibido os logs gerado pelos contêineres no grupo criado no CloudWatch.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img13.png" alt="img13"><br>
+    <figcaption>Imagem 13.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img14.png" alt="img14"><br>
+    <figcaption>Imagem 14.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img16.png" alt="img16"><br>
+    <figcaption>Imagem 16.</figcaption>
+</figure></div><br>
+
+Esta foi a primeira forma de implantação, para a segunda forma ser realizada foi necessário remover essa tarefa do cluster com o mesmo arquivo de código que a implantou. Sem a tarefa em execução no cluster, a segunda forma pôde ser iniciada com o arquivo [ecsServiceEC2.py](./resources/ecsServiceEC2.py). Esta consistiu na implantação de um service, no qual era indicado o cluster onde ele seria implantado, o nome que ele receberia, a definição de tarefa e versão utilizada, a quantidade de tarefas desejadas, que neste caso foram 2, ou seja, duas tarefas idênticas com os mesmos contêineres seriam implantadas. Também foram definidos o tipo de implantação que era o EC2, a versão da plataforma do ECS não foi necessária, a estratégia de agendamento que foi `REPLICA`, ou seja, o ECS deve garantir que o número especificado de réplicas da tarefa seja executado nas instâncias. Além do conjunto de parâmetro `deploymentConfiguration` que é utilizado para configurar como as atualizações de serviço são implantadas no Amazon ECS, onde o parâmetro `minimumHealthyPercent` definiu a porcentagem mínima de tarefas em execução que devem permanecer saudáveis durante uma atualização, e o parâmetro `maximumPercent` definiu a porcentagem máxima de tarefas do serviço que podem ser interrompidas durante uma atualização. Por fim, o último parâmetro, o `networkConfiguration` também não foi necessário, pois o modo de rede definido foi o `bridge`. Nas imagens 17 e 18 é evidenciada a criação do service com duas tasks sendo cada uma delas com dois contêineres.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img17.png" alt="img17"><br>
+    <figcaption>Imagem 17.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img18.png" alt="img18"><br>
+    <figcaption>Imagem 18.</figcaption>
+</figure></div><br>
+
+Como nesta forma de implantação duas tarefas foram executadas e o mode de rede foi definido como `bridge`, cada uma delas foi executada em uma instância e recebeu o IP público da instância, no qual seus dois contêineres foram executados nas portas estabelecidas. Para acessar a aplicação desses contêineres o processo é o mesmo da forma anterior, garantir que as portas do grupo de segurança estavam liberadas e acessar no navegador da maquina física o IP público de cada tarefa, que neste caso era o da instância, com a porta de cada contêiner, logo como foram duas tarefas e cada tarefa com dois contêineres, totalizando 4 contêineres, foram 4 acessos que são exibidos nas imagens 19 e 20 (contêiner 1), 21 e 22 (contêiner 2). Caso fosse solicitado a execução de três tasks pelo service, tendo apenas duas instâncias e com o modo `bridge` definido, a terceira tarefa não executaria pois ocasionaria conflito com a primeira já que são tarefas idênticas com contêineres idênticos que operam nas mesmas portas. Para que ela fosse executada seria necessário a adição de mais uma instância ao cluster.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img19.png" alt="img19"><br>
+    <figcaption>Imagem 19.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img20.png" alt="img20"><br>
+    <figcaption>Imagem 20.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img21.png" alt="img21"><br>
+    <figcaption>Imagem 21.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img22.png" alt="img22"><br>
+    <figcaption>Imagem 22.</figcaption>
+</figure></div><br>
+
+A imagem 23 mostra os logs gerados pelos contêineres das tarefas do service no grupo de log construído no CloudWatch. Na imagem 24 é visualizado os eventos de log do segundo contêiner de uma das tarefas do serviço.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img23.png" alt="img23"><br>
+    <figcaption>Imagem 23.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img24.png" alt="img24"><br>
+    <figcaption>Imagem 24.</figcaption>
 </figure></div><br>
