@@ -79,7 +79,9 @@ O **Amazon Elastic Container Registry (ECR)** é um registro de imagens do **Doc
 
 O Amazon ECR usa o **Amazon S3** para armazenar essas imagens, garantindo alta disponibilidade. Como um serviço da AWS, as políticas do IAM controlarão o acesso ao Amazon ECR, permitindo que o usuário gerencie granularmente o acesso às imagens de contêiner armazenadas. O Amazon ECR também está totalmente integrado a uma CLI do Docker. Portanto, para obter ou enviar uma imagem de contêiner de ou para um repositório, não é preciso alterar nada no fluxo de trabalho. A CLI do Docker aceita a coleta da imagem no endpoint do Amazon ECR.
 
+##### Prática
 
+Como parte prática
 
 
 
