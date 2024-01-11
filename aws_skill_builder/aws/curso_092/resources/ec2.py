@@ -13,11 +13,11 @@ print("Definindo variáveis")
 tagNameInstance = "ec2Test0"
 groupName = "default"
 availabilityZone = "us-east-1a"
-imageId = "ami-0fc5d935ebf8bc3bc"    # Ubuntu Server 22.04 LTS (HVM), SSD Volume Type
+imageId = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
 instanceType = "t2.micro"
 keyPairName = "keyPairTest"
-userDataPath = "G:/Meu Drive/4_PROJ/course/aws_skill_builder/aws/curso_092/"
-userDataFile = "udFileTest.sh"
+userDataPath = "G:/Meu Drive/4_PROJ/course/aws_skill_builder/aws/curso_092/resources"
+userDataFile = "udFile.sh"
 
 print("-----//-----//-----//-----//-----//-----//-----")
 resposta = input("Deseja executar o código? (y/n) ")
@@ -46,7 +46,7 @@ if resposta.lower() == 'y':
 
             print("-----//-----//-----//-----//-----//-----//-----")
             print("Extraindo os Ids do grupo de segurança e sub-redes padrões")
-            security_group_id = ec2.SecurityGroup(groupName).id
+            security_group_id = list(ec2.security_groups.filter(Filters=[{'Name': 'group-name', 'Values': [groupName]}]))[0].id
             subnet_id = list(ec2.subnets.filter(Filters=[{'Name': 'availabilityZone', 'Values': [availabilityZone]}]))[0].id
 
             print("-----//-----//-----//-----//-----//-----//-----")
@@ -55,7 +55,7 @@ if resposta.lower() == 'y':
                 ImageId=imageId,
                 InstanceType=instanceType,
                 KeyName=keyPairName,
-                # SecurityGroupIds=[security_group_id],
+                SecurityGroupIds=[security_group_id],
                 SubnetId=subnet_id,
                 MinCount=1,
                 MaxCount=1,
