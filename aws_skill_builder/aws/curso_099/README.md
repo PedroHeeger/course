@@ -38,6 +38,7 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to AWS Identity and Access Management (IAM) (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Prática</a><br>
 
 ---
 
@@ -68,6 +69,8 @@ Depois que um usuário for autenticado, ele terá que ser autorizado a acessar o
 Também é importante mencionar que cada conta da AWS tem credenciais de nível raiz com acesso total a tudo na conta. É bastante recomendado que não se utilize as credenciais de nível raiz para nada que não seja a configuração inicial da conta e a criação de uma conta de usuário do IAM com permissões administrativas associadas por meio da política.
 
 As políticas do IAM também podem ser atribuídas a uma função do IAM. Uma função do IAM é semelhante a um usuário, pois é uma identidade da **AWS** com permissões que determinam o que a identidade pode e não pode fazer na cloud. Uma função não tem nenhuma credencial definida de longo prazo, senha ou chave de acesso associada a ela. Em vez disso, se um usuário receber uma função, as chaves de acesso serão criadas de modo dinâmico e fornecidas temporariamente para o usuário. As funções do IAM podem ser utilizadas para delegar acesso a usuários, aplicações, ou serviços que normalmente não têm acesso aos recursos da **AWS**. Um usuário que assume uma função temporariamente desiste das próprias permissões e, em vez disso, assume as permissões da função, como se tivesse vários chapéus ao mesmo tempo para realizar tarefas diferentes. Com as funções do IAM, não é preciso modificar a política de um usuário sempre que uma alteração é necessária.
+
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com quatro arquivos de scripts em **Python** para criar e remover um usuário e um grupo e adicionar e remover o usuário criado e uma política gerenciada pela **AWS** ao grupo criado. Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamUser.py](./resources/iamUser.py) para criar o usuário, [iamGroup.py](./resources/iamGroup.py) para criar o grupo, [iamUserGroup.py](./resources/iamUserGroup.py) para adicionar o usuário ao grupo e [iamGroupPolicy.py](./resources/iamGroupPolicy.py) para adicionar uma política ao grupo. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código.
 

@@ -38,6 +38,7 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">AWS Identity and Access Management - Architecture and Terminology (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Prática</a><br>
 
 ---
 
@@ -80,6 +81,8 @@ Uma função do IAM tem duas partes distintas. A política de confiança (*Trust
 Cada recurso da **AWS** tem um nome de recurso da Amazon, ou "ARN", exclusivo. Os ARNs ajudam a especificar um recurso em toda a cloud, como em políticas de IAM, tags do Amazon RDS ou chamadas de API. Normalmente, um ARN está no seguinte formato `arn:partition:service:region:account-id:resourcetype/resource`. A partição é "aws". O serviço é IAM. Na região como o IAM é um serviço global, ela é ignorada ficando vazia `::`. Em seguida o id da conta é o numéro de identificação da conta da **AWS**. O tipo de recurso é "user", e o recurso é o nome do recurso utilizado.
 
 Políticas baseadas em recursos são aplicadas a um serviço ou recurso. Casos de uso típicos incluem: uma política de bucket do S3, um tópico do SNS ou uma fila SQS. Use políticas baseadas em recursos quando não precisar gerenciar credenciais de usuários individuais em nível granular. Já as políticas baseadas em identidades são associadas a um usuário ou um grupo do IAM. Permissões no nível do recurso referem-se à capacidade de especificar não só que ações os usuários podem executar, mas em quais recursos eles têm permissão para executá-las. Esse é um nível de permissões mais granular. Por exemplo, com permissões no nível do recurso, é possível especificar se um usuário só deve ter permissão para interromper uma instância do EC2 com um ARN específico.
+
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com três arquivos de scripts em **Python** para criar uma role e uma policy, e anexar a policy criada a role desenvolvida. Essa role possuíu na sua política de confiança (*Trust Policy*), o usuário do IAM criado no curso [curso_099](../curso_099/). Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamPolicy.py](./resources/iamPolicy.py) para criar a policy personalizada, [iamRole.py](./resources/iamRole.py) para criar a role e [iamRolePolicy.py](./resources/iamRolePolicy.py) para adicionar a policy criada à role. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código. 
 

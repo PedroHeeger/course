@@ -50,6 +50,7 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to Amazon Elastic Compute Cloud (EC2) (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Prática</a><br>
 
 ---
 
@@ -82,6 +83,8 @@ Com relação as configurações de rede, deve-se definir qual **Virtual Private
 Na configuração de armazenamento é definido a quantidade de memória em gigas e qual tipo de volume de armazenamento que será associado às instâncias EC2. O tipo de volume de armazenamento é gerenciado pelo serviço **Amazon Elastic Block Store (EBS)**, onde cada tipo tem características e desempenho específicos. Também é possível fazer uma configuração avançada determinando outros parâmetros do volume que será criado associado à instância.
 
 Já na parte de detalhes avançados, existem várias definições, porém a que mais utilizo é a opção *User data* onde passo um script ou um arquivo de script que é executado logo após a maquina virtual ser instanciada.
+
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Neste curso, foi utilizado o arquivo [ec2.py](./resources/ec2.py) que é uma cópia deste mesmo arquivo do meu repositório privado de modelos, onde existem dois scripts em **Python** um para criação e outro para exclusão de uma maquina virtual simples apenas para praticar e realizar alguns tipos de acesso remoto à ela. O script utiliza o SDK **Boto3** para interagir a linguagem **Python** com as APIs dos serviços da **AWS** e executar os comandos, utilizando as credenciais já configuradas na **AWS CLI**. Para iniciar a criação e exclusão há um comando que verifica uma entrada fornecida pelo usuário, se ela for positiva o comando é executado, caso contrário, não é executado. As variáveis utilizadas são definidas antes desses comandos. A AMI utilizada nesse caso foi a `Ubuntu Server 22.04 LTS (HVM), SSD Volume Type`, o tipo de instância foi a `t2.micro` para seguir no modo *free tier* e o arquivo *User data* foi o [udFileTest.sh](./resources/udFileTest.sh). Este arquivo apenas atualiza os pacotes, o sistema, baixa e instala os pacotes **Nano**, **Curl** e **Wget**. O par de chaves utilizado foi um já criado no repositório de modelos, caso não tenha criado é necessário gerá-lo para associar a instância. Com relação a configuração de rede, foi utilizada a VPC padrão da região `Norte da Virgínia`, enquanto a sub-rede foi da zona de disponibilidade `us-east-1a`. Nas duas imagens (02 e 03) a seguir é exibido a execução do código em **Python** criando a instância e o dashboard das instâncias do EC2 no console da **AWS** mostrando a instância em execução.
 

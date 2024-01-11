@@ -43,7 +43,8 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to AWS Command Line Interface (CLI)</a><br>
-
+  1.1 <a href="#item01.01">Prática</a><br>
+  
 ---
 
 ### Objective:
@@ -73,6 +74,8 @@ Após a instalação, deve ser configurado o usuário da **AWS** que executará 
 Ao criar uma conta na cloud da **AWS**, o usuário `root` é criado, este é o usuário principal da conta que tem acesso a tudo. Por conta disso, é bastante recomendado não utilizar o usuário `root` ao interagir com a **AWS**, este é um usuário mais apropriado para gerenciamento de conta e faturamento. Então é importante criar um segundo usuário para funcionar como usuário administrador, fornecendo a ele a permissão `AdministratorAccessFull`. Assim, ele terá permissão de execução de quase todos os serviços. Para isso é necessário ir no serviço **AWS Identity and Access Management (IAM)** e criar um usuário do IAM. É este serviço responsável por criar usuário, grupos e dar permissões. Ao criar um usuário do IAM, é importante também gerar uma chave de acesso para ele. A chave de acesso é uma forma criptografada de se conectar com a cloud **AWS** sem a utilização de senha, ao invés disso, é gerado um Id e um Secret. São essas informações da chave de acesso que são configuradas na **AWS CLI**.
 
 Toda configuação realizada no comando `aws configure` é salva em dois arquivos, um de nome `credentials`, onde tem o `Access Key Id` e `Secret Key Id`, e o outro de nome `config` com as informações `Region` e `Output Format`. Esses dois arquivos são armazenados em uma pasta de nome `.aws` dentro do diretório do usuário. É possível modificar o usuário configurado ou as definições de região e formato de saída diretamente neste arquivos.
+
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Como forma de evidenciar a configuração da **AWS CLI** com um usuário do IAM, foi utilizado uma maquina virtual instanciada na cloud da **AWS** para configurar um usuário nela. Para isso foi necessário baixar e instalar a **AWS CLI** nesta instância e isso foi feito através de um script modelo do meu repositório de modelos. Uma cópia do arquivo de script foi executada em [awsCli.sh](awsCli.sh). Este arquivo ainda contém um outro script que faz o mesmo processo de configuração da **AWS CLI** mas de forma automatizada. Porém, neste curso foi decidido que seria feito manualmente para mostrar como funciona. As imagens 02 e 03 ilustram a execução do script onde a **AWS CLI** é instalada de forma automática. Enquanto as imagens 04 e 05 mostram o usuário `Worker` da minha conta da **AWS** sendo configurado e os arquivos gerados na pasta `.aws`. É importante ter cuidado ao trabalhar com configurações de usuário na **AWS CLI**, pois as informações da chave de acesso são sensíveis e não devem ser fornecidas.
 

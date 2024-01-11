@@ -88,8 +88,6 @@
   - AWS Web Application Firewall (WAF)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_waf.svg" alt="aws_waf" width="auto" height="25">
   - AWS Well-Architected  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_well_architected.png" alt="aws_well_architected" width="auto" height="25">
   - Network Access Control List (NACL)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_nacl.svg" alt="aws_nacl" width="auto" height="25">
-
-
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
@@ -179,7 +177,7 @@
     10.2 <a href="#item10.2">O AWS Well-Architected Framework</a><br>
     10.3 <a href="#item10.3">Benefícios da nuvem AWS</a><br>
     10.4 Resumo do módulo 10
-11. <a name="item11">Módulo 10: A Jornada para a Nuvem</a><br>
+11. <a name="item11">Módulo 11: Noções Básicas do AWS Certified Cloud Practitioner</a><br>
     11.1 <a href="#item11.1">Introdução ao módulo 11</a><br>
     11.2 <a href="#item11.2">Detalhes do exame</a><br>
     11.3 <a href="#item11.3">Estratégias do exame</a><br>
