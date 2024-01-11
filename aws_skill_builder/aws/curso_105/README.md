@@ -20,7 +20,6 @@
 - Cloud Services:
   - Amazon Elastic Compute Cloud (EC2)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ec2.svg" alt="aws_ec2" width="auto" height="25">
   - Amazon Elastic Container Service (ECS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecs.svg" alt="aws_ecs" width="auto" height="25">
-  - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Containerization: 
@@ -44,6 +43,13 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Amazon Elastic Container Service (ECS) Primer (Portuguese)</a><br>
+  1.1 <a href="#item01.01">O que é o Amazon ECS?</a><br>
+  1.2 <a href="#item01.02">Escalabilidade e microarquiteturas</a><br>
+  1.3 <a href="#item01.03">Componentes do ECS</a><br>
+  1.4 <a href="#item01.04">O que são estratégias de posicionamento de tarefas?</a><br>
+  1.5 <a href="#item01.05">Como o ECS se integra a outros serviços da AWS?</a><br>
+  1.6 <a href="#item01.06">Como a segurança é aplicada em tarefas do ECS?</a><br>
+  1.7 <a href="#item01.07">Prática</a><br>
 
 ---
 
@@ -65,7 +71,11 @@ A estrutura do curso é formada por:
 
 <a name="item01"><h4>Amazon Elastic Container Service (ECS) Primer (Portuguese)</h4></a>[Back to summary](#item0)
 
+<a name="item01.01"><h4>O que é o Amazon ECS?</h4></a>[Back to summary](#item0)
+
 No mundo digital, contêineres são uma forma de virtualização que acontece no nível do sistema operacional. Eles são semelhantes a maquinas virtuais, porém muito mais leves, apenas com o código da aplicação e as bibliotecas para executar esse código. Cada contêiner em execução é uma instância de uma imagem de contêiner, um objeto imutável que pode ser armazenado em registro público ou privado e personalizado conforme necessário. Contêineres estão firmemente associados a arquiteturas de microsserviços e os benefícios de alavancar ambas as tecnologias são enormes. Arquiteturas de microsserviços decompõem arquiteturas monolíticas tradicionais em componentes independentes que são executados como serviços e se comunicam usando APIs leves. Os ambientes de microsserviços possibilitem uma iteração mais rápida e aumentam a resiliência, a eficiência e a agilidade geral. 
+
+<a name="item01.02"><h4>Escalabilidade e microarquiteturas</h4></a>[Back to summary](#item0)
 
 A escalabilidade é um fator importante para considerar com microsserviços. A execução de um ou dois contêineres em um único host é simples. O que acontece ao mudar para um ambiente de preparação e teste em que há dezenas de hosts, possivelmente com centenas de contêineres? Imagine um ambiente de produção completo com centenas de hosts e talvez milhares de contêineres. Este é um ambiente clusterizado de escala empresarial, e o gerenciamento dos clusters é difícil. Para isso é preciso de um modo inteligente de posicionar contêineres em instâncias para maximizar a disponibilidade, a resiliência e a performance. Isso significa que é necessário conhecer o estado de tudo no sistema. Quais instâncias têm recursos disponíveis, como memória e portas? Como saber quando um contêiner tornou-se inoperante? Como conectar-se com load balancers? Como facilitar práticas de integração e entrega contínuas? Em outras palavras, como gerenciar contêineres em alta escala? 
 
@@ -79,7 +89,7 @@ O tipo de execução do **Amazon Elastic Compute Cloud (EC2)** é útil quando �
 
 Também é possível misturar e combinar os tipos de execução conforme necessário na aplicação. Por exemplo, executar serviços com requisitos de recursos mais previsíveis usando o EC2 e executar outros serviços sujeitos a maiores oscilações de demanda usando o Fargate. Seja qual for a execução usada, o ECS gerencia a disponibilidade dos contêineres e pode escalar a aplicação para atender à demanda.
 
-##### Componentes do ECS
+<a name="item01.03"><h4>Componentes do ECS</h4></a>[Back to summary](#item0)
 
 *Tarefas (tasks)* são a unidade atômica de implantação no ECS e são compostas por um ou mais contêineres firmemente acoplados. Uma tarefa pode ser executada de maneira autônoma ou pode fazer parte de um serviço. Um *serviço (service)* é uma abstração sobre uma tarefa. Um serviço executa um número especificado de tarefas e pode incluir um load balancer para distribuir o tráfego entre as tarefas associadas ao serviço. Se alguma das tarefas falhar ou for interrompida, o programador de serviços iniciará outra instância dessa tarefa para substituí-la e manterá a contagem especificada de tarefas. 
 
@@ -91,7 +101,7 @@ Com o tipo de execução do EC2, as tarefas são hospedadas por instâncias do E
 
 Ao usar o tipo de execução do Fargate, não é preciso gerenciar clusters de instâncias do EC2 ou o posicionamento de tarefas. O Fargate gerencia a infraestrutura como um serviço, permitindo que o usuário se concentre nas suas tarefas e serviços.
 
-##### Estratégias de Posicionamento
+<a name="item01.04"><h4>O que são estratégias de posicionamento de tarefas?</h4></a>[Back to summary](#item0)
 
 Em um cenário com dez instâncias de contêiner, o usuário está fazendo uma solicitação para executar tarefas ou criar um serviço. Como parte dessa solicitação, ele define os requisitos de CPU, memória e rede, e também fornece outras restrições, como uma zona de disponibilidade, AMI ou um tipo de instância específico. Por fim, ele especifica a estratégia preferida para o ECS usar ao inicar as tarefas. Por exemplo, distribuição entre várias instâncias de contêiner para maximizar a disponibilidade ou consolidação em um número menor de instâncias para melhorar a utilização. No final desse processo, o ECS identifica um conjunto de instâncias que atende aos requisitos da tarefa que o usuário deseja executar e posiciona essas tarefas ao longo do seu cluster com base nos critérios especificados. 
 
@@ -101,7 +111,7 @@ As tarefas de serviço são distribuídas com base nas tarefas desse serviço. R
 
 Serviços podem tirar proveito das mesmas estratégias e restrições de posicionamento e, ao mesmo tempo, manter o número desejado de tarefas. Serviços também podem usar a restrição de posicionamento `distinctInstance` para garantir aterrissagem em tipos de instâncias específicos, como instâncias aceleradas por GPU ou instâncias com requisitos específicos de CPU e memória.
 
-##### Integração a outros serviços da AWS
+<a name="item01.05"><h4>Como o ECS se integra a outros serviços da AWS?</h4></a>[Back to summary](#item0)
 
 Um dos pontos fortes da execução de workloads baseados em contêineres com o ECS é a estreita integração com outros serviços da AWS. No início do curso, foi mencionado brevemente o **Amazon Elastic Container Registry (ECR)**. Lembre-se de que, depois de construídas, as imagens são imutáveis. Ao executar um contêiner, o ECS extrai imagens de um registro de imagens público ou privado. O ECR é um registro de imagens do Docker totalmente gerenciado e baseado na nuvem que está totalmente integrado ao Amazon ECS e à CLI do Docker. O ECR é escalável, altamente disponível e seguro. As imagens são criptografadas em repouso, com controle de acesso e autorização baseados no IAM.
 
@@ -111,13 +121,13 @@ Implantações azul/verde são usadas para implantar atualizações de software 
 
 É possível configurar o ECS para usar o Auto Scaling de serviços para ajustar a contagem desejada para cima ou para baixo em resposta a alarmes do CloudWatch. O ECS publica métricas do CloudWatch com o uso médio de CPU e memória pelo serviço. Use essas métricas de utilização de serviço para dimensionar o serviço por ampliação para lidar com alta demanda em horários de pico e dimesioná-lo por redução a fim de diminuir os custos durante períodos de baixa utilização.
 
-##### Segurança em tarefas do ECS
+<a name="item01.06"><h4>Como a segurança é aplicada em tarefas do ECS?</h4></a>[Back to summary](#item0)
 
 Cada tarefa pode ter sua própria função do IAM, fornecendo permissões granulares para acesso a serviços. Em um exemplo, a Tarefa A recebeu acesso aos dados em uma tabela do **Amazon DynamoDB**. Uma nova tarefa, a Tarefa B, precisa acessar dados em um bucket do **Amazon S3**. Para permitir isso, crie uma política no IAM que conceda permissão para recuperar objetos de um bucket específico do S3. Em seguida, crie uma função no IAM com essa política associada. A função do IAM criada é adicionada à definição de tarefa da Tarefa B, permitindo que qualquer instância dessa tarefa recupere objetos do bucket do S3. A Tarefa B não tem permissão para acessar dados no Amazon DynamoDB. Enquanto a Tarefa A não tem permissão para acessar o bucket do S3, a menos que seja associada a política apropriada à função atribuída à Tarefa A.
 
 Tarefas também podem recuperar segredos do Repositório de parâmetros, que está integrado ao *Secrets Manager*. O Secrets Manager ajuda a organizar e gerenciar dados de configuração importantes, como credenciais, senha e chaves de licença. Usando o Repositório de parâmetros para referenciar segredos do Secrets Manager, é possível cria um processo consistente e seguro para chamar e usar segredos e fazer referência a dados no código e em script de configuração. O Repositório de parâmetros funciona como um serviço de passagem para referências a segredos do Secrets Manager. Dados ou metadados sobre segredos não são mantidos no repositório de parâmetros: a referência é stateless. O Secrets Manager criptografa o texto protegido de um segredo usnado o **AWS Key Management Service (KMS)**, um serviço de criptografia e armazenamento de chaves usado por muitos serviços da AWS. Isso ajuda a garantir que o segredo seja criptografado com segurança em repouso. É viável associar políticas do IAM a uma função que dá ou nega acesso a segredos específicos e restringir o que pode ser feito com esses segredos.
 
-##### Prática
+<a name="item01.07"><h4>Prática</h4></a>[Back to summary](#item0)
 
 
 
@@ -143,11 +153,6 @@ Tarefas também podem recuperar segredos do Repositório de parâmetros, que est
 
 
 
-Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com três arquivos de scripts em **Python** para criar uma role e uma policy, e anexar a policy criada a role desenvolvida. Essa role possuíu na sua política de confiança (*Trust Policy*), o usuário do IAM criado no curso [curso_099](../curso_099/). Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamPolicy.py](./resources/iamPolicy.py) para criar a policy personalizada, [iamRole.py](./resources/iamRole.py) para criar a role e [iamRolePolicy.py](./resources/iamRolePolicy.py) para adicionar a policy criada à role. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código. 
-
-Tanto no arquivo da role como da policy, no script de criação, existem dois blocos de criação desses elementos, sendo um onde é passado o **JSON** direto no comando e outro onde é indicado um arquivo **JSON**. A primeira opção foi a executada, sendo a segunda opção comentada. Caso queira utilizá-la, é preciso comentar a primeira opção e descomentar a segunda, além de conferir a variável com o caminho correto para o arquivo **JSON** e verificar o próprio arquivo **JSON**.
-
-Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação dos três arquivos **Python**. Nas imagens 04, 05, 06 e 07 é evidenciado no console da **AWS** a policy e a role criada, além da anexação dessa policy a role e a política de confiança (*Trust Policy*), ou seja, a entidade que pode assumir essa role que no caso é o usuário do IAM criado no curso [curso_099](../curso_099/)
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>

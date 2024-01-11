@@ -18,8 +18,10 @@
 - Cloud:
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
+  - Amazon CloudWatch   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudwatch.svg" alt="aws_cloudwatch" width="auto" height="25">
   - Amazon Elastic Compute Cloud (EC2)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ec2.svg" alt="aws_ec2" width="auto" height="25">
   - Amazon Elastic Container Service (ECS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecs.svg" alt="aws_ecs" width="auto" height="25">
+  - AWS IAM Identity Center   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam_identity_center.jpg" alt="aws_iam_identity_center" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Containerization: 
@@ -43,6 +45,7 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to Amazon Elastic Container Service (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Prática</a><br>
 
 ---
 
@@ -82,7 +85,7 @@ Um serviço do Amazon ECS é onde todas essas funcionalidades estão conectadas 
 
 Para que é utilizado exatamente o Amazon ECS? Os contêineres em geral são perfeitos para microsserviços e o Amazon ECS simplifica ainda mais essa arquitetura. Os contêineres facilitam a modelagem do serviço em uma imagem atribuível com todas as suas dependências. Os contêineres podem usar qualquer aplicativo e linguagem de programação, e a imagem do contêiner é um artefato de versão, para que seja possível rastrear as imagens do contêiner até seus locais de origem. Os contêineres do Docker são particularmente adequados para cargas de trabalho em lote. Geralmente, os trabalhos em lote são de curta duração e executados em paralelo. Existe a possiblidade de empacotar o aplicativo de processamento em lote em uma imagem do Docker, para implatá-la em qualquer lugar, como na tarefa do Amazon ECS. Por fim, a integração e a implantação contínuas são processos comuns baseados em contêineres do Docker, onde pode ser criado um pipeline que executa as seguintes ações: monitorar alterações em um repositório de códigos-fonte, criar uma nova imagem do Docker a partir dessa fonte, enviar essa imagem para um repositório de imagens, como o aplicativo do Amazon ECR ou Docker e atualizar os serviços do Amazon ECS para utilizar a nova imagem no aplicativo.
 
-##### Prática
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Para a parte prática deste curso foi realizado um deployment no serviço **Amazon Elastic Container Service (ECS)**, utilizando das instâncias do **Amazon Elastic Compute Cloud (EC2)** como infraestrutura, de uma tarefa com dois contêiners **Docker**, sendo o primeiro com uma imagem do **Docker Hub** de uma aplicação realizada em outro curso e o segundo com a imagem do repositório de imagens **Amazon Elastic Container Registry (ECR)** de um servidor web **Nginx**. Para verificar o mesmo deployment utilizando como infraestrutura o **AWS Fargate** consulte o curso [curso_104](../curso_104/). Todos os arquivos utilizados para esse projeto estão armazenados no diretório [resources](./resources/) e foram desenvolvidos em linguagem **Python** utilizando o SDK **Boto3** para interagir com as APIs dos serviços da cloud **AWS**. Cada arquivo deste possui dois scripts, um para criação de algo e outro para a exclusão, sendo eles precedidos de estruturas de condição que aguarda uma entrada do usuário para verificar se executa ou não o script.
 

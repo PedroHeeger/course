@@ -14,13 +14,14 @@
 
 ### Used Tools:
 - Operating System (OS): 
+  - Linux   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="linux" width="auto" height="25">
   - Windows 11   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows11.png" alt="windows11" width="auto" height="25">
+- Linux Distribution:
+  - Ubuntu   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="ubuntu" width="auto" height="25">
 - Cloud:
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - Amazon Elastic Container Registry (ECR)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecr.svg" alt="aws_ecr" width="auto" height="25">
-  - Amazon Elastic Container Service (ECS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecs.svg" alt="aws_ecs" width="auto" height="25">
-  <!-- - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25"> -->
   - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Containerization: 
@@ -44,6 +45,7 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to Amazon Elastic Container Registry (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Prática</a><br>
 
 ---
 
@@ -79,31 +81,11 @@ O **Amazon Elastic Container Registry (ECR)** é um registro de imagens do **Doc
 
 O Amazon ECR usa o **Amazon S3** para armazenar essas imagens, garantindo alta disponibilidade. Como um serviço da AWS, as políticas do IAM controlarão o acesso ao Amazon ECR, permitindo que o usuário gerencie granularmente o acesso às imagens de contêiner armazenadas. O Amazon ECR também está totalmente integrado a uma CLI do Docker. Portanto, para obter ou enviar uma imagem de contêiner de ou para um repositório, não é preciso alterar nada no fluxo de trabalho. A CLI do Docker aceita a coleta da imagem no endpoint do Amazon ECR.
 
-##### Prática
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
-Como parte prática
+Como parte prática deste curso, foi instanciado uma maquina virtual no **Amazon Elastic Compute Cloud (EC2)** com **Docker** e **AWS CLI** para interagir com os repositórios de imagens Docker, o **Docker Hub** e o **Amazon Elastic Container Registry (ECR)**. Todos os arquivos de código foram escritos em **Python** utilizando o SDK **Boto3** para interagir com as APIs dos serviços da **AWS**. Os arquivos foram armazenados no diretório [resources](./resources/) e praticamente todos eles possuiam dois scripts, sendo um para criação de algum elemento e outro para exclusão. Somente alguns arquivos específicos possuíram apenas um script. Cada script era envolvido em uma estrutura de condição que aguardava uma entrada do usuário no console para determinar se seria executado ou não.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Como parte prática desse curso, foi criado o sub-diretório [resources](./resources/) com três arquivos de scripts em **Python** para criar uma role e uma policy, e anexar a policy criada a role desenvolvida. Essa role possuíu na sua política de confiança (*Trust Policy*), o usuário do IAM criado no curso [curso_099](../curso_099/). Esses arquivos em **Python** são divididos em dois scripts em cada arquivo, sendo um script para criação e outro para exclusão. Para interagir com as APIs da **AWS** foi utilizado o SDK **Boto3**. A ordem de execução dos arquivos foi [iamPolicy.py](./resources/iamPolicy.py) para criar a policy personalizada, [iamRole.py](./resources/iamRole.py) para criar a role e [iamRolePolicy.py](./resources/iamRolePolicy.py) para adicionar a policy criada à role. A ordem de remoção é inversa a de criação. Cada script de criação e exclusão nos arquivos conta com uma estrutura de condição para decidir se o usuário quer ou não executar o bloco de código. 
-
-Tanto no arquivo da role como da policy, no script de criação, existem dois blocos de criação desses elementos, sendo um onde é passado o **JSON** direto no comando e outro onde é indicado um arquivo **JSON**. A primeira opção foi a executada, sendo a segunda opção comentada. Caso queira utilizá-la, é preciso comentar a primeira opção e descomentar a segunda, além de conferir a variável com o caminho correto para o arquivo **JSON** e verificar o próprio arquivo **JSON**.
-
-Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação dos três arquivos **Python**. Nas imagens 04, 05, 06 e 07 é evidenciado no console da **AWS** a policy e a role criada, além da anexação dessa policy a role e a política de confiança (*Trust Policy*), ou seja, a entidade que pode assumir essa role que no caso é o usuário do IAM criado no curso [curso_099](../curso_099/)
+O projeto iniciou com a criação de um repositório no **Amazon Elastic Container Registry (ECR)** com o arquivo [ecrRepoitory.py](./resources/ecrRepository.py). Em seguida, na sub-pasta [suport](./resources/suport/), foi executado o arquivo [ec2Instance.py](./resources/suport/ec2Instace.py) que instanciou uma maquina virtual **Linux Ubuntu** no serviço **Amazon Elastic Compute Cloud (EC2)**, passando o arquivo [udFile.sh](./resources/suport/udFile.sh) como user data. Este foi um arquivo em **Bash** que instalou os softwares **AWS Command Line Interface (CLI)** e **Docker**, além de algumas ferramentas básicas do **Linux**. O arquivo par de chaves utilizado foi o `keyPairUniversal`, um par de chaves elaborado para ser universal para os cursos, para que não seja necessário criá-lo toda hora. Na imagem 02 abaixo é exibido o repositório criado no ECR. Já na imagem 03 é mostrada a instância executada. Enquanto na imagem 04 é evidenciado, através de um acesso remoto realizado da maquina física **Windows** para a instância com o **OpenSSH** (`ssh -i "G:\Meu Drive\4_PROJ\scripts\scripts_model\.default\secrets\awsKeyPair\keyPairUniversal.pem" ubuntu@18.207.153.20`), os dois softwares instalados com sucesso. Observe que para realizar o acesso remoto via SSH a porta `22` do grupo de segurança da instância teve que estar aberta.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -120,10 +102,16 @@ Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação d
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
+A próxima etapa foi a execução do arquivo [ec2TransFile.py](./resources/suport/ec2TransFile.py) que com o nome de tag da instância criada, verificou a existência das pastas de configuração `.aws` e `.docker` no diretório `/home/ubuntu` da instância. Caso não fossem encontradas, essas pastas com seus respectivos arquivos eram transferidas para a instância. A pasta `.aws` continha dois arquivos `.credential`, com as credenciais (`Access Key Id` e `Secret Access Key`) de um usuário do IAM da minha conta da AWS que neste caso foi o usuário Worker, e o arquivo `.config`, com as configurações de `region` e `output` utilizadas por este usuário. Já a pasta `.docker` continha apenas o arquivo `config.json` que era um **JSON** com autenticação do **Docker** para minha conta no **Docker Hub** e para o serviço do ECR na conta do usuário Worker. Assim era possível enviar e receber imagens dos dois repositórios. Na imagem 05 é mostrado o usuário Worker da minha conta da AWS conectado ao **AWS CLI** da instância.
+
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
     <figcaption>Imagem 05.</figcaption>
 </figure></div><br>
+
+Agora foi o momento de testar se tudo estava funcionando, o objetivo aqui não foi executar contêineres, isso pode ser visto no [curso_106](../curso_106/), a ideia aqui era apenas enviar e baixar imagens dos dois repositórios. Então, para começar um acesso remoto foi realizado novamente na instância, pois era de onde o **Docker** seria executado. Um ponto importante também foi além de garantir que a porta `22` estava aberta para realizar a conexão SSH, liberar a porta `80` ou `443` para conexão `HTTP` e `HTTPS`, porque o **Docker** utiliza essas portas para baixar as imagens do repositório. Para isso, estava a disposição o arquivo [vpcSgRule.py](./resources/suport/vpcSgRule.py) para criar e excluir uma regra de liberação de portas no grupo de segurança padrão, que era o grupo utilizado pela instância.
+
+Dando sequência, foi escolhida qualquer imagem do **Docker Hub** desde que seja confiável, no caso a escolhida foi do meu próprio repositório, possa ser que futuramente essa imagem não esteja mais lá, então é importante conferir se ainda ela existe. Com o comando `docker pull pedroheeger/curso084-flask:v1` foi baixada a imagem para o **Docker** na instância, com o comando `docker tag pedroheeger/curso084-flask:v1 pedroheeger/test1:v1` a imagem baixada foi tagueada para uma nova tag e com o comando `docker push pedroheeger/test1:v1` esta imagem de nova tag foi enviada para o **Docker Hub** criando um novo repositório já que esse nome de tag não existia lá. Na imagem 06 é mostrado o repositório com a imagem de nova tag no **Docker Hub**. Já na imagem 07 o output do comando `docker images`, que lista todas as imagens, é exibido mostrando as duas imagens, a baixada e a enviada.
 
 <div align="Center"><figure>
     <img src="./0-aux/img06.png" alt="img06"><br>
@@ -135,12 +123,14 @@ Nas imagens 02 e 03 é exibido o output da execução dos scripts de criação d
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
-Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
+A próxima etapa foi fazer esse mesmo procedimento, mas agora para o repositório do ECR. Para enviar para o ECR, era necessário ter o repositório da imagem já criado e isso foi feito no início desse projeto. A imagem de nova tag foi tagueda novamente com o comando `docker tag pedroheeger/test1:v1 001727357081.dkr.ecr.us-east-1.amazonaws.com/repository_test1:v1`. Observe que a estrutura de um nome de imagem no ECR é diferente, começa com número da conta da AWS, depois é informada a região, após a barra vem o nome do repositório (nome da imagem) e em seguida a versão (a tag). Com essa imagem de nova tag foi utilizado o comando `docker push 001727357081.dkr.ecr.us-east-1.amazonaws.com/repository_test1:v1` que enviou a imagem para o repositório criado. Caso haja algum problema com o token de conexão com o ECR, basta utilizar esse comando `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 001727357081.dkr.ecr.us-east-1.amazonaws.com` que ele renova o token. Na imagem 08 é evidenciada a imagem no repositório. 
 
 <div align="Center"><figure>
     <img src="./0-aux/img08.png" alt="img08"><br>
     <figcaption>Imagem 08.</figcaption>
 </figure></div><br>
+
+Antes de baixar essa imagem de nova tag, todas as imagens existentes foram excluída com o comando `docker image rm`. Em seguida, com o comando `docker pull 001727357081.dkr.ecr.us-east-1.amazonaws.com/repository_test1:v1` a imagem do repositório do ECR foi baixada e visualizada com o comando `docker images`, conforme imagem 09. Para excluir a imagem foi utilizado o arquivo [ecrImage.py](./resources/ecrImage.py) na maquina física **Windows**. Este só possuía o script de exclusão, pois a criação da imagem no repositório foi realizada com o envio da imagem pelo **Docker**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img09.png" alt="img09"><br>

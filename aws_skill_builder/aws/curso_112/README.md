@@ -35,6 +35,10 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Amazon CodeWhisperer: Introdução (Português) | Amazon CodeWhisperer - Getting Started (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Introdução</a><br>
+  1.2 Uso do CodeWhisperer<br>
+  1.3 <a href="#item01.03">Prática</a><br>
+  1.4 <a href="#item01.04">Amazon Q</a><br>
 
 ---
 
@@ -55,6 +59,8 @@ A estrutura do curso é formada por:
 ### Development:
 
 <a name="item01"><h4>Amazon CodeWhisperer: Introdução (Português) | Amazon CodeWhisperer - Getting Started (Portuguese)</h4></a>[Back to summary](#item0)
+
+<a name="item01.01"><h4>Introdução</h4></a>[Back to summary](#item0)
 
 O **Amazon CodeWhisperer** é um complemento de codificação com inteligência artificial (IA) que pode gerar sugestões de código em tempo real com base em comentários e codet existente. O CodeWhisperer, que funciona em vários ambientes de desenvolvimento integrado (IDEs), ajuda a reduzir o tempo necessário para concluir tarefas de codificação e produzir códigos mais seguros. Além disso, o CodeWhisperer ajuda a criar mais rapidamente ao usar as APIs da **Amazon Web Services (AWS)**. Com a tecnologia de IA, o CodeWhisperer é um complemento de codificação projetado para aprimorar a eficiência e a produtividade do desenvolvedor. As recomendações de código são baseadas nos comentários de linguagem natural e no código-fonte existente.
 
@@ -102,7 +108,7 @@ O CodeWhisperer pode ser utilizado para examinar o código em busca de problemas
 
 O nível individual ajuda desenvolvedores individuais a explorar rapidamente o CodeWhisperer, inscrevendo-se com um endereço de e-mail e um ID do builder AWS. Ele fornece sugestões de código, rastreamento de referência e verificações de segurança. Não é preciso ter uma conta da AWS para usar o nível individual. Além disso, não há cobrança pelo uso do CodeWhisperer por meio de um ID do builder AWS. Por outro lado, o nível profissional oferece recursos expandidos para organizações. Além dos recursos do nível individual, ele oferece funcionalidades administrativas. Isso inclui gerenciamento de licença organizacional para que os administradores controlem o acesso dos desenvolvedores ao CodeWhisperer na organização de forma centralizada. O nível profissional também oferece gerenciamento da política organizacional. Os administradores podem definir políticas de serviço no nível organizacional, como determinar se os desenvolvedores podem receber sugestões de código semelhantes a dados de treinamento de determinado código aberto. Esse nível foi projetado para atender às organizações que precisam de recursos avançados de gerenciamento para o CodeWhisperer.
 
-##### Prática
+<a name="item01.03"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Como parte prática deste curso, foi realizado a instalação e configuração da extensão do VS Code, **AWS Toolkit - Amazon Q, CodeWhisperer, and more**. Essa extensão permite trabalhar com alguns serviços da **AWS**, como o **Amazon Q** que é um assistente de IA generativa, o **AWS Application Composer** que é um serviço de desenvolvimento de aplicações sem servidor por representação visual, o **Amazon CodeCatalyst** que é um serviço unificado de desenvolvimento de software e o **Amazon Code Whisperer** uma ferramenta de sugestão de código e produtividade alimentada por IA para IDE. 
 
@@ -169,7 +175,7 @@ def verify_email(email):
 verify_email("test@example.com")
 ```
 
-##### Amazon Q
+<a name="item01.04"><h4>Amazon Q</h4></a>[Back to summary](#item0)
 
 Como ainda não existe um curso específico no **AWS SKill Builder** do serviço **Amazon Q**, decidi fazer um pequeno resumo sobre essa ferramenta que também faz parte da extensão **AWS Toolkit** do VS Code. O **Amazon Q** é um assistente de IA generativa que auxilia o usuário em diversos serviços e ferramentas tanto da **AWS** como de terceiras. Ele pode ser utilizado na extensão do VS Code ou dentro da console de gerenciamento da AWS. Ele funciona como um chatboot similar ao **ChatGPT** onde é possível conversar com a inteligência passando prompts para ela e ela consegue resolver dúvidas ou responder questões sobre a própria cloud da AWS e outros assuntos.
 

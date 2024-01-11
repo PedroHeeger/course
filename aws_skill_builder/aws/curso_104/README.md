@@ -45,6 +45,7 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to AWS Fargate (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Prática</a><br>
 
 ---
 
@@ -84,7 +85,7 @@ Do ponto de vista do caso de uso, o Fargate se aplica ao amplo espectro de casos
 
 Há alguns casos de uso em que a implantação da tarefa usando o tipo de execução do **Amazon EC2** faz mais sentido do que usar o Fargate hoje. Se o cliente for um usuário frequente do EC2 Spot ou tiver pago por instâncias reservadas, poderá optar por usar o tipo de execução EC2 para as suas tarefas do ECS. Já que o Fargate está gerenciando toda a infraestrutura em seu nome e cobrando pelo consumo de CPU e memória por segundo. Hoje não existe uma maneira de converter isso para Spot ou instâncias reservadas. Em segundo lugar, se os serviços e aplicativos que está sendp implantado são executados em contêineres baseados no **Microsoft Windows**. O tipo de execução EC2 ainda é a melhor opção para implantação, pois permite que seja utilizado AMIs baseados no **Windows** e configurações no cluster, que atualmente não é compatível com o Fargate.
 
-##### Prática
+<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Com relação a parte prática deste curso foi realizado um deployment no serviço **Amazon Elastic Container Service (ECS)**, utilizando o **AWS Fargate** como infraestrutura, de uma tarefa com dois contêiners sendo cada um com um imagem do **Docker Hub**, o primeiro container com uma imagem de uma aplicação realizada em outro curso e o segundo com a imagem do servidor web **Apache HTTP (Httpd)**. Todos os arquivos utilizados para esse projeto estão armazenados no diretório [resources](./resources/) e foram desenvolvidos em linguagem **Python** utilizando o SDK **Boto3** para interagir com as APIs dos serviços da cloud **AWS**. Cada arquivo deste possui dois scripts, um para criação de algo e outro para a exclusão, sendo eles precedidos de estruturas de condição que aguarda uma entrada do usuário para verificar se executa ou não o script.
 

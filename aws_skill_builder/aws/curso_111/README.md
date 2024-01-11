@@ -39,6 +39,9 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introdução ao Amazon Bedrock (Português) | Amazon Bedrock Getting Started (Portuguese)</a><br>
+  1.1 <a href="#item01.01">Introdução</a><br>
+  1.2 <a href="#item01.02">O Uso do Amazon Bedrock</a><br>
+  1.3 <a href="#item01.03">Prática</a><br>
 
 ---
 
@@ -59,6 +62,8 @@ A estrutura do curso é formada por:
 ### Development:
 
 <a name="item01"><h4>Introdução ao Amazon Bedrock (Português) | Amazon Bedrock Getting Started (Portuguese)</h4></a>[Back to summary](#item0)
+
+<a name="item01.01"><h4>Introdução</h4></a>[Back to summary](#item0)
 
 O **Amazon Bedrock** é um serviço totalmente gerenciado que oferece os principais modelos de base (Foundation Models - FMs) e um conjunto de ferramentas para criar e dimensionar rapidamente aplicações de IA generativa. O serviço também ajuda a garantir a privacidade e a segurança. Com a experiência sem servidor do **Amazon Bedrock** não é necessário gerenciar a infraestrutura. É possível começar rapidamente e fazer experiências com FMs, podendo também personalizar os FMs de forma privada com os próprios dados, que podem ser integrados e implementados de forma contínua nas aplicações usando as ferramentas e os recursos da **Amazon Web Services (AWS)**.
 
@@ -96,7 +101,7 @@ Quando é feito o ajuste fino de um FM de base, os dados são usados para fazer 
 
 Ao usar o **Amazon Bedrock**, pode ser optado por usar o *Amazon Titan* ou modelos de terceiros. Com o **Amazon Bedrock**, há custos ao executar a inferência em qualquer um dos FMs. O preço é baseado no volume de tokens de entrada e de saída. No contexto dos modelos de linguagem ampla (LLMs), um token é uma sequência de caracteres que representa uma unidade significativa de texto. Os tokens podem ser palavras, frases ou caracteres individuais, como um ponto final. Os tokens também fornecem uma padronização dos dados de entrada, o que ajuda o modelo a fazer o processamento. Com o **Amazon Bedrock**, existe a possibilidade de provisionar o throughput, o que neste momento está em versão prévia. Com o throughput provisionado, o preço é cobrado por hora.
 
-##### Funcionamento
+<a name="item01.02"><h4>O Uso do Amazon Bedrock</h4></a>[Back to summary](#item0)
 
 O Amazon Bedrock pode ser usado no Console de Gerenciamento da AWS ou com uma API. É possível usar os playgrounds do **Amazon Bedrock** para interagir com FMs para gerar texto ou uma imagem, ou para ter uma conversa usando o chat. O **Amazon Bedrock** suporta a seleção de um FM a partir de um conjunto de provedores de modelos. Usando os playgrounds no **Amazon Bedrock**, pode ser enviado um comando de linguagem natural (prompt) para o FM e obter uma resposta ou uma solução. Também é possível influenciar a resposta do modelo ajustando os parâmetros do modelo, como a temperatura, para que a resposta possa variar de mais factual a mais criativa. Pode ser fornecidos prompts para gerar texto, gerar imagens, resumir texto, receber respostas a perguntas ou conversar usando o chat.
 
@@ -108,7 +113,7 @@ Os consumidores interagem com o **Amazon Bedrock** no console para atividades de
   - Comprimento da resposta: Configura o número máximo de tokens a serem usados na resposta gerada.
   - Sequências de parada: Uma sequência de parada é uma sequência de caracteres. Se o modelo encontrar uma sequência de parada, ele para de gerar mais tokens. Diferentes modelos aceitam diferentes tipos de caracteres em uma sequência de parada, diferentes comprimentos máximos de sequência e podem aceitar a definição de várias sequências de parada.
 
-##### Prática
+<a name="item01.03"><h4>Prática</h4></a>[Back to summary](#item0)
 
 Como parte prática desse curso, foram realizados alguns playgrounds disponíveis no **Amazon Bedrock**. Os três tipos de playgrounds existentes são: Chat, Text e Image. Para utilizá-los é necessário ter disponívels os foundation models (FMs) do Bedrock. Na aba *Model access* é listado vários FMs de diversos providers para várias modalidades. Ao clicar em *Manage model access* é possível escolher quais modelos devem ser liberados o acesso e então salvar. Para fazer isso é necessário permissões do IAM caso o usuário não tenha, como neste caso é o usuário administrador, não foi necessário. A depender do FM escolhido pode levar alguns minutos para ser liberado. Na imagem 02 é exibido a aba de *Model access** com os FMs que já foram permitidos o acesso.
 
