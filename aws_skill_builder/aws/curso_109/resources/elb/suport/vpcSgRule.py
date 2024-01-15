@@ -10,7 +10,7 @@ print("-----//-----//-----//-----//-----//-----//-----")
 print("Definindo variáveis")
 group_name = "default"
 protocol = "tcp"
-port = 80
+port = "5000"
 cidr_ipv4 = "0.0.0.0/0"
 
 print("-----//-----//-----//-----//-----//-----//-----")
@@ -53,6 +53,8 @@ if resposta == 'y':
             # )['SecurityGroupRules']
 
             exist_rule = [rule for rule in sgs[0].get('IpPermissions', []) if
+                
+                rule.get('GroupId') == sg_default_id and
                 rule.get('IpProtocol') == protocol and
                 rule.get('FromPort') == port and
                 rule.get('ToPort') == port and
@@ -109,7 +111,7 @@ print("-----//-----//-----//-----//-----//-----//-----")
 print("Definindo variáveis")
 group_name = "default"
 protocol = "tcp"
-port = 80
+port = 5000
 cidr_ipv4 = "0.0.0.0/0"
 
 print("-----//-----//-----//-----//-----//-----//-----")

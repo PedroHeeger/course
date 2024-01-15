@@ -46,7 +46,8 @@
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">Introduction to AWS Auto Scaling (Portuguese)</a><br>
-  1.1 <a href="#item01.01">Prática</a><br>
+  1.1 <a href="#item01.01">Prática 1: Amazon EC2 Auto Scaling - Parte 1</a><br>
+  1.2 <a href="#item01.02">Prática 2: Amazon EC2 Auto Scaling - Parte 2</a><br>
 
 ---
 
@@ -101,33 +102,13 @@ E qual é a diferença entre o **AWS Auto Scaling** e os serviços nativos de es
 
 Quando se deve considerar o **AWS Auto Scaling** para o ambiente? O **AWS Auto Scaling** deve ser utilizado se tiver uma aplicação que usa um ou mais recursos escaláveis e está sujeita a uma carga variável. Um bom exemplo seria uma aplicação Web de comércio eletrônico que usa o Amazon EC2 para a camada de computação e o DynamoDB para a camada de dados. Neste caso, o **AWS Auto Scaling** escalará um ou mais grupos do EC2 Auto Scaling e tabelas do DynamoDB usados pela aplicação para responder à curva de demanda. Também deve ser usado o **AWS Auto Scaling** se quiser obter mais orientações sobre a definição de um plano de escalabilidade de aplicações. Ou, se quiser apenas manter a integridade da frota do EC2, escalar recursos individuais separadamente, criar ações de escalabilidade agendadas ou configurar políticas de escalabilidade por etapas, pode usar o **Amazon EC2 Auto Scaling** ou **Application Auto Scaling**.
 
-<a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
+<a name="item01.01"><h4>Prática 1: Construindo o Launch Template, Launch Configuration e o Auto Scaling Group no serviço EC2</h4></a>[Back to summary](#item0)
 
+Na primeita prática deste curso, foi criado um *auto scaling group* no serviço **Amazon EC2 Auto Scaling**, o objetivo foi criar e testar o auto scaling funcionando para instâncias do serviço **Amazon Elastic Compute Cloud (EC2)**. Para criar um grupo de auto scaling para o EC2, foi necessário desenvolver uma forma de implantação, ou seja, como as instâncias seriam configuradas. Antigamente para construir a implantação utilizava-se o *launch configuration (Configuração de Implantação)*, que é um elemento que faz parte do serviço **Amazon EC2 Auto Scaling**. Apesar dele ainda existir e funcionar, ele já é considerado depreciado, sendo substituído pelo *launch template (Modelo de Implantação)* que é um recurso do **Amazon Elastic Compute Cloud (EC2)**. Nesta prática foi explicado como criar o auto scaling group para instâncias EC2 utilizando as duas formas de implantação. Além disso, com a utilização do *launch template* foi apresentada duas formas de execução, onde na primeira algumas definições são realiadas no próprio launch template e na segunda, essas definições são configuradas no auto scaling group. Toda a execução foi desenvolvida através de arquivos em linguagem **Python** com a utilização do SDK **Boto3** para interagir com as APIs dos serviços da **AWS**. Cada arquivo possuíu dois scripts, sendo um para criação de algum elemento e outro para exclusão do mesmo, sempre precedidos por uma estrutura de condição que aguarda uma entrada do usuário para determinar se irá executar ou não o bloco de código. Todos os arquivos foram armazenados no diretório [resources](./resources/) em suas respectivas sub-pastas.
 
+Para deixar bem claro antes de iniciar, será executado o arquivo [asLaunchConfig.py](./resources/as/group/asLaunchConfig.py) e [launchTemp2.py](./resources/launchTemp/launchTemp1.py) com o arquivo [asGroup2.py](./resources/as/group/asGroup2.py), modificando no arquivo de auto scaling group o launch configuration para launch template. O arquivo `asGroup2.py` vai precisar do arquivo [elbClb.py](./resources/elb/elbClb.py) para criação de um *Classic Load Balancer (CLB)* que será utilizado como load balancer nestas duas formas. A terceira forma de execução, é quase igual a segunda que utiliza o arquivo `launchTemp2.py`, nela vai ser executado o arquivo [launchTemp1.py](./resources/launchTemp/launchTemp1.py) com o arquivo [asGroup1.py](./resources/as/group/asGroup1.py), utilizando como load balancer o *Application Load Balancer (ALB)* que necessita de três arquivos, sendo um para o *target group* ([elbTg.py](./resources/elb/elbTg.py)), outro para o *Application Load Balancer (ALB)* ([elbAlb.py](./resources/elb/elbAlb.py)) e o último para o *listener* ([elbListener.py](./resources/elb/elbListener.py)). A diferença entre as formas 1 e 2 do *launch template*, é que na número 1, as definições são realizadas no arquivo de launch template e utiliza o ALB como load balancer, enquanto na segunda, algumas definições são feitas no arquivo de auto scaling group e o load balancer é o CLB.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Como parte prática desse curso foram utilizados códigos em **Python** com o SDK do **Boto3** para interagir com a **AWS** e construir um load balancer do tipo Application, criando duas instâncias no serviço **Amazon Elastic Compute Cloud (EC2)** e as adicionando ao target group vinculado a esse load balancer. Esses arquivos de código foram armazenados no sub-diretório [resources](./resources/), sendo os referente as instâncias EC2 na sub-pasta [suport](./resources/suport/) dentro de `resources`. Na sub-pasta `suport`, o arquivo [ec2DoubleInstance.py](./resources/suport/ec2DoubleInstance.py) instanciou duas maquinas **Linux Ubuntu** idênticas no EC2, sendo a única diferença entre eles apenas o nome da tag das instâncias que obedecia um padrão ordenado. Ambas utilizavam o arquivo em **Bash** [udFile.sh](./resources/suport/udFile.sh) como user data, ou seja, após a instanciação da maquina, esse arquivo era executado. O arquivo instalava o servidor web **Apache HTTP (HTTPD)**, habilitava e iniciava. Como esse servidor opera na porta `80` era necessário liberá-la no grupo de segurança e isso foi feito com o arquivo [vpcSgRule.py](./resources/suport/vpcSgRule.py). O grupo de segurança e sub-redes utilizados tanto pelas instâncias como pelo load balancer foram os padrões da região utilizada. Nas imagens 02 e 03 é exibido o acesso ao servidor do Apache através do IP público das instâncias no navegador da maquina física **Windows**. Já na imagem 04 é mostrada as instâncias criadas.
+A primeira forma realizada iniciou com a execução do arquivo [asLaunchConfig.py](./resources/as/group/asLaunchConfig.py) que criou uma configuração de implantação para ser utilizada no auto scaling group. Lembrando que esse recurso já está depreciado e foi substituído pelo *launch template*. Neste arquivo foi definido o tipo de instância que seria utilizada (`t2.micro`), a imagem do sistema operacional que ela usuaria (**Linux Ubuntu**), o par de chaves utilizado para acessar as instâncias remotamente que foi definido como `keyPairUniversal`, sendo este um par de chaves já criado e utilizado como universal para os meus projetos. Também foi definido um arquivo de user data que foi [httpd_stress/udFile.sh](./resources/launchTemp/suport/httpd_stress/udFile.sh), este instalava nas instâncias escaladas algumas ferramentas do **Linux**, o software **Stress** para estressar as maquinas e o servidor web **Apache Http (Httpd)**. Essas quatro definições também serão realizadas nas duas formas de implantação com o *launch template*. Por fim, no launch configuration foi definido o grupo de segurança como o padrão da VPC padrão da região. Foi importante garantir que a porta `80` do protocolo `TCP` estava liberada neste grupo para todas as faixas de IP, pois este foi utilizado em outros recursos desta prática. Caso fosse necessário criar a regra, o arquivo [vpcSgRule.py](./resources/elb/suport/vpcSgRule.py) desempenhava esse papel. Para verificar o launch configuration criado, a imagem 02 é apresentada abaixo. Já na imagem 03 mostra todas as regras definidas no grupo de segurança padrão da VPC padrão, onde é possível visualizar a porta `80` liberada.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -139,12 +120,14 @@ Como parte prática desse curso foram utilizados códigos em **Python** com o SD
     <figcaption>Imagem 03.</figcaption>
 </figure></div><br>
 
+Com a configuração de implantação pronta, antes de criar o grupo de auto scaling foi necessário construir o load balancer que ele usaria e nas duas primeiras formas como já dito anteriormente, o load balancer utilizado foi o *Classic Load Balancer (CLB)* que é um load balancer mais antigo e que está sendo substituído pelo *Application Load Balancer (ALB)*. Para criá-lo foi executado o arquivo [elbClb.py](./resources/elb/elbClb.py) que já cria um listener junto ao load balancer. Foi necessário fornecer as configurações do listener que são protocolo e porta do load balancer e da instância, além das sub-redes utilizadas e o grupo de segurança, sendo esses todos o padrão da VPC padrão da região. Resaltando novamente a importância da liberação da porta `80` neste grupo de segurança, pois é a porta que aplicação, no caso o servidor web Apache, vai rodar. A imagem 04 ilustra a CLB desenvolvido. 
+
 <div align="Center"><figure>
     <img src="./0-aux/img04.png" alt="img04"><br>
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
-Observe que para acessar o servidor em uma instância é utilizado o IP público dela e para acessar a outra tem que alterar o IP para a instância correspondente, sendo em ambas operando na porta `80`. O objetivo aqui foi acessar o servidor do Apache por um único IP, no caso DNS, que era fornecido pelo load balancer, através do serviço **Amazon Elastic Load Balancing (ELB)**, e ele se responsabilizaria por distribuir as cargas, originadas do acesso ao servidor, às instâncias EC2. Para isso, o primeiro arquivo criado foi o [elbTg.py](./resources/elbTg.py) que construía um target group, conforme imagem 05 abaixo. Em seguida com o arquivo [elbLb.py](./resources/elbLb.py) foi criado o load balancer do tipo **Application Load Balancer**, visualizado na imagem 06. Já na imagem 07, é mostrada a criação do listener através do arquivo [elbListener.py](./resources/elbListener.py), no qual este escuta por conexões de clientes entrantes na porta `80` do DNS do load balancer e direciona essas conexões para grupos de destinos, onde estarão as instâncias EC2.
+Dando sequência, foi executado o arquivo [asGroup2.py](./resources/as/group/asGroup2.py). Nele, existem dois comandos de criação do auto scaling group, um utilizando o launch configuration e outro com o launch template. Ao escolher qual das formas seria executada, foi preciso comentar o comando de criação da outra forma. Como a primeira forma foi com o launch configuration, o comando do launch template estava comentado. Os dois comandos são praticamente iguais, a única diferença entre eles é exatamente que um utilizava o launch configuration e outro o launch template. No launch configuration foi necessário passar o nome dele, enquanto no launch template teve que ser informado o nome e a versão que seria utilizada. Em ambos os comandos foram definidos as seguintes configurações: o nome do grupo de auto scaling que seria criado, a quantidade mínima, máxima e desejada de instâncias, o tempo de espera padrão (`DefaultCoolDown`) que é um parâmetro que define o período de tempo padrão (em segundos) que o grupo de instâncias espera antes de iniciar novas operações de escalabilidade após uma operação de escalabilidade ter sido concluída. Também foram definidos o tipo e o tempo de verificação de integridade das instâncias, as sub-redes que seriam utilizadas pelas instâncias, o nome de tag que as instâncias teriam e o *Classic Load Balancer (CLB)* criado. Um outro comando habilitou as métricas do Auto Scaling para que fossem acessadas pelo **Amazon CloudWatch**. Na imagem 05 é visualizado o auto scaling group desenvolvido com o *launch configuration*. Na imagem 06 é listada a única instância criada deste grupo de auto scaling, pois a quantidade desejada estabelecida foi 1.
 
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
@@ -156,21 +139,209 @@ Observe que para acessar o servidor em uma instância é utilizado o IP público
     <figcaption>Imagem 06.</figcaption>
 </figure></div><br>
 
+A partir desse momento, foi só aplicar os tipos de políticas e testar o auto scaling funcionando. Essa parte foi igual para as três formas de execução do auto scaling group e será explicada na prática 2 em apenas uma das três formas. Para executar a segunda forma, foi removido o auto scaling group e o launch configuration, mantendo apenas o *Classic Load Balancer (CLB)*.
+
+A segunda forma se inicia com a execução do arquivo [launchTemp2.py](./resources/launchTemp/launchTemp2.py) para o construção do modelo de implantação. Este código é um pouco mais complexo em relação ao launch configuration, porque tem dois comandos de criação idênticos, só que um é para criar versões do modelo de implantação já existente e outro para criar o modelo de implatanção na primeira versão. Neste não há nada comentado, pois o próprio código identifica se o modelo já existe ou não, caso exista, ele descobre a última versão existente e criar uma nova versão após esta. Com relação as configurações no comando é definido o nome e a descrição da versão do launch template e os dados do modelo. É nesse ponto que o `launchTemp1.py` se diferencia do `luanchTemp2.py`. Em ambos são definidos o tipo de instância que seria utilizada (`t2.micro`), a imagem do sistema operacional que ela usuaria (**Linux Ubuntu**), o par de chaves utilizado para acessar as instâncias remotamente que também foi definido como `keyPairUniversal`, a configuração de armazenamento, sendo utilizado o **Amazon Elastic Block Storage (EBS)** com tamanho de volume de `8` do tipo `gp2`, e um arquivo de user data que foi [httpd_stress/udFile.sh](./resources/launchTemp/suport/httpd_stress/udFile.sh). No `launchTemp1.py` ainda é definido o nome de tag que as instâncias vão ter e a configuração de interface de rede criando uma interface com índice, sub-rede e grupo de segurança padrão da VPC padrão da região e habilitando a associação de IP público pelas instâncias. Isso não foi necessário no `launchTemp2.py`, pois as sub-redes utilizadas e o nome de tag das instâncias foi definido no `asGroup2.py`. Já o security group não foi definido nem no `launchTemp2.py` e nem no `asGroup2.py`, sendo neste caso utilizado o padrão da VPC usada. Na imagem 07 abaixo é evidenciado a criação do modelo de implantação da segunda forma.
+
 <div align="Center"><figure>
     <img src="./0-aux/img07.png" alt="img07"><br>
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
-Para adicionar as instâncias EC2 ao grupo de destino (target group) foi utilizado o arquivo [elbTgInstance.py], neste, como era só um arquivo, foi necessário alterar a variável `tag_name_instance` de nome `ec2Test1` para `ecTest2` para inserir a segunda instância. A imagem 08 mostra as duas instânicias inseridas no target group. Perceba que o `Health status` está como `Healthy`, ou seja, a verificação de integridade está saudável. Isso acontece da seguinte maneira, no target group foram determinados alguns parâmetros, o `health_check_path` como `/`, ou seja, significa o diretório raiz que neste caso não é o diretório raiz da instância e sim a pasta do servidor Apache que é `/var/www/html`, onde está o arquivo principal do servidor, o `index.html`. O parâmetro `health_check_protocol` define o protocolo utilizado como `HTTP` e o parâmetro `health_check_port` define a porta utilizada como `traffic-port`, a porta de tráfego que neste caso é a porta `80`. Assim, o load balancer envia solicitações do tipo `GET` utilizando o protocolo `HTTP` para o ip público das instâncias do target group para a pasta raiz da seguinte maneira `http://3.90.226.127/` logo ele encontra o arquivo `index.html` que devolve uma resposta para o load balancer confirmando a integridade da instância, tudo isso operando na porta `80`. Note que a porta `80` pode ser omitida do endereço da instância, pois é a porta padrão quando nenhuma porta é mencionada, mas o endereço funcionaria da seguinte maneira também `http://3.90.226.127:80/`. Caso seja optado por criar um diretório específico para verificação de integridade, neste caso ele teria que está dentro do diretório do Apache (`/var/www/html`) e conter um arquivo **HTML** com qualquer conteúdo apenas para o load balancer conseguir acessar e ter uma resposta. Um exemplo seria o diretório `health` que ficaria dentro da raiz `/`, na instância ficaria em `/var/www/html/health`, portanto seria definido o `health_check_path` como `/health/` contendo um arquivo **HTML** dentro dele, que poderia ser um `index.html`
+Agora, no arquivo `asGroup2.py` teve que descomentar o comando de criação do auto scaling group com utilização do launch template e comentar o que utilizava o launch configuration.
+Após executá-lo, o auto scaling group estava criado usando como base o modelo de implantação e não mais o modelo de configuração. Na imagem 08 é exibido o grupo de auto scaling construído. Enquanto na imagem 09 é listada a única instância deste grupo, pois foi o estabelecido na quantidade desejada.
 
 <div align="Center"><figure>
     <img src="./0-aux/img08.png" alt="img08"><br>
     <figcaption>Imagem 08.</figcaption>
 </figure></div><br>
 
-Na imagem 09 o acesso ao servidor web do Apache é realizado pelo DNS do load balancer na porta `80`.
-
 <div align="Center"><figure>
     <img src="./0-aux/img09.png" alt="img09"><br>
     <figcaption>Imagem 09.</figcaption>
 </figure></div><br>
+
+Para iniciar a terceira forma foi necessário remover o auto scaling group, o launch template e também o load balancer utilizado que até agora era o CLB, pois nesta forma o load balancer utilizado foi o *Application Load Balancer (ALB)* Para criar o ALB, primeiro executou-se o arquivo [elbTg.py](./resources/elb/elbTg.py) para criar o grupo de destino (*target group*). Depois, com o arquivo [elbAlb.py](./resources/elb/elbAlb.py) foi construído o ALB. Já com o arquivo [elbListener.py](./resources/elb/elbListener.py) foi elaborado listener que vincula o ALB com o target group que por enquanto estava vazio. Caso queira entender um pouco mais de load balancer, recomendo o [curso_110](../curso_110/) que explica mais detalhadamente sobre como criá-lo. Nas próximas três imagens (10, 11 e 12) é exibido esses três elementos criados: target group, ALB e listener.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.png" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img11.png" alt="img11"><br>
+    <figcaption>Imagem 11.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img12.png" alt="img12"><br>
+    <figcaption>Imagem 12.</figcaption>
+</figure></div><br>
+
+Com o load balancer pronto, foi elaborado um novo modelo de implantação através do arquivo [launchTemp1.py](./resources/launchTemp/launchTemp1.py), que já foi explicado anteriormente a diferença dele para o `launchTemp2.py`. Mas para relembrar, as definições de rede e de nome de tag da instância foram determinadas nele ao invés de no auto scaling group como é o caso do `launchTemp2.py`. Após criá-lo, o arquivo [asGroup1.py](./resources/as/group/asGroup1.py) construiu o auto scaling group utilizando esse modelo de implantação como base e o ALB como load balancer, onde ao invés de informar o nome do CLB, é informado o ARN do target group vinculado ao *Application Load Balancer (ALB)** criado. Nas imagens 13 e 14 é evidenciado a criação do novo modelo de implatanção e do novo auto scaling group, iniciando apenas com uma instância.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img13.png" alt="img13"><br>
+    <figcaption>Imagem 13.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img14.png" alt="img14"><br>
+    <figcaption>Imagem 14.</figcaption>
+</figure></div><br>
+
+Assim, essa prática se encerra, no qual essa última estrutura é mantida para ser utilizada na prática 2.
+
+<a name="item01.02"><h4>Prática 2: Construindo o Launch Template, Launch Configuration e o Auto Scaling Group no serviço EC2</h4></a>[Back to summary](#item0)
+
+Nesta segunda prática, foi utilizado o útlimo grupo de auto scaling construído, com o ALB como seu load balancer para aplicar as policies, testar o auto scaling e o load balancer. No serviço de auto scaling tanto do EC2 como de outro serviços escaláveis, existem quatro tipo de policies. A *SimpleScaling Policy* é o tipo padrão, ela permite ajustes de capacidade fixos em resposta a alarmes. A *StepScaling Policy* é um tipo de política que permite definir ajustes de capacidade específicos em resposta a alarmes em diferentes pontos de ajuste. A *TargetTrackingScaling Policy* é o tipo de política que ajusta automaticamente a capacidade do grupo de Auto Scaling para manter uma métrica específica próxima ao valor desejado. A *PredictiveScaling Policy* é o tipo de política que usa aprendizado de máquina para fazer previsões sobre a carga futura e ajustar a capacidade com base nessas previsões. A única que não será utilizada aqui é a política preditiva. Todas as outras três serão apresentadas, sendo a política simples executada de duas formas, uma com a criação de uma única política e outra com criação de duas políticas de vez, sendo uma para aumento de instâncias e outra para redução.
+
+Todas essas políticas utilizaram alarmes de métricas do **Amazon CloudWatch** para serem acionadas. Para a simple e a step foi necessário criar os alarmes, enquanto com a target tracking eles foram criados automaticamente junto com a política. A target tracking é também a único tipo de policy que consegue controlar tanto o escalonamento para cima como para baixo com uma única policy. A primeira policy a ser executada foi ela.
+
+Com o arquivo [asttScalingPolicy.py](./resources/as/policy/asttScalingPolicy.py) é adicionada a política ao grupo de auto scaling. No comando para inserção da policy foi definido o nome do grupo de auto scaling, o tipo da política e o nome dela, o tempo de espera que o grupo de auto scaling tem que aguardar para escalar as maquinas, e as configurações da política, onde foi determinado o tipo de métrica como média da porcentagem de utilização de CPU do auto scaling group, o valor de meta em 70% e o parâmetro `DisableScaleIn` como falso, o que quer dizer que a escala para baixo está habilitada, ou seja, a redução de maquinas. Na imagem 15 é mostrada a política no auto scaling group. Já na imagem 16 é visualizada os dois alarmes de métricas que ela mesmo cria no **Amazon CloudWatch**. Perceba que um alarme teve com condição porcentagem de utlização de cpu maior que 70% em três pontos de dados em três minutos, se isso ocorresse, uma nova instância era criada. O outro alarme dizia porcentagem de utilização de cpu menor que 63% em quinze pontos de dados em quinze minutos, ou seja, uma instância seria removida.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img16.png" alt="img16"><br>
+    <figcaption>Imagem 16.</figcaption>
+</figure></div><br>
+
+Para testar o auto scaling funcionando, foi necessário realizar o acesso remoto na única instância do grupo existente neste momento. Para executar o acesso remoto foi utilizado o software **OpenSSH** e a porta `22` do grupo de segurança também teve que ser liberada. Dentro da instância, dois software tinham sido instalados pelo arquivo user data, um era o **Stress** e o outro era o servidor web **Apache HTTP (Httpd)**. Com o comando `stress --cpu 32 --timeout 1000` foi realizado um stress na única maquina fazendo com que ela consumisse muita CPU e passasse dos 70% estabelecido na policy. Como neste momento, o grupo de auto scaling só tinha uma instância, logo o valor de uma representava a média. Então, após alguns minutos, uma nova instância foi escalada para atender a regra e fazer com que a porcentagem de utilização de CPU descesse para baixo dos 70%. Caso, a outra maquina fosse estressada também, a porcentagem de utilização de CPU subiria passando dos 70% e o alerta do CloudWatch acionaria novamente a política que criaria uma outra instância. Na imagem 17 é mostrado o alarme do CloudWatch acionado, na imagem 18 é exibido as atividades do auto scaling group e na imagem 19 é listada as instâncias. Observe que uma nova instância foi criada pelo auto scaling group.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img17.png" alt="img17"><br>
+    <figcaption>Imagem 17.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img18.png" alt="img18"><br>
+    <figcaption>Imagem 18.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img19.png" alt="img19"><br>
+    <figcaption>Imagem 19.</figcaption>
+</figure></div><br>
+
+Com duas instâncias execução, o estresse da maquina foi interrompido e enquanto a porcentagem de cpu era recalculada, foi acessado o IP de cada instância no navegador da maquina física **Windows** na porta `80` no protocolo `HTTP` para visualizar o servidor web, conforme imagens 20 e 21. Agora, na imagem 22, é mostrado o acesso a este mesmo servidor só que pelo DNS do load balancer criado. Este, está distribuindo as cargas entre as duas instâncias.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img20.png" alt="img20"><br>
+    <figcaption>Imagem 20.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img21.png" alt="img21"><br>
+    <figcaption>Imagem 21.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img22.png" alt="img22"><br>
+    <figcaption>Imagem 22.</figcaption>
+</figure></div><br>
+
+Após algum tempo com o estresse interrompido e com a nova instância criada, a porcentagem de CPU cai bastante, pois agora a média da utilização de cpu é sobre as duas instâncias e o estresse não está mais atuando em uma delas. Como política target tracking tanto aumenta quando reduz, ela tem uma regra que após cair abaixo de uma porcentagem específica, remove uma instância, sendo acionada pelo CloudWatch. Nas imagens (23, 24 e 25) é mostrada o outro alerta do CloudWatch acionado, as atividas do grupo de auto scaling e as instâncias. Observe que uma instância foi removida.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img23.png" alt="img23"><br>
+    <figcaption>Imagem 23.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img24.png" alt="img24"><br>
+    <figcaption>Imagem 24.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img25.png" alt="img25"><br>
+    <figcaption>Imagem 25.</figcaption>
+</figure></div><br>
+
+Dando sequência, foi removida do grupo de auto scaling essa política, para testar agora uma outra política. Com o arquivo [asScalingPolicy.py](./resources/as/policy/asScalingPolicy.py) foi inserida no grupo de auto scaling a policy do tipo simple que é a padrão quando não é especificadao o tipo de política utilizada. Para inserção desta, além de seu nome e tipo, que pode ser omitido, e o nome do auto scaling group que foi inserido, também é definido o tipo de ajuste como mudança de capacidade (`ChangeInCapacity`), a escala de ajuste como 1, ou seja, vai aumentar uma instância quando for acionada e o tempo de espera para calcular a métrica de 300 segundos. Existem outros tipos de ajustes como o `ExactCapacity` que permite que definir a capacidade exata que o grupo de auto scaling deve ter quando a condição da métrica for atendida, o `ScalingAdjustment` neste caso representa a nova capacidade desejada. Também tem o `PercentChangeInCapacity` que especifica uma alteração percentual na capacidade. Se `ScalingAdjustment` for -10, significa que a capacidade será reduzida em 10% quando as condições da métrica forem atendidas. Esse percentual é sobre o total de instâncias, se há 10 instâncias e reduz 10%, logo uma instância é reduzida, ficando 9 instâncias. Na imagem 26 é ilustrado essa policy inserida no auto scaling group, porém ela precisava de um alerta.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img26.png" alt="img26"><br>
+    <figcaption>Imagem 26.</figcaption>
+</figure></div><br>
+
+Para que essa policy fosse acionada foi criado um alarme de métrica no **Amazon CloudWatch** com o arquivo [metricAlarm.py](./resources/cloudwatch/metricAlarm.py). Nele foi definido seu nome, a descrição, o tipo de alarme (`CPUUtilization`), um namespace, a estatística que seria calculada (`Average`), a meta e o tipo de comparador (`GreaterThanThreshold`). Também foi informado o nome do auto scaling group e a ARN da policy que seria acionada por este alarme, que no caso foi a simple scaling policy. Na imagem 27 é exibido o alarme configurado.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img27.png" alt="img27"><br>
+    <figcaption>Imagem 27.</figcaption>
+</figure></div><br>
+
+Para acessar, o processo foi o mesmo da política anterior, acessar a instância do grupo e utilizar o comando `stress --cpu 32 --timeout 1000` para estressar a maquina, fazendo com que a porcentagem de utilização de cpu média do grupo, que no momento só tem uma instância, subisse até passar do limite configurado no alarme que foi de 70%. Assim, o CloudWatch acionou a política que instanciou uma segunda maquina. Nas imagens 28, 29 e 30 é evidenciado o alarme ativado no CloudWatch, as atividades do auto scaling group e as instâncias criadas.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img28.png" alt="img28"><br>
+    <figcaption>Imagem 28.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img29.png" alt="img29"><br>
+    <figcaption>Imagem 29.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img30.png" alt="img30"><br>
+    <figcaption>Imagem 30.</figcaption>
+</figure></div><br>
+
+Como esta foi uma policy do tipo simple e foi definida como incrementação de instância, mesmo que a porcentagem baixasse não seria reduzida o número de instâncias. Para este caso, precisou de uma segunda policy do mesmo tipo, só que definida como redução de instância. Então, o alarme e a política em execução foi removidos, para criá-los novamente só que agora duas políticas e dois alarmes, sendo um para escalar para cima e outro para escalar para baixo. Com o arquivo [asScalingPolicyDouble.py](./resources/as/policy/asScalingPolicyDouble.py) foram criadas as duas políticas do tipo simple, conforme imagem 31. Observe que elas não possuem ainda um alarme vinculado, para isso, foi necessário executar o arquivo [metricAlarmDouble.py](./resources/cloudwatch/metricAlarmDouble.py) para criar dois alarmes no **Amazon CloudWatch** para cada uma das políticas. Os dois alarmes eram práticamente idênticos, o que muda era apenas o valor de meta e o tipo de comparador, que no primeiro era 70% e o comparador era `GreaterThanThreshold`, já no segundo era 40% com o comparador `LessThanThreshold`. Na imagem 32 é mostrado os dois alarmes criados no CloudWatch cada um para uma das policies inseridas no grupo de auto scaling.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img31.png" alt="img31"><br>
+    <figcaption>Imagem 31.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img32.png" alt="img32"><br>
+    <figcaption>Imagem 32.</figcaption>
+</figure></div><br>
+
+Nesse momento, a quantidade de instâncias do auto scaling group eram duas, pois na política anterior aumentou uma instância e não teve nenhuma policy de redução. Então aqui agora, o processo foi inverso, foi interrompido o estresse que estava sendo executado em uma das maquinas, e por ter duas maquinas a porcentagem de utilização de cpu caiu para baixo de 40% que foi o estabelecido em das policies. Assim, foi só aguardar até que o alarme do CloudWatch acionasse a política e ela reduzisse o número de instâncias em execução no grupo. Nas imagens 33, 34 e 35 é evidenciado o alarme ativado no CloudWatch, as atividades do auto scaling group e a instância removida. Aqui foi optado por não fazer o teste para escalonamento para cima, pois seria o mesmo realizado na política anterior, no qual a política para incrementação de instâncias foi a mesma que neste exemplo onde há duas políticas.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img33.png" alt="img33"><br>
+    <figcaption>Imagem 33.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img34.png" alt="img34"><br>
+    <figcaption>Imagem 34.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img35.png" alt="img35"><br>
+    <figcaption>Imagem 35.</figcaption>
+</figure></div><br>
+
+Recapitulando o que foi realizado até o momento nesta prática 2, com o auto scaling group criado na prática 1 com load balancer do tipo ALB foi inserida no grupo cada tipo de política e testada para verificar a escalabilidade para cima e para baixo. A ideia foi estressar a utilização de cpu das maquinas do auto scaling group para representar como se fosse uma grande quantidade de acesso a aplicação pelo DNS do load balancer ao ponto da demanda ser tão grande ou tão pequena que o auto scaling group através das políticas e dos alarmes configurados no CloudWatch instaciariam ou removeriam maquinas no grupo. Até o momento, foram testadas as políticas do tipo *TargetTracking*, *Simple* com uma política de incrementação e *Simple* com duas políticas, uma para escalar para cima e outra para baixo.
+
+A próxima policy foi do tipo *Step*, para executá-la foi necessário remover as anteriores e seus respectivos alarmes. No comando para inseri-la no grupo de auto scaling foi definido o nome e o tipo da política `StepScaling`, o nome do auto scaling group, o tipo de ajuste como alteração de capacidade (`ChangeInCapacity`), o tempo de espera para calcular a métrica de 300 segundos e ajuste em intervalos, onde foi determinado intervalos e em cada intervalo qual seria a quantidade de instâncias a ser acrescida. Na imagem 36 é exibida essa política inserida no grupo de auto scaling.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img36.png" alt="img36"><br>
+    <figcaption>Imagem 36.</figcaption>
+</figure></div><br>
+
+Na sequencia, foi necessário criar um alarme de métrica no CloudWatch para acionar essa policy e isso foi feito com o arquivo [metricAlarm.py](./resources/cloudwatch/metricAlarm.py), já utilizado para a policy do tipo simple. A única coisa que foi necessária alterar no arquivo era nome da variável da política, pois existiam duas, uma para policy do tipo simple que foi a utilizada antes e outra para a policy step que foi esta atual, sempre mantendo a policy que não deseja executar como comentada. Na imagem 37 é ilustrado o alarme criado para esta política.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img37.png" alt="img37"><br>
+    <figcaption>Imagem 37.</figcaption>
+</figure></div><br>
+
+Infelizmente, não consegui executar de fato ela e verificar o auto scaling funcionando por um problema que não consegui entender. Toda vez que eu criava o alerta, a meta determinada no alerta era acrescida aos intervalos do ajuste, modificando intervalos de 0 a 40 por exemplo, para 70 a 110, e basicamente todos meus intervalos passavam de 100. Não consegui entender o porque isso ocorreu, pois no meu entendimento a meta definida no **Amazon CloudWatch** era só um valor para quando a porcentagem de utilização de cpu ultrapassasse esse valor acionasse a policy e então os intervalos de ajuste da policy iriam determinar em que intervalo estava essa meta e assim adicionava a quantidade de instâncias estabelecida. Na imagem 38 é mostrado como a policy ficava após criar o alarme de métria para ela. Por favor, se tiver qualquer contribuição a fazer para que eu consiga resolver essa situação e de fato testar essa policy, entre em contato pelo meu Linkedin ou GitHub.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img38.png" alt="img38"><br>
+    <figcaption>Imagem 38.</figcaption>
+</figure></div><br>
+
+Futuramente farei o outro tipo de policy que ficou faltando que a *PredictiveScaling Policy*.
