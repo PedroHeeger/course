@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_109 (Introduction to AWS Auto Scaling)   <img src="./0-aux/logo_course.png" alt="curso_109" width="auto" height="25"></a>
 
-#### <a href="">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(24-01-11)_Introduction_to_AWS_Auto_Scaling_PH_AWSSB.pdf">Certificate</a>
 
 ---
 
