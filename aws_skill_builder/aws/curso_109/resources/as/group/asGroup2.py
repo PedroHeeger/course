@@ -9,12 +9,8 @@ print("AUTO SCALING GROUP CREATION")
 print("-----//-----//-----//-----//-----//-----//-----")
 print("Definindo variáveis")
 asg_name = "asgTest1"
-launch_config_name = "launchConfigTest1"
 launch_temp_name = "launchTempTest1"
 version_number = 1
-az1 = "us-east-1a"
-az2 = "us-east-1b"
-tag_name_instance = "ec2Test"
 clb_name = "clbTest1"
 
 print("-----//-----//-----//-----//-----//-----//-----")
@@ -43,12 +39,6 @@ if response == 'y':
             print(group['AutoScalingGroupName'])
 
         print("-----//-----//-----//-----//-----//-----//-----")
-        print("Extraindo os IDs dos elementos de rede")
-        vpc_id = ec2_client.describe_vpcs(Filters=[{'Name': 'isDefault', 'Values': ['true']}])['Vpcs'][0]['VpcId']
-        subnet_id1 = ec2_client.describe_subnets(Filters=[{'Name': 'availability-zone', 'Values': [az1]}, {'Name': 'vpc-id', 'Values': [vpc_id]}])['Subnets'][0]['SubnetId']
-        subnet_id2 = ec2_client.describe_subnets(Filters=[{'Name': 'availability-zone', 'Values': [az2]}, {'Name': 'vpc-id', 'Values': [vpc_id]}])['Subnets'][0]['SubnetId']
-
-        print("-----//-----//-----//-----//-----//-----//-----")
         print(f"Criando o auto scaling group de nome {asg_name}")
         autoscaling_client.create_auto_scaling_group(
             AutoScalingGroupName=asg_name,
@@ -62,38 +52,8 @@ if response == 'y':
             DefaultCooldown=300,
             HealthCheckType='EC2',
             HealthCheckGracePeriod=300,
-            VPCZoneIdentifier=f"{subnet_id1},{subnet_id2}",
-            Tags=[
-                {
-                    'Key': 'Name',
-                    'Value': tag_name_instance,
-                    'PropagateAtLaunch': True
-                }
-            ],
             LoadBalancerNames=[clb_name]
         )
-
-        # print("-----//-----//-----//-----//-----//-----//-----")
-        # print(f"Criando o auto scaling group de nome {asg_name}")
-        # autoscaling_client.create_auto_scaling_group(
-        #     AutoScalingGroupName=asg_name,
-        #     LaunchConfigurationName=launch_config_name,
-        #     MinSize=1,
-        #     MaxSize=4,
-        #     DesiredCapacity=1,
-        #     DefaultCooldown=300,
-        #     HealthCheckType='EC2',
-        #     HealthCheckGracePeriod=300,
-        #     VPCZoneIdentifier=f"{subnet_id1},{subnet_id2}",
-        #     Tags=[
-        #         {
-        #             'Key': 'Name',
-        #             'Value': tag_name_instance,
-        #             'PropagateAtLaunch': True
-        #         }
-        #     ],
-        #     LoadBalancerNames=[clb_name]
-        # )
 
         print("-----//-----//-----//-----//-----//-----//-----")
         print(f"Habilitando a coleta de métricas do auto scaling group de nome {asg_name}")
