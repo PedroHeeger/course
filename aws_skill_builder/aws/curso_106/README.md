@@ -122,30 +122,7 @@ Para resumir, os microsserviços e os contêineres funcionam bem juntos. Os cont
 
 <a name="item01.04"><h4>Prática</h4></a>[Back to summary](#item0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Como parte prática desse curso, foi instanciada uma maquina no serviço **Amazon Elastic Compute Cloud (EC2)** onde já veio pré-instalados alguns softwares básicos (**Nano**, **Vim**, **Curl**, **Wget**, **Unzip** e **Zip**), a command line interface (CLI) da **AWS** (**AWS CLI**) e o **Docker**. Essa maquina foi construída através do arquivo [ec2Instance.py](./resources/ec2Instace.py) em linguagem **Python** com SDK **Boto3** para interagir com as APIs dos serviços da **AWS**. Esta maquina utilizou como security group o padrão da VPC padrão da região que foi `us-east-1`. Foi necessário criar algumas regras no security group, liberando algumas portas como a porta `22` para realização de acesso remoto com o software **OpenSSH**, portas `80` e `443` para tráfegos do protoclo `HTTP` e `HTTPS`. A imagem 02 a seguir mostra a instância criada, enquanto a imagem 03 exibe as regras elaboradas no grupo de segurança.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -157,6 +134,10 @@ Para resumir, os microsserviços e os contêineres funcionam bem juntos. Os cont
     <figcaption>Imagem 03.</figcaption>
 </figure></div><br>
 
+Dando sequência foi realizado o acesso remoto na instância pela maquina física **Windows** com o software **OpenSSH**. Para execução do acesso remoto, a instância teve que ser criada com um par de chaves vinculado a ela. O par de chaves utilizado foi o `keyPairUniversal` que é um par de chaves universal que uso nos meus projetos. O par de chaves foi armazenado no arquivo `keyPairUniversal.pem`. Um arquivo *Privacy Enhanced Mail (PEM)* é um formato de arquivo que pode conter diferentes tipos de dados codificados em Base64 para representar os dados binários de forma segura e eficiente em formato de texto ASCII. Inicialmente, foi desenvolvido para armazenar mensagens de e-mail de forma segura, mas agora é amplamente utilizado para armazenar certificados X.509 e chaves privadas. Esses certificados e chaves são comumente usados em sistemas que implementam SSL/TLS para garantir a segurança na comunicação pela internet. Toda vez que fosse realizado um acesso remoto tinha que informar o arquivo de chave privada. Com o comando `ssh -i "G:\Meu Drive\4_PROJ\scripts\scripts_model\.default\secrets\awsKeyPair\keyPairUniversal.pem" ubuntu@54.91.173.146` foi realizado o acesso remoto a instância. Caso queira saber mais sobre acesso remoto em instâncias EC2 da **AWS**, consulte o [curso_092](../curso_092/).
+
+Após acesso, conforme imagem 04, foi possível visualizar os softwares instalados. Por enquanto, nem o **Docker** e nem o **AWS CLI** estavam configurados com nenhuma conta de usuário. A conta configurada no **Docker** foi para acesso ao repositório do **Docker**, o **Docker Hub**, para conseguir enviar as imagens criadas. Portanto, para isso, foi necessário ter uma conta no **Docker Hub** e então fazer o login do **Docker** da instância no repositório pelo terminal. O comando utilizado para o login foi o `docker login` que ao executá-lo, pediu o `Username` que podia ser o `Docker ID` ou endereço de e-mail e em seguida a senha, que poderia ser também um token de acesso pessoal (PAT). O uso de um *Personal Access Token (PAT)* garante melhor segurança, pois ele pode e deve ser configurado no **Docker Hub** através do navegador da web, determinando permissões específicas de leitura, escrita e exclusão. Neste caso, foi criado o PAT `Access_PH_AWS` para ser utilizado dentro da **AWS** e concedida todas as permissões (read, write e delete), conforme mostrado na imagem 05. Com o email e o PAT foi realizado o login no **Docker Hub** pelo **Docker** da instância EC2. Assim que o login foi bem sucedido, foi gerado o arquivo `config.json` dentro da pasta `.docker` também criada dentro do diretório do usuário `/home/ubuntu`. Este arquivo continha todas contas que o **Docker** da instância estava autorizado a acesssar, que por enquanto só era o minha conta do **Docker Hub**, mas outras contas tanto do **Docker Hub** como de outros repositórios poderiam ser adicionadas. Uma outra forma de autenticação, seria transferir este a pasta `.docker` com o arquivo `config.json` com a autorização já cadastrada direto para instância, assim não seria necessário executar o comando `docker login`.
+
 <div align="Center"><figure>
     <img src="./0-aux/img04.png" alt="img04"><br>
     <figcaption>Imagem 04.</figcaption>
@@ -166,6 +147,31 @@ Para resumir, os microsserviços e os contêineres funcionam bem juntos. Os cont
     <img src="./0-aux/img05.png" alt="img05"><br>
     <figcaption>Imagem 05.</figcaption>
 </figure></div><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div align="Center"><figure>
     <img src="./0-aux/img06.png" alt="img06"><br>
