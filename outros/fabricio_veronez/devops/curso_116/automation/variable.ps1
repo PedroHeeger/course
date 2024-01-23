@@ -36,11 +36,11 @@ $deploymentFile = "deployment.yaml"
 
 
 # NAMES (INSTANCE)
-$tagNameInstance = "ec2DevOps1"
-# $instanceTypeCash = "t3.medium"
-$instanceType = "t2.micro"
-$imageId = "ami-0fc5d935ebf8bc3bc"
-# $imageId = "ami-053b0d53c279acc90"
+$tagNameInstance = "ec2Curso116.1"
+# $instanceType = "t2.micro"
+$instanceType = "t3.medium"
+# $instanceType = "t3.large"
+$imageId = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
 $groupName = "default"
 $aZ = "us-east-1a"
 $protocolo = "tcp"

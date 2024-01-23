@@ -1,37 +1,37 @@
 Write-Output "Importando o arquivo com as variáveis"
-. "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\variaveis.ps1"
+. "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_116\automation\variable.ps1"
 
 "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "ETAPA 1 (AULAS 1, 2 E 3)"
-$resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
-if ($resposta -ne 'y') {
+$resposta = Read-Host "Deseja executar esta etapa? (y/n) "
+if ($resposta.ToLower() -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
 
-Write-Output "***********************************************"
-Write-Output "SERVIÇO: AWS EC2"
-Write-Output "KEY PAIR CREATION"
+# Write-Output "***********************************************"
+# Write-Output "SERVIÇO: AWS EC2"
+# Write-Output "KEY PAIR CREATION"
 
-Write-Output "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "Verificando se existe o par de chaves $keyPairName"
-if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName']").Count -gt 1) {
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "O par de chaves $keyPairName já foi criado!"
-    aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
-} else {
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Listando todos os pares de chaves criados"
-    aws ec2 describe-key-pairs --query "KeyPairs[].KeyName" --output text
+# Write-Output "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "Verificando se existe o par de chaves $keyPairName"
+# if ((aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName']").Count -gt 1) {
+#     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#     Write-Output "O par de chaves $keyPairName já foi criado!"
+#     aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
+# } else {
+#     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#     Write-Output "Listando todos os pares de chaves criados"
+#     aws ec2 describe-key-pairs --query "KeyPairs[].KeyName" --output text
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Criando o par de chaves $keyPairName"
-    aws ec2 create-key-pair --key-name $keyPairName --query 'KeyMaterial' --output text > "$keyPairPath\$keyPairName.pem"
+#     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#     Write-Output "Criando o par de chaves $keyPairName"
+#     aws ec2 create-key-pair --key-name $keyPairName --query 'KeyMaterial' --output text > "$keyPairPath\$keyPairName.pem"
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Listando apenas o par de chave $keyPairName"
-    aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
-}
+#     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#     Write-Output "Listando apenas o par de chave $keyPairName"
+#     aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='$keyPairName'].KeyName" --output text
+# }
 
 
 Write-Output "***********************************************"
@@ -69,74 +69,78 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "Listando o IP público da instância $tagNameInstance"
     aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Exibindo o comando para acesso remoto via OpenSSH"
+    Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@$ipEc2"
 }
 
 
-Write-Output "***********************************************"
-Write-Output "SERVIÇO: AWS EC2-VPC"
-Write-Output "SECURITY GROUP RULE CREATION"
+# Write-Output "***********************************************"
+# Write-Output "SERVIÇO: AWS EC2-VPC"
+# Write-Output "SECURITY GROUP RULE CREATION"
 
-Write-Output "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "Verificando se existe a VPC padrão"
-if ((aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[].VpcId").Count -gt 1) {
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Extraindo o Id da VPC padrão"
-    $vpcDefaultId = aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[].VpcId" --output text
+# Write-Output "-----//-----//-----//-----//-----//-----//-----"
+# Write-Output "Verificando se existe a VPC padrão"
+# if ((aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[].VpcId").Count -gt 1) {
+#     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#     Write-Output "Extraindo o Id da VPC padrão"
+#     $vpcDefaultId = aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[].VpcId" --output text
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe o Security Group padrão da VPC padrão"
-    if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values='$vpcDefaultId'" --query "SecurityGroups[?GroupName=='$groupName'].GroupId").Count -gt 1) {
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o Id do Security Group padrão"
-        $sgDefaultId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$groupName'].GroupId" --output text
+#     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#     Write-Output "Verificando se existe o Security Group padrão da VPC padrão"
+#     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values='$vpcDefaultId'" --query "SecurityGroups[?GroupName=='$groupName'].GroupId").Count -gt 1) {
+#         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#         Write-Output "Extraindo o Id do Security Group padrão"
+#         $sgDefaultId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$groupName'].GroupId" --output text
         
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Verificando se existe uma regra liberando a porta $port1 do Security Group padrão"
-        $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgDefaultId' && !IsEgress && IpProtocol=='$protocolo' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4']"
-        if (($existRule).Count -gt 1) {
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Já existe a regra de entrada liberando a porta $port1 do Security Group padrão"
-            $existRule
-        } else {
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
-            aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
+#         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#         Write-Output "Verificando se existe uma regra liberando a porta $port1 do Security Group padrão"
+#         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgDefaultId' && !IsEgress && IpProtocol=='$protocolo' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4']"
+#         if (($existRule).Count -gt 1) {
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Já existe a regra de entrada liberando a porta $port1 do Security Group padrão"
+#             $existRule
+#         } else {
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
+#             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
         
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Adicionando uma regra de entrada ao Security Group padrão para liberação da porta $port1"
-            aws ec2 authorize-security-group-ingress --group-id $sgDefaultId --protocol $protocolo --port $port1 --cidr $cidrIpv4 --no-cli-pager
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Adicionando uma regra de entrada ao Security Group padrão para liberação da porta $port1"
+#             aws ec2 authorize-security-group-ingress --group-id $sgDefaultId --protocol $protocolo --port $port1 --cidr $cidrIpv4 --no-cli-pager
         
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
-            aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
-        }
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
+#             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
+#         }
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Verificando se existe uma regra liberando a porta $port2 do Security Group padrão"
-        $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgDefaultId' && !IsEgress && IpProtocol=='$protocolo' && to_string(FromPort)=='$port2' && to_string(ToPort)=='$port2' && CidrIpv4=='$cidrIpv4']"
-        if (($existRule).Count -gt 1) {
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Já existe a regra de entrada liberando a porta $port2 do Security Group padrão"
-            $existRule
-        } else {
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
-            aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
+#         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#         Write-Output "Verificando se existe uma regra liberando a porta $port2 do Security Group padrão"
+#         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgDefaultId' && !IsEgress && IpProtocol=='$protocolo' && to_string(FromPort)=='$port2' && to_string(ToPort)=='$port2' && CidrIpv4=='$cidrIpv4']"
+#         if (($existRule).Count -gt 1) {
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Já existe a regra de entrada liberando a porta $port2 do Security Group padrão"
+#             $existRule
+#         } else {
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
+#             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
         
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Adicionando uma regra de entrada ao Security Group padrão para liberação da porta $port2"
-            aws ec2 authorize-security-group-ingress --group-id $sgDefaultId --protocol $protocolo --port $port2 --cidr $cidrIpv4 --no-cli-pager
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Adicionando uma regra de entrada ao Security Group padrão para liberação da porta $port2"
+#             aws ec2 authorize-security-group-ingress --group-id $sgDefaultId --protocol $protocolo --port $port2 --cidr $cidrIpv4 --no-cli-pager
         
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
-            aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
-        }
-    }
-}
+#             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+#             Write-Output "Listando o Id de todas as regras de entrada e saída do Security Group padrão"
+#             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgDefaultId" --query "SecurityGroupRules[].SecurityGroupRuleId" --output text
+#         }
+#     }
+# }
 
 
-Write-Output "Aguardando 200 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
-Start-Sleep -Seconds 200
+Write-Output "Aguardando 250 segundos para garantir que todos os programas já foram instalados pelo script Bash $userDataFile!"
+Start-Sleep -Seconds 250
 
 
 Write-Output "***********************************************"
@@ -177,16 +181,16 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 
     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "DOCKER HUB"
-    Write-Output "Verificando se a pasta $dockerFolder já existe na instância de nome de tag $tagNameInstance"
-    $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPath/$dockerFolder`" && echo 'true' || echo 'false'"
+    Write-Output "Verificando se a pasta $dockerHubFolder já existe na instância de nome de tag $tagNameInstance"
+    $folderExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPath/$dockerHubFolder`" && echo 'true' || echo 'false'"
 
     if ($folderExists -eq 'true') {
         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "A pasta $dockerFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+        Write-Output "A pasta $dockerHubFolder já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
     } else {
         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Transferindo a pasta $dockerFolder para a instância de nome de tag $tagNameInstance"
-        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerPath\$dockerFolder" ubuntu@${ipEc2}:${vmPath}
+        Write-Output "Transferindo a pasta $dockerHubFolder para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHubPath\$dockerHubFolder" ubuntu@${ipEc2}:${vmPath}
     }
 
     Write-Output "Aguardando 200 segundos para garantir que as pastas do projeto foram baixadas e criadas!"

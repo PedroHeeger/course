@@ -203,60 +203,52 @@ echo "Confirmando as alterações realizadas no grupo"
 sudo newgrp docker
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Reiniciando o sistema"  
-sudo reboot
+echo "Reiniciando o serviço"  
+sudo systemctl restart docker
 
 
 
 
-# echo "***********************************************"
-# echo "K3D INSTALLATION"
+echo "***********************************************"
+echo "K3D INSTALLATION"
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Definindo variáveis"
-# link="https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh"
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Definindo variáveis"
+link="https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh"
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Baixando e executando o script de instalação"
-# wget -q -O - $link | bash
-
-
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Baixando e executando o script de instalação"
+wget -q -O - $link | bash
 
 
-# echo "***********************************************"
-# echo "KUBECTL INSTALLATION"
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Instalando os pacotes de dependência"
-# sudo apt-get install -y apt-transport-https ca-certificates curl
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Criando um diretório para armazenar chaves de repositórios"
-# sudo install -m 0755 -d /etc/apt/keyrings
+echo "***********************************************"
+echo "KUBECTL INSTALLATION"
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Baixando a chave de assinatura pública para os repositórios de pacotes Kubernetes"
-# curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Criando um diretório para armazenar chaves de repositórios"
+sudo install -m 0755 -d /etc/apt/keyrings
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Adicionando o repositório do pacote à lista de fontes de pacotes do sistema"
-# echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Baixando a chave de assinatura pública para os repositórios de pacotes Kubernetes"
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Atualizando os pacotes"
-# sudo apt-get update -y
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Adicionando o repositório do pacote à lista de fontes de pacotes do sistema"
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Instalando o pacote"
-# sudo apt-get install -y kubectl
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Atualizando os pacotes"
+sudo apt-get update -y
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Exibindo a versão"
-# kubectl version --client
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Instalando o pacote"
+sudo apt-get install -y kubectl
 
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Alterando o proprietario e grupo da pasta .kube para o usuario ubuntu"
-# sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Exibindo a versão"
+kubectl version --client
 
 
 
@@ -306,8 +298,8 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/kube-news/k8s
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 100 segundos para configuracao do Docker Hub..."
-sleep 100
+echo "Aguardando 120 segundos para configuracao do Docker Hub..."
+sleep 120
 
 
 
@@ -329,7 +321,7 @@ npm install
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando a aplicacao sem container por alguns segundos"
-timeout 120s node server.js
+timeout 200s node server.js
 
 
 
@@ -375,8 +367,8 @@ docker compose up -d
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 100 segundos para verificacao do projeto..."
-sleep 100
+echo "Aguardando 200 segundos para verificacao do projeto..."
+sleep 200
 
 
 
@@ -401,17 +393,20 @@ echo "Criando o cluster com Port Bind e Load Balancer"
 k3d cluster create meucluster -p "8080:30000@loadbalancer"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Alterando o proprietario e grupo da pasta .kube para o usuario ubuntu"
+sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+
+echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando o arquivo de Manifesto YAML"
 kubectl apply -f deployment.yaml
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 150 segundos para inserir os dados..."
-sleep 150
+echo "Aguardando 200 segundos para inserir os dados..."
+sleep 200
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Realizando uma alteracao na aplicacao para versao v2"
-# sed -i 's/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/>/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/> - v2/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
-sed -i 's/<a class="header__button" href="/post">Novo Post</a>/<a class="header__button" href="/post">Novo Post</a> - V2/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
+sed -i 's/<a class="header__button" href="\/post">Novo Post<\/a>/<a class="header__button" href="\/post">Novo Post - V2<\/a>/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Acessando a pasta do arquivo Dockerfile"
@@ -426,6 +421,10 @@ echo "Enviando a imagem da aplicacao na versao v2 para o Docker Hub (Docker Regi
 docker push pedroheeger/curso116_kube-news:v2
 
 echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Removendo tudo referente ao Docker que não está sendo utilizado para liberacao de espaco"
+docker system prune -af
+
+echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Acessando a pasta do arquivo de manifesto do projeto"
 cd /home/ubuntu/kube-news/k8s
 
@@ -438,8 +437,8 @@ echo "Executando o arquivo de manifesto YAML"
 kubectl apply -f deployment.yaml
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 150 segundos para verificar a aplicacao..."
-sleep 150
+echo "Aguardando 200 segundos para verificar a aplicacao..."
+sleep 200
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Removendo o arquivo de manifesto YAML"
@@ -451,5 +450,5 @@ k3d cluster delete meucluster
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Desfazendo as alterações nos arquivos"
-sed -i 's/<a class="header__button" href="/post">Novo Post</a> - V2/<a class="header__button" href="/post">Novo Post</a>/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
+sed -i 's/<a class="header__button" href="\/post">Novo Post - V2<\/a>/<a class="header__button" href="\/post">Novo Post<\/a>/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
 sed -i 's/image: pedroheeger\/curso116_kube-news:v2/image: pedroheeger\/curso116_kube-news:v1/' "/home/ubuntu/kube-news/k8s/deployment.yaml"

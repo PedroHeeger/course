@@ -10,3 +10,4 @@ This folder refers to all the courses I took on the Fabrício Veronez platform (
 
 ### Courses:
 - <a href="./curso_081">curso_081 (Imersão DevOps & Cloud 1)   <img src="./curso_081/0-aux/logo_course.png" alt="curso_081" width="auto" height="25"></a>
+- <a href="./curso_116">curso_116 (Imersão Docker e Kubernetes 1)   <img src="./curso_116/0-aux/logo_course.png" alt="curso_116" width="auto" height="25"></a>
