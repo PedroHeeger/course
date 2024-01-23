@@ -1,4 +1,4 @@
-# BANCO DE DADOS POSTGRESQL
+# DEPLOYMENT DO BANCO DE DADOS POSTGRESQL
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers: 
         - name: postgre
-          image: postgres:15.0
+          image: postgres:13.13
           ports:
             - containerPort: 5432
           env:
@@ -36,7 +36,7 @@ spec:
   ports:
     - port: 5432
 ---
-# APLICAÇÃO WEB (Kube-News)
+# DEPLOYMENT DO APLICAÇÃO WEB (Kube-News)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -53,7 +53,7 @@ spec:
     spec:
       containers: 
         - name: kubenews
-          image: pedroheeger/curso081_kube-news:v1
+          image: pedroheeger/curso116_kube-news:v1
           ports:
             - containerPort: 8080
           env:

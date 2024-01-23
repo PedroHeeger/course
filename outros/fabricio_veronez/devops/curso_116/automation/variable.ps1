@@ -10,12 +10,8 @@ $secretsPath = "$coursePath\secrets"
 # VM PATHS
 $vmPath = "/home/ubuntu"
 $vmPathProject = "$vmPath/kube-news"
-
-
-$vmPathProject2 = "$vmPathProject/web-page"
-
-$vmPathProjectk8s = "$vmPathProject/k8s"
-$vmPathProjectsrc = "$vmPathProject/src"
+$vmPathProjectK8s = "$vmPathProject/k8s"
+$vmPathProjectSrc = "$vmPathProject/src"
 
 
 # FILES AND FOLDERS PATHS
@@ -35,8 +31,8 @@ $awsCliFolder = ".aws"
 $dockerHubFolder = ".docker"
 $dockerFile = "Dockerfile"
 $composeFile = "compose.yaml"
-$deploymentFile1 = "deployment1.yaml"
-$deploymentFile2 = "deployment2.yaml"
+$deploymentFile = "deployment.yaml"
+
 
 
 # NAMES (INSTANCE)
@@ -51,11 +47,3 @@ $protocolo = "tcp"
 $port1 = "8080"
 $port2 = "5432"
 $cidrIpv4 = "0.0.0.0/0"
-
-
-# DATA: AULA 1 E 2
-$dataFile = "popula-dados.http"
-$userDataFile2 = "ec2Script2.sh"
-# $dataFilePath = "$resourcesPath"
-
-

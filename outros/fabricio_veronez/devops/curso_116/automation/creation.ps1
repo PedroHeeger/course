@@ -2,7 +2,7 @@ Write-Output "Importando o arquivo com as variáveis"
 . "G:\Meu Drive\4_PROJ\course\outros\fabricio_veronez\devops\curso_081\automation\variaveis.ps1"
 
 "-----//-----//-----//-----//-----//-----//-----"
-Write-Output "ETAPA 1 (AULAS 1 E 2)"
+Write-Output "ETAPA 1 (AULAS 1, 2 E 3)"
 $resposta = Read-Host "Digite 'y' se deseja continuar, 'n' para pular"
 if ($resposta -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
@@ -189,17 +189,19 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
         scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerPath\$dockerFolder" ubuntu@${ipEc2}:${vmPath}
     }
 
+    Write-Output "Aguardando 200 segundos para garantir que as pastas do projeto foram baixadas e criadas!"
+    Start-Sleep -Seconds 200
 
     "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "DOCKERFILE (PROJETO)"
     Write-Output "Verificando se o arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance"
-    $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPathProjectsrc/$dockerFile`" && echo 'true' || echo 'false'"
+    $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPathProjectSrc/$dockerFile`" && echo 'true' || echo 'false'"
 
     if ($fileExists -eq 'true') {
         Write-Output "O arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
     } else {
         Write-Output "Transferindo o arquivo $dockerFile para a instância de nome de tag $tagNameInstance"
-        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerPath\$dockerFile" ubuntu@${ipEc2}:${vmPathProjectsrc}
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerPath\$dockerFile" ubuntu@${ipEc2}:${vmPathProjectSrc}
     }
 
     "-----//-----//-----//-----//-----//-----//-----"
@@ -215,46 +217,17 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
     }
 
 
+    "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "MANIFESTO DEPLOYMENT 1 (PROJETO 2)"
+    Write-Output "Verificando se o arquivo $deploymentFile já existe na instância de nome de tag $tagNameInstance"
+    $fileExists = ssh -v -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPathProjectK8s/$deploymentFile`" && echo 'true' || echo 'false'"
 
-
-    # "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "MANIFESTO DEPLOYMENT 1 (PROJETO 2)"
-    # Write-Output "Verificando se o arquivo $deploymentFile1 já existe na instância de nome de tag $tagNameInstance"
-    # $fileExists = ssh -v -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPathProject2/$deploymentFile1`" && echo 'true' || echo 'false'"
-
-    # if ($fileExists -eq 'true') {
-    #     Write-Output "O arquivo $deploymentFile1 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-    # } else {
-    #     Write-Output "Transferindo o arquivo $deploymentFile1 para a instância de nome de tag $tagNameInstance"
-    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile1" ubuntu@${ipEc2}:${vmPathProject2}
-    # }
-
-
-    # "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "DOCKERFILE (PROJETO 3)"
-    # Write-Output "Verificando se o arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance"
-    # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPathProject3src/$dockerFile`" && echo 'true' || echo 'false'"
-
-    # if ($fileExists -eq 'true') {
-    #     Write-Output "O arquivo $dockerFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-    # } else {
-    #     Write-Output "Transferindo o arquivo $dockerFile para a instância de nome de tag $tagNameInstance"
-    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerFilePath\$dockerFile" ubuntu@${ipEc2}:${vmPathProject3src}
-    # }
-
-
-    # "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "MANIFESTO DEPLOYMENT 2 (PROJETO 3)"
-    # Write-Output "Verificando se o arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance"
-    # $fileExists = ssh -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no ubuntu@$ipEc2 "test -d `"$vmPathProject3k8s/$deploymentFile2`" && echo 'true' || echo 'false'"
-
-    # if ($fileExists -eq 'true') {
-    #     Write-Output "O arquivo $deploymentFile2 já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
-    # } else {
-    #     Write-Output "Transferindo o arquivo $deploymentFile2 para a instância de nome de tag $tagNameInstance"
-    #     scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile2" ubuntu@${ipEc2}:${vmPathProject3k8s}
-    # }
-
+    if ($fileExists -eq 'true') {
+        Write-Output "O arquivo $deploymentFile já existe na instância de nome de tag $tagNameInstance. Transferência cancelada."
+    } else {
+        Write-Output "Transferindo o arquivo $deploymentFile para a instância de nome de tag $tagNameInstance"
+        scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$deploymentFilePath\$deploymentFile" ubuntu@${ipEc2}:${vmPathProjectK8s}
+    }
 
 } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
 

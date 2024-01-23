@@ -209,54 +209,54 @@ sudo reboot
 
 
 
-echo "***********************************************"
-echo "K3D INSTALLATION"
+# echo "***********************************************"
+# echo "K3D INSTALLATION"
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Definindo variáveis"
-link="https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh"
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Definindo variáveis"
+# link="https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh"
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Baixando e executando o script de instalação"
-wget -q -O - $link | bash
-
-
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Baixando e executando o script de instalação"
+# wget -q -O - $link | bash
 
 
-echo "***********************************************"
-echo "KUBECTL INSTALLATION"
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Instalando os pacotes de dependência"
-sudo apt-get install -y apt-transport-https ca-certificates curl
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando um diretório para armazenar chaves de repositórios"
-sudo install -m 0755 -d /etc/apt/keyrings
+# echo "***********************************************"
+# echo "KUBECTL INSTALLATION"
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Baixando a chave de assinatura pública para os repositórios de pacotes Kubernetes"
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Instalando os pacotes de dependência"
+# sudo apt-get install -y apt-transport-https ca-certificates curl
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Adicionando o repositório do pacote à lista de fontes de pacotes do sistema"
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Criando um diretório para armazenar chaves de repositórios"
+# sudo install -m 0755 -d /etc/apt/keyrings
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Atualizando os pacotes"
-sudo apt-get update -y
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Baixando a chave de assinatura pública para os repositórios de pacotes Kubernetes"
+# curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Instalando o pacote"
-sudo apt-get install -y kubectl
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Adicionando o repositório do pacote à lista de fontes de pacotes do sistema"
+# echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Exibindo a versão"
-kubectl version --client
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Atualizando os pacotes"
+# sudo apt-get update -y
 
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Alterando o proprietario e grupo da pasta .kube para o usuario ubuntu"
-sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Instalando o pacote"
+# sudo apt-get install -y kubectl
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Exibindo a versão"
+# kubectl version --client
+
+# echo "-----//-----//-----//-----//-----//-----//-----"
+# echo "Alterando o proprietario e grupo da pasta .kube para o usuario ubuntu"
+# sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
 
 
 
@@ -282,7 +282,7 @@ sudo apt-get install -y nodejs
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "ETAPA 2: BAIXANDO OS ARQUIVOS DOS PROJETOS DO GITHUB"
+echo "ETAPA 2: BAIXANDO OS ARQUIVOS DO PROJETO DO GITHUB"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Baixando o repositorio do projeto no GitHub"
@@ -294,19 +294,13 @@ echo "Alterando o proprietario e grupo da pasta do projeto para o usuario ubuntu
 sudo chown -R ubuntu:ubuntu /home/ubuntu/kube-news
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando a pasta do projeto 2"
+echo "Criando o sub-diretorio k8s na pasta do projeto"
 cd /home/ubuntu/kube-news/
-mkdir web-page
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando o sub-diretorio k8s na pasta do projeto principal"
-cd /home/ubuntu/kube-news/kube-news
 mkdir k8s
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Alterando o proprietario e grupo das pastas criadas para o usuario ubuntu"
-sudo chown -R ubuntu:ubuntu /home/ubuntu/kube-news/kube-news/k8s
-sudo chown -R ubuntu:ubuntu /home/ubuntu/kube-news/web-page
+echo "Alterando o proprietario e grupo da pasta criada para o usuario ubuntu"
+sudo chown -R ubuntu:ubuntu /home/ubuntu/kube-news/k8s
 
 
 
@@ -319,15 +313,15 @@ sleep 100
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "ETAPA 3: EXECUTANDO APLICACAO WEB DO PROJETO SEM O DOCKER (AULA 2)"
+echo "ETAPA 3: EXECUTANDO APLICACAO WEB DO PROJETO SEM O DOCKER (AULA 1)"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Acessando a pasta do arquivo Dockerfile"
 cd /home/ubuntu/kube-news/src
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando um container de banco de dados para receber os dados da aplicacao web"
-docker container run --name db1 -d -p 5432:5432 -e POSTGRES_PASSWORD=Pg#123 -e POSTGRES_USER=kubenews -e POSTGRES_DB=kubenews postgres
+echo "Criando um container de banco de dados para persistir os dados da aplicacao web"
+docker container run --name db1 -d -p 5432:5432 -e POSTGRES_PASSWORD=Pg#123 -e POSTGRES_USER=kubedevnews -e POSTGRES_DB=kubedevnews postgres
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Instalar as dependencias da aplicacao"
@@ -335,7 +329,7 @@ npm install
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando a aplicacao sem container por alguns segundos"
-timeout 100s node server.js
+timeout 120s node server.js
 
 
 
@@ -346,6 +340,10 @@ echo "ETAPA 4: DOCKER COMPOSE PROJETO (AULA 2)"
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Removendo o container de banco de dados"
 docker container rm -f db1
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Acessando a pasta do arquivo Dockerfile"
+cd /home/ubuntu/kube-news/src
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Criando o arquivo .dockerignore"
@@ -377,117 +375,34 @@ docker compose up -d
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 100 segundos para verificacao do projeto 1..."
+echo "Aguardando 100 segundos para verificacao do projeto..."
 sleep 100
 
 
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "ETAPA 4: KUBERNETES PROJETO (AULA 3)"
+echo "ETAPA 5: KUBERNETES PROJETO (AULA 3)"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Removendo a aplicação com o Docker Compose"
 docker compose down
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Removendo tudo referente ao Docker que não está sendo utilizado para liberação de espaço"
+echo "Removendo tudo referente ao Docker que não está sendo utilizado para liberacao de espaco"
 docker system prune -af
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Acessando a pasta do projeto"
-cd /home/ubuntu/imersao-devops-cloud-02/web-page
-
-# echo "-----//-----//-----//-----//-----//-----//-----"
-# echo "Alterando o proprietario e grupo do arquivo .kube/config para o usuario ubuntu"
-# sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube/config
+echo "Acessando a pasta do arquivo de manifesto do projeto"
+cd /home/ubuntu/kube-news/k8s
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Criando o cluster com Port Bind e Load Balancer"
-k3d cluster create meucluster1 -p "8080:30000@loadbalancer"
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Alterando o proprietario e grupo do arquivo .kube/config para o usuario ubuntu"
-sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube/config
+k3d cluster create meucluster -p "8080:30000@loadbalancer"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando o arquivo de Manifesto YAML"
-kubectl apply -f deployment1.yaml
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 100 segundos para verificacao do projeto 2..."
-sleep 100
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Realizando uma alteracao de URL para insercao de dados na aplicacao"
-sed -i 's|fabricioveronez/web-color:blue|fabricioveronez/web-color:green|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/deployment1.yaml"
-# sed -i 's|fabricioveronez/web-page:blue|fabricioveronez/web-page:green|' "/home/ubuntu/imersao-devops-cloud-02/kube-news/deployment1.yaml"
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Executando o arquivo de Manifesto YAML"
-kubectl apply -f deployment1.yaml
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 100 segundos para verificacao do projeto 2..."
-sleep 100
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Removendo o arquivo de Manifesto YAML"
-kubectl delete -f deployment1.yaml
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Removendo o cluster"
-k3d cluster delete meucluster1
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Removendo tudo referente ao Docker que não está sendo utilizado para liberação de espaço"
-docker system prune -af
-
-
-
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Aguardando 45 segundos para exclusao do projeto 2..."
-sleep 45
-
-
-
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "ETAPA 7: KUBERNETES PROJETO 3 (AULA 02)"
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Acessando a pasta do projeto da aula 2"
-cd /home/ubuntu/imersao-devops-cloud-02/kube-news/src
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando o arquivo .dockerignore"
-echo "node_modules/" > .dockerignore
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando a imagem Docker da aplicacao"
-docker build -t pedroheeger/curso081_kube-news:v1 .
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Renomeando a tag da imagem"
-docker tag pedroheeger/curso081_kube-news:v1 pedroheeger/curso081_kube-news:latest
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Enviando as imagens para o Docker Hub (Docker Registry)"
-docker push pedroheeger/curso081_kube-news:v1
-docker push pedroheeger/curso081_kube-news:latest
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Criando o cluster com Port Bind e Load Balancer"
-k3d cluster create meucluster2 -p "8080:30000@loadbalancer"
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Acessando a pasta do arquivo de Manifesto YAML"
-cd /home/ubuntu/imersao-devops-cloud-02/kube-news/k8s
-
-echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Executando o arquivo de Manifesto YAML"
-kubectl apply -f deployment2.yaml
+kubectl apply -f deployment.yaml
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Aguardando 150 segundos para inserir os dados..."
@@ -495,40 +410,46 @@ sleep 150
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Realizando uma alteracao na aplicacao para versao v2"
-sed -i 's/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/>/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/> - v2/' "/home/ubuntu/imersao-devops-cloud-02/kube-news/src/views/partial/header.ejs"
+# sed -i 's/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/>/<img class="logo" src="\/img\/kubenews-logo\.svg" alt="Kubenews" srcset="" \/> - v2/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
+sed -i 's/<a class="header__button" href="/post">Novo Post</a>/<a class="header__button" href="/post">Novo Post</a> - V2/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Acessando a pasta do projeto da aula 2"
-cd /home/ubuntu/imersao-devops-cloud-02/kube-news/src
+echo "Acessando a pasta do arquivo Dockerfile"
+cd /home/ubuntu/kube-news/src
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Criando a imagem Docker da aplicacao na versao v2"
-docker build -t pedroheeger/curso081_kube-news:v2 .
+docker build -t pedroheeger/curso116_kube-news:v2 .
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Enviando a imagem da aplicacao na versao v2 para o Docker Hub (Docker Registry)"
-docker push pedroheeger/curso081_kube-news:v2
+docker push pedroheeger/curso116_kube-news:v2
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Acessando a pasta do arquivo de Manifesto YAML"
-cd /home/ubuntu/imersao-devops-cloud-02/kube-news/k8s
+echo "Acessando a pasta do arquivo de manifesto do projeto"
+cd /home/ubuntu/kube-news/k8s
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Realizando uma alteracao da versao da aplicacao no arquivo de manifesto YAML"
-sed -i 's/image: pedroheeger\/curso081_kube-news:v1/image: pedroheeger\/curso081_kube-news:v2/' "/home/ubuntu/imersao-devops-cloud-02/kube-news/k8s/deployment2.yaml"
+sed -i 's/image: pedroheeger\/curso116_kube-news:v1/image: pedroheeger\/curso116_kube-news:v2/' "/home/ubuntu/kube-news/k8s/deployment.yaml"
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Executando o arquivo de Manifesto YAML"
-kubectl apply -f deployment2.yaml
+echo "Executando o arquivo de manifesto YAML"
+kubectl apply -f deployment.yaml
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Aguardando 150 segundos para verificar a aplicacao..."
 sleep 150
 
 echo "-----//-----//-----//-----//-----//-----//-----"
-echo "Removendo o arquivo de Manifesto YAML"
-kubectl delete -f deployment2.yaml
+echo "Removendo o arquivo de manifesto YAML"
+kubectl delete -f deployment.yaml
 
 echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Removendo o cluster"
-k3d cluster delete meucluster2
+k3d cluster delete meucluster
+
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Desfazendo as alterações nos arquivos"
+sed -i 's/<a class="header__button" href="/post">Novo Post</a> - V2/<a class="header__button" href="/post">Novo Post</a>/' "/home/ubuntu/kube-news/src/views/partial/header.ejs"
+sed -i 's/image: pedroheeger\/curso116_kube-news:v2/image: pedroheeger\/curso116_kube-news:v1/' "/home/ubuntu/kube-news/k8s/deployment.yaml"
