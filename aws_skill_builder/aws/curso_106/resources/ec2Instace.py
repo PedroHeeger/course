@@ -15,7 +15,7 @@ aZ = "us-east-1a"
 imageId = "ami-0c7217cdde317cfec"  # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
 instanceType = "t2.micro"
 keyPairName = "keyPairUniversal"
-userDataPath = "G:/Meu Drive/4_PROJ/course/aws_skill_builder/aws/curso_106/resources/"
+userDataPath = "G:/Meu Drive/4_PROJ/course/aws_skill_builder/aws/curso_106/resources/aws_dock_zsh/"
 userDataFile = "udFile.sh"
 
 print("-----//-----//-----//-----//-----//-----//-----")
