@@ -36,7 +36,7 @@ $deploymentFile = "deployment.yaml"
 
 
 # NAMES (INSTANCE)
-$tagNameInstance = "ec2Curso116.1"
+$tagNameInstance = "ec2Curso116.2"
 # $instanceType = "t2.micro"
 $instanceType = "t3.medium"
 # $instanceType = "t3.large"

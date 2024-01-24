@@ -60,7 +60,7 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 
     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
-    aws ec2 run-instances --image-id $imageId --instance-type $instanceType --key-name $keyPairName --security-group-ids $sgId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --no-cli-pager
+    aws ec2 run-instances --image-id $imageId --instance-type $instanceType --key-name $keyPairName --security-group-ids $sgId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --block-device-mappings '[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":16,"VolumeType":"gp2"}}]' \ --no-cli-pager
 
     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
@@ -72,7 +72,7 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
 
     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     Write-Output "Exibindo o comando para acesso remoto via OpenSSH"
-    Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@$ipEc2"
+    Write-Output "ssh -i `"$keyPairPath\$keyPairName.pem`" ubuntu@${ipEc2}"
 }
 
 
@@ -193,7 +193,7 @@ if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance
         scp -i "$keyPairPath\$keyPairName.pem" -o StrictHostKeyChecking=no -r "$dockerHubPath\$dockerHubFolder" ubuntu@${ipEc2}:${vmPath}
     }
 
-    Write-Output "Aguardando 200 segundos para garantir que as pastas do projeto foram baixadas e criadas!"
+    Write-Output "Aguardando 200 segundos para garantir que as pastas do projeto fossem baixadas e criadas!"
     Start-Sleep -Seconds 200
 
     "-----//-----//-----//-----//-----//-----//-----"

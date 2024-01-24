@@ -363,7 +363,9 @@ echo "-----//-----//-----//-----//-----//-----//-----"
 echo "Executando a aplicação com o Docker Compose"
 docker compose up -d
 
-
+echo "-----//-----//-----//-----//-----//-----//-----"
+echo "Startando o container da aplicação caso ele caia"
+docker start kube-news-kubenews-1
 
 
 echo "-----//-----//-----//-----//-----//-----//-----"
