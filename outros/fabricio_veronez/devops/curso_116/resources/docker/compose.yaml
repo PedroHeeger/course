@@ -7,10 +7,16 @@ services:
       POSTGRES_PASSWORD: Pg#123
       POSTGRES_USER: kubenews
       POSTGRES_DB: kubenews
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "kubenews", "-U", "kubenews"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
   kubenews:
     image: pedroheeger/curso116_kube-news:v1
     depends_on:
-      - postgre
+      postgre:
+        condition: service_healthy
     build:
       context: ./src
       dockerfile: ./Dockerfile

@@ -35,15 +35,25 @@ $deploymentFile = "deployment.yaml"
 
 
 
-# NAMES (INSTANCE)
-$tagNameInstance = "ec2Curso116.2"
+# EC2
+$tagNameInstance = "ec2Curso116"
 # $instanceType = "t2.micro"
 $instanceType = "t3.medium"
 # $instanceType = "t3.large"
 $imageId = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
 $groupName = "default"
 $aZ = "us-east-1a"
-$protocolo = "tcp"
+$deviceName = "/dev/sda1"
+$volumeSize = 16
+$volumeType = "gp2"
+
+# SECURITY GROUP
+# $sgName = "sgTest1"
+$sgName = "default"
+# $vpcName = "vpcTest1"
+$vpcName = "default"
+$protocol = "tcp"
 $port1 = "8080"
 $port2 = "5432"
+$port3 = "22"
 $cidrIpv4 = "0.0.0.0/0"
