@@ -19,10 +19,12 @@
   - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - Amazon Application Load Balancer (ALB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_alb.svg" alt="aws_alb" width="auto" height="25">
+  - Amazon CloudWatch   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cloudwatch.svg" alt="aws_cloudwatch" width="auto" height="25">
   - Amazon Elastic Load Balancing (ELB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_elb.svg" alt="aws_elb" width="auto" height="25">
   - Amazon Elastic Container Service (ECS)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ecs.svg" alt="aws_ecs" width="auto" height="25">
   - AWS Application Auto Scaling  <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_auto_scaling.png" alt="aws_auto_scaling" width="auto" height="25">
   - AWS Fargate   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_fargate.svg" alt="aws_fargate" width="auto" height="25">
+  - AWS Identity and Access Management (IAM)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_iam.svg" alt="aws_iam" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Containerization: 
@@ -41,6 +43,8 @@
 - Command Line Interpreter (CLI):
   - AWS Command Line Interface (CLI)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cli.svg" alt="aws_cli" width="auto" height="25">
   - Windows PowerShell   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_power_shell.png" alt="windows_power_shell" width="auto" height="25">
+- Server and Databases:
+  - PostgreSQL   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="postgresql" width="auto" height="25">
 
 ---
 
@@ -95,32 +99,29 @@ Isso funciona começando com a criação do namespace com zona hospedada no Rout
 <a name="item01.01"><h4>Prática</h4></a>[Back to summary](#item0)
 
 
+tg
+alb
+listener
 
+role service
+role policy
+log group
+vpcSgRule
 
+task
+cluster
+service
 
+route 53
 
+autoScaling
+policy
 
+Como parte prática deste curso, foi criado um cluster no serviço **Amazon Elastic Container Service (ECS)** utilizando como infraestrutura o **AWS Fargate**. Neste cluster foi executado um service com uma task replicada duas vezes. Essa task possuíu dois containers, sendo o primeiro de uma aplicação web que utilizou como imagem **Docker** a aplicação desenvolvida no curso [curso_116](../../../outros/fabricio_veronez/devops/curso_116/), enquanto o segundo container utilizou a imagem **Docker** do banco de dados **PostgreSQL**. A aplicação web em si, era de um microblog, onde era possível realizar posts nesse blog, com os dados sendo persistidos no banco de dados. No service executado foi definido um load balancer do tipo *Application Load Balancer (ALB)* para direcionar o tráfego para os containers da aplicação, cada um rodando em uma task. Com o **Application Auto Scaling** foi definido que esse service seria escalável, determinando uma quantidade mínima e máxima de tarefas. Por fim, foram aplicadas três tipos de policies de escalabilidade e executado testes de stress para verificar o escalonamento das tasks.
 
+Os arquivos de código foram desenvolvidos em **Python** com o SDK **Boto3** para interagir com as APIs dos serviços da **AWS**, sendo eles armazenados no diretório [resources](./resources/) e sub-divididos nos diretórios [alb](./resources/alb/) para criação do load balancer e [fargate](./resources/fargate/) para construção do cluster e execução da aplicação. Cada arquivo desse conteve dois scripts, sendo um para criação de algum elemento e outro para exclusão, sempre precedidos por estruturas de condição que verificavam se o elemento que desejava-se construir existia ou não.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+O projeto foi iniciado pela pasta do load balancer criando o *target group* com o arquivo [elbTg.py](./resources/alb/elbTg.py), no qual o tipo de alvo desse grupo de destino foi endereço de ip, pois quaisquer tasks criadas pelo service seriam adicionadas neste target group. Além disso foi definido o protocolo do alvo como `HTTP`, a porta `8080`, onde a aplicação iria rodar e também a verificação de integridade. Em seguida, foi criado o *Application Load Balancer (ALB)* que assim como o target group faz parte do serviço **Amazon Elastic Load Balancer (ELB)**. Com o arquivo [elbAlb.py](./resources/alb/elbAlb.py), o load balancer foi construído, sendo definido a utilização de duas das sub-redes padrões e o grupo de segurança padrão, ambos da VPC padrão da região. Para concluir essa etapa, com o arquivo [elbListener.py](./resources/alb/elbListener.py) foi criado o listener que vinculava esse load balancer ao target group desenvolvido, passando como parâmetro do listener, o protocolo `HTTP` e a porta `8080`. As imagens 02, 03 e 04 mostram, respectivamente, o target group, o ALB e o listener criado.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -137,6 +138,8 @@ Isso funciona começando com a criação do namespace com zona hospedada no Rout
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
+Dentro da sub-pasta `fargate` tinha uma sub-pasta de nome [suport](./resources/fargate/suport/) para construção de elementos essenciais para execução com o Fargate. O primeiro deles foi a elaboração de uma role no serviço **AWS Identity and Access Management (IAM)** com o arquivo [iamRoleService.py]. Logo em seguida, foi executado o arquivo [iamRolePolicy.py](./resources/fargate/suport/iamRolePolicy.py) para adicionar a essa role a policy `AmazonECSTaskExecutionRolePolicy`. O objetivo aqui foi permitir que as tarefas com containers fossem executadas em um cluster do ECS. As imagens 05 e 06 exibem a criação da role e da policy.
+
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
     <figcaption>Imagem 05.</figcaption>
@@ -147,19 +150,80 @@ Isso funciona começando com a criação do namespace com zona hospedada no Rout
     <figcaption>Imagem 06.</figcaption>
 </figure></div><br>
 
+Ainda na sub-pasta `suport`, foi desenvolvido um grupo de log no **Amazon CloudWatch** com o arquivo [logGroup.py](./resources/fargate/suport/logGroup.py). Era neste grupo, que os logs das tasks seriam armazenados. Como a aplicação web rodaria na porta `8080` e tanto o service que atuava no cluster e o load balancer utilizavam o grupo de segurança padrão da VPC padrão da região, foi necessário liberar essa porta para acesso a todas as faixas de IP (`0.0.0.0/0`), assim seria possível acessar a aplicação pela maquina física **Windows** através de um navegador da web. Lembrando que não é recomendado a liberação de portas para todos os IPs ou para IPs desconhecidos, como neste caso foi para fins didáticos, foi realizado. As imagens 07 e 08 ilustram o log group desenvolvido e a porta `8080` liberada no grupo de segurança padrão.
+
 <div align="Center"><figure>
     <img src="./0-aux/img07.png" alt="img07"><br>
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
-
-Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
 
 <div align="Center"><figure>
     <img src="./0-aux/img08.png" alt="img08"><br>
     <figcaption>Imagem 08.</figcaption>
 </figure></div><br>
 
+De volta para a pasta `fargate` foi o momento de criar a *task definition* e isso foi feito com o arquivo [ecsTaskFargate.py](./resources/fargate/ecsTaskFargate.py). Na definição da tarefa foi determinado que o tipo de implantação seria com **AWS Fargate** e foram passados a role para conceder permissão para essas tasks serem executadas no cluster ECS e o grupo de log construído, para que o envio dos logs fossem feitos. Também foram especificadas algumas configurações, como o mode de rede que foi `awsvpc`, o único possível para o **AWS Fargate**, a quantidade de cpu e memória que essa tarefa teria, e a arquitetura de cpu (`X86_64`) e o sistema operacional utilizado (`LINUX`). Além de tudo isso, nesta task definition foi declarado as definições de containers que ela teria. O primeiro container foi o da aplicação que utilizou a imagem **Docker** do repositório **Docker Hub** de uma aplicação web desenvolvida no curso [curso_116](../../../outros/fabricio_veronez/devops/curso_116/). Neste container, foi realizado um mapeamento de portas `8080:8080`, ele foi definido como essencial, foram passadas quatro variáveis de ambiente (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` e `DB_HOST`) para permitir a comunicação com o container de banco de dados, definindo que esse container era dependente do container de banco de dados. O valor da variável `DB_HOST` foi o nome do container do banco de dados, pois como eles estavam em uma mesma task, eles podiam se comunicar pelo próprio nome. No container 2, foi utilizado como imagem **Docker**, também do repositório **Docker Hub**, a imagem do banco de dados **PostgreSQL**, o mapeamento de portas foi `5432:5432`, as variáveis de ambiente definidas foram (`POSTGRES_DB`, `POSTGRES_USER` e `POSTGRES_PASSWORD`), sendo os valores dessas três o mesmo valor para as variáveis do container 1. Esse segundo container teve que ser definido como não essencial, pois como ele era a dependência do container 1, não podia. Nos dois containers foram definidas a quantidade a cpu e memória, e o driver de log como `awslogs`, passando o nome do grupo de log, a região (`us-east-1`) e um prefixo que foi o próprio nome dos containers. Na imagem 09 é evidenciada a definição de tarefa elaborada.
+
 <div align="Center"><figure>
     <img src="./0-aux/img09.png" alt="img09"><br>
     <figcaption>Imagem 09.</figcaption>
 </figure></div><br>
+
+Após a task definition, foi a vez de criar o cluster com o arquivo [ecsClusterFargate.py](./resources/fargate/ecsClusterFargate.py). No cluster foi definido como fornecedor de capacidade o **AWS Fargate**, também foi habilitado o `containerInsights` que envia métricas para o **Amazon CloudWatch** criando um grupo de log só para isso. Na imagem 10 é visualizado o cluster desenvolvido.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.png" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+Com o cluster construído, foi o momento de executar o service dentro dele. Isso foi realizado através do arquivo [ecsServiceFargate.py](./resources/fargate/ecsServiceFargate.py), no qual além do nome do serviço, foi indicado o nome do cluster onde ele seria executado, a task que ele utilizaria, a versão e quantidade dessa task, o tipo de implantação que foi `FARGATE`, a versão da plataforma que foi `LATEST`, a estratégia de agendamento que foi `REPLICA`, as configurações de implantação (os percentuais mínimo e máximo para diminuir ou aumentar uma tarefa), as configurações de rede determinando duas das sub-redes padrões e o grupo de segurança padrão, ambos da VPC padrão da região. Também foi definido um load balancer, passando a ARN do target group criado e o nome do container e porta que deveria ser adicionado neste grupo de destino, que no caso foi o container 1 que era o da aplicação e a porta `8080` que era onde ela rodava. A imagem 11 a seguir mostra serviço desenvolvido no cluster. Já a imagem 12 exibe as duas tasks que esse serviço criou, onde cada uma possuíu os dois containers, um da aplicação web e outro do banco de dados **PostgreSQL**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img11.png" alt="img11"><br>
+    <figcaption>Imagem 11.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img12.png" alt="img12"><br>
+    <figcaption>Imagem 12.</figcaption>
+</figure></div><br>
+
+As próximas três imagens (13, 14 e 15) mostraram o acesso a aplicação pelo navegador da maquina física **Windows** através do IP público de cada tarefa, ou no caso do load balancer, o DNS, concatenado com `:` e a porta onde a aplicação rodava que era a `8080`. Ao cadastrar um post na aplicação web de cada um das tarefas, o dado era persistido apenas no banco daquela task, não sendo refletido no banco e nem na aplicação web da outra task, pois cada task possuía seu banco de dados. Com relação ao acesso pelo load balancer, ele mostraria e cadastraria o dado da task que ele tivesse direcionando naquele momento, quando atualizasse a página e fosse para outra task, seria referente a ela. O ideal seria um banco de dados único, talvez em uma outra task separada ou até no serviço RDS da **AWS**, onde o container da aplicação web de cada tarefa seria vinculado a esse banco, assim a aplicação web das duas tasks teriam as informações idênticas. Mas como o objetivo aqui era testar load balancer e auto scaling com aplicações containerizadas no ECS, isso ficou para um outro momento.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img13.png" alt="img13"><br>
+    <figcaption>Imagem 13.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img14.png" alt="img14"><br>
+    <figcaption>Imagem 14.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
+
+A imagem 16 a seguir evidenciou as duas tasks sendo inseridas no target group, portanto o load balancer fazia a distribuição de tráfegos entre as tasks. Já a imagem 17 mostrou, dentro do log group construído no **Amazon CloudWatch**, os logs streams que foram determinados nas definições de containers durante a construção da task para receber os logs de cada container de cada task, portanto como são duas tasks com dois containers cada, foram quatro logs streams.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img16.png" alt="img16"><br>
+    <figcaption>Imagem 16.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img17.png" alt="img17"><br>
+    <figcaption>Imagem 17.</figcaption>
+</figure></div><br>
+
+
+
+
+
+
+Neste curso ainda foi realizado uma demonstração com **AWS CodePipeline**, **AWS CodeBuild** e **AWS CodeCommit**.
+
+
+
+
