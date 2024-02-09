@@ -40,6 +40,8 @@
 - Command Line Interpreter (CLI):
   - AWS Command Line Interface (CLI)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cli.svg" alt="aws_cli" width="auto" height="25">
   - Windows PowerShell   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_power_shell.png" alt="windows_power_shell" width="auto" height="25">
+- Network:
+  - OpenSSH   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/openssh.png" alt="openssh" width="auto" height="25">
 
 ---
 
@@ -122,7 +124,7 @@ Para resumir, os microsserviços e os contêineres funcionam bem juntos. Os cont
 
 <a name="item01.04"><h4>Prática</h4></a>[Back to summary](#item0)
 
-Como parte prática desse curso, foi instanciada uma maquina no serviço **Amazon Elastic Compute Cloud (EC2)** onde já veio pré-instalados alguns softwares básicos (**Nano**, **Vim**, **Curl**, **Wget**, **Unzip** e **Zip**), a command line interface (CLI) da **AWS** (**AWS CLI**) e o **Docker**. Essa maquina foi construída através do arquivo [ec2Instance.py](./resources/ec2Instace.py) em linguagem **Python** com SDK **Boto3** para interagir com as APIs dos serviços da **AWS**. Esta maquina utilizou como security group o padrão da VPC padrão da região que foi `us-east-1`. Foi necessário criar algumas regras no security group, liberando algumas portas como a porta `22` para realização de acesso remoto com o software **OpenSSH**, portas `80` e `443` para tráfegos do protoclo `HTTP` e `HTTPS`. A imagem 02 a seguir mostra a instância criada, enquanto a imagem 03 exibe as regras elaboradas no grupo de segurança.
+Como parte prática desse curso, foi instanciada uma maquina no serviço **Amazon Elastic Compute Cloud (EC2)** onde já veio pré-instalados alguns softwares básicos (**Nano**, **Vim**, **Curl**, **Wget**, **Unzip** e **Zip**), a command line interface (CLI) da **AWS** (**AWS CLI**) e o **Docker**. Essa maquina foi construída através do arquivo [ec2Instance.py](./resources/ec2Instace.py) em linguagem **Python** com SDK **Boto3** para interagir com as APIs dos serviços da **AWS**. A instância utilizou como security group o padrão da VPC padrão da região que foi `us-east-1`. Foi necessário criar algumas regras no security group, liberando algumas portas como a porta `22` para realização de acesso remoto com o software **OpenSSH**, portas `80` e `443` para tráfegos do protoclo `HTTP` e `HTTPS`. A imagem 02 a seguir mostra a instância criada, enquanto a imagem 03 exibe as regras elaboradas no grupo de segurança.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -136,7 +138,7 @@ Como parte prática desse curso, foi instanciada uma maquina no serviço **Amazo
 
 Dando sequência foi realizado o acesso remoto na instância pela maquina física **Windows** com o software **OpenSSH**. Para execução do acesso remoto, a instância teve que ser criada com um par de chaves vinculado a ela. O par de chaves utilizado foi o `keyPairUniversal` que é um par de chaves universal que uso nos meus projetos. O par de chaves foi armazenado no arquivo `keyPairUniversal.pem`. Um arquivo *Privacy Enhanced Mail (PEM)* é um formato de arquivo que pode conter diferentes tipos de dados codificados em Base64 para representar os dados binários de forma segura e eficiente em formato de texto ASCII. Inicialmente, foi desenvolvido para armazenar mensagens de e-mail de forma segura, mas agora é amplamente utilizado para armazenar certificados X.509 e chaves privadas. Esses certificados e chaves são comumente usados em sistemas que implementam SSL/TLS para garantir a segurança na comunicação pela internet. Toda vez que fosse realizado um acesso remoto tinha que informar o arquivo de chave privada. Com o comando `ssh -i "G:\Meu Drive\4_PROJ\scripts\scripts_model\.default\secrets\awsKeyPair\keyPairUniversal.pem" ubuntu@54.91.173.146` foi realizado o acesso remoto a instância. Caso queira saber mais sobre acesso remoto em instâncias EC2 da **AWS**, consulte o [curso_092](../curso_092/).
 
-Após acesso, conforme imagem 04, foi possível visualizar os softwares instalados. Por enquanto, nem o **Docker** e nem o **AWS CLI** estavam configurados com nenhuma conta de usuário. A conta configurada no **Docker** foi para acesso ao repositório do **Docker**, o **Docker Hub**, para conseguir enviar as imagens criadas. Portanto, para isso, foi necessário ter uma conta no **Docker Hub** e então fazer o login do **Docker** da instância no repositório pelo terminal. O comando utilizado para o login foi o `docker login` que ao executá-lo, pediu o `Username` que podia ser o `Docker ID` ou endereço de e-mail e em seguida a senha, que poderia ser também um token de acesso pessoal (PAT). O uso de um *Personal Access Token (PAT)* garante melhor segurança, pois ele pode e deve ser configurado no **Docker Hub** através do navegador da web, determinando permissões específicas de leitura, escrita e exclusão. Neste caso, foi criado o PAT `Access_PH_AWS` para ser utilizado dentro da **AWS** e concedida todas as permissões (read, write e delete), conforme mostrado na imagem 05. Com o email e o PAT foi realizado o login no **Docker Hub** pelo **Docker** da instância EC2. Assim que o login foi bem sucedido, foi gerado o arquivo `config.json` dentro da pasta `.docker` também criada dentro do diretório do usuário `/home/ubuntu`. Este arquivo continha todas contas que o **Docker** da instância estava autorizado a acesssar, que por enquanto só era o minha conta do **Docker Hub**, mas outras contas tanto do **Docker Hub** como de outros repositórios poderiam ser adicionadas. Uma outra forma de autenticação, seria transferir este a pasta `.docker` com o arquivo `config.json` com a autorização já cadastrada direto para instância, assim não seria necessário executar o comando `docker login`.
+Após acesso, conforme imagem 04, foi possível visualizar os softwares instalados. Por enquanto, nem o **Docker** e nem o **AWS CLI** estavam configurados com nenhuma conta de usuário. A conta configurada no **Docker** foi para acesso ao repositório do **Docker**, o **Docker Hub**, para conseguir enviar as imagens criadas. Portanto, para isso, foi necessário ter uma conta no **Docker Hub** e então fazer o login do **Docker** da instância no repositório pelo terminal. O comando utilizado para o login foi o `docker login` que ao executá-lo, pediu o `Username` que podia ser o `Docker ID` ou endereço de e-mail e em seguida a senha, que poderia ser também um token de acesso pessoal (PAT). O uso de um *Personal Access Token (PAT)* garante melhor segurança, pois ele pode e deve ser configurado no **Docker Hub** através do navegador da web, determinando permissões específicas de leitura, escrita e exclusão. Neste caso, foi criado o PAT `Access_PH_AWS` para ser utilizado dentro da **AWS** e concedida todas as permissões (read, write e delete), conforme mostrado na imagem 05. Com o email e o PAT foi realizado o login no **Docker Hub** pelo **Docker** da instância EC2. Assim que o login foi bem sucedido, foi gerado o arquivo `config.json` dentro da pasta `.docker` também criada dentro do diretório do usuário `/home/ubuntu`. Este arquivo continha todas contas que o **Docker** da instância estava autorizado a acessar, que por enquanto só era o da minha conta do **Docker Hub**, mas outras contas tanto do **Docker Hub** como de outros repositórios poderiam ser adicionadas. 
 
 <div align="Center"><figure>
     <img src="./0-aux/img04.png" alt="img04"><br>
@@ -148,49 +150,13 @@ Após acesso, conforme imagem 04, foi possível visualizar os softwares instalad
     <figcaption>Imagem 05.</figcaption>
 </figure></div><br>
 
+Uma outra forma de autenticação, seria transferir este a pasta `.docker` com o arquivo `config.json` com a autorização já cadastrada na maquina física direto para instância, assim não seria necessário executar o comando `docker login`. O arquivo [ec2TransFile.py](./resources/ec2TransFile.py) faz justamente isso, ele transfere tanto a pasta `.docker`, como também a pasta `.aws`, no qual a primeira é configurada no **Docker** da instância o acesso a minha conta no **Docker Hub**, enquanto a segunda a configuração do **AWS CLI** da instância no usuário do IAM worker da minha conta da **AWS** (`PedroHeegerWorker`). Ambas as pastas são enviadas pelo software **OpenSSH** da maquina física **Windows** a instância, sempre verificando se aquela pasta já existe no diretório padrão do usuário na instância (`/home/ubuntu`).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Com o **Docker** instalado e acessando remotamente a instância, qualquer comando podia ser executado. Assim, seria possível desenvolver aplicações containerizadas. Mas como este não é o foco da parte prática deste curso, nenhuma aplicação foi desenvolvida. Para ilustrar apenas a execução de um container foi utilizado o comando `docker container run --name app -d -p 80:8080 nginx` para criar um container do servidor web **Nginx** a partir de uma imagem baixada do **Docker Hub**. Um mapeamento de porta foi feito para a porta `80` do host, ou seja, da instância. Logo uma regra de entrada liberando a porta `80` do grupo de segurança padrão que era o grupo utilizado por essa instância teve que ser criado com o arquivo [vpcSgRule.py](./resources/vpcSgRule.py). Assim, o servidor web **Nginx** pode ser acessado pelo navegador da maquina física **Windows**, conforme mostrado na imagem 06 abaixo.
 
 <div align="Center"><figure>
     <img src="./0-aux/img06.png" alt="img06"><br>
     <figcaption>Imagem 06.</figcaption>
 </figure></div><br>
 
-<div align="Center"><figure>
-    <img src="./0-aux/img07.png" alt="img07"><br>
-    <figcaption>Imagem 07.</figcaption>
-</figure></div><br>
-
-Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
-
-<div align="Center"><figure>
-    <img src="./0-aux/img08.png" alt="img08"><br>
-    <figcaption>Imagem 08.</figcaption>
-</figure></div><br>
-
-<div align="Center"><figure>
-    <img src="./0-aux/img09.png" alt="img09"><br>
-    <figcaption>Imagem 09.</figcaption>
-</figure></div><br>
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=xpto1234 --name banco --mount source=banco_vol,destination=/var/lib/mysql mysql
