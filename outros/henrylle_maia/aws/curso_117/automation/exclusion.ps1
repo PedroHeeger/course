@@ -466,32 +466,36 @@ if ($resposta.ToLower() -ne 'y') {
     # Write-Output "Verificando se a definição de tarefa está vazia (Ignorando erro)..."
     # $erro = "ClientException"
     # if ((aws ecs describe-task-definition --task-definition ${taskName}:${revision} --query "taskDefinition.revision" 2>&1) -match $erro)
-    # {Write-Output "A definição de tarefa está vazia"; $condition = 0} 
-    # else{Write-Output "A definição de tarefa não está vazia"; $condition = (aws ecs describe-task-definition --task-definition ${taskName}:${revision} --query "taskDefinition.revision")}
-
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a definição de tarefa de nome $taskName na revisão $revision"
-    # if ($condition -eq $revision) {
+    # {Write-Output "Não existe a definição de tarefa de nome $taskName na revisão $revision"}
+    # else {
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando as ARNs de todas as definições de tarefas criadas"
-    #     aws ecs list-task-definitions --query taskDefinitionArns[] --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando a ARN da reivsão atual da definição de tarefa de nome $taskName"
-    #     aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.taskDefinitionArn" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo o registro da definição de tarefa de nome $taskName na revisão $revision"
-    #     aws ecs deregister-task-definition --task-definition ${taskName}:${revision} --no-cli-pager
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo a definição de tarefa de nome $taskName na revisão $revision"
-    #     aws ecs delete-task-definitions --task-definition ${taskName}:${revision} --no-cli-pager
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando as ARNs de todas as definições de tarefas criadas"
-    #     aws ecs list-task-definitions --query taskDefinitionArns[] --output text
-    # } else {Write-Output "Não existe a definição de tarefa de nome $taskName na revisão $revision"}
+    #     Write-Output "Verificando se existe a definição de tarefa de nome $taskName na revisão $revision"
+    #     if ((aws ecs describe-task-definition --task-definition ${taskName}:${revision} --query "taskDefinition.status" --output text) -eq "ACTIVE") {
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Listando as ARNs das revisões da definição de tarefa ativas de nome $taskName"
+    #         aws ecs list-task-definitions --family-prefix $taskName --query taskDefinitionArns[] --output text
+    
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Listando as ARNs das revisões da definição de tarefa inativas de nome $taskName"
+    #         aws ecs list-task-definitions --family-prefix $taskName --status INACTIVE --query taskDefinitionArns[] --output text
+    
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Removendo o registro da definição de tarefa de nome $taskName na revisão $revision"
+    #         aws ecs deregister-task-definition --task-definition ${taskName}:${revision} --no-cli-pager
+    
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Removendo a definição de tarefa de nome $taskName na revisão $revision"
+    #         aws ecs delete-task-definitions --task-definition ${taskName}:${revision} --no-cli-pager
+    
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Listando as ARNs das revisões da definição de tarefa ativas de nome $taskName"
+    #         aws ecs list-task-definitions --family-prefix $taskName --query taskDefinitionArns[] --output text
+    
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Listando as ARNs das revisões da definição de tarefa inativas de nome $taskName"
+    #         aws ecs list-task-definitions --family-prefix $taskName --status INACTIVE --query taskDefinitionArns[] --output text
+    #     } else {Write-Output "Não existe a definição de tarefa de nome $taskName na revisão $revision"}
+    # }
 
 
 
@@ -589,6 +593,8 @@ if ($resposta.ToLower() -ne 'y') {
     # } else {Write-Output "Não existe o auto scaling group de nome $asgName"}
 
 
+    # Write-Output "Aguardando 120 segundos para que as instâncias sejam removidas"
+    # Start-Sleep -Seconds 120
 
 
     # Write-Output "***********************************************"
@@ -754,6 +760,28 @@ if ($resposta.ToLower() -ne 'y') {
     #     aws iam list-roles --query 'Roles[].RoleName' --output text
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Obtendo a lista de ARNs de policies anexadas à role de nome $roleName2"
+    #     $attachedPolicies = aws iam list-attached-role-policies --role-name $roleName2 --query 'AttachedPolicies[*].PolicyArn' --output text
+
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Verificando se a lista de ARNs de policies anexadas à role de nome $roleName2 está vazia"
+    #     if ($null -ne $attachedPolicies -and $attachedPolicies -ne "") {
+    #       Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #       Write-Output "Iterando na lista de policies"
+    #       foreach ($policyArn in $attachedPolicies.Split("`n")) {
+    #           if ($policyArn -ne "") {
+    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #             Write-Output "Extraindo o nome da policy vinculada a role"
+    #             $policyName = aws iam list-policies --query "Policies[?Arn=='$policyArn'].PolicyName" --output text
+
+    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #             Write-Output "Removendo a policy $policyName da role de nome $roleName2"
+    #             aws iam detach-role-policy --role-name $roleName2 --policy-arn $policyArn
+    #           }
+    #       }
+    #     } else {Write-Output "Não existe policies anexadas à role de nome $roleName2"}
+
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Removendo a role de nome $roleName2"
     #     aws iam delete-role --role-name $roleName2
 
@@ -854,25 +882,25 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    Write-Output "***********************************************"
-    Write-Output "SERVIÇO: AWS ECR"
-    Write-Output "IMAGE EXCLUSION"
+    # Write-Output "***********************************************"
+    # Write-Output "SERVIÇO: AWS ECR"
+    # Write-Output "IMAGE EXCLUSION"
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe a imagem de tag $imageTag do repositório $repositoryName"
-    if ((aws ecr describe-images --repository-name $repositoryName --query "imageDetails[?contains(imageTags, '$imageTag')].imageTags").Count -gt 1) {
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Listando todas as imagens do repositório $repositoryName"
-        aws ecr describe-images --repository-name $repositoryName --query "imageDetails[].imageTags" --output text
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe a imagem de tag $imageTag do repositório $repositoryName"
+    # if ((aws ecr describe-images --repository-name $repositoryName --query "imageDetails[?contains(imageTags, '$imageTag')].imageTags").Count -gt 1) {
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando todas as imagens do repositório $repositoryName"
+    #     aws ecr describe-images --repository-name $repositoryName --query "imageDetails[].imageTags" --output text
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Removendo a imagem de tag $imageTag do repositório $repositoryName"
-        aws ecr batch-delete-image --repository-name $repositoryName --image-ids imageTag=$imageTag
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Removendo a imagem de tag $imageTag do repositório $repositoryName"
+    #     aws ecr batch-delete-image --repository-name $repositoryName --image-ids imageTag=$imageTag
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Listando todas as imagens do repositório $repositoryName"
-        aws ecr describe-images --repository-name $repositoryName --query "imageDetails[].imageTags" --output text
-    } else {Write-Output "Não existe a imagem de tag $imageTag do repositório $repositoryName"}
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando todas as imagens do repositório $repositoryName"
+    #     aws ecr describe-images --repository-name $repositoryName --query "imageDetails[].imageTags" --output text
+    # } else {Write-Output "Não existe a imagem de tag $imageTag do repositório $repositoryName"}
 
 
 
@@ -887,6 +915,24 @@ if ($resposta.ToLower() -ne 'y') {
         Write-Output "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "Listando todos os repositórios criados"
         aws ecr describe-repositories --query "repositories[].repositoryName" --output text
+
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Verificando se existe imagens no repositório de nome $repositoryName"
+        if ((aws ecr list-images --repository-name $repositoryName --query "imageIds[].imageDigest").Count -gt 1) {
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Obtendo a lista de Ids das imagens do repositório de nome $repositoryName"
+            $imageIds = aws ecr list-images --repository-name $repositoryName --query "imageIds[].imageDigest" --output text
+
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Iterando na lista de imagens"
+            foreach ($imageId in $imageIds.Split()) {
+                if ($imageId -ne "") { 
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Removendo a imagem de Id $imageId do repositório de nome $repositoryName"
+                aws ecr batch-delete-image --repository-name $repositoryName --image-ids imageDigest=$imageDigest
+                }
+            }
+        } else {Write-Output "Não existe imagens no repositório $repositoryName"}
 
         Write-Output "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "Removendo o repositório de nome $repositoryName"

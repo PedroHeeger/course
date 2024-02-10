@@ -160,12 +160,12 @@ $policyArn = "arn:aws:iam::aws:policy/AmazonECSTaskExecutionRolePolicy"
 # $taskName = "task-def-bia"
 $taskName = "task-def-bia-alb"
 $executionRoleName = $roleName3
-$revision = "1"
 $launchType = "EC2"
 $containerName1 = "bia"
 $dockerImage1 = "001727357081.dkr.ecr.us-east-1.amazonaws.com/bia:latest"
 # $hostPort = 80
 $hostPort = 0
+$revision = "2"
 
 # ECS - SERVICE (AULAS 2 E 3)
 # $ecsServiceName = "service-bia"
@@ -174,7 +174,7 @@ $hostPort = 0
 $ecsServiceName = "service-bia-alb"
 $clusterName = "cluster-bia-alb"
 $taskName = "task-def-bia-alb"
-$taskVersion = "1"
+$taskVersion = $revision
 # $taskAmount = 1
 $taskAmount = 2
 $launchType = "EC2"

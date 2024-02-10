@@ -229,72 +229,68 @@ Para vincular o target group com o ALB foi criado um listener passando a ARN dos
     <figcaption>Imagem 19.</figcaption>
 </figure></div><br>
 
-Com o load balancer pronto, chegou a vez de criar o launch template, que é um modelo de implantação que seria utilizado por um grupo de auto scaling. O script de criação do launch template era um pouco diferente, pois como ele trabalhava com versões. Então a verificação realizada pela estrutura de condição era para determinar se exisita ou não o launch template, caso existisse, ele descobria a última versão implantada e construía uma nova na versão imediatamente superior. Mas, caso o launch template de nome determinado não fosse encontrado, era construído na primeira versão. Por conta disso, algumas partes do script foi repetido tanto para primeira condição como para a segunda.
-
-No launch template, cujo nome foi `launchTempCurso117`, foi definido a descrição da versão, o tipo de maquina que foi *Amazon Linux*, o tipo da instância como `t3.micro` e o grupo de segurança que seria utilizado pelas instâncias. Neste caso, o grupo de segurança era o segundo criado, no qual na aula 2 era o `bia-web-teste`, sendo alterado na aula três para `bia-ec2-teste`. Como estava executando direto, foi utilizado logo o `bia-ec2-teste`. Também um volume do serviço **Amazon Elastic Block Storage (EBS)** foi vinculado, cujas configurações foram padrões (nome do dispositivo `/dev/sda1`, tamanho do volume `8` e tipo `gp2`). A imagem 20 exibe esse launch template elaborado.
+Com o load balancer pronto, chegou a vez de criar o launch template, que é um modelo de implantação que seria utilizado por um grupo de auto scaling. Ou seja, era o modelo que as instâncias desse grupo de auto scaling deviam seguir. Neste modelo foi indicado um perfil de instância que as instâncias deveriam ter, sendo este perfil com uma role contendo a policy `AmazonEC2ContainerServiceforEC2Role` para conceder permissões para que as instâncias se integrassem ao cluster do ECS. Na imagem 20 é possível visualizar esta role com a policy anexada. Enquanto na imagem 21, o perfil de instância que vincula essa role é exibido.
 
 <div align="Center"><figure>
     <img src="./0-aux/img20.png" alt="img20"><br>
     <figcaption>Imagem 20.</figcaption>
 </figure></div><br>
 
-Assim foi possível, logo em seguida, criar o auto scaling group que utilizou esse launch template construído na versão 1, a única criada. Esse auto scaling group foi nomeado de `asgCurso117` e nele foram definidas as três sub-redes utilizadas, cada uma de uma zona de disponibilidade diferente (`us-east-1a`, `us-east-1b` e `us-east-1c`). A tag de noma `ECS Instances - cluster-bia` foi determinada para esse grupo. Nele ainda foi definido um tempo de espera default em segundos para cenários de ecalabilidade, onde esse tempo tem que ser aguardado para que as métricas estabelecidas possam ser calculadas e a partir do resultado, as instâncias serem escaladas ou não. O tipo de verificação de integridade foi `EC2` e o tempo de aguardo para começar a verificação foi de `300` segundos. Um outro comando em seguida habilitou a coleção de diversas métricas com granulometria de 1 minuto para serem enviadas para o **Amazon CloudWatch**.
-
-Aqui, duas coisas se diferem entre a aula 2 e 3. A primeira delas é a quantidade mínima, máxima e desejada de instâncias, que na aula 2 foi um para todas, enquanto na aula 3 foram duas instâncias para todas as quantidades. A segunda diferença foi que na aula 3 foi vinculado o target group construído, para que as instâncias que fossem criadas por esse grupo de auto scaling também fizem parte do target group. Na aula 2, não houve load balancer, então não houve target group. A imagem 21 evidencia o auto scaling group desenvolvido. Já a imagem 22 mostra as instâncias desse grupo também no target group.
-
 <div align="Center"><figure>
     <img src="./0-aux/img21.png" alt="img21"><br>
     <figcaption>Imagem 21.</figcaption>
 </figure></div><br>
+
+Assim, foi possível construir o modelo de implantação que as instâncias do auto scaling group utilizariam. O script de criação do launch template era um pouco diferente, pois como ele trabalhava com versões. Então a verificação realizada pela estrutura de condição era para determinar se exisita ou não o launch template, caso existisse, era questionado ao usuário se gostaria de implantar a versão imediatamente superior. Mas, caso o launch template de nome determinado não fosse encontrado, era construído na primeira versão. Por conta disso, algumas partes do script foi repetido tanto para primeira condição como para a segunda.
+
+No launch template, cujo nome foi `launchTempCurso117`, foi definido a descrição da versão, a imagem de maquina que foi *Amazon Linux* (sendo o id de identificação `ami-0f90bd3669358d247`), o tipo da instância como `t3.micro` e o grupo de segurança que seria utilizado pelas instâncias. Neste caso, o grupo de segurança era o segundo criado, no qual na aula 2 era o `bia-web-teste`, sendo alterado na aula três para `bia-ec2-teste`. Como estava executando direto, foi utilizado logo o `bia-ec2-teste`. Também um volume do serviço **Amazon Elastic Block Storage (EBS)** foi vinculado, cujas configurações foram padrões (nome do dispositivo `/dev/sda1`, tamanho do volume `8` e tipo `gp2`). Além de tudo isso, foi preciso passar a ARN do perfil de instância que as instâncias do auto scaling group iriam usar e também um arquivo de user data, que foi passado como comando ao invés de arquivo, pois era uma única linha (``#!/bin/bash`necho ECS_CLUSTER=$clusterName >> /etc/ecs/ecs.config``). Este teve que ser encriptado em `Base64`, pois o launch template só aceitava user data dessa forma. Observe que uma variável com o nome do cluster foi definida no arquivo de configuração. Como a imagem de maquina utilizada era uma otimizada para ECS, com essa configuração, as instâncias já identificavam qual cluster elas pertenciam e se integravam. Por isso, também foi necessário o perfil de instância com a role, justamente para dar essa permissão para que as instâncias se integrassem. A imagem 22 exibe esse launch template elaborado.
 
 <div align="Center"><figure>
     <img src="./0-aux/img22.png" alt="img22"><br>
     <figcaption>Imagem 22.</figcaption>
 </figure></div><br>
 
-O próximo passo foi a construção do cluster no serviço **Amazon Elastic Container Service (ECS)**, cujo nome dele foi `cluster-bia-alb`. Porém, foi necessário criar antes um capacity provider vinculando o auto scaling group nele. Esse capacity provider foi utilizado no cluster, para indicar que o auto scaling group atuaria no cluster. Nas definições do cluster foi habilitado o containers insights no **Amazon CloudWatch**. A imagem 23 ilustra a construção do cluster com o capacity provider e as instâncias do auto scaling group como instâncias de contâiner. Para que as instâncias do grupo de auto scaling fossem de fato instâncias de contâiner foi preciso passar como user data no launch template, o comando `echo ECS_CLUSTER=$clusterName >> /etc/ecs/ecs.config` e utilizar uma imagem de maquina (AMI) própria para este fim, sendo esta a `ami-0f90bd3669358d247` (`al2023-ami-ecs-hvm-2023.0.20240201-kernel-6.1-x86_64`).
+Assim foi possível, logo em seguida, criar o auto scaling group que utilizou esse launch template construído na versão 1, a única criada. Esse auto scaling group foi nomeado de `asgCurso117` e nele foram definidas as três sub-redes utilizadas, cada uma de uma zona de disponibilidade diferente (`us-east-1a`, `us-east-1b` e `us-east-1c`). A tag de noma `ECS Instances - cluster-bia` foi determinada para esse grupo. Nele ainda foi definido um tempo de espera default em segundos para cenários de escalabilidade, onde esse tempo tem que ser aguardado para que as métricas estabelecidas possam ser calculadas e a partir do resultado, as instâncias serem escaladas ou não. O tipo de verificação de integridade foi `EC2` e o tempo de aguardo para começar a verificação foi de `300` segundos. Um outro comando em seguida habilitou a coleção de diversas métricas com granulometria de 1 minuto para serem enviadas para o **Amazon CloudWatch**.
+
+Aqui, duas coisas se diferem entre a aula 2 e 3. A primeira delas é a quantidade mínima, máxima e desejada de instâncias, que na aula 2 foi um para todas, enquanto na aula 3 foram duas instâncias para todas as quantidades. A segunda diferença foi que na aula 3 foi vinculado o target group construído, para que as instâncias que fossem criadas por esse grupo de auto scaling também fizem parte do target group. Na aula 2, não houve load balancer, então não houve target group. A imagem 23 evidencia o auto scaling group desenvolvido. Já a imagem 24 mostra as instâncias desse grupo também no target group.
 
 <div align="Center"><figure>
     <img src="./0-aux/img23.png" alt="img23"><br>
     <figcaption>Imagem 23.</figcaption>
 </figure></div><br>
 
-Na aula 1, tinha sido elaborada uma role referente a instância de desenvolvimento. Agora, foi necessário construir uma segunda role, cujo nome foi `ecsTaskExecutionRole`. Nela, foi definida que quem assumiria a role seria as tasks do cluster do ECS. A única policy anexada a essa role foi a `AmazonECSTaskExecutionRolePolicy`, permitindo as tasks algumas ações básicas de execução dentro do cluster do ECS. Na imagem 24 é mostrada a role já com a policy anexada. 
-
 <div align="Center"><figure>
     <img src="./0-aux/img24.png" alt="img24"><br>
     <figcaption>Imagem 24.</figcaption>
 </figure></div><br>
 
-Com o cluster criado, agora foi o momento de de construir a definição de tarefa que iria ser executada nele. Essa task definition na aula 2 teve o nome de `task-def-bia`, mas na aula 3 mudou para `task-def-bia-alb`. Nela foi definida a rede como modo `bridge`, o tipo de implantação como `EC2`, a plataforma de tempo de execução, cujo sistema operacional foi `LINUX` e a arquitetura da cpu `X86_64`, e a segunda role elaborada como role de execução. Além disso, foram definidas as restrições de posicionamento, no qual o objetivo foi espalhar as tarefas pelas zonas de disponibilidade. A definição de container foi declarada com um único container de nome `bia`, cujo caminho para imagem foi no repositório criado no ECR e a imagem foi de tag `lastest`. O poder computacional deste container foi determinado com 1024 de cpu e 512 de memória. As seguintes variáveis de ambientes foram definidas: `DB_USER`, nome do usuário do banco; `DB_PWD`, senha desse usuário, `DB_PORT`; a porta que o banco estava rodando que foi a porta `5432`, que é a padrão do **PostgreSQL**; `DB_HOST`, que agora neste cenário, foi o endpoint da instância de banco de dados criada no RDS, para isso foi necessário extrair esse valor antes. Por fim, um mapeamento de portas foi realizado, onde a porta host era apontada para a porta `8080` do container, onde a aplicação web rodava nele. A porta do host na aula 2 foi `80`, pois estava utilizando instâncias de container para acessar aplicação. Já na aula três, o acesso a aplicação era feita no DNS do load balancer e posteriormente no domínio criado no **Registro.BR**, portanto essa porta foi `0`, que significa que o host, que eram as instâncias de container EC2 no cluster do ECS, gerariam portas aleatórias. A imagem 25 a seguir exibe a definição de tarefa desenvolvida.
+O próximo passo foi a construção do cluster no serviço **Amazon Elastic Container Service (ECS)**, cujo nome dele foi `cluster-bia-alb`. Porém, foi necessário criar antes um capacity provider vinculando o auto scaling group nele. Esse capacity provider foi utilizado no cluster, para indicar que o auto scaling group atuaria no cluster. Nas definições do cluster foi habilitado o containers insights no **Amazon CloudWatch**. A imagem 25 ilustra a construção do capacity provider anexando o auto scaling group. Já a imagem 26 exibe o cluster com o capacity provider e as instâncias do auto scaling group como instâncias de contâiner.
 
 <div align="Center"><figure>
     <img src="./0-aux/img25.png" alt="img25"><br>
     <figcaption>Imagem 25.</figcaption>
 </figure></div><br>
 
-Na sequência, foi criado o service no cluster para executar a task definition elaborada. Na aula 2, o nome do service foi `service-bia`, enquanto na aula 3 foi `service-bia-alb`. Foram indicados a definição de tarefa e versão utilizada, o cluster onde seria implantado essa task definition, o tipo de implantação que foi `EC2` e a estratégia de agendamento foi `REPLICA`. Na aula 2, a quantidade de tarefas a ser implantadas foi de apenas uma e na configuração de implantação o percentual mínimo e máximo saudável foram de `0` e `100` respectivamente. Já na aula 3, a quantidade de tarefas mudou para 2, e os percentuais saudáveis foram de `50` e `100`, ou seja, era removido primeiro 50% das tasks em execução, logo como eram 2, uma era removida, e então 100% das tasks em execução eram lançadas, como nesse momento era 1, outra era lançada, completando as duas tasks. Na aula 2 não foi vinculado um load balancer, mas na aula 3 foi vinculado o load balancer, passando o nome do ALB criado, a ARN do target group, o nome do container e a porta em que a aplicação rodava nele, que era a `8080`. Na imagem 26 a seguir é mostrado o service criado. Na imagem 27 é possível visualizar as duas tasks originadas desse service.
-
 <div align="Center"><figure>
     <img src="./0-aux/img26.png" alt="img26"><br>
     <figcaption>Imagem 26.</figcaption>
 </figure></div><br>
+
+Agora, foi necessário construir uma terceira role, cujo nome foi `ecsTaskExecutionRole`. Nela, foi definida que quem assumiria a role seria as tasks do cluster do ECS. A única policy anexada a essa role foi a `AmazonECSTaskExecutionRolePolicy`, permitindo as tasks algumas ações básicas de execução dentro do cluster do ECS. Na imagem 27 é mostrada a role já com a policy anexada. 
 
 <div align="Center"><figure>
     <img src="./0-aux/img27.png" alt="img27"><br>
     <figcaption>Imagem 27.</figcaption>
 </figure></div><br>
 
-Agora, com o DNS do load balancer foi possível acessar a aplicação no navegador da maquina física, conforme visualizado na imagem 28.
+Com o cluster criado, agora foi o momento de de construir a definição de tarefa que iria ser executada nele. Essa task definition na aula 2 teve o nome de `task-def-bia`, mas na aula 3 mudou para `task-def-bia-alb`. Nela foi definida a rede como modo `bridge`, o tipo de implantação como `EC2`, a plataforma de tempo de execução, cujo sistema operacional foi `LINUX` e a arquitetura da cpu `X86_64`, e a terceira role elaborada como role de execução. A definição de container foi declarada com um único container de nome `bia`, cujo caminho para imagem foi no repositório criado no ECR e a imagem foi de tag `latest`. O poder computacional deste container foi determinado com `1024` de cpu e `512` de memória. As seguintes variáveis de ambientes foram definidas: `DB_USER`, nome do usuário do banco; `DB_PWD`, senha desse usuário, `DB_PORT`; a porta que o banco estava rodando que foi a porta `5432`, que é a padrão do **PostgreSQL**; `DB_HOST`, que agora neste cenário, foi o endpoint da instância de banco de dados criada no RDS, para isso foi necessário extrair esse valor antes. Por fim, um mapeamento de portas foi realizado, onde a porta host era apontada para a porta `8080` do container, onde a aplicação web rodava nele. A porta do host na aula 2 foi `80`, pois estava utilizando instâncias de container para acessar aplicação. Já na aula três, o acesso a aplicação era feita no DNS do load balancer e posteriormente no domínio criado no **Registro.BR**, portanto essa porta foi `0`, que significa que o host, que eram as instâncias de container EC2 no cluster do ECS, gerariam portas aleatórias. A imagem 28 a seguir exibe a definição de tarefa desenvolvida.
 
 <div align="Center"><figure>
     <img src="./0-aux/img28.png" alt="img28"><br>
     <figcaption>Imagem 28.</figcaption>
 </figure></div><br>
 
-Uma nova sessão foi aberta no *Session Manager* do serviço **AWS System Manager (SSM)**, sempre na instância de desenvolvimento `bia-dev`. Porém antes, além do extração do Id dessa instância, foram extraídos o IP público dessa instância e da instância de container EC2 do cluster do ECS e o endpoint da instância de banco de dados do RDS, sendo todos esses utilizados na sessão aberta. Ao abrir a sessão, o comando `sudo su ec2-user -c` foi executado para que todos os próximos comandos fossem executados por esse usuário, que no caso era o `ec2-user`. Com esse usuário, o diretório corrente foi alterado para o diretório do projeto com o comando `cd /home/ec2-user/bia` e então com o comando `sed`, o arquivo `docker-compose.yml` foi alterado, modificando a variável `DB_HOST` do nome do container de banco de dados para o endpoint da instância de banco criada no RDS. Com o comando `docker compose up -d` foi implantada a aplicação na maquina de trabalho `bia-dev`, enquanto isso no cluster do ECS também estava executando a aplicação, porém era nas instâncias de container.
-
-Com o comando `docker compose exec server bash -c 'npx sequelize db:create'` foi executado no container da aplicação na instância `bia-dev`, o comando `npx sequelize db:create` para que o software **Sequelize** criasse o banco de dados agora no serviço **Amazon Relational Database Service (RDS)**, pois a variável `DB_HOST` tinha sido alterada para apontar a instância do RDS. Com o comando `docker compose exec server bash -c 'npx sequelize db:migrate'` também foi executado no container da aplicação da instância `bia-dev`, o comando `npx sequelize db:migrate` para construir o esquema do banco no RDS. Nesse momento, tanto a aplicação web que rodava no container na instância `bia-dev`, como a mesma aplicação web que rodava no container das instâncias do cluster apontavam para a instância de banco de dados criada no RDS. Alguns segundos foram aguardados para realizar essa verificação. Na imagem 29 é evidenciado a instância de banco de dados no RDS, agora com um banco com esquema montado. Nas imagens 30 e 31 são mostradas a aplicação web sendo acessada pelo navegador da maquina física **Windows**, as duas aplicações web em execução, uma na maquina de trabalho `bia-dev` e a outra nas instâncias do cluster.
+Na sequência, foi criado o service no cluster para executar a task definition elaborada. Na aula 2, o nome do service foi `service-bia`, enquanto na aula 3 foi `service-bia-alb`. Foram indicados a definição de tarefa e versão utilizada, o cluster onde seria implantado essa task definition, o tipo de implantação que foi `EC2` e a estratégia de agendamento foi `REPLICA`. Na aula 2, a quantidade de tarefas a ser implantadas foi de apenas uma e na configuração de implantação o percentual mínimo e máximo saudável foram de `0` e `100` respectivamente. Já na aula 3, a quantidade de tarefas mudou para 2, e os percentuais saudáveis foram de `50` e `100`, ou seja, era removido primeiro 50% das tasks em execução, logo como eram 2, uma era removida, e então 100% das tasks em execução eram lançadas, como nesse momento era 1, outra era lançada, completando as duas tasks. Na aula 2 não foi vinculado um load balancer, mas na aula 3 foi vinculado o load balancer, passando ou o nome do ALB criado ou a ARN do target group, o nome do container e a porta em que a aplicação rodava nele, que era a `8080`. Além disso, foram definidas as restrições de posicionamento, no qual o objetivo foi espalhar as tarefas nas instâncias em diferentes zonas de disponibilidade. Na imagem 29 a seguir é mostrado o service criado. Na imagem 30 é possível visualizar as duas tasks originadas desse service.
 
 <div align="Center"><figure>
     <img src="./0-aux/img29.png" alt="img29"><br>
@@ -306,14 +302,16 @@ Com o comando `docker compose exec server bash -c 'npx sequelize db:create'` foi
     <figcaption>Imagem 30.</figcaption>
 </figure></div><br>
 
+Agora, com o DNS do load balancer foi possível acessar a aplicação no navegador da maquina física, conforme visualizado na imagem 31.
+
 <div align="Center"><figure>
     <img src="./0-aux/img31.png" alt="img31"><br>
     <figcaption>Imagem 31.</figcaption>
 </figure></div><br>
 
-Ainda executando os comandos com o usuário `ec2-user` na sessão iniciada, o próximo comando foi o `docker compose down -v` para remover os containers e volume implantados na instância `bia-dev`. Com o comando `sed`, foi realizada outra alteração, agora no arquivo `Dockerfile`, modificando a URL da API que o **React** iria utilizar, do IP público da instância `bia-dev` para o da `bia-web`, que era das instâncias de container. Isso foi utilizado na aula 2, para que os dados que fossem enviados da aplicação web fossem enviados para a API correta que rodava no container das instâncias, que na aula 2 era só uma, do cluster do ECS. Porém na aula 3, essa URL foi alterada para o DNS do load balancer, então foi decidido fazer logo com ele. Com o comando `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repository` foi feita novamente a conexão do **Docker** da instância `bia-dev` com o serviço ECR, utilizando as credencias do usuário do IAM worker da minha conta (`PedroHeegerAdmin`).
+Uma nova sessão foi aberta no *Session Manager* do serviço **AWS System Manager (SSM)**, sempre na instância de desenvolvimento `bia-dev`. Porém antes, além do extração do Id dessa instância, foram extraídos o IP público dessa instância e da instância de container EC2 do cluster do ECS e o endpoint da instância de banco de dados do RDS, sendo todos esses utilizados na sessão aberta. Ao abrir a sessão, o comando `sudo su ec2-user -c` foi executado para que todos os próximos comandos fossem executados por esse usuário, que no caso era o `ec2-user`. Com esse usuário, o diretório corrente foi alterado para o diretório do projeto com o comando `cd /home/ec2-user/bia` e então com o comando `sed`, o arquivo `docker-compose.yml` foi alterado, modificando a variável `DB_HOST` do nome do container de banco de dados para o endpoint da instância de banco criada no RDS. Com o comando `docker compose up -d` foi implantada a aplicação na maquina de trabalho `bia-dev`, enquanto isso no cluster do ECS também estava executando a aplicação, porém era nas instâncias de container.
 
-No arquivo de código `/home/ec2-user/bia/client/src/components/Header.js` que faz parte do projeto, foi alterado o texto do butão de `Close` para `Fechar` e a cor de `black` para `green` para testar a mudança de versão com downtime zero no cluster do ECS. O build da nova imagem **Docker** foi executado com o comando `docker build -t bia .`. Com o comando `docker tag bia:lastest $repository/${repositoryName}:lastest` essa nova imagem foi tagueada para os padrões necessário para ser enviada com o comando `docker push $repository/${repositoryName}:lastest` para o repositório construído no ECR, sendo a tag dessa imagem `latest` novamente. Com o comando `aws ecs update-service --cluster $clusterName --service $ecsServiceName --force-new-deployment`, de dentro da instância `bia-dev`, foi forçada a atualização do cluster para que o service fosse implantado novamente. Assim, as novas tasks desse service utilizaria a nova imagem enviada para o ECR. Alguns segundos foram aguardados para confirmar a mudança de versão da aplicação. Observe que como já estava com duas instâncias de container, logo duas tasks em execução, o processo foi retirar uma task, subir uma nova task, retirar a outra e subir mais uma nova. A imagem 32 exibe o momento dessa substituição das tasks. Na imagem 33 é mostrada aplicação web que rodava no container nas instâncias do cluster sendo acessada pelo navegador da maquina física, agora com a mudança de versão.
+Com o comando `docker compose exec server bash -c 'npx sequelize db:create'` foi executado no container da aplicação na instância `bia-dev`, o comando `npx sequelize db:create` para que o software **Sequelize** criasse o banco de dados agora no serviço **Amazon Relational Database Service (RDS)**, pois a variável `DB_HOST` tinha sido alterada para apontar a instância do RDS. Com o comando `docker compose exec server bash -c 'npx sequelize db:migrate'` também foi executado no container da aplicação da instância `bia-dev`, o comando `npx sequelize db:migrate` para construir o esquema do banco no RDS. Nesse momento, tanto a aplicação web que rodava no container na instância `bia-dev`, como a mesma aplicação web que rodava no container das instâncias do cluster apontavam para a instância de banco de dados criada no RDS. Alguns segundos foram aguardados para realizar essa verificação. Na imagem 32 é evidenciado a instância de banco de dados no RDS, agora com um banco com esquema montado. Nas imagens 33 e 34 são mostradas a aplicação web sendo acessada pelo navegador da maquina física **Windows**, as duas aplicações web em execução, uma na maquina de trabalho `bia-dev` e a outra nas instâncias de contâiner do cluster.
 
 <div align="Center"><figure>
     <img src="./0-aux/img32.png" alt="img32"><br>
@@ -325,25 +323,26 @@ No arquivo de código `/home/ec2-user/bia/client/src/components/Header.js` que f
     <figcaption>Imagem 33.</figcaption>
 </figure></div><br>
 
-Perceba, na imagem 34, que agora, ao adicionar uma nota na aplicação web executada no cluster, a nota aparece na aplicação. Isso porque os dados estão sendo enviados para a URL da API do **React** do container correto, que no caso, são os das instâncias de container do ECS. Observe também, na imagem 35, que o dado agora é alimentado no banco de dados desenvolvido no RDS.
-xxxxxxxx
-
 <div align="Center"><figure>
     <img src="./0-aux/img34.png" alt="img34"><br>
     <figcaption>Imagem 34.</figcaption>
 </figure></div><br>
+
+Ainda executando os comandos com o usuário `ec2-user` na sessão iniciada, o próximo comando foi o `docker compose down -v` para remover os containers e volume implantados na instância `bia-dev`. Com o comando `sed`, foi realizada outra alteração, agora no arquivo `Dockerfile`, modificando a URL da API que o **React** iria utilizar, do IP público da instância `bia-dev` para o da `bia-web`, que era das instâncias de container. Isso foi utilizado na aula 2, para que os dados que fossem enviados da aplicação web fossem enviados para a API correta que rodava no container das instâncias, que na aula 2 era só uma, do cluster do ECS. Porém na aula 3, essa URL foi alterada para o DNS do load balancer, então foi decidido fazer logo com ele. Com o comando `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repository` foi feita novamente a conexão do **Docker** da instância `bia-dev` com o serviço ECR, utilizando as credencias do usuário do IAM worker da minha conta (`PedroHeegerAdmin`).
+
+No arquivo de código `/home/ec2-user/bia/client/src/components/Header.js` que faz parte do projeto, foi alterado o texto do butão de `Close` para `Fechar` e a cor de `black` para `green` para testar a mudança de versão com downtime zero no cluster do ECS. O build da nova imagem **Docker** foi executado com o comando `docker build -t bia .`. Com o comando `docker tag bia:lastest $repository/${repositoryName}:lastest` essa nova imagem foi tagueada para os padrões necessário para ser enviada com o comando `docker push $repository/${repositoryName}:lastest` para o repositório construído no ECR, sendo a tag dessa imagem `latest` novamente. Com o comando `aws ecs update-service --cluster $clusterName --service $ecsServiceName --force-new-deployment`, de dentro da instância `bia-dev`, foi forçada a atualização do cluster para que o service fosse implantado novamente. Assim, as novas tasks desse service utilizaria a nova imagem enviada para o ECR. Alguns segundos foram aguardados para confirmar a mudança de versão da aplicação. Observe que como já estava com duas instâncias de container, logo duas tasks em execução, o processo foi retirar uma task, subir uma nova task, retirar a outra e subir mais uma nova. A imagem 35 exibe o momento dessa substituição das tasks. Na imagem 36 é mostrada aplicação web que rodava no container nas instâncias do cluster sendo acessada pelo navegador da maquina física, agora com a mudança de versão.
 
 <div align="Center"><figure>
     <img src="./0-aux/img35.png" alt="img35"><br>
     <figcaption>Imagem 35.</figcaption>
 </figure></div><br>
 
-Após isso, a sessão foi encerrada. O próximo passo foi criar um hosted zone no serviço **Amazon Route53**, onde foi definido um nome de domínio e uma referência para essa zona de hospedagem. Logo em seguida, no serviço **AWS Certificate Manager (ACM)** foi desenvolvido um certificado, passando o nome de domínio da hosted zone e o método de validação que foi o `DNS`. O objetivo de criar esse certificado era para comunicar de forma segura, utilizando protocolo `HTTPS`. Esse certificado teve que ser registrado na zona de hospedagem criando um record. Nesse record, a ação era `CREATE`, o tipe era `CNAME`, o TTL era `300`, e o nome e valor do certificado eram extraídos para passar como parâmetro. Nas imagens a seguir (36, 37 e 38) é evidenciado a criação da hosted zone, do certificado no ACM e do registro do certificado na zona de hospedagem construída no Route53.
-
 <div align="Center"><figure>
     <img src="./0-aux/img36.png" alt="img36"><br>
     <figcaption>Imagem 36.</figcaption>
 </figure></div><br>
+
+Perceba, na imagem 37, que agora, ao adicionar uma nota na aplicação web executada no cluster, a nota aparece na aplicação. Isso porque os dados estão sendo enviados para a URL da API do **React** do container correto, que no caso, são os das instâncias de container do ECS. Observe também, na imagem 38, que o dado agora era alimentado no banco de dados desenvolvido no RDS.
 
 <div align="Center"><figure>
     <img src="./0-aux/img37.png" alt="img37"><br>
@@ -355,14 +354,13 @@ Após isso, a sessão foi encerrada. O próximo passo foi criar um hosted zone n
     <figcaption>Imagem 38.</figcaption>
 </figure></div><br>
 
-Nessa hosted zone, foi desenvolvido um outro record, sendo esse para vincular essa zona com o load balancer construído. Assim essa zona de hospedagem apontaria para o load balancer. Os parâmetros foram parecidos com o registo anterior, só modificando o nome, que foi um nome aleatório criado, e o valor que era o DNS do load balancer e teve que ser extraído antes. Na imagem 39 é exibido esse novo record criado na hosted zone.
+Após isso, a sessão foi encerrada. O próximo passo foi criar um hosted zone no serviço **Amazon Route53**, onde foi definido um nome de domínio e uma referência para essa zona de hospedagem. Logo em seguida, no serviço **AWS Certificate Manager (ACM)** foi desenvolvido um certificado, passando o nome de domínio da hosted zone e o método de validação que foi o `DNS`. O objetivo de criar esse certificado era para comunicar de forma segura, utilizando protocolo `HTTPS`. Esse certificado teve que ser registrado na zona de hospedagem criando um record. Nesse record, a ação era `CREATE`, o tipe era `CNAME`, o TTL era `300`, e o nome e valor do certificado eram extraídos para passar como parâmetro. Nas imagens a seguir (39, 40 e 41) é evidenciado a criação da hosted zone, do certificado no ACM e do registro do certificado na zona de hospedagem construída no Route53.
+xxxxxx
 
 <div align="Center"><figure>
     <img src="./0-aux/img39.png" alt="img39"><br>
     <figcaption>Imagem 39.</figcaption>
 </figure></div><br>
-
-Também foi necessário elaborar um outro listener cujo protocolo foi `HTTPS` e a porta mudou para `443`, vinculando o ALB com o target group. Nesse comando, ainda foi necesário informar a ARN do certificado criado, que foi extraído previamente. Assim, agora seria possível ter conexão segura, podendo acessar a aplicação por `HTTPS` no DNS do load balancer, ou pelo domínio criado no **Registro.BR**. Na imagem 40 a aplicação é acessada na maquina física no protocolo `HTTPS` com o DNS do load balancer. Enquanto na imagem 41 ela é acessada da mesma forma só que com o domínio criado no **Registro.BR**. Porém para de fato, o domínio do **Registro.BR** funcionar era necessário pegar 
 
 <div align="Center"><figure>
     <img src="./0-aux/img40.png" alt="img40"><br>
@@ -374,18 +372,38 @@ Também foi necessário elaborar um outro listener cujo protocolo foi `HTTPS` e 
     <figcaption>Imagem 41.</figcaption>
 </figure></div><br>
 
-Uma última sessão foi iniciada no *Session Manager* do serviço **AWS System Manager (SSM)**, sendo essa a quarta sessão, cujo objetivo foram dois. O primeiro deles, foi alterar a URL da API do **React** que neste momento tinha o DNS do load balancer, para o domínio criado no **Registro.BR**. O fato de alterar essa URL, não impedia que a aplicação fosse acessada pelo DNS do load balancer, tanto ele como o domínio conseguiria acessar a aplicação web. A diferença é que ao interagir com a aplicação criando uma nota nela, o dado era enviado apenas para a URL determinada, ou seja, só aparecia na aplicação web as notas que fossem criadas na URL que foi definida, a outra não conseguiria criar essas notas.
-
-O segundo objetivo foi realizar uma nova mudança de versão, repetido os mesmos passos realizado na sessão anterior, de número 3. As modificações foram trocar no botão, o texto `Add` por `Adicionar` e a cor `red` por `black`. Assim, é realizado o build da nova imagem, alterada a tag, enviada para o repositório construído no ECR, e o cluster atualizado para que um novo service utilizasse novas tasks que baixavam as novas imagens com essa mudança de versão. Na imagem 42, a aplicação web executada dentro do container da instâncias do EC2 no cluster do ECS é acessada pelo navegador da maquina física com o nome de domínio criado no **Registro.BR**, sendo possível acessar com `HTTPS` de forma segura, pois agora a aplicação possui um certificado. Na imagem 43 é mostrado o banco de dados na instância do RDS com os dados criados .
+Nessa hosted zone, foi desenvolvido um outro record, sendo esse para vincular essa zona com o load balancer construído. Assim essa zona de hospedagem apontaria para o load balancer. Os parâmetros foram parecidos com o registo anterior, só modificando o nome, que foi um nome aleatório criado, e o valor que era o DNS do load balancer e teve que ser extraído antes. Na imagem 42 é exibido esse novo record criado na hosted zone.
 
 <div align="Center"><figure>
     <img src="./0-aux/img42.png" alt="img42"><br>
     <figcaption>Imagem 42.</figcaption>
 </figure></div><br>
 
+Também foi necessário elaborar um outro listener cujo protocolo foi `HTTPS` e a porta mudou para `443`, vinculando o ALB com o target group. Nesse comando, ainda foi necesário informar a ARN do certificado criado, que foi extraído previamente. Assim, agora seria possível ter conexão segura, podendo acessar a aplicação por `HTTPS` no DNS do load balancer, ou pelo domínio criado no **Registro.BR**. Na imagem 43 a aplicação foi acessada na maquina física no protocolo `HTTPS` com o DNS do load balancer. Enquanto na imagem 44 ela foi acessada da mesma forma só que com o domínio criado no **Registro.BR**. Porém para de fato, o domínio do **Registro.BR** funcionar era necessário pegar 
+xxxxxxx
+
 <div align="Center"><figure>
     <img src="./0-aux/img43.png" alt="img43"><br>
     <figcaption>Imagem 43.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img44.png" alt="img44"><br>
+    <figcaption>Imagem 44.</figcaption>
+</figure></div><br>
+
+Uma última sessão foi iniciada no *Session Manager* do serviço **AWS System Manager (SSM)**, sendo essa a quarta sessão, cujo objetivo foram dois. O primeiro deles, foi alterar a URL da API do **React** que neste momento tinha o DNS do load balancer, para o domínio criado no **Registro.BR**. O fato de alterar essa URL, não impedia que a aplicação fosse acessada pelo DNS do load balancer, tanto ele como o domínio conseguiria acessar a aplicação web. A diferença é que ao interagir com a aplicação criando uma nota nela, o dado era enviado apenas para a URL determinada, ou seja, só aparecia na aplicação web as notas que fossem criadas na URL que foi definida, a outra não conseguiria criar essas notas.
+
+O segundo objetivo foi realizar uma nova mudança de versão, repetido os mesmos passos realizado na sessão anterior, de número 3. As modificações foram trocar no botão, o texto `Add` por `Adicionar` e a cor `red` por `black`. Assim, foi realizado o build da nova imagem, alterada a tag, enviada para o repositório construído no ECR, e o cluster atualizado para que um novo service utilizasse novas tasks que baixavam as novas imagens com essa mudança de versão. Na imagem 45, a aplicação web executada dentro do container das instâncias do EC2 no cluster do ECS foi acessada pelo navegador da maquina física com o nome de domínio criado no **Registro.BR**, sendo possível acessar com `HTTPS` de forma segura, pois agora a aplicação possuía um certificado. Na imagem 46 é mostrado o banco de dados na instância do RDS com os dados criados.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img45.png" alt="img45"><br>
+    <figcaption>Imagem 45.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img46.png" alt="img46"><br>
+    <figcaption>Imagem 46.</figcaption>
 </figure></div><br>
 
 <a name="item03"><h4>AULA 03: Colocando nossa app em Alta Disponibilidade</h4></a>[Back to summary](#item0)

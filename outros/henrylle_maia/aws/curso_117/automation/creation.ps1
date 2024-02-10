@@ -8,282 +8,283 @@ if ($resposta.ToLower() -ne 'y') {
     Write-Host "Bloco de código não executado. Pulando para o próximo..."
 } else {
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS EC2-VPC"
-    # Write-Output "SECURITY GROUP CREATION 1"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS EC2-VPC"
+    Write-Output "SECURITY GROUP CREATION 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se a VPC é a padrão ou não"
-    # if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
-    # } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se a VPC é a padrão ou não"
+    if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
+    } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a VPC $vpcName"
-    # if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da VPC $vpcName"
-    #     $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a VPC $vpcName"
+    if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o Id da VPC $vpcName"
+        $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe o security group de nome $sgName1 na VPC $vpcName"
-    #     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Já existe o security group de nome $sgName1 na VPC $vpcName"
-    #         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName" --output text
-    #     } else {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando todos os security groups criados na VPC $vpcName"
-    #         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupName" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Verificando se existe o security group de nome $sgName1 na VPC $vpcName"
+        if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Já existe o security group de nome $sgName1 na VPC $vpcName"
+            aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName" --output text
+        } else {
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Listando todos os security groups criados na VPC $vpcName"
+            aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupName" --output text
         
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Criando o security group de nome $sgName1 na VPC $vpcName"
-    #         aws ec2 create-security-group --group-name $sgName1 --description $sgDescription1 --vpc-id $vpcId --tag-specifications "ResourceType=security-group,Tags=[{Key=Name,Value=$sgTagName}]"
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Criando o security group de nome $sgName1 na VPC $vpcName"
+            aws ec2 create-security-group --group-name $sgName1 --description $sgDescription1 --vpc-id $vpcId --tag-specifications "ResourceType=security-group,Tags=[{Key=Name,Value=$sgTagName}]"
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando o security group de nome $sgName1 na VPC $vpcName"
-    #         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName" --output text
-    #     }
-    # } else {Write-Host "Não existe a VPC $vpcName"}
-
-
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Listando o security group de nome $sgName1 na VPC $vpcName"
+            aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName" --output text
+        }
+    } else {Write-Host "Não existe a VPC $vpcName"}
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS EC2-VPC"
-    # Write-Output "SECURITY GROUP RULE CREATION 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se a VPC é a padrão ou não"
-    # if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
-    # } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a VPC $vpcName"
-    # if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da VPC $vpcName"
-    #     $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS EC2-VPC"
+    Write-Output "SECURITY GROUP RULE CREATION 1"
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe o security group $sgName1 na VPC $vpcName"
-    #     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o Id do security group $sgName1 da VPC $vpcName"
-    #         $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName1'].GroupId" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se a VPC é a padrão ou não"
+    if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
+    } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
+
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a VPC $vpcName"
+    if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o Id da VPC $vpcName"
+        $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
+
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Verificando se existe o security group $sgName1 na VPC $vpcName"
+        if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Extraindo o Id do security group $sgName1 da VPC $vpcName"
+            $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName1'].GroupId" --output text
         
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Verificando se existe uma regra de entrada liberando a porta $port1 do security group $sgName1 da VPC $vpcName"
-    #         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4']"
-    #         if (($existRule).Count -gt 1) {
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Já existe a regra de entrada liberando a porta $port1 do security group $sgName1 da VPC $vpcName"
-    #             aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4'].GroupId" --output text
-    #         } else {
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Listando o Id de todas as regras de entrada do security group $sgName1 da VPC $vpcName"
-    #             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgId" --query "SecurityGroupRules[?!IsEgress].SecurityGroupRuleId" --output text
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Verificando se existe uma regra de entrada liberando a porta $port1 do security group $sgName1 da VPC $vpcName"
+            $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4']"
+            if (($existRule).Count -gt 1) {
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Já existe a regra de entrada liberando a porta $port1 do security group $sgName1 da VPC $vpcName"
+                aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4'].GroupId" --output text
+            } else {
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Listando o Id de todas as regras de entrada do security group $sgName1 da VPC $vpcName"
+                aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgId" --query "SecurityGroupRules[?!IsEgress].SecurityGroupRuleId" --output text
 
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Adicionando uma regra de entrada ao security group $sgName1 da VPC $vpcName para liberação da porta $port1"
-    #             aws ec2 authorize-security-group-ingress --group-id $sgId --protocol $protocol --port $port1 --cidr $cidrIpv4 --description $sgRuleDescription1 --no-cli-pager
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Adicionando uma regra de entrada ao security group $sgName1 da VPC $vpcName para liberação da porta $port1"
+                aws ec2 authorize-security-group-ingress --group-id $sgId --protocol $protocol --port $port1 --cidr $cidrIpv4 --description $sgRuleDescription1 --no-cli-pager
             
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Listando o Id da regra de entrada do security group $sgName1 da VPC $vpcName que libera a porta $port1"
-    #             aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4'].GroupId" --output text
-    #         }
-    #     } else {Write-Host "Não existe o security group $sgName1"}
-    # } else {Write-Host "Não existe a VPC $vpcName"}
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Listando o Id da regra de entrada do security group $sgName1 da VPC $vpcName que libera a porta $port1"
+                aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4'].GroupId" --output text
+            }
+        } else {Write-Host "Não existe o security group $sgName1"}
+    } else {Write-Host "Não existe a VPC $vpcName"}
 
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS IAM"
-    # Write-Output "IAM ROLE SERVICE CREATION 1"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS IAM"
+    Write-Output "IAM ROLE SERVICE CREATION 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a role de nome $roleName1"
-    # if ((aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe uma role de nome $roleName1"
-    #     aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as roles criadas"
-    #     aws iam list-roles --query 'Roles[].RoleName' --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a role de nome $roleName1"
+    if ((aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Já existe uma role de nome $roleName1"
+        aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName" --output text
+    } else {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as roles criadas"
+        aws iam list-roles --query 'Roles[].RoleName' --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Criando a role de nome $roleName1"
-    #     aws iam create-role --role-name $roleName1 --assume-role-policy-document "{
-    #         `"Version`": `"2012-10-17`",
-    #         `"Statement`": [
-    #           {
-    #             `"Effect`": `"Allow`",
-    #             `"Principal`": {`"Service`": `"$serviceName1`"},
-    #             `"Action`": `"sts:AssumeRole`"
-    #           }
-    #         ]
-    #       }" --no-cli-pager
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Criando a role de nome $roleName1"
+        aws iam create-role --role-name $roleName1 --assume-role-policy-document "{
+            `"Version`": `"2012-10-17`",
+            `"Statement`": [
+              {
+                `"Effect`": `"Allow`",
+                `"Principal`": {`"Service`": `"$serviceName1`"},
+                `"Action`": `"sts:AssumeRole`"
+              }
+            ]
+          }" --no-cli-pager
         
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando a role de nome $roleName1"
-    #     aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName" --output text
-    # }
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando a role de nome $roleName1"
+        aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName" --output text
+    }
 
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS IAM"
-    # Write-Output "IAM ROLE ADD POLICY 1"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS IAM"
+    Write-Output "IAM ROLE ADD POLICY 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a policy $policyName1_1 anexada a role de nome $roleName1"
-    # if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe a policy $policyName1_1 anexada a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a policy $policyName1_1 anexada a role de nome $roleName1"
+    if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Já existe a policy $policyName1_1 anexada a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName" --output text
+    } else {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o ARN da policy $policyName1_1"
-    #     $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_1'].[Arn]" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o ARN da policy $policyName1_1"
+        $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_1'].[Arn]" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Vinculando a polciy $policyName1_1 a role de nome $roleName1"
-    #     aws iam attach-role-policy --role-name $roleName1 --policy-arn $policyArn
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Vinculando a polciy $policyName1_1 a role de nome $roleName1"
+        aws iam attach-role-policy --role-name $roleName1 --policy-arn $policyArn
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando a policy $policyName1_1 anexada a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName" --output text
-    # }
-
-
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a policy $policyName1_2 anexada a role de nome $roleName1"
-    # if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_2'].PolicyName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe a policy $policyName1_2 anexada a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_2'].PolicyName" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o ARN da policy $policyName1_2"
-    #     $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_2'].[Arn]" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Vinculando a polciy $policyName1_2 a role de nome $roleName1"
-    #     aws iam attach-role-policy --role-name $roleName1 --policy-arn $policyArn
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando a policy $policyName1_2 anexada a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_2'].PolicyName" --output text
-    # }
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando a policy $policyName1_1 anexada a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName" --output text
+    }
 
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a policy $policyName1_3 anexada a role de nome $roleName1"
-    # if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_3'].PolicyName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe a policy $policyName1_3 anexada a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_3'].PolicyName" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a policy $policyName1_2 anexada a role de nome $roleName1"
+    if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_2'].PolicyName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Já existe a policy $policyName1_2 anexada a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_2'].PolicyName" --output text
+    } else {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o ARN da policy $policyName1_3"
-    #     $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_3'].[Arn]" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o ARN da policy $policyName1_2"
+        $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_2'].[Arn]" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Vinculando a polciy $policyName1_3 a role de nome $roleName1"
-    #     aws iam attach-role-policy --role-name $roleName1 --policy-arn $policyArn
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Vinculando a polciy $policyName1_2 a role de nome $roleName1"
+        aws iam attach-role-policy --role-name $roleName1 --policy-arn $policyArn
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando a policy $policyName1_3 anexada a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_3'].PolicyName" --output text
-    # }
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando a policy $policyName1_2 anexada a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_2'].PolicyName" --output text
+    }
 
 
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a policy $policyName1_3 anexada a role de nome $roleName1"
+    if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_3'].PolicyName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Já existe a policy $policyName1_3 anexada a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_3'].PolicyName" --output text
+    } else {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS IAM"
-    # Write-Output "IAM INSTANCE PROFILE CREATION AND ADD ROLE"
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o ARN da policy $policyName1_3"
+        $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_3'].[Arn]" --output text
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe o perfil de instância de nome $instanceProfileName"
-    # if ((aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe o perfil de instância de nome $instanceProfileName"
-    #     aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todos os perfis de instância existentes"
-    #     aws iam list-instance-profiles --query 'InstanceProfiles[].InstanceProfileName' --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Vinculando a polciy $policyName1_3 a role de nome $roleName1"
+        aws iam attach-role-policy --role-name $roleName1 --policy-arn $policyArn
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Criando o perfil de instância de nome $instanceProfileName"
-    #     aws iam create-instance-profile --instance-profile-name $instanceProfileName
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Adicionando a role $roleName1 ao perfil de instância de nome $instanceProfileName"
-    #     aws iam add-role-to-instance-profile --instance-profile-name $instanceProfileName --role-name $roleName1
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando o perfil de instância de nome $instanceProfileName"
-    #     aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName" --output text
-    # }
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando a policy $policyName1_3 anexada a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_3'].PolicyName" --output text
+    }
 
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS EC2"
-    # Write-Output "EC2 CREATION"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS IAM"
+    Write-Output "IAM INSTANCE PROFILE CREATION AND ADD ROLE"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a instância $tagNameInstance"
-    # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe uma instância EC2 com o nome de tag $tagNameInstance"
-    #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstance'].Value" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe o perfil de instância de nome $instanceProfileName"
+    if ((aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Já existe o perfil de instância de nome $instanceProfileName"
+        aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName" --output text
+    } else {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todos os perfis de instância existentes"
+        aws iam list-instance-profiles --query 'InstanceProfiles[].InstanceProfileName' --output text
+
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Criando o perfil de instância de nome $instanceProfileName"
+        aws iam create-instance-profile --instance-profile-name $instanceProfileName
+
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Adicionando a role $roleName1 ao perfil de instância de nome $instanceProfileName"
+        aws iam add-role-to-instance-profile --instance-profile-name $instanceProfileName --role-name $roleName1
+
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando o perfil de instância de nome $instanceProfileName"
+        aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName" --output text
+    }
+
+
+
+
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS EC2"
+    Write-Output "EC2 CREATION"
+
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a instância $tagNameInstance"
+    if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Já existe uma instância EC2 com o nome de tag $tagNameInstance"
+        aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name' && Value=='$tagNameInstance'].Value" --output text
         
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando o IP público da instância $tagNameInstance"
-    #     aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
-    #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando o IP público da instância $tagNameInstance"
+        aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+    } else {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
+        aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo os Ids do grupo de segurança e sub-redes padrões"
-    #     $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName1'].GroupId" --output text
-    #     $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$aZ1'].SubnetId" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo os Ids do grupo de segurança e sub-redes padrões"
+        $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName1'].GroupId" --output text
+        $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$aZ1'].SubnetId" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
-    #     aws ec2 run-instances --image-id $imageId --instance-type $instanceType --security-group-ids $sgId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --block-device-mappings "[{`"DeviceName`":`"$deviceName`",`"Ebs`":{`"VolumeSize`":$volumeSize,`"VolumeType`":`"$volumeType`"}}]" --iam-instance-profile Name=$instanceProfileName --no-cli-pager
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
+        aws ec2 run-instances --image-id $imageId --instance-type $instanceType --security-group-ids $sgId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --block-device-mappings "[{`"DeviceName`":`"$deviceName`",`"Ebs`":{`"VolumeSize`":$volumeSize,`"VolumeType`":`"$volumeType`"}}]" --iam-instance-profile Name=$instanceProfileName --no-cli-pager
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
-    #     aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando o nome da tag de todas as instâncias EC2 criadas"
+        aws ec2 describe-instances --query "Reservations[].Instances[].Tags[?Key=='Name'].Value" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando o IP público da instância $tagNameInstance"
-    #     aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
-    # }
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando o IP público da instância $tagNameInstance"
+        aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+    }
 
 
-    # Write-Output "Aguardando 120 segundos para garantir que as instalações foram feitas"
-    # Start-Sleep -Seconds 120
+    Write-Output "Aguardando 120 segundos para garantir que as instalações foram feitas"
+    Start-Sleep -Seconds 120
 
 
     Write-Output "***********************************************"
@@ -755,7 +756,7 @@ if ($resposta.ToLower() -ne 'y') {
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Extraindo o Id dos elementos de rede"
-    #     $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName'].GroupId" --output text
+    #     $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName3'].GroupId" --output text
     #     $subnetId = aws ec2 describe-subnets --query "Subnets[?AvailabilityZone=='$aZ1'].SubnetId" --output text
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
@@ -1209,6 +1210,8 @@ if ($resposta.ToLower() -ne 'y') {
     # }
 
 
+
+
     # Write-Output "***********************************************"
     # Write-Output "SERVIÇO: AWS ECS"
     # Write-Output "CAPACITY PROVIDER CREATION"
@@ -1237,6 +1240,7 @@ if ($resposta.ToLower() -ne 'y') {
     #     aws ecs describe-capacity-providers --query "capacityProviders[?name=='$capacityProviderName'].name" --output text
     # }
     
+
 
 
     # Write-Output "***********************************************"
@@ -1337,22 +1341,14 @@ if ($resposta.ToLower() -ne 'y') {
     # Write-Output "SERVIÇO: AWS ECS"
     # Write-Output "TASK EC2 CREATION"
 
-    # Write-Output "Verificando se a definição de tarefa está vazia (Ignorando erro)..."
-    # $erro = "ClientException"
-    # if ((aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision" 2>&1) -match $erro)
-    # {Write-Output "A definição de tarefa está vazia"; $condition = 0} 
-    # else{Write-Output "A definição de tarefa não está vazia"; $condition = (aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision")}
-
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a definição de tarefa de nome $taskName na revisão $revision"
-    # if ($condition -eq $revision) {
+    # Write-Output "Criando uma função para executar a definição de tarefa de nome $taskName na versão correspondente"
+    # function ExecutarTarefa {
+    #     param([string]$executionRoleName, [string]$taskName, [string]$launchType, [string]$containerName1, [string]$dockerImage1, [string]$logGroupName, [string]$region, [string]$containerName2, [string]$dockerImage2)
+
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe a definição de tarefa de nome $taskName na revisão $revision"
-    #     aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.family" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando as ARNs de todas as definições de tarefas criadas"
-    #     aws ecs list-task-definitions --query taskDefinitionArns[] --output text
+    #     Write-Output "Listando as ARNs das revisões da definição de tarefa ativas de nome $taskName"
+    #     aws ecs list-task-definitions --family-prefix $taskName --query taskDefinitionArns[] --output text
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Extraindo o endpoint da instância de banco $dbInstanceName"
@@ -1363,8 +1359,8 @@ if ($resposta.ToLower() -ne 'y') {
     #     $executionRoleArn = aws iam list-roles --query "Roles[?RoleName=='$executionRoleName'].Arn" --output text
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Registrando uma definição de tarefa de nome $taskName na revisão $revision"
-    #     aws ecs register-task-definition --family $taskName --network-mode "bridge" --requires-compatibilities $launchType --execution-role-arn $executionRoleArn --runtime-platform cpuArchitecture='X86_64',operatingSystemFamily='LINUX' --container-definitions "[
+    #     Write-Output "Registrando uma definição de tarefa de nome $taskName"
+    #     aws ecs register-task-definition --family $taskName --network-mode "bridge" --requires-compatibilities $launchType --execution-role-arn $executionRoleArn --runtime-platform  cpuArchitecture='X86_64',operatingSystemFamily='LINUX' --container-definitions "[
     #         {
     #             `"name`": `"$containerName1`",
     #             `"image`": `"$dockerImage1`",
@@ -1390,157 +1386,194 @@ if ($resposta.ToLower() -ne 'y') {
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Listando a definição de tarefa de nome $taskName"
     #     aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.family" --output text
+
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando a revisão da definição de tarefa de nome $taskName"
+    #     aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision" --output text
     # }
 
 
+    # $erro = "ClientException"
+    # if ((aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision" 2>&1) -match $erro) {
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Criando a definição de tarefa";
+    #     ExecutarTarefa $executionRoleName $taskName $launchType $containerName1 $dockerImage1 $logGroupName $region $containerName2 $dockerImage2
+    # } else {
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Já existe uma definição de tarefa de nome $taskName";
+    #     $revision = (aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision" --output text)
+    #     Write-Output "${taskName}:${revision}"
 
-
-    Write-Output "***********************************************"
-    Write-Output "SERVIÇO: AWS ECS"
-    Write-Output "SERVICE EC2 CREATION"
-
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe o serviço de nome $ecsServiceName no cluster $clusterName (Ignorando erro)..."
-    $erro = "ClientException"
-    if ((aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName' && status=='ACTIVE'].serviceName" 2>&1) -match $erro)
-    {$condition = 0} 
-    else{$condition = (aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName' && status=='ACTIVE'].serviceName").Count}
-
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe o serviço de nome $ecsServiceName no cluster $clusterName"
-    if ($condition -gt 1) {
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Já existe o serviço de nome $ecsServiceName no cluster $clusterName"
-        aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName'].serviceName" --output text
-    } else {
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Listando todos os serviços no cluster $clusterName"
-        aws ecs list-services --cluster $clusterName --query "serviceArns" --output text
-
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o ARN do target group $tgName"
-        $tgArn = aws elbv2 describe-target-groups --query "TargetGroups[?TargetGroupName=='$tgName'].TargetGroupArn" --output text
-
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Criando o serviço de nome $ecsServiceName no cluster $clusterName"
-        aws ecs create-service --cluster $clusterName --service-name $ecsServiceName --task-definition "${taskName}:${taskVersion}" --desired-count $taskAmount --launch-type $launchType --scheduling-strategy REPLICA --deployment-configuration "minimumHealthyPercent=$minHealthyPercent,maximumPercent=$maxHealthyPercent" --load-balancers "targetGroupArn=$tgArn,containerName=$containerName1,containerPort=$containerPort1" --placement-constraints "type=distinctInstance" --no-cli-pager
-
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Listando o serviço de nome $ecsServiceName no cluster $clusterName"
-        aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName'].serviceName" --output text
-    }
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     $newRevision = [int]$revision + 1
+    #     $resposta = Read-Host "Quer implementar a versão $($newRevision.ToString())? (y/n) "
+    #     if ($resposta.ToLower() -eq 'y') 
+    #         {ExecutarTarefa $executionRoleName $taskName $launchType $containerName1 $dockerImage1 $logGroupName $region $containerName2 $dockerImage2}
+    # } 
 
 
 
 
-    Write-Output "***********************************************"
-    Write-Output "SERVIÇO: AWS EC2"
-    Write-Output "EC2 MANIPULATION 3"
+    # Write-Output "***********************************************"
+    # Write-Output "SERVIÇO: AWS ECS"
+    # Write-Output "SERVICE EC2 CREATION"
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe a instância $tagNameInstance"
-    if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {       
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
-        $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe o serviço de nome $ecsServiceName no cluster $clusterName (Ignorando erro)..."
+    # $erro = "ClientException"
+    # if ((aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName' && status=='ACTIVE'].serviceName" 2>&1) -match $erro)
+    # {$condition = 0} 
+    # else{$condition = (aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName' && status=='ACTIVE'].serviceName").Count}
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o IP público da instância $tagNameInstance"
-        $instanceIP1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe o serviço de nome $ecsServiceName no cluster $clusterName"
+    # if ($condition -gt 1) {
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Já existe o serviço de nome $ecsServiceName no cluster $clusterName"
+    #     aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName'].serviceName" --output text
+    # } else {
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando todos os serviços no cluster $clusterName"
+    #     aws ecs list-services --cluster $clusterName --query "serviceArns" --output text
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o IP público da instância $tagNameInstanceAsg"
-        $instanceIP2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstanceAsg" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o ARN do target group $tgName"
+    #     $tgArn = aws elbv2 describe-target-groups --query "TargetGroups[?TargetGroupName=='$tgName'].TargetGroupArn" --output text
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o DNS do load balancer $albName"
-        $lbDNS = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='$albName'].DNSName" --output text
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Criando o serviço de nome $ecsServiceName no cluster $clusterName"
+    #     aws ecs create-service --cluster $clusterName --service-name $ecsServiceName --task-definition "${taskName}:${taskVersion}" --desired-count $taskAmount --launch-type $launchType --scheduling-strategy REPLICA --deployment-configuration "minimumHealthyPercent=$minHealthyPercent,maximumPercent=$maxHealthyPercent" --load-balancers "targetGroupArn=$tgArn,containerName=$containerName1,containerPort=$containerPort1" --placement-constraints "type=distinctInstance" --no-cli-pager
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o endpoint da instância de banco $dbInstanceName"
-        $dbInstanceEndpoint = aws rds describe-db-instances --db-instance-identifier $dbInstanceName --query "DBInstances[].Endpoint[].Address" --output text
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando o serviço de nome $ecsServiceName no cluster $clusterName"
+    #     aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[?serviceName=='$ecsServiceName'].serviceName" --output text
+    # }
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Exibindo o comando para acessar a instância"
-        Write-Output "aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters command=`"bash -l`""
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
-        $bashCommands = "sudo su ec2-user -c \`"
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Alterando para o diretorio do projeto
-        cd /home/ec2-user/bia
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
+    # $bashCommands = "sudo su ec2-user -c \`"
+    # echo -----//-----//-----//-----//-----//-----//-----
+    # echo Alterando para o diretorio do projeto
+    # cd /home/ec2-user/bia
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Realizando alteracao no Docker Compose trocando a variavel DB_HOST para o endpoint do banco do RDS
-        sed -i 's#DB_HOST: database#DB_HOST: ${dbInstanceEndpoint}#' /home/ubuntu/bia/docker-compose.yml
+    # echo -----//-----//-----//-----//-----//-----//-----
+    # echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
+    # sed -i 's/Fechar/Close/' /home/ec2-user/bia/client/src/components/Header.js
+    # \`""
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Implantando a aplicacao, agora com o banco de dados no RDS
-        docker compose up -d
+    # $bashCommands = $bashCommands -replace "\r", ""
+    # aws ssm start-session --target i-0babcdbfb20c1ff8e --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Listando todos os containers criados
-        docker ps
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Criando o banco de dados no container da aplicacao que e refletido no RDS
-        docker compose exec server bash -c 'npx sequelize db:create'
+    # Write-Output "***********************************************"
+    # Write-Output "SERVIÇO: AWS EC2"
+    # Write-Output "EC2 MANIPULATION 3"
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Aplicando as migracoes do banco de dados local no container da aplicacao que sao refletidas no RDS
-        docker compose exec server bash -c 'npx sequelize db:migrate'
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe a instância $tagNameInstance"
+    # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {       
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
+    #     $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Aguardando 200 segundos para verificar a aplicacao...
-        sleep 200
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o IP público da instância $tagNameInstance"
+    #     $instanceIP1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Removendo o projeto com Docker Compose
-        docker compose down -v
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o IP público da instância $tagNameInstanceAsg"
+    #     $instanceIP2 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstanceAsg" --query "Reservations[].Instances[].NetworkInterfaces[].Association[].PublicIp" --output text
 
-        # echo -----//-----//-----//-----//-----//-----//-----
-        # echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera da Bia-Web ao inves da Bia-Dev
-        # sed -i 's#RUN REACT_APP_API_URL=http://${instanceIP1}:3001#RUN REACT_APP_API_URL=http://${instanceIP2}:3001#' /home/ec2-user/bia/Dockerfile
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o DNS do load balancer $albName"
+    #     $lbDNS = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='$albName'].DNSName" --output text
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
-        sed -i 's#RUN REACT_APP_API_URL=http://${instanceIP1}:3001#RUN REACT_APP_API_URL=http://${lbDNS}:3001#' /home/ec2-user/bia/Dockerfile
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o endpoint da instância de banco $dbInstanceName"
+    #     $dbInstanceEndpoint = aws rds describe-db-instances --db-instance-identifier $dbInstanceName --query "DBInstances[].Endpoint[].Address" --output text
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Conectando o Docker ao repositorio do ECR
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repository
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Exibindo o comando para acessar a instância"
+    #     Write-Output "aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters command=`"bash -l`""
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
-        sed -i 's/text={showAdd ? \`"Close\`" : \`"Add\`"}/text={showAdd ? \`"Fechar\`" : \`"Add\`"}/' /home/ec2-user/bia/client/src/components/Header.js
-        sed -i 's/color={showAdd ? \`"red\`" : \`"black\`"}/color={showAdd ? \`"red\`" : \`"green\`"}/' /home/ec2-user/bia/client/src/components/Header.js
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
+    #     $bashCommands = "sudo su ec2-user -c \`"
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Alterando para o diretorio do projeto
+    #     cd /home/ec2-user/bia
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Executando o build da aplicacao
-        docker build -t bia .
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Realizando alteracao no Docker Compose trocando a variavel DB_HOST para o endpoint do banco do RDS
+    #     sed -i 's#DB_HOST: database#DB_HOST: ${dbInstanceEndpoint}#' /home/ec2-user/bia/docker-compose.yml
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Tagueando a imagem com o caminho para o repositorio
-        docker tag bia:lastest $repository/${repositoryName}:lastest
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Implantando a aplicacao, agora com o banco de dados no RDS
+    #     docker compose up -d
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Enviando a imagem para o repositorio criado no ECR
-        docker push $repository/${repositoryName}:lastest
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Listando todos os containers criados
+    #     docker ps
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Atualizando as tasks no cluster
-        aws ecs update-service --cluster $clusterName --service $ecsServiceName --force-new-deployment
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Criando o banco de dados no container da aplicacao que e refletido no RDS
+    #     docker compose exec server bash -c 'npx sequelize db:create'
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Aguardando 200 segundos para verificar a aplicacao...
-        sleep 200
-        \`""
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Aplicando as migracoes do banco de dados local no container da aplicacao que sao refletidas no RDS
+    #     docker compose exec server bash -c 'npx sequelize db:migrate'
 
-        $bashCommands = $bashCommands -replace "\r", ""
-        aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Aguardando 200 segundos para verificar a aplicacao...
+    #     sleep 200
 
-    } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Removendo o projeto com Docker Compose
+    #     docker compose down -v
+
+    #     # echo -----//-----//-----//-----//-----//-----//-----
+    #     # echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera da Bia-Web ao inves da Bia-Dev
+    #     # sed -i 's#RUN REACT_APP_API_URL=http://${instanceIP1}:3001#RUN REACT_APP_API_URL=http://${instanceIP2}:3001#' /home/ec2-user/bia/Dockerfile
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
+    #     sed -i 's#RUN REACT_APP_API_URL=http://${instanceIP1}:3001#RUN REACT_APP_API_URL=http://${lbDNS}:80#' /home/ec2-user/bia/Dockerfile
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Conectando o Docker ao repositorio do ECR
+    #     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repositoryPath 
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
+    #     sed -i 's/Close/Fechar/' /home/ec2-user/bia/client/src/components/Header.js
+    #     sed -i 's/black/green/' /home/ec2-user/bia/client/src/components/Header.js
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Executando o build da aplicacao
+    #     docker build -t bia .
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Tagueando a imagem com o caminho para o repositorio
+    #     docker tag bia:latest ${repositoryPath}/${repositoryName}:latest
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Enviando a imagem para o repositorio criado no ECR
+    #     docker push ${repositoryPath}/${repositoryName}:latest
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Atualizando as tasks no cluster
+    #     aws ecs update-service --cluster $clusterName --service $ecsServiceName --force-new-deployment --no-cli-pager
+
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Aguardando 200 segundos para verificar a aplicacao...
+    #     sleep 200
+    #     \`""
+
+    #     $bashCommands = $bashCommands -replace "\r", ""
+    #     aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
+
+    # } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
 
 
 
