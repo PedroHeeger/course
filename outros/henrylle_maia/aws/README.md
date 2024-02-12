@@ -2,7 +2,7 @@
 
 ### Repository: [course](../../../)
 ### Platform: <a href="../">fabricio_veronez   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/fabricio_veronez.png" alt="fabricio_veronez" width="auto" height="25"></a>
-### Software/Subject: <a href="./">aws   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/content/devops.png" alt="aws" width="auto" height="25"></a>
+### Software/Subject: <a href="./">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25"></a>
 
 ---
 

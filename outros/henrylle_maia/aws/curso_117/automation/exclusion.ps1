@@ -35,187 +35,187 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS IAM"
-    # Write-Output "IAM INSTANCE PROFILE EXCLUSION AND REMOVE ROLE"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS IAM"
+    Write-Output "IAM INSTANCE PROFILE EXCLUSION AND REMOVE ROLE"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe o perfil de instância de nome $instanceProfileName"
-    # if ((aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todos os perfis de instância existentes"
-    #     aws iam list-instance-profiles --query 'InstanceProfiles[].InstanceProfileName' --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe o perfil de instância de nome $instanceProfileName"
+    if ((aws iam list-instance-profiles --query "InstanceProfiles[?InstanceProfileName=='$instanceProfileName'].InstanceProfileName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todos os perfis de instância existentes"
+        aws iam list-instance-profiles --query 'InstanceProfiles[].InstanceProfileName' --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo a role $roleName1 do perfil de instância de nome $instanceProfileName"
-    #     aws iam remove-role-from-instance-profile --instance-profile-name $instanceProfileName --role-name $roleName1
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Removendo a role $roleName1 do perfil de instância de nome $instanceProfileName"
+        aws iam remove-role-from-instance-profile --instance-profile-name $instanceProfileName --role-name $roleName1
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo o perfil de instância de nome $instanceProfileName"
-    #     aws iam delete-instance-profile --instance-profile-name $instanceProfileName
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Removendo o perfil de instância de nome $instanceProfileName"
+        aws iam delete-instance-profile --instance-profile-name $instanceProfileName
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todos os perfis de instância existentes"
-    #     aws iam list-instance-profiles --query 'InstanceProfiles[].InstanceProfileName' --output text
-    # } else {Write-Output "Não existe o perfil de instância de nome $instanceProfileName"}
-
-
-
-
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS IAM"
-    # Write-Output "IAM ROLE REMOVE POLICY 1"
-
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a policy $policyName1_1 anexada a role de nome $roleName1"
-    # if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o ARN da policy $policyName1_1"
-    #     $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_1'].[Arn]" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo a policy $policyName1_1 da role de nome $roleName1"
-    #     aws iam detach-role-policy --role-name $roleName1 --policy-arn $policyArn
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
-    #     aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
-    # } else {Write-Output "Não existe a policy $policyName1_1 anexada a role de nome $roleName1"}
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todos os perfis de instância existentes"
+        aws iam list-instance-profiles --query 'InstanceProfiles[].InstanceProfileName' --output text
+    } else {Write-Output "Não existe o perfil de instância de nome $instanceProfileName"}
 
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS IAM"
-    # Write-Output "IAM ROLE SERVICE EXCLUSION 1"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS IAM"
+    Write-Output "IAM ROLE REMOVE POLICY 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a role de nome $roleName1"
-    # if ((aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as roles criadas"
-    #     aws iam list-roles --query 'Roles[].RoleName' --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a policy $policyName1_1 anexada a role de nome $roleName1"
+    if ((aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[?PolicyName=='$policyName1_1'].PolicyName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Obtendo a lista de ARNs de policies anexadas à role de nome $roleName1"
-    #     $attachedPolicies = aws iam list-attached-role-policies --role-name $roleName1 --query 'AttachedPolicies[*].PolicyArn' --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o ARN da policy $policyName1_1"
+        $policyArn = aws iam list-policies --query "Policies[?PolicyName=='$policyName1_1'].[Arn]" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se a lista de ARNs de policies anexadas à role de nome $roleName1 está vazia"
-    #     if ($null -ne $attachedPolicies -and $attachedPolicies -ne "") {
-    #       Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #       Write-Output "Iterando na lista de policies"
-    #       foreach ($policyArn in $attachedPolicies.Split()) {
-    #           if ($policyArn -ne "") {
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Extraindo o nome da policy vinculada a role"
-    #             $policyName = aws iam list-policies --query "Policies[?Arn=='$policyArn'].PolicyName" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Removendo a policy $policyName1_1 da role de nome $roleName1"
+        aws iam detach-role-policy --role-name $roleName1 --policy-arn $policyArn
 
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Removendo a policy $policyName da role de nome $roleName1"
-    #             aws iam detach-role-policy --role-name $roleName1 --policy-arn $policyArn
-    #           }
-    #       }
-    #     } else {Write-Output "Não existe policies anexadas à role de nome $roleName1"}
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo a role de nome $roleName1"
-    #     aws iam delete-role --role-name $roleName1
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as roles criadas"
-    #     aws iam list-roles --query 'Roles[].RoleName' --output text
-    # } else {Write-Output "Não existe a role de nome $roleName1"}
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as polices anexadas a role de nome $roleName1"
+        aws iam list-attached-role-policies --role-name $roleName1 --query "AttachedPolicies[].PolicyName" --output text
+    } else {Write-Output "Não existe a policy $policyName1_1 anexada a role de nome $roleName1"}
 
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS EC2-VPC"
-    # Write-Output "SECURITY GROUP RULE EXCLUSION 1"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS IAM"
+    Write-Output "IAM ROLE SERVICE EXCLUSION 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se a VPC é a padrão ou não"
-    # if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
-    # } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a role de nome $roleName1"
+    if ((aws iam list-roles --query "Roles[?RoleName=='$roleName1'].RoleName").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as roles criadas"
+        aws iam list-roles --query 'Roles[].RoleName' --output text
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a VPC $vpcName"
-    # if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da VPC $vpcName"
-    #     $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Obtendo a lista de ARNs de policies anexadas à role de nome $roleName1"
+        $attachedPolicies = aws iam list-attached-role-policies --role-name $roleName1 --query 'AttachedPolicies[*].PolicyArn' --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe o security group $sgName1 na VPC $vpcName"
-    #     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o Id do security group $sgName1"
-    #         $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName1'].GroupId" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Verificando se a lista de ARNs de policies anexadas à role de nome $roleName1 está vazia"
+        if ($null -ne $attachedPolicies -and $attachedPolicies -ne "") {
+          Write-Output "-----//-----//-----//-----//-----//-----//-----"
+          Write-Output "Iterando na lista de policies"
+          foreach ($policyArn in $attachedPolicies.Split()) {
+              if ($policyArn -ne "") {
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Extraindo o nome da policy vinculada a role"
+                $policyName = aws iam list-policies --query "Policies[?Arn=='$policyArn'].PolicyName" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Verificando se existe uma regra liberando a porta $port1 no security group $sgName1"
-    #         $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4']"
-    #         if (($existRule).Count -gt 1) {
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Listando o Id de todas as regras de entrada do security group $sgName1"
-    #             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgId" --query "SecurityGroupRules[?!IsEgress].SecurityGroupRuleId" --output text
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Removendo a policy $policyName da role de nome $roleName1"
+                aws iam detach-role-policy --role-name $roleName1 --policy-arn $policyArn
+              }
+          }
+        } else {Write-Output "Não existe policies anexadas à role de nome $roleName1"}
 
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Removendo a regra de entrada do security group $sgName1 para liberação da porta $port1"
-    #             aws ec2 revoke-security-group-ingress --group-id $sgId --protocol $protocol --port $port1 --cidr $cidrIpv4
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Removendo a role de nome $roleName1"
+        aws iam delete-role --role-name $roleName1
 
-    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #             Write-Output "Listando o Id de todas as regras de entrada do security group $sgName1"
-    #             aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgId" --query "SecurityGroupRules[?!IsEgress].SecurityGroupRuleId" --output text
-
-    #         } else {Write-Output "Não existe a regra de entrada liberando a porta $port1 no security group $sgName1"}
-    #     } else {Write-Host "Não existe o security group $sgName1"}
-    # } else {Write-Host "Não existe a VPC $vpcName"}
-
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Listando todas as roles criadas"
+        aws iam list-roles --query 'Roles[].RoleName' --output text
+    } else {Write-Output "Não existe a role de nome $roleName1"}
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS EC2-VPC"
-    # Write-Output "SECURITY GROUP EXCLUSION 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se a VPC é a padrão ou não"
-    # if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
-    # } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS EC2-VPC"
+    Write-Output "SECURITY GROUP RULE EXCLUSION 1"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a VPC $vpcName"
-    # if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da VPC $vpcName"
-    #     $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se a VPC é a padrão ou não"
+    if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
+    } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe o security group de nome $sgName1 na VPC $vpcName"
-    #     if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando todos os security groups criados na VPC $vpcName"
-    #         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupName" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a VPC $vpcName"
+    if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o Id da VPC $vpcName"
+        $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o Id do security group de nome $sgName1 da VPC $vpcName"
-    #         $sgId = aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupId" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Verificando se existe o security group $sgName1 na VPC $vpcName"
+        if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Extraindo o Id do security group $sgName1"
+            $sgId = aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='$sgName1'].GroupId" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Removendo o security group de nome $sgName1 da VPC $vpcName"
-    #         aws ec2 delete-security-group --group-id $sgId
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Verificando se existe uma regra liberando a porta $port1 no security group $sgName1"
+            $existRule = aws ec2 describe-security-group-rules --query "SecurityGroupRules[?GroupId=='$sgId' && !IsEgress && IpProtocol=='$protocol' && to_string(FromPort)=='$port1' && to_string(ToPort)=='$port1' && CidrIpv4=='$cidrIpv4']"
+            if (($existRule).Count -gt 1) {
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Listando o Id de todas as regras de entrada do security group $sgName1"
+                aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgId" --query "SecurityGroupRules[?!IsEgress].SecurityGroupRuleId" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando todos os security groups criados na VPC $vpcName"
-    #         aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupName" --output text
-    #     } else {Write-Host "Não existe o security group de nome $sgName1 na VPC $vpcName"}
-    # } else {Write-Host "Não existe a VPC $vpcName"}
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Removendo a regra de entrada do security group $sgName1 para liberação da porta $port1"
+                aws ec2 revoke-security-group-ingress --group-id $sgId --protocol $protocol --port $port1 --cidr $cidrIpv4
+
+                Write-Output "-----//-----//-----//-----//-----//-----//-----"
+                Write-Output "Listando o Id de todas as regras de entrada do security group $sgName1"
+                aws ec2 describe-security-group-rules --filters "Name=group-id,Values=$sgId" --query "SecurityGroupRules[?!IsEgress].SecurityGroupRuleId" --output text
+
+            } else {Write-Output "Não existe a regra de entrada liberando a porta $port1 no security group $sgName1"}
+        } else {Write-Host "Não existe o security group $sgName1"}
+    } else {Write-Host "Não existe a VPC $vpcName"}
+
+
+
+
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS EC2-VPC"
+    Write-Output "SECURITY GROUP EXCLUSION 1"
+
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se a VPC é a padrão ou não"
+    if ($vpcName -eq "default") {$condition = "isDefault"; $vpcNameControl = "true"
+    } else {$condition = "tag:Name"; $vpcNameControl = $vpcName}
+
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a VPC $vpcName"
+    if ((aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId").Count -gt 1) {
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o Id da VPC $vpcName"
+        $vpcId = aws ec2 describe-vpcs --filters "Name=$condition,Values=$vpcNameControl" --query "Vpcs[].VpcId" --output text
+
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Verificando se existe o security group de nome $sgName1 na VPC $vpcName"
+        if ((aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupName").Count -gt 1) {
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Listando todos os security groups criados na VPC $vpcName"
+            aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupName" --output text
+
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Extraindo o Id do security group de nome $sgName1 da VPC $vpcName"
+            $sgId = aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" "Name=group-name,Values=$sgName1" --query "SecurityGroups[].GroupId" --output text
+
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Removendo o security group de nome $sgName1 da VPC $vpcName"
+            aws ec2 delete-security-group --group-id $sgId
+
+            Write-Output "-----//-----//-----//-----//-----//-----//-----"
+            Write-Output "Listando todos os security groups criados na VPC $vpcName"
+            aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcId" --query "SecurityGroups[].GroupName" --output text
+        } else {Write-Host "Não existe o security group de nome $sgName1 na VPC $vpcName"}
+    } else {Write-Host "Não existe a VPC $vpcName"}
 
 
 }
@@ -243,24 +243,24 @@ if ($resposta.ToLower() -ne 'y') {
     # $tgArn = aws elbv2 describe-target-groups --query "TargetGroups[?TargetGroupName=='$tgName'].TargetGroupArn" --output text
 
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe um listener vinculando o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol"
-    # if ((aws elbv2 describe-listeners --load-balancer-arn $lbArn --query "Listeners[?to_string(Port)=='$listenerPort2' && Protocol=='$listenerProtocol' && DefaultActions[?TargetGroupArn=='$tgArn']].ListenerArn").Count -gt 1) {
+    # Write-Output "Verificando se existe um listener vinculando o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol2"
+    # if ((aws elbv2 describe-listeners --load-balancer-arn $lbArn --query "Listeners[?to_string(Port)=='$listenerPort2' && Protocol=='$listenerProtocol2' && DefaultActions[?TargetGroupArn=='$tgArn']].ListenerArn").Count -gt 1) {
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Listando todos os listeners do load balancer $albName"
     #     aws elbv2 describe-listeners --load-balancer-arn $lbArn --query "Listeners[].ListenerArn" --output text
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo a ARN do listener que vincula o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol"
-    #     $listenerArn = aws elbv2 describe-listeners --load-balancer-arn $lbArn --query "Listeners[?to_string(Port)=='$listenerPort2' && Protocol=='$listenerProtocol' && DefaultActions[?TargetGroupArn=='$tgArn']].ListenerArn" --output text
+    #     Write-Output "Extraindo a ARN do listener que vincula o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol2"
+    #     $listenerArn = aws elbv2 describe-listeners --load-balancer-arn $lbArn --query "Listeners[?to_string(Port)=='$listenerPort2' && Protocol=='$listenerProtocol2' && DefaultActions[?TargetGroupArn=='$tgArn']].ListenerArn" --output text
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo listener que vincula o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol"
+    #     Write-Output "Removendo listener que vincula o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol2"
     #     aws elbv2 delete-listener --listener-arn $listenerArn
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Listando todos os listeners do load balancer $albName"
     #     aws elbv2 describe-listeners --load-balancer-arn $lbArn --query "Listeners[].ListenerArn" --output text
-    # } else {Write-Output "Não existe um listener que vincula o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol"}
+    # } else {Write-Output "Não existe um listener que vincula o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol2"}
 
 
 
@@ -437,8 +437,15 @@ if ($resposta.ToLower() -ne 'y') {
     # Write-Output "SERVICE EC2 EXCLUSION"
 
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe o cluster de nome $clusterName"
-    # if ((aws ecs describe-services --cluster $clusterName --services $ecsServiceName --query "services[].serviceName").Count -gt 1) {
+    # Write-Output "Verificando se existe o serviço de nome $serviceName no cluster $clusterName (Ignorando erro)..."
+    # $erro = "InvalidParameterException"
+    # if ((aws ecs describe-services --cluster $clusterName --services $serviceName --query "services[?serviceName=='$serviceName' && status=='ACTIVE'].serviceName" 2>&1) -match $erro)
+    # {$condition = 0} 
+    # else{$condition = (aws ecs describe-services --cluster $clusterName --services $serviceName --query "services[?serviceName=='$serviceName' && status=='ACTIVE'].serviceName").Count}
+    
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe o serviço de nome $serviceName no cluster $clusterName"
+    # if ($condition -gt 1) {
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Listando as ARNs de todos os serviços criados no $clusterName"
     #     aws ecs list-services --cluster $clusterName --query "serviceArns" --output text
@@ -888,7 +895,7 @@ if ($resposta.ToLower() -ne 'y') {
 
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
     # Write-Output "Verificando se existe a imagem de tag $imageTag do repositório $repositoryName"
-    # if ((aws ecr describe-images --repository-name $repositoryName --query "imageDetails[?contains(imageTags, '$imageTag')].imageTags").Count -gt 1) {
+    # if ((aws ecr describe-images --repository-name $repositoryName --query "imageDetails[?imageTags && contains(imageTags, '$imageTag')].imageTags").Count -gt 1) {
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Listando todas as imagens do repositório $repositoryName"
     #     aws ecr describe-images --repository-name $repositoryName --query "imageDetails[].imageTags" --output text
@@ -929,7 +936,7 @@ if ($resposta.ToLower() -ne 'y') {
     #             if ($imageId -ne "") { 
     #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #             Write-Output "Removendo a imagem de Id $imageId do repositório de nome $repositoryName"
-    #             aws ecr batch-delete-image --repository-name $repositoryName --image-ids imageDigest=$imageDigest
+    #             aws ecr batch-delete-image --repository-name $repositoryName --image-ids "imageDigest=$imageId"
     #             }
     #         }
     #     } else {Write-Output "Não existe imagens no repositório $repositoryName"}
@@ -953,9 +960,9 @@ if ($resposta.ToLower() -ne 'y') {
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
     # Write-Output "Verificando se existe a instância de banco de nome $dbInstanceName (Ignorando erro)..."
     # $erro = "DBInstanceNotFound"
-    # if ((aws rds describe-db-instances --db-instance-identifier $dbInstanceName --query "DBInstances[].DBInstanceIdentifier" 2>&1) -match $erro)
+    # if ((aws rds describe-db-instances --db-instance-identifier $dbInstanceName --query "DBInstances[?DBInstanceStatus=='available'].DBInstanceIdentifier" 2>&1) -match $erro)
     # {$condition = 0} 
-    # else{$condition = (aws rds describe-db-instances --db-instance-identifier $dbInstanceName --query "DBInstances[].DBInstanceIdentifier").Count}
+    # else{$condition = (aws rds describe-db-instances --db-instance-identifier $dbInstanceName --query "DBInstances[?DBInstanceStatus=='available'].DBInstanceIdentifier").Count}
 
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
     # Write-Output "Verificando se existe a instância de banco de nome $dbInstanceName"
@@ -974,6 +981,8 @@ if ($resposta.ToLower() -ne 'y') {
     # } else {Write-Output "Não existe a instância de banco de nome $dbInstanceName"}
 
 
+    # Write-Output "Aguardando 120 segundos para que as instâncias sejam removidas"
+    # Start-Sleep -Seconds 120
 
 
     # Write-Output "***********************************************"

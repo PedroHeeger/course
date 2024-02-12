@@ -1774,71 +1774,71 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    Write-Output "***********************************************"
-    Write-Output "SERVIÇO: AWS EC2"
-    Write-Output "EC2 MANIPULATION 4"
+    # Write-Output "***********************************************"
+    # Write-Output "SERVIÇO: AWS EC2"
+    # Write-Output "EC2 MANIPULATION 4"
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe a instância $tagNameInstance"
-    if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[]").Count -gt 1) {       
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
-        $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe a instância $tagNameInstance"
+    # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[]").Count -gt 1) {       
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
+    #     $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Extraindo o DNS do load balancer $albName"
-        $lbDNS = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='$albName'].DNSName" --output text
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Extraindo o DNS do load balancer $albName"
+    #     $lbDNS = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='$albName'].DNSName" --output text
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Exibindo o comando para acessar a instância"
-        Write-Output "aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters command=`"bash -l`""
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Exibindo o comando para acessar a instância"
+    #     Write-Output "aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters command=`"bash -l`""
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
-        $bashCommands = "sudo su ec2-user -c \`"
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Alterando para o diretorio do projeto
-        cd /home/ec2-user/bia
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
+    #     $bashCommands = "sudo su ec2-user -c \`"
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Alterando para o diretorio do projeto
+    #     cd /home/ec2-user/bia
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
-        sed -i 's#RUN REACT_APP_API_URL=http://${lbDNS}#RUN REACT_APP_API_URL=https://${siteName}#' /home/ec2-user/bia/Dockerfile
-        # sed -i 's#RUN REACT_APP_API_URL=http://albTest1-1792066529.us-east-1.elb.amazonaws.com#RUN REACT_APP_API_URL=https://www.pedroheeger.dev.br#' /home/ec2-user/bia/Dockerfile
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
+    #     sed -i 's#RUN REACT_APP_API_URL=http://${lbDNS}#RUN REACT_APP_API_URL=https://${siteName}#' /home/ec2-user/bia/Dockerfile
+    #     # sed -i 's#RUN REACT_APP_API_URL=http://albTest1-1792066529.us-east-1.elb.amazonaws.com#RUN REACT_APP_API_URL=https://www.pedroheeger.dev.br#' /home/ec2-user/bia/Dockerfile
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Conectando o Docker ao repositorio do ECR
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repositoryPath
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Conectando o Docker ao repositorio do ECR
+    #     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repositoryPath
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
-        sed -i 's/Fechar/Close/' /home/ec2-user/bia/client/src/components/Header.js
-        sed -i 's/red/black/' /home/ec2-user/bia/client/src/components/Header.js
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
+    #     sed -i 's/Fechar/Close/' /home/ec2-user/bia/client/src/components/Header.js
+    #     sed -i 's/red/black/' /home/ec2-user/bia/client/src/components/Header.js
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Executando o build da aplicacao
-        docker build -t bia .
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Executando o build da aplicacao
+    #     docker build -t bia .
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Tagueando a imagem com o caminho para o repositorio
-        docker tag bia:latest ${repositoryPath}/${repositoryName}:latest
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Tagueando a imagem com o caminho para o repositorio
+    #     docker tag bia:latest ${repositoryPath}/${repositoryName}:latest
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Enviando a imagem para o repositorio criado no ECR
-        docker push ${repositoryPath}/${repositoryName}:latest
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Enviando a imagem para o repositorio criado no ECR
+    #     docker push ${repositoryPath}/${repositoryName}:latest
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Atualizando as tasks no cluster
-        aws ecs update-service --cluster $clusterName --service $ecsServiceName  --force-new-deployment --no-cli-pager
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Atualizando as tasks no cluster
+    #     aws ecs update-service --cluster $clusterName --service $ecsServiceName  --force-new-deployment --no-cli-pager
 
-        echo -----//-----//-----//-----//-----//-----//-----
-        echo Aguardando 200 segundos para verificar a aplicacao...
-        sleep 200
-        \`""
+    #     echo -----//-----//-----//-----//-----//-----//-----
+    #     echo Aguardando 200 segundos para verificar a aplicacao...
+    #     sleep 200
+    #     \`""
 
-        $bashCommands = $bashCommands -replace "\r", ""
-        aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
+    #     $bashCommands = $bashCommands -replace "\r", ""
+    #     aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
 
-    } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
+    # } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
 
 
 }

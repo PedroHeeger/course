@@ -1,8 +1,8 @@
-# Domine AWS com Henrylle Maia   <img src="../curso_116/0-aux/logo_course.png" alt="curso_117" width="auto" height="45">
+# Domine AWS com Henrylle Maia   <img src="../curso_117/0-aux/logo_course.png" alt="curso_117" width="auto" height="45">
 
 ### Repository: [course](../../../../)
 ### Platform: <a href="../../">fabricio_veronez   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/fabricio_veronez.png" alt="fabricio_veronez" width="auto" height="25"></a>
-### Software/Subject: <a href="../">devops   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/content/devops.png" alt="devops" width="auto" height="25"></a>
+### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_117 (Domine AWS com Henrylle Maia)   <img src="../curso_117/0-aux/logo_course.png" alt="curso_117" width="auto" height="25"></a>
 
 ---
@@ -17,7 +17,7 @@
 - Linux Distribution: 
   - Ubuntu   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="ubuntu" width="auto" height="25">
 - Cloud:
-  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
+  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - Amazon Application Load Balancer (ALB)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_alb.svg" alt="aws_alb" width="auto" height="25">
   - Amazon Elastic Compute Cloud (EC2)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ec2.svg" alt="aws_ec2" width="auto" height="25">
