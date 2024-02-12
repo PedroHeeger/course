@@ -1105,10 +1105,10 @@ if ($resposta.ToLower() -ne 'y') {
     #             },
     #             `"BlockDeviceMappings`": [
     #             {
-    #                 `"DeviceName`": `"/dev/sda1`",
+    #                 `"DeviceName`": `"$deviceName2`",
     #                 `"Ebs`": {
-    #                 `"VolumeSize`": 8,
-    #                 `"VolumeType`": `"gp2`"
+    #                 `"VolumeSize`": $volumeSize2,
+    #                 `"VolumeType`": `"$volumeType2`"
     #                 }
     #             }
     #             ]
@@ -1153,10 +1153,10 @@ if ($resposta.ToLower() -ne 'y') {
     #         },
     #         `"BlockDeviceMappings`": [
     #             {
-    #             `"DeviceName`": `"/dev/sda1`",
+    #             `"DeviceName`": `"$deviceName2`",
     #             `"Ebs`": {
-    #                 `"VolumeSize`": 8,
-    #                 `"VolumeType`": `"gp2`"
+    #                 `"VolumeSize`": $volumeSize2,
+    #                 `"VolumeType`": `"$volumeType2`"
     #             }
     #             }
     #         ]
@@ -1392,7 +1392,6 @@ if ($resposta.ToLower() -ne 'y') {
     #     aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision" --output text
     # }
 
-
     # $erro = "ClientException"
     # if ((aws ecs describe-task-definition --task-definition $taskName --query "taskDefinition.revision" 2>&1) -match $erro) {
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
@@ -1450,20 +1449,6 @@ if ($resposta.ToLower() -ne 'y') {
     # }
 
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
-    # $bashCommands = "sudo su ec2-user -c \`"
-    # echo -----//-----//-----//-----//-----//-----//-----
-    # echo Alterando para o diretorio do projeto
-    # cd /home/ec2-user/bia
-
-    # echo -----//-----//-----//-----//-----//-----//-----
-    # echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
-    # sed -i 's/Fechar/Close/' /home/ec2-user/bia/client/src/components/Header.js
-    # \`""
-
-    # $bashCommands = $bashCommands -replace "\r", ""
-    # aws ssm start-session --target i-0babcdbfb20c1ff8e --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
 
 
     # Write-Output "***********************************************"
@@ -1472,7 +1457,7 @@ if ($resposta.ToLower() -ne 'y') {
 
     # Write-Output "-----//-----//-----//-----//-----//-----//-----"
     # Write-Output "Verificando se existe a instância $tagNameInstance"
-    # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {       
+    # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[]").Count -gt 1) {       
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
     #     $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
@@ -1538,7 +1523,7 @@ if ($resposta.ToLower() -ne 'y') {
 
     #     echo -----//-----//-----//-----//-----//-----//-----
     #     echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
-    #     sed -i 's#RUN REACT_APP_API_URL=http://${instanceIP1}:3001#RUN REACT_APP_API_URL=http://${lbDNS}:80#' /home/ec2-user/bia/Dockerfile
+    #     sed -i 's#RUN REACT_APP_API_URL=http://${instanceIP1}:3001#RUN REACT_APP_API_URL=http://${lbDNS}#' /home/ec2-user/bia/Dockerfile
 
     #     echo -----//-----//-----//-----//-----//-----//-----
     #     echo Conectando o Docker ao repositorio do ECR
@@ -1578,121 +1563,121 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AMAZON ROUTE 53"
-    # Write-Output "HOSTED ZONE CREATION"
+    # # Write-Output "***********************************************"
+    # # Write-Output "SERVIÇO: AMAZON ROUTE 53"
+    # # Write-Output "HOSTED ZONE CREATION"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a hosted zone de nome $hostedZoneName"
-    # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe a hosted zone de nome $hostedZoneName"
-    #     aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as hosted zones existentes"
-    #     aws route53 list-hosted-zones --query "HostedZones[].Name" --output text
+    # # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # # Write-Output "Verificando se existe a hosted zone de nome $hostedZoneName"
+    # # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Já existe a hosted zone de nome $hostedZoneName"
+    # #     aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name" --output text
+    # # } else {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando todas as hosted zones existentes"
+    # #     aws route53 list-hosted-zones --query "HostedZones[].Name" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Criando a hosted zone de nome $hostedZoneName"
-    #     aws route53 create-hosted-zone --name $domainName --caller-reference $hostedZoneReference --no-cli-pager
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Criando a hosted zone de nome $hostedZoneName"
+    # #     aws route53 create-hosted-zone --name $domainName --caller-reference $hostedZoneReference --no-cli-pager
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando a hosted zone de nome $hostedZoneName"
-    #     aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name" --output text
-    # }
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando a hosted zone de nome $hostedZoneName"
+    # #     aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name" --output text
+    # # }
         
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS ACM"
-    # Write-Output "CERTIFICATE CREATION"
+    # # Write-Output "***********************************************"
+    # # Write-Output "SERVIÇO: AWS ACM"
+    # # Write-Output "CERTIFICATE CREATION"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe um certificado para o domínio de nome $domainName"
-    # if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].DomainName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Já existe um certificado para o domínio de nome $domainName"
-    #     aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].DomainName" --output text
-    # } else {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando os nomes de domínio de todos certificados existentes"
-    #     aws acm list-certificates --query "CertificateSummaryList[].DomainName" --output text
+    # # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # # Write-Output "Verificando se existe um certificado para o domínio de nome $fullDomainName"
+    # # if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].DomainName").Count -gt 1) {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Já existe um certificado para o domínio de nome $fullDomainName"
+    # #     aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].DomainName" --output text
+    # # } else {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando os nomes de domínio de todos certificados existentes"
+    # #     aws acm list-certificates --query "CertificateSummaryList[].DomainName" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Criando um certificado para o domínio de nome $domainName"
-    #     aws acm request-certificate --domain-name $domainName --validation-method DNS
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Criando um certificado para o domínio de nome $fullDomainName"
+    # #     aws acm request-certificate --domain-name $fullDomainName --validation-method DNS
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando um certificado para o domínio de nome $domainName"
-    #     aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].DomainName" --output text
-    # }
-
-
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando um certificado para o domínio de nome $fullDomainName"
+    # #     aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].DomainName" --output text
+    # # }
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AMAZON ROUTE 53"
-    # Write-Output "RECORD ACM CERTIFICATE-HOSTED ZONE CREATION"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a hosted zone $hostedZoneName"
-    # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da hosted zone $hostedZoneName"
-    #     $hostedZoneId = aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Id" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe um certificado para o domínio $domainName"
-    #     if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].DomainName").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o ARN do certificado para o domínio $domainName"
-    #         $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].CertificateArn" --output text
+    # # Write-Output "***********************************************"
+    # # Write-Output "SERVIÇO: AMAZON ROUTE 53"
+    # # Write-Output "RECORD ACM CERTIFICATE-HOSTED ZONE CREATION"
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o nome do recurso de registro do certificado para o domínio $domainName"
-    #         $resourceRecordName = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$domainName'].ResourceRecord.Name" --output text
+    # # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # # Write-Output "Verificando se existe a hosted zone $hostedZoneName"
+    # # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Extraindo o Id da hosted zone $hostedZoneName"
+    # #     $hostedZoneId = aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Id" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o valor do recurso de registro do certificado para o domínio $domainName"
-    #         $resourceRecordValue = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$domainName'].ResourceRecord.Value" --output text
-    #     } else {Write-Output "Não existe o certificado para o domínio $domainName"}
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Verificando se existe um certificado para o domínio $fullDomainName"
+    # #     if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].DomainName").Count -gt 1) {
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Extraindo o ARN do certificado para o domínio $fullDomainName"
+    # #         $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].CertificateArn" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
-    #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Já existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name" --output text
-    #     } else {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Extraindo o nome do recurso de registro do certificado para o domínio $fullDomainName"
+    # #         $resourceRecordName = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$fullDomainName'].ResourceRecord.Name" --output text
+
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Extraindo o valor do recurso de registro do certificado para o domínio $fullDomainName"
+    # #         $resourceRecordValue = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$fullDomainName'].ResourceRecord.Value" --output text
+    # #     } else {Write-Output "Não existe o certificado para o domínio $fullDomainName"}
+
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Verificando se existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
+    # #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name").Count -gt 1) {
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Já existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
+    # #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name" --output text
+    # #     } else {
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
+    # #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
         
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Criando o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
-    #         aws route53 change-resource-record-sets --hosted-zone-id $hostedZoneId --change-batch "{
-    #             `"Changes`": [
-    #             {
-    #                 `"Action`": `"CREATE`",
-    #                 `"ResourceRecordSet`": {
-    #                 `"Name`": `"${resourceRecordName}`",
-    #                 `"Type`": `"CNAME`",
-    #                 `"TTL`": 300,
-    #                 `"ResourceRecords`": [
-    #                     {`"Value`": `"${resourceRecordValue}`"}
-    #                 ]
-    #                 }
-    #             }
-    #             ]
-    #         }"
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Criando o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
+    # #         aws route53 change-resource-record-sets --hosted-zone-id $hostedZoneId --change-batch "{
+    # #             `"Changes`": [
+    # #             {
+    # #                 `"Action`": `"CREATE`",
+    # #                 `"ResourceRecordSet`": {
+    # #                 `"Name`": `"${resourceRecordName}`",
+    # #                 `"Type`": `"CNAME`",
+    # #                 `"TTL`": 300,
+    # #                 `"ResourceRecords`": [
+    # #                     {`"Value`": `"${resourceRecordValue}`"}
+    # #                 ]
+    # #                 }
+    # #             }
+    # #             ]
+    # #         }"
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name" --output text
-    #     }
-    # } else {Write-Output "Não existe a hosted zone de nome $hostedZoneName"}
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Listando o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
+    # #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name" --output text
+    # #     }
+    # # } else {Write-Output "Não existe a hosted zone de nome $hostedZoneName"}
 
 
 
@@ -1714,10 +1699,10 @@ if ($resposta.ToLower() -ne 'y') {
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Verificando se existe o registro de nome $resourceRecordName2 na hosted zone $hostedZoneName"
-    #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2'].Name").Count -gt 1) {
+    #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2.'].Name").Count -gt 1) {
     #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #         Write-Output "Já existe o registro de nome $resourceRecordName2 na hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2'].Name" --output text
+    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2.'].Name" --output text
     #     } else {
     #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
@@ -1743,7 +1728,7 @@ if ($resposta.ToLower() -ne 'y') {
     
     #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #         Write-Output "Listando o registro de nome $resourceRecordName2 na hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2'].Name" --output text
+    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2.'].Name" --output text
     #     }
     # } else {Write-Output "Não existe a hosted zone de nome $hostedZoneName"}
 
@@ -1775,7 +1760,7 @@ if ($resposta.ToLower() -ne 'y') {
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Extraindo a ARN do certificado $tgName"
-    #     $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].CertificateArn" --output text
+    #     $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].CertificateArn" --output text
     
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Criando um listener para vincular o target group $tgName ao load balancer $albName na porta $listenerPort2 do protocolo $listenerProtocol2"
@@ -1789,71 +1774,71 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS EC2"
-    # Write-Output "EC2 MANIPULATION 4"
+    Write-Output "***********************************************"
+    Write-Output "SERVIÇO: AWS EC2"
+    Write-Output "EC2 MANIPULATION 4"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a instância $tagNameInstance"
-    # if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[]").Count -gt 1) {       
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
-    #     $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
+    Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    Write-Output "Verificando se existe a instância $tagNameInstance"
+    if ((aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[]").Count -gt 1) {       
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o Id da instância de nome de tag $tagNameInstance"
+        $instanceId1 = aws ec2 describe-instances --filters "Name=tag:Name,Values=$tagNameInstance" --query "Reservations[].Instances[].InstanceId" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o DNS do load balancer $albName"
-    #     $lbDNS = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='$albName'].DNSName" --output text
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Extraindo o DNS do load balancer $albName"
+        $lbDNS = aws elbv2 describe-load-balancers --query "LoadBalancers[?LoadBalancerName=='$albName'].DNSName" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Exibindo o comando para acessar a instância"
-    #     Write-Output "aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters command=`"bash -l`""
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Exibindo o comando para acessar a instância"
+        Write-Output "aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters command=`"bash -l`""
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
-    #     $bashCommands = "sudo su ec2-user -c \`"
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Alterando para o diretorio do projeto
-    #     cd /home/ec2-user/bia
+        Write-Output "-----//-----//-----//-----//-----//-----//-----"
+        Write-Output "Executando os comandos dentro da instância (Alterando o banco de dados para o RDS, criando o esquema do banco e depois, atualizando a aplicação e trocando a instância de desenvolvimento ($tagNameInstance) para a instância do cluster ($tagNameInstanceAsg))"
+        $bashCommands = "sudo su ec2-user -c \`"
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Alterando para o diretorio do projeto
+        cd /home/ec2-user/bia
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
-    #     sed -i 's#RUN REACT_APP_API_URL=http://${$lbDNS}:3001#RUN REACT_APP_API_URL=https://${siteName}:3001#' /home/ec2-user/bia/Dockerfile
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Realizando alteracao no Dockerfile trocando URL da API que a aplicacao React vai utilizar que agora sera o DNS do load balancer ao inves da Bia-Web
+        sed -i 's#RUN REACT_APP_API_URL=http://${lbDNS}#RUN REACT_APP_API_URL=https://${siteName}#' /home/ec2-user/bia/Dockerfile
+        # sed -i 's#RUN REACT_APP_API_URL=http://albTest1-1792066529.us-east-1.elb.amazonaws.com#RUN REACT_APP_API_URL=https://www.pedroheeger.dev.br#' /home/ec2-user/bia/Dockerfile
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Conectando o Docker ao repositorio do ECR
-    #     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repository
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Conectando o Docker ao repositorio do ECR
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $repositoryPath
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
-    #     sed -i 's/text={showAdd ? \`"Fechar\`" : \`"Add\`"}/text={showAdd ? \`"Fechar\`" : \`"Adicionar\`"}/' /home/ec2-user/bia/client/src/components/Header.js
-    #     sed -i 's/color={showAdd ? \`"red\`" : \`"green\`"}/color={showAdd ? \`"black\`" : \`"green\`"}/' /home/ec2-user/bia/client/src/components/Header.js
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Realizando alteracao no arquivo Header.js para simular uma mudanca de versao da aplicacao web
+        sed -i 's/Fechar/Close/' /home/ec2-user/bia/client/src/components/Header.js
+        sed -i 's/red/black/' /home/ec2-user/bia/client/src/components/Header.js
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Executando o build da aplicacao
-    #     docker build -t bia .
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Executando o build da aplicacao
+        docker build -t bia .
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Tagueando a imagem com o caminho para o repositorio
-    #     docker tag bia:lastest $repository/${repositoryName}:lastest
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Tagueando a imagem com o caminho para o repositorio
+        docker tag bia:latest ${repositoryPath}/${repositoryName}:latest
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Enviando a imagem para o repositorio criado no ECR
-    #     docker push $repository/${repositoryName}:lastest
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Enviando a imagem para o repositorio criado no ECR
+        docker push ${repositoryPath}/${repositoryName}:latest
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Atualizando as tasks no cluster
-    #     aws ecs update-service --cluster $clusterName --service $ecsServiceName  --force-new-deployment
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Atualizando as tasks no cluster
+        aws ecs update-service --cluster $clusterName --service $ecsServiceName  --force-new-deployment --no-cli-pager
 
-    #     echo -----//-----//-----//-----//-----//-----//-----
-    #     echo Aguardando 200 segundos para verificar a aplicacao...
-    #     sleep 200
-    #     \`""
+        echo -----//-----//-----//-----//-----//-----//-----
+        echo Aguardando 200 segundos para verificar a aplicacao...
+        sleep 200
+        \`""
 
-    #     $bashCommands = $bashCommands -replace "\r", ""
-    #     aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
+        $bashCommands = $bashCommands -replace "\r", ""
+        aws ssm start-session --target $instanceId1 --document-name AWS-StartInteractiveCommand --parameters "command=`"$bashCommands`""
 
-    # } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
-
+    } else {"Não existe instâncias com o nome de tag $tagNameInstance"}
 
 
 }

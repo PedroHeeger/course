@@ -24,12 +24,10 @@ $instanceProfileName = $roleName1
 $tagNameInstance = "bia-dev"
 $aZ1 = "us-east-1a"
 $sgName1 = "bia-dev"
-# $imageId = "ami-02f3f602d23f1659d"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
-$imageId = "ami-079db87dc4c10ac91"    
+$imageId = "ami-02f3f602d23f1659d"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
 $instanceType = "t3.micro"
 $userDataPath = "G:/Meu Drive/4_PROJ/course/outros/henrylle_maia/aws/curso_117/resources/bash"
 $userDataFile = "udFileCurso117.sh"
-# $deviceName = "/dev/sda1" 
 $deviceName = "/dev/xvda" 
 $volumeSize = 15
 $volumeType = "gp2"
@@ -124,11 +122,13 @@ $instanceProfileName2 = "ecs-ec2InstanceIProfile"
 $launchTempName = "launchTempCurso117"
 $versionNumber = 1
 $versionDescription = "My version 1"
-# $amiId = "ami-079db87dc4c10ac91"    # Amazon Linux 2023 AMI 2023.3.20231218.0 x86_64 HVM kernel-6.1
 $amiId = "ami-0f90bd3669358d247"    # al2023-ami-ecs-hvm-2023.0.20240201-kernel-6.1-x86_64
 $instanceTypeAsg = "t3.micro"
 $sgNameLaunchTemplate = $sgName2
 $keyPair = "keyPairUniversal"
+$deviceName2 = "/dev/sda1" 
+$volumeSize2 = 8
+$volumeType2 = "gp2"
 
 # AUTO SCALING GROUP (AULAS 2 E 3)
 $asgName = "asgCurso117"
@@ -165,7 +165,7 @@ $containerName1 = "bia"
 $dockerImage1 = "001727357081.dkr.ecr.us-east-1.amazonaws.com/bia:latest"
 # $hostPort = 80
 $hostPort = 0
-$revision = "2"
+$revision = "3"
 
 # ECS - SERVICE (AULAS 2 E 3)
 # $ecsServiceName = "service-bia"
@@ -185,18 +185,18 @@ $maxHealthyPercent = 100
 $containerPort1 = 8080
 
 # ROUTE 53 (AULAS 2 E 3)
-$hostedZoneName = "hosted-zone-test1.com.br."
-$domainName = "hosted-zone-test1.com.br"
+$hostedZoneName = "pedroheeger.dev.br."
+$domainName = "pedroheeger.dev.br"
 $hostedZoneReference = "hostedZoneReferenceTest1"
-$resourceRecordName2 = "recordNameLbTest1"
+$resourceRecordName2 = "www.pedroheeger.dev.br"
 $albName = "albTest1"
 
 # ACM (AULAS 2 E 3)
-$domainName = "hosted-zone-test1.com.br"
+$fullDomainName = $resourceRecordName2
 
 # LISTENER 2 (AULAS 3)
-$listenerProtocol2 = "HTTPs"
+$listenerProtocol2 = "HTTPS"
 $listenerPort2 = "443"
 
 # REGISTRO BR
-$siteName = "pedroheeger.com.br"
+$siteName = $resourceRecordName2

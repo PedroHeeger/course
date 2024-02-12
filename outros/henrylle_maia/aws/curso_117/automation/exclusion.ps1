@@ -282,7 +282,7 @@ if ($resposta.ToLower() -ne 'y') {
 
     #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #     Write-Output "Verificando se existe o registro de nome $resourceRecordName2 na hosted zone $hostedZoneName"
-    #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2'].Name").Count -gt 1) {
+    #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName2.'].Name").Count -gt 1) {
     #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
     #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
     #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
@@ -315,119 +315,119 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AMAZON ROUTE 53"
-    # Write-Output "RECORD ACM CERTIFICATE-HOSTED ZONE EXCLUSION"
+    # # Write-Output "***********************************************"
+    # # Write-Output "SERVIÇO: AMAZON ROUTE 53"
+    # # Write-Output "RECORD ACM CERTIFICATE-HOSTED ZONE EXCLUSION"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a hosted zone $hostedZoneName"
-    # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da hosted zone $hostedZoneName"
-    #     $hostedZoneId = aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Id" --output text
+    # # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # # Write-Output "Verificando se existe a hosted zone $hostedZoneName"
+    # # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Extraindo o Id da hosted zone $hostedZoneName"
+    # #     $hostedZoneId = aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Id" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe um certificado para o domínio $domainName"
-    #     if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].DomainName").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o ARN do certificado para o domínio $domainName"
-    #         $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].CertificateArn" --output text
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Verificando se existe um certificado para o domínio $fullDomainName"
+    # #     if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].DomainName").Count -gt 1) {
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Extraindo o ARN do certificado para o domínio $fullDomainName"
+    # #         $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].CertificateArn" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o nome do recurso de registro do certificado para o domínio $domainName"
-    #         $resourceRecordName = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$domainName'].ResourceRecord.Name" --output text
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Extraindo o nome do recurso de registro do certificado para o domínio $fullDomainName"
+    # #         $resourceRecordName = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$fullDomainName'].ResourceRecord.Name" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Extraindo o valor do recurso de registro do certificado para o domínio $domainName"
-    #         $resourceRecordValue = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$domainName'].ResourceRecord.Value" --output text
-    #     } else {Write-Output "Não existe o certificado para o domínio $domainName"}
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Extraindo o valor do recurso de registro do certificado para o domínio $fullDomainName"
+    # #         $resourceRecordValue = aws acm describe-certificate --certificate-arn $certificateArn --query "Certificate.DomainValidationOptions[?DomainName=='$fullDomainName'].ResourceRecord.Value" --output text
+    # #     } else {Write-Output "Não existe o certificado para o domínio $fullDomainName"}
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Verificando se existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
-    #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name").Count -gt 1) {
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Verificando se existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
+    # #     if ((aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[?Name=='$resourceRecordName'].Name").Count -gt 1) {
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
+    # #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Removendo o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
-    #         aws route53 change-resource-record-sets --hosted-zone-id $hostedZoneId --change-batch "{
-    #             `"Changes`": [
-    #             {
-    #                 `"Action`": `"DELETE`",
-    #                 `"ResourceRecordSet`": {
-    #                 `"Name`": `"${resourceRecordName}`",
-    #                 `"Type`": `"CNAME`",
-    #                 `"TTL`": 300,
-    #                 `"ResourceRecords`": [
-    #                     {`"Value`": `"${resourceRecordValue}`"}
-    #                 ]
-    #                 }
-    #             }
-    #             ]
-    #         }"
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Removendo o registro de nome $resourceRecordName na hosted zone $hostedZoneName"
+    # #         aws route53 change-resource-record-sets --hosted-zone-id $hostedZoneId --change-batch "{
+    # #             `"Changes`": [
+    # #             {
+    # #                 `"Action`": `"DELETE`",
+    # #                 `"ResourceRecordSet`": {
+    # #                 `"Name`": `"${resourceRecordName}`",
+    # #                 `"Type`": `"CNAME`",
+    # #                 `"TTL`": 300,
+    # #                 `"ResourceRecords`": [
+    # #                     {`"Value`": `"${resourceRecordValue}`"}
+    # #                 ]
+    # #                 }
+    # #             }
+    # #             ]
+    # #         }"
 
-    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
-    #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
+    # #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #         Write-Output "Listando todos os registros da hosted zone $hostedZoneName"
+    # #         aws route53 list-resource-record-sets --hosted-zone-id $hostedZoneId --query "ResourceRecordSets[].Name" --output text
 
-    #     } else {Write-Output "Não existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"}    
-    # } else {Write-Output "Não existe a hosted zone $hostedZoneName"}
-
-
-
-
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AWS ACM"
-    # Write-Output "CERTIFICATE EXCLUSION"
-
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe um certificado para o domínio de nome $domainName"
-    # if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].DomainName").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando os nomes de domínio de todos certificados existentes"
-    #     aws acm list-certificates --query "CertificateSummaryList[].DomainName" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o ARN do certificado para o domínio de nome $domainName"
-    #     $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$domainName'].CertificateArn" --output text
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo o certificado para o domínio de nome $domainName"
-    #     aws acm delete-certificate --certificate-arn $certificateArn
-    #     Start-Sleep 5
-
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando os nomes de domínio de todos certificados existentes"
-    #     aws acm list-certificates --query "CertificateSummaryList[].DomainName" --output text
-    # } else {Write-Output "Não existe o certificado para o domínio de nome $domainName"}
+    # #     } else {Write-Output "Não existe o registro de nome $resourceRecordName na hosted zone $hostedZoneName"}    
+    # # } else {Write-Output "Não existe a hosted zone $hostedZoneName"}
 
 
 
 
-    # Write-Output "***********************************************"
-    # Write-Output "SERVIÇO: AMAZON ROUTE 53"
-    # Write-Output "HOSTED ZONE EXCLUSION"
+    # # Write-Output "***********************************************"
+    # # Write-Output "SERVIÇO: AWS ACM"
+    # # Write-Output "CERTIFICATE EXCLUSION"
 
-    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    # Write-Output "Verificando se existe a hosted zone de nome $hostedZoneName"
-    # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as hosted zones existentes"
-    #     aws route53 list-hosted-zones --query "HostedZones[].Name" --output text
+    # # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # # Write-Output "Verificando se existe um certificado para o domínio de nome $fullDomainName"
+    # # if ((aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].DomainName").Count -gt 1) {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando os nomes de domínio de todos certificados existentes"
+    # #     aws acm list-certificates --query "CertificateSummaryList[].DomainName" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Extraindo o Id da hosted zone de nome $hostedZoneName"
-    #     $hostedZoneId = aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Id" --output text
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Extraindo o ARN do certificado para o domínio de nome $fullDomainName"
+    # #     $certificateArn = aws acm list-certificates --query "CertificateSummaryList[?DomainName=='$fullDomainName'].CertificateArn" --output text
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Removendo a hosted zone de nome $hostedZoneName"
-    #     aws route53 delete-hosted-zone --id $hostedZoneId
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Removendo o certificado para o domínio de nome $fullDomainName"
+    # #     aws acm delete-certificate --certificate-arn $certificateArn
+    # #     Start-Sleep 5
 
-    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    #     Write-Output "Listando todas as hosted zones existentes"
-    #     aws route53 list-hosted-zones --query "HostedZones[].Name" --output text
-    # } else {Write-Output "Não existe a hosted zone de nome $hostedZoneName"}
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando os nomes de domínio de todos certificados existentes"
+    # #     aws acm list-certificates --query "CertificateSummaryList[].DomainName" --output text
+    # # } else {Write-Output "Não existe o certificado para o domínio de nome $fullDomainName"}
+
+
+
+
+    # # Write-Output "***********************************************"
+    # # Write-Output "SERVIÇO: AMAZON ROUTE 53"
+    # # Write-Output "HOSTED ZONE EXCLUSION"
+
+    # # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # # Write-Output "Verificando se existe a hosted zone de nome $hostedZoneName"
+    # # if ((aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Name").Count -gt 1) {
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando todas as hosted zones existentes"
+    # #     aws route53 list-hosted-zones --query "HostedZones[].Name" --output text
+
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Extraindo o Id da hosted zone de nome $hostedZoneName"
+    # #     $hostedZoneId = aws route53 list-hosted-zones --query "HostedZones[?Name=='$hostedZoneName'].Id" --output text
+
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Removendo a hosted zone de nome $hostedZoneName"
+    # #     aws route53 delete-hosted-zone --id $hostedZoneId
+
+    # #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # #     Write-Output "Listando todas as hosted zones existentes"
+    # #     aws route53 list-hosted-zones --query "HostedZones[].Name" --output text
+    # # } else {Write-Output "Não existe a hosted zone de nome $hostedZoneName"}
 
 
 
@@ -905,43 +905,43 @@ if ($resposta.ToLower() -ne 'y') {
 
 
 
-    Write-Output "***********************************************"
-    Write-Output "SERVIÇO: AWS ECR"
-    Write-Output "REPOSITORY EXCLUSION"
+    # Write-Output "***********************************************"
+    # Write-Output "SERVIÇO: AWS ECR"
+    # Write-Output "REPOSITORY EXCLUSION"
 
-    Write-Output "-----//-----//-----//-----//-----//-----//-----"
-    Write-Output "Verificando se existe o repositório de nome $repositoryName"
-    if ((aws ecr describe-repositories --query "repositories[?repositoryName=='$repositoryName'].repositoryName").Count -gt 1) {
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Listando todos os repositórios criados"
-        aws ecr describe-repositories --query "repositories[].repositoryName" --output text
+    # Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    # Write-Output "Verificando se existe o repositório de nome $repositoryName"
+    # if ((aws ecr describe-repositories --query "repositories[?repositoryName=='$repositoryName'].repositoryName").Count -gt 1) {
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando todos os repositórios criados"
+    #     aws ecr describe-repositories --query "repositories[].repositoryName" --output text
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Verificando se existe imagens no repositório de nome $repositoryName"
-        if ((aws ecr list-images --repository-name $repositoryName --query "imageIds[].imageDigest").Count -gt 1) {
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Obtendo a lista de Ids das imagens do repositório de nome $repositoryName"
-            $imageIds = aws ecr list-images --repository-name $repositoryName --query "imageIds[].imageDigest" --output text
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Verificando se existe imagens no repositório de nome $repositoryName"
+    #     if ((aws ecr list-images --repository-name $repositoryName --query "imageIds[].imageDigest").Count -gt 1) {
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Obtendo a lista de Ids das imagens do repositório de nome $repositoryName"
+    #         $imageIds = aws ecr list-images --repository-name $repositoryName --query "imageIds[].imageDigest" --output text
 
-            Write-Output "-----//-----//-----//-----//-----//-----//-----"
-            Write-Output "Iterando na lista de imagens"
-            foreach ($imageId in $imageIds.Split()) {
-                if ($imageId -ne "") { 
-                Write-Output "-----//-----//-----//-----//-----//-----//-----"
-                Write-Output "Removendo a imagem de Id $imageId do repositório de nome $repositoryName"
-                aws ecr batch-delete-image --repository-name $repositoryName --image-ids imageDigest=$imageDigest
-                }
-            }
-        } else {Write-Output "Não existe imagens no repositório $repositoryName"}
+    #         Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #         Write-Output "Iterando na lista de imagens"
+    #         foreach ($imageId in $imageIds.Split()) {
+    #             if ($imageId -ne "") { 
+    #             Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #             Write-Output "Removendo a imagem de Id $imageId do repositório de nome $repositoryName"
+    #             aws ecr batch-delete-image --repository-name $repositoryName --image-ids imageDigest=$imageDigest
+    #             }
+    #         }
+    #     } else {Write-Output "Não existe imagens no repositório $repositoryName"}
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Removendo o repositório de nome $repositoryName"
-        aws ecr delete-repository --repository-name $repositoryName
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Removendo o repositório de nome $repositoryName"
+    #     aws ecr delete-repository --repository-name $repositoryName
 
-        Write-Output "-----//-----//-----//-----//-----//-----//-----"
-        Write-Output "Listando todos os repositórios criados"
-        aws ecr describe-repositories --query "repositories[].repositoryName" --output text
-    } else {Write-Output "Não existe o repositório de nome $repositoryName"}
+    #     Write-Output "-----//-----//-----//-----//-----//-----//-----"
+    #     Write-Output "Listando todos os repositórios criados"
+    #     aws ecr describe-repositories --query "repositories[].repositoryName" --output text
+    # } else {Write-Output "Não existe o repositório de nome $repositoryName"}
 
 
 
