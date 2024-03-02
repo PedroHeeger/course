@@ -129,30 +129,11 @@ Tarefas também podem recuperar segredos do Repositório de parâmetros, que est
 
 <a name="item01.07"><h4>Prática</h4></a>[Back to summary](#item0)
 
+Como parte prática deste curso foi implantada a aplicação web containerizada, desenvolvida no [curso_116](../../../outros/fabricio_veronez/devops/curso_116/), em um cluster do serviço **Amazon Elastic Container Service (ECS)**, utilizando como infraestrutura as instâncias do serviço **Amazon Elastic Compute Cloud (EC2)**. Diferentemente do [curso_102](../curso_102/), onde apenas foi implatada a aplicação web conteinerizada, esta execução foi bem mais ampla, contemplando outros serviços. O objetivo aqui foi realizar uma deploy completo, com nome de domínio para aplicação desenvolvida, load balancer para distribuição do tráfego entre as instâncias de container e escalabilidade, sendo essa última, tanto para as instâncias como para os serviços do cluster ECS. Também foi feito um teste de estresse para evidenciar a escalabilidade acontecendo.
 
+Todos os recursos foram construídos através de arquivos de código com script **Python** utilizando o SDK **Boto3** para interagir com a API dos serviços da cloud **AWS**. Esses arquivos foram armazenados na pasta [resources](./resources/). Cada arquivo possuía dois scripts, uma para a criação e outro para exclusão dos recursos, sendo em cada um deles, uma estrutura de condição para a partir de uma entrada do usuário, decidir se executava ou não o script. O **Boto3** utilizou as credenciais já cadastradas no software **AWS CLI** instalado na maquina física **Windows**, que foi do usuário do IAM administrador da minha conta da **AWS** (`PedroHeegerAdmin`).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+O primeiro passo foi a construção do nome de domínio que foi realizado no site **Registro.BR**, onde foi construído o domínio `pedroheeger.dev.br`. Em seguida, no serviço **Amazon Route53**, foi criada uma hosted zone, com o arquivo [hostedZone.py](./resources/route53/hostedZone.py), para esse domínio elaborado, portanto teve que ter o mesmo nome de domínio. Dentro dessa hosted zone, dois registros vieram criados por padrão, o `Name Server (ns)` e o `(SOA)`. O Name Server possuía quatro valores de servidores DNS que tiveram que ser cadastrados no domínio criado no **Registro.BR**. Após isso, teve que ser aguardado um tempo para que fosse concluída a propagação desse domínio construído no **Registro.BR**. Isso podia lever até 48 horas, segundo informação do site. Por isso, essa parte foi desenvolvida anteriormente, fora do curso, e sempre que fosse necessário a utilização do domínio, era só criar um registro nessa hosted zone com o alvo determinado, como DNS de um load balancer ou IP público de uma instância do EC2. Sempre mantendo a hosted zone criada, sem removê-la, pois se fosse removido, teria que realizar a vinculação com o nome de domínio elaborado no **Registro.BR**. Na imagem 02 é mostrada o nome de domínio construído no site **Registro.BR**. Na imagem 03 é exibida a hosted zone criada com três registros.
 
 <div align="Center"><figure>
     <img src="./0-aux/img02.png" alt="img02"><br>
@@ -164,10 +145,14 @@ Tarefas também podem recuperar segredos do Repositório de parâmetros, que est
     <figcaption>Imagem 03.</figcaption>
 </figure></div><br>
 
+Observe que há um terceiro registro nessa hosted zone. Esse registro era de um certificado criado no serviço **AWS Certificate Manager (ACM)**, através do arquivo [certificate.py](./resources/acm/certificate.py), para comprovar que este domínio possuía conexão segura via `HTTPS`. Por tanto, foi necessário criar esse certificado no ACM e registrar nesta zona de hospedagem com o arquivo [recordAcmCertificate.py](./resources/acm/certificate.py), e isso também foi feito previamente. A imagem 04 mostra o certificado elaborado no ACM. Até essa parte, tudo foi construído anteriormente e não era removido ao excluir o curso, pois como já dito, a vinculação com o domínio no **Registro.BR** leva um tempo considerado para propagar. Então optei por já deixar essa etapa pronta para os próximos cursos.
+
 <div align="Center"><figure>
     <img src="./0-aux/img04.png" alt="img04"><br>
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
+
+Para realizar a construção do cluster foi preciso criar os recursos necessário para o cluster. Na sub-pasta [ecs/ec2](./resources/ecs/ec2/) dentro de `resources`, tinham três diretórios de suporte com recursos que deveriam ser criados antes do desenvolvimento do cluster. Em [suport1](./resources/ecs/ec2/suport1/), foi criado uma role com o arquivo [iamRoleService.py](./resources/ecs/ec2/suport1/iamRoleService.py) destinada as tasks do cluster para que elas assumissem essa role. Para essa role, foi adicionada a policy `AmazonECSTaskExecutionRolePolicy` com o arquivo [iamRolePolicy.py](./resources/ecs/ec2/suport1/iamRolePolicy.py), que concedia permissão para que as tasks fossem executadas dentro do cluster. Com o arquivo [logGroup.py](./resources/ecs/ec2/suport1/logGroup.py) foi desenvolvido um grupo de log no **Amazon CloudWatch** para o container que seria criado. Encerrando essa pasta, o arquivo [vpcSgRule.py](./resources/ecs/ec2/suport1/vpcSgRule.py) era utilizado para elaborar uma regra de entrada no grupo de segurança que seria utilizado pelas instâncias de container do cluster, liberando acesso a porta `80`, porta que rodaria a aplicação containerizada. Na imagem 05 é exibida a role com sua respectiva policy. Na imagem 06, o log group construído é visualizado. Já na imagem 07 é evidenciado que existe uma regra liberando a porta `80`, no grupo de segurança padrão da VPC padrão da região.
 
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
@@ -184,7 +169,7 @@ Tarefas também podem recuperar segredos do Repositório de parâmetros, que est
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
-Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
+Alterando o diretório [suport2](./resources/ecs/ec2/suport2/), uma segunda role é desenvolvida através do arquivo [iamRoleService.py](./resources/ecs/ec2/suport2/iamRoleService.py), no qual quem assumiria ela era as instâncias do serviço **Amazon Elastic Compute Cloud (EC2)**, que se integrariam ao cluster tornando-se instâncias de container. A policy `AmazonECS_FullAccess` concedendo acesso total ao cluster do ECS foi vinculada a essa role com o arquivo [iamRolePolicy.py](./resources/ecs/ec2/suport2/iamRolePolicy.py). Contudo, para vincular a role com as instâncias, foi necessário desenvolver um perfil de instância que foi realizado com o arquivo [iamInstanceProfile.py](./resources/ecs/ec2/suport2/iamInstanceProfile.py). As imagens 08 e 09 mostram a role com suas respectiva policy e o perfil de instância construído com esta role.
 
 <div align="Center"><figure>
     <img src="./0-aux/img08.png" alt="img08"><br>
@@ -195,3 +180,103 @@ Por fim, as imagens 08 e 09 mostram a remoção desses recursos desenvolvidos.
     <img src="./0-aux/img09.png" alt="img09"><br>
     <figcaption>Imagem 09.</figcaption>
 </figure></div><br>
+
+Com a base para construção do cluster pronta, antes de criá-lo de fato, foi necessário construir os serviços adicionais que ele utilizaria. O primeiro deles foi o load balancer que foi criado no serviço **Amazon Elastic Load Balancer (ELB)**. Para isso, foi preciso sair da sub-pasta `ecs/ec2` e alterar para [alb](./resources/alb/). Com o arquivo [elbTg.py](./resources/alb/elbTg.py) foi desenvolvido o target group (tg) que seria utilizado por esse load balancer. O tipo desse grupo de destino foi `instance`, o protocolo foi `HTTP`, sendo a versão `HTTP1` e a porta `80`, que era onde o container com a aplicação iria rodar. Com relação as configurações da verificação de integridade, o protocolo e a porta foram os mesmos utilizados (`HTTP` e `80`) e o path foi definido como o diretório raíz (`/`). Após isso, com o arquivo [elbAlb.py](./resources/alb/elbAlb.py), um load balancer do tipo *Application Load Balancer (ALB)* foi construído. Nas suas configurações, o grupo de segurança e as suas-redes definidas foram o default da VPC padrão da região, sendo as sub-redes das zonas de disponibilidade (AZ) `us-east-1a` e `us-east-1b`. As imagens 10 e 11 mostram o target group e ALB desenvolvidos.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.png" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img11.png" alt="img11"><br>
+    <figcaption>Imagem 11.</figcaption>
+</figure></div><br>
+
+Entretanto, esses dois recursos ainda não estavam vinculados, era necessário criar um listener para uní-los. Este listener foi construído através do arquivo [elbListener.py](./resources/alb/elbTg.py), indicando o protocolo e a porta como `HTTP` e `80`. Na imagem 12 é comprovada essa vinculação entre os dois recursos de load balancer. Também foi necessário criar um segundo listener, só que para o protocolo `HTTPS` e porta `443`, e passando o ARN do certificado construído no ACM. Isso foi executado com o arquivo [elbListener2.py](./resources/alb/elbListener2.py). A imagem 13 mostra essa segunda vinculação, onde a comunicação possuía uma camada de segurança agora.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img12.png" alt="img12"><br>
+    <figcaption>Imagem 12.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img13.png" alt="img13"><br>
+    <figcaption>Imagem 13.</figcaption>
+</figure></div><br>
+
+Para que fosse possível utilizar o domínio criado no **Registro.BR** para acessar a aplicação, era necessário criar um registro do DNS do load balancer na hosted zone do **Amazon Route53**. Por tanto, de dentro da sub-pasta [route53](./resources/route53/) foi executado o arquivo [recordLb.py](./resources/route53/recordLb.py) para criação do registro e vinculação do DNS do load balancer. Esse registro foi do tipo `CNAME` e TTL igual `300`. A imagem 14 exibe o registro criado na hosted zone.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img14.png" alt="img14"><br>
+    <figcaption>Imagem 14.</figcaption>
+</figure></div><br>
+
+Após isso, a sub-pasta foi alterada para [asg](./resources/asg/) para construção do auto scaling group (asg) com as instâncias que integrariam ao cluster do ECS. Para criação do grupo de auto scaling, foi necessário elaborar primeiro um launch template e isso foi realizado através do arquivo [launchTemp1.py](./resources/asg/launchTemp1.py). Neste launch template foram definidos: a imagem de maquina para uma otimizada para o ECS (`ami-0f90bd3669358d247`), o tipo de instância como `t2.micro`, o par de chaves utilizados pelas instância como `keyPairUniversal` que é um par de chaves padrão dos meus projetos, o grupo de segurança como o padrão da VPC padrão da região, o perfil de instância para o perfil criado no `suport2` do ECS, o nome do cluster que essas instâncias fariam parte, o nome do dispositivo de armazenamento no serviço **Amazon Elastic Block Storage** como `/dev/xvda`, sendo a capacidade de `8` e  o tipo `gp2`. Um user data foi definido no script para que nas instâncias, esse comando `#!/bin/bash\necho ECS_CLUSTER={} >> /etc/ecs/ecs.config` fosse executado, no qual o nome do cluster era passado para o arquivo `ecs.config`, assim as instâncias se integrariam ao cluster do ECS. Na imagem 15 é visualizado o launch template construído.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
+
+Com o launch template, foi possível criar o auto scaling group através do arquivo [asGroup1.py](./resources/asg/asGroup1.py). Nas configurações foi passado qual launch template seria utilizado como base de construção, o nome do target group que as instâncias desse auto scaling group deveria fazer parte, as sub-redes utilizadas que foram as padrões da VPC padrão da região, sendo elas das zonas de disponibilidade `us-east-1a` e `us-east-1b`, e por fim uma tag de nome que essas instâncias deveriam ter. Além disso, no script foram definidos as capcidades mínima, máxima e desejada em `1`, `3` e `1` respectivamente. Também foi determinado que o tempo de aguardo para cálculo das métricas era de `300` segundos antes de realizar um escalonamento, e a verificação de integridade seria do tipo `EC2`, também com `300` segundos para verificação. Todas as métricas do auto scaling group foram habilitadas para serem coletadas pelo **Amazon CloudWatch**. Na imagem 16 é evidenciado a construção desse grupo. Na imagem 17, as instâncias são exibidas dentro do cluster do ECS. Na imagem 18, as instâncias são mostradas no target group do load balancer. Por fim, na imagem 19 os volumes do EBS dessas instâncias são visualizados.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img16.png" alt="img16"><br>
+    <figcaption>Imagem 16.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img17.png" alt="img17"><br>
+    <figcaption>Imagem 17.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img18.png" alt="img18"><br>
+    <figcaption>Imagem 18.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img19.png" alt="img19"><br>
+    <figcaption>Imagem 19.</figcaption>
+</figure></div><br>
+
+Contudo, neste momento só existia uma instância, pois a quantidade desejada era de apenas uma. Novamente a sub-pasta foi alterada, agora para [rds](./resources/rds/). Dentro dela, foi executado o arquivo [rds.py](./resources/rds/). Este arquivo criava uma instância de banco de dados no serviço **Amazon Relational Database Service (RDS)**, cuja classe era `db.t3.micro`, o `engine` `postgres` e a versão do engine `16.1`. Foi definido como armazenamento alocado de `20` gigas, sendo do tipo `gp2`, o período de back-up de `7` dias e o grupo de segurança e sub-rede utilizada como os padrões da VPC padrão da região, sendo a sub-rede da zona de disponibilidade `us-east-1a`. Com relação as configurações do banco de dados, foi determinado o nome como `kubenews` e o nome de usuário também como `kubenews`, enquanto a senha como `Pg#123`. Na imagem 20, a instância de banco de dados do RDS é exibida.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img20.png" alt="img20"><br>
+    <figcaption>Imagem 20.</figcaption>
+</figure></div><br>
+
+O próximo passo foi criar a task definition e isso foi realizado na sub-pasta [ec2/ec2](./resources/ecs/ec2/), executando o arquivo [ecsTaskEC2.py](./resources/ecs/ec2/ecsTaskEC2.py). Nas configurações da task era definida a primeira role construída, para permitir a task de ser executada no cluster do ECS. O tipo de implantação foi `EC2` já que estava sendo utilizado instâncias de container ao invés do Fargate. O modo de rede foi definida como `bridge`, a quantidade de cpu e memória foram determinados em `256` e `512`, já a plataforma de tempo de execução foi definida a arquitetura como `X86_64` e o sistema operacional como `LINUX`.
+
+Com relação as configurações de container, apenas um container foi definido, que utilizava a imagem `docker.io/pedroheeger/curso116_kube-news:v2` que era da aplicação desenvolvida no [curso_116](../../../outros/fabricio_veronez/devops/curso_116/). Essa aplicação web tinha o nome de `kubenews` e se tratava de um microblog, que ao prencher os campos de um formúlario enviá-los, os dados eram alimentados em um banco, que neste caso seria a instância do RDS. O log group elaborado era passado para esse container que criava um log stream para enviar seus logs para o **Amazon CloudWatch**. A cpu e memória do container teve as seguintes capacidades: `128` e `256`, ou seja, metade do total da task. Um mapeamento de portas foi realizado, encaminhando o tráfego da porta `8080`, onde rodava a aplicação no container para a porta `80` do host, que eram as instâncias de container do cluster. As seguintes variáveis de ambiente foram definidas para que a aplicação web se comunicasse com o banco de dados: `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` e `DB_HOST`. A variável `DB_HOST` foi o DNS da instância de banco de dados do RDS. A imagem 21 mostra a definição de tarefa elaborada.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img21.png" alt="img21"><br>
+    <figcaption>Imagem 21.</figcaption>
+</figure></div><br>
+
+Na sequência, o cluster do ECS foi construído com o arquivo [ecsClusterEC2.py](./resources/ecs/ec2/), sendo habilitado o containers insights que enviaria logs para o **Amazon CloudWatch**. A imagem 22 exibe este cluster. Agora, com o arquivo [ecsServiceEC2.py](./resources/ecs/ec2/ecsServiceEC2.py) foi implantado no cluster um service com a task definition elaborada. Nas definições foi indicado o nome da task e do cluster, a quantidade de tasks desejadas, que como por enquanto a quantidade de instâncias de container era de apenas 1, foi definido a quantidade de task como 1. O tipo de implantação foi determinado como `EC2` e a versão da task foi `1`, pois era a primeira. A estratégia de agendamento foi de `REPLICA` e na configuração de implantação, o percentual mínimo saudável e o percentual máximo foram de `100%`. Nas restrinções de posicionamento, o tipo foi definido como `distinctInstance`, para ser implantando o container em instâncias distintas. Por fim, o load balancer foi indicado, passando a ARN do target group, o nome do container e a porta `8080` que era onde ele rodava. Na imagem 23 é visualizado o service implantado no cluster do ECS.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img22.png" alt="img22"><br>
+    <figcaption>Imagem 22.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img23.png" alt="img23"><br>
+    <figcaption>Imagem 23.</figcaption>
+</figure></div><br>
+
+
+asg
+- policy
+- service scale
+- policy service
+
+
+
+
+
+

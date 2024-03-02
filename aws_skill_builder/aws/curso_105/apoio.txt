@@ -1,0 +1,44 @@
+route53
+- hostedZone
+- acm-certificate
+- recordAcmCertificate
+
+ecs-ec2-suport1
+ - roleService
+ - rolePolicy
+ - logGroup
+ - vpcSgRule
+
+ecs-ec2-suport2
+ - roleService
+ - rolePolicy
+ - instanceProfile
+
+alb
+ - tg
+ - alb
+ - listener
+
+asg
+ - asg
+ - lt
+
+rds
+- db
+
+ecs-ec2
+ - task
+ - capacityProvider
+ - cluster
+ - service
+
+route53
+- recordLb
+
+alb
+- listener certificate
+
+asg
+- policy
+- service scale
+- policy service
