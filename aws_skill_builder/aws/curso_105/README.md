@@ -269,6 +269,13 @@ Na sequência, o cluster do ECS foi construído com o arquivo [ecsClusterEC2.py]
     <figcaption>Imagem 23.</figcaption>
 </figure></div><br>
 
+Na imagem 24 é evidenciado a aplicação web containerizada sendo acessada pelo navegador da maquina física **Windows** pelo nome de domínio construído no **Registro.BR**. Também seria possível acessar a aplicação pelo DNS do load balancer ou IP público das instâncias de container.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img24.png" alt="img24"><br>
+    <figcaption>Imagem 24.</figcaption>
+</figure></div><br>
+
 
 asg
 - policy
