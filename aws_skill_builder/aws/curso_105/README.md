@@ -276,6 +276,8 @@ Na imagem 24 é evidenciado a aplicação web containerizada sendo acessada pelo
     <figcaption>Imagem 24.</figcaption>
 </figure></div><br>
 
+Dando sequencia
+
 
 asg
 - policy
