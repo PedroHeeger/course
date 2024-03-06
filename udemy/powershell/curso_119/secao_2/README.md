@@ -96,3 +96,10 @@ Get-ChildItem c:\
 # aula 2.3
 
 
+
+
+# aula 2.4
+
+
+
+# aula 2.5
