@@ -6,8 +6,6 @@
 ### Course: <a href="./">curso_119 (Aprenda PowerShell do zero)   <img src="./0-aux/logo_course.png" alt="curso_119" width="auto" height="25"></a>
 ### Module: 2. Seção 2: Essencial do PowerShell
 
-#### <a href="">Certificate</a>
-
 ---
 
 ### Theme:
@@ -27,6 +25,7 @@
   - Markdown   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown" width="auto" height="25">
 - Integrated Development Environment (IDE) and Text Editor:
   - Visual Studio Code (VS Code)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="auto" height="25">
+  - Windows PowerShell ISE   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_powershell_ise.webp" alt="windows_powershell_ise" width="auto" height="25">
 - Versioning: 
   - Git   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="auto" height="25">
 - Repository:
@@ -34,7 +33,6 @@
 - Command Line Interpreter (CLI):
   - AWS Command Line Interface (CLI)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cli.svg" alt="aws_cli" width="auto" height="25">
   - Windows PowerShell   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_power_shell.png" alt="windows_power_shell" width="auto" height="25">
-  - Windows PowerShell ISE   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_power_shell.png" alt="windows_power_shell" width="auto" height="25">
 
 ---
 
@@ -47,26 +45,25 @@
   2.5 <a href="#item02.05">Controlando a exibição (saída) de informações</a><br>
   2.6 <a href="#item02.06">Filtrando Resultados com Where-Object</a><br>
   2.7 <a href="#item02.07">Módulos do PowerShell</a><br>
-  2.8 <a href="#item02.08">Atualize seu Bookmark</a><br>
+  2.8 Atualize seu Bookmark<br>
 
 ---
 
 ### Objective:
-O objetivo desse projeto prático foi introduzir as principais ferramentas e fórmulas do software **Microsoft Power BI**, desenvolvendo três reports, com as seguintes temáticas: **vendas**, **atendimentos**, **vendas** (Detalhada) e **análise de perfil**.
+O objetivo desse primeiro módulo do curso foi apresentar o essencial do **Windows PowerShell**, explicando alguns conceitos básicos e mostrando alguns comandos. Também foi apresentado o **Windows PowerShell ISE** que é uma Interface Development Environment (IDE) para construção de scripts em **PowerShell**.
 
 ### Structure:
-A estrutura do curso é formada por:
+A estrutura deste módulo é formada por:
 - Este arquivo de README.md.
-- A pasta [resources](./resources/) contendo os arquivos de scripts em **PowerShell** para interação com a **AWS**.
-- A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
+- O arquivo [hello_world.ps1](./hello_world.ps1)
 
 <div align="Center"><figure>
-    <img src="./0-aux/img01.png" alt="img01"><br>
+    <img src="../0-aux/md2-img1.png" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
 ### Development:
-O desenvolvimento deste módulo do Curso foi dividido em oito aulas. Abaixo é explicado o que foi desenvolvido em cada uma dessas aulas.
+O desenvolvimento deste módulo do curso foi dividido em oito aulas. Abaixo é explicado o que foi desenvolvido em cada uma dessas aulas.
 
 <a name="item02.01"><h4>2.1 Iniciando o Powershell</h4></a>[Back to summary](#item02)
 
@@ -80,7 +77,7 @@ Durante a parte prática desta aula foram executados os comando `$PSVersionTable
 
 O **PowerShell** também executa os comandos nativos como se fosse o prompt de comando. Esses são comandos padrões que são utilizados desda época do MS-DOS (`dir`, `clear`). O PowerShell executa também alguns comandos básicos do **Linux**, como: `cd`, `ls`, `cls`. Porém o **PowerShell** também utilizado os *Commands-Lets (cmdlets)*, que são comandos especiais que utilizam uma convenção muito simples onde se baseiam num padrão de verbo-substantivo. O comando `Get-Command` é um exemplo de cmdlet e ele é utilizado para listar todos comandos de todos os tipos. Existem três tipos, o *Cmdlet*, o *Alias* que é um apelido para um comando, e o *Function* que é uma função. Os comandos de cada tipo podem ser listados com adição de um parâmetro de filtro, por exemplo: `Get-Command -CommandType Cmdlet`, `Get-Command -CommandType Alias` e `Get-Command -CommandType Function`.
 
-Um outro cmdlet é o `Get-ChildItem` que lista todos os arquivos no diretório corrente, caso não seja especificado um caminho de um diretório ou arquivo. No **Windows PowerShell ISE**, aberto como administrador, foi criado um arquivo de nome [hello_world.ps1](./scripts/hello_world.ps1) armazenado dentro do diretório [scripts](./scripts/) deste módulo. O conteúdo desse arquivo exibido abaixo, limpa o buffer com o comando `clear`, em seguida exibe a mensagem `Hello World` com o comando `Write-Host "Hello World"` e então lista todos os arquivos e pastas do diretório raíz (`c:\`) através do comando `Get-ChildItem c:\`.
+Um outro cmdlet é o `Get-ChildItem` que lista todos os arquivos no diretório corrente, caso não seja especificado um caminho de um diretório ou arquivo. No **Windows PowerShell ISE**, aberto como administrador, foi criado um arquivo de nome [hello_world.ps1](./hello_world.ps1). O conteúdo desse arquivo, exibido abaixo, limpa o buffer com o comando `clear`, em seguida exibe a mensagem `Hello World` com o comando `Write-Host "Hello World"` e então lista todos os arquivos e pastas do diretório raíz (`c:\`) através do comando `Get-ChildItem c:\`.
 
 ```ps1
 # Apenas um teste inicial
@@ -105,18 +102,38 @@ Com o comando `Get-Command -CommandType cmdlet *eventlog*` foi listado apenas as
 
 Com relação a exibição das saídas de informações, existem as seguintes estruturas: `|` (Pipe ou Pipeline), `>`, `>>`, `2>`, `2>>` e `2>&1`. A primeira passa a saída para o comando subsequente para o processamento. A segunda e a terceira redirecionam a saída padrão, representada por `1`, para um arquivo. Também pode ser ocultado o número `1`. A quarta e quinta redirecionam a saída de erro, representada por `2` para um arquivo. Tanto na saída padrão quanto na saída de erro, o uso de um sinal de `>` indica que o arquivo deve substituir o conteúdo caso esse arquivo já exista. Já o sinal duplicado, `>>`, indica que o arquivo deve adicionar o novo conteúdo ao já existente. Por fim, a sexta estrutura determina que deve ser redirecionada a saída de erro para a saída padrão.
 
+Os comando `Format-List` exibe as informações em formato de lista. Já os comandos `ConvertTo-Csv` e `ConvertTo-Html` convertem as informações em arquivo **CSC** ou **HTML** respectivamente. Com o comando `Get-Process | ConvertTo-Html | Out-File processos.html` foi criado um arquivo **HTML** com os processos extraído através do comando `Get-Process`, a imagem 02 evidencia essa execução. Com o comando `Get-Date > Lista.txt` a data atual foi direcionada para o arquivo que foi exibida com o comando `type .\Lista.txt`, conforme imagem 03.
+
+<div align="Center"><figure>
+    <img src="../0-aux/md2-img2.png" alt="img02"><br>
+    <figcaption>Imagem 02.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="../0-aux/md2-img3.png" alt="img03"><br>
+    <figcaption>Imagem 03.</figcaption>
+</figure></div><br>
+
+Agora com os comandos `Get-Date > Lista.txt` e `dir c:/ >> Lista.txt` foi adicionado duas informações ao mesmo arquivo, sem que uma substituisse a outra. O arquivo foi aberto com o software **Notedpad** através do comando `notepad Lista.txt`, conforme imagem 04. Já com o comando `Get-Process | Out-GridView`, as informações dos processos foram enviadas para uma tabela interativa em uma janela separada, conforme imagem 05. Existem outras seis formas de obter uma saída de informação, além do comando `Out-GridView`, existem: `Out-File` que envia a saída para um arquivo, `Out-Default` que envia a saída para o formatador padrão e o cmdlet de saída padrão, `Out-Host` que envia a saída para a linha de comando, `Out-Printer` que envia a saída para uma impressora, `Out-String` que envia a saída para uma serie de strings e `Out-Null` que apaga a saída, em vez de enviá-la para o console.
+
+<div align="Center"><figure>
+    <img src="../0-aux/md2-img4.png" alt="img04"><br>
+    <figcaption>Imagem 04.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="../0-aux/md2-img5.png" alt="img05"><br>
+    <figcaption>Imagem 05.</figcaption>
+</figure></div><br>
 
 <a name="item02.06"><h4>2.6 Filtrando Resultados com Where-Object</h4></a>[Back to summary](#item02)
 
-
-
-
+Nesta aula, foi apresentado o comando `Get-Service` para listar todos os serviços. Com a adição do comando `Where-Object` foi possível realizar filtros específicos, como por exemplo: `Get-Service | Where-Object {$_.DisplayName -like "*Security*"}` e `Get-Service | Where-Object {$_.Status -eq "Running"}`. Também foi mostrado os seguintes tipos de operadores relacionais: `-lt` (Menor que), `-le` (Menor ou Igual), `-gt` (Maior que), `ge` (Maior ou igual), `eq` (Igual), `ne` (Não Igual) e `-like` que utilizada wildcards para comparar padrões.
 
 <a name="item02.07"><h4>2.7 Módulos do PowerShell</h4></a>[Back to summary](#item02)
 
+Módulo é uma peça fundamental para que seja possível estender a capacidade do PowerShell. Muitas vezes é necessário instalar o módulo e ele possui a extensão psm1. O comando `Get-Module -ListAvailable` exibiu todos os módulos disponíveis no sistema. O comando `Get-Command -Module PSReadLine` mostrou todos os comandos do módulo de nome determinado. O comando `Get-Module` apresentou apenas os módulos instalados na maquina e carregados na sessão do **PowerShell**, enquanto o comando `Get-InstalledModule` mostrou todos os módulos instalados na maquina.
 
+Para baixar um módulo utilizou-se o comando `Install-Module module_name` e para importá-lo para a sessão atual do **PowerShell** o comando foi o `Import-Module module_name`. Também foi possível desinstalar um módulo e atualizá-lo com os respectivos comandos `Uninstall-Module module_name` e `Update-Module module_name`. Os módulos podem ser baixados manualmente pelo navegador da web ou através de repositórios. Com o comando `Get-PSRepository` foi listado todos os repositórios, que no caso só tinha o **PSGallery** que é um repositório padrão do **PowerShell**. Foi escolhido um módulo que possibilita fazer downloads de vídeos do **Youtube** e este foi baixado com o comando `Install-Module -Name PSDownr`. Observe que foi questionado sobre a confiança neste módulo, isso aconteceu pois o **PSGallery** estava definido como `Untrusted`, ou seja, não era confiável.
 
-
-<a name="item02.08"><h4>2.8 Atualize seu Bookmark</h4></a>[Back to summary](#item02)
-
-
+Com `Get-YoutubeVideo -Syntax` foi possível verificar a sintaxe do comando `Get-YoutubeVideo -Uri https://youtu.be/Ryi9n4dIZk4 -DownloadPath C:\Users\pedro\Downloads\teste\`, que baixava um vídeo do youtube para o diretório determinado.

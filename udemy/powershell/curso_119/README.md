@@ -48,7 +48,7 @@
   2.5 [Controlando a exibição (saída) de informações]()   
   2.6 [Filtrando Resultados com Where-Object]()   
   2.7 [Módulos do PowerShell]()   
-  2.8 [Atualize seu Bookmark]()   
+  2.8 Atualize seu Bookmark   
 3. [Seção 3: Scripts no Powershell]()   
   3.1 [Estrutura de um script]()   
   3.2 [Variáveis]()   
@@ -93,34 +93,5 @@ A estrutura do curso é formada por:
 
 ### Development:
 Este projeto foi desenvolvido em quatro aulas.
-
-
-# aula 2.1
-
- $PSVersionTable.PSVersion
-Get-Host
-(Get-Host).Version
-
-# aula 2.2
-
-cd, dir, ls
-cls, clear
-
-Get-Command
-Get-Command -CommandType Cmdlet
-Get-Command -CommandType Alias
-Get-Command -CommandType Function
-
-Get-ChildItem
-
-```
-# Apenas um teste inicial
-clear
-Write-Host "Hello World"
-Get-ChildItem c:\
-```
-
-
-# aula 2.3
 
 
