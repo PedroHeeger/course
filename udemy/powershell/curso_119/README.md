@@ -38,9 +38,9 @@
 
 <h3>Course Strcuture:</h3>
 
-1. [Seção 1: Introdução]()   
-  1.1 [Introdução ao curso de PowerShell]()   
-2. [Seção 2: Essencial do PowerShell]()   
+1. Seção 1: Introdução   
+  1.1 Introdução ao curso de PowerShell   
+2. [Seção 2: Essencial do PowerShell](./secao_2/)   
   2.1 [Iniciando o Powershell]()   
   2.2 [Command-Lets]()   
   2.3 [Me dá um help please?]()   
@@ -49,7 +49,7 @@
   2.6 [Filtrando Resultados com Where-Object]()   
   2.7 [Módulos do PowerShell]()   
   2.8 Atualize seu Bookmark   
-3. [Seção 3: Scripts no Powershell]()   
+3. [Seção 3: Scripts no Powershell](./secao_3/)   
   3.1 [Estrutura de um script]()   
   3.2 [Variáveis]()   
   3.3 [Arrays]()   
@@ -64,7 +64,7 @@
   3.12 [Job e Scheduled Jobs]()   
   3.13 [New-Object - Usando o Wscript.Shell]()   
   3.14 [GitHub - Repositório para scripts]()   
-4. [Seção 4: Gerenciamento com PowerShell]()   
+4. [Seção 4: Gerenciamento com PowerShell](./secao_4/)   
   4.1 [Executando o PowerShell remotamente]()   
   4.2 [Sessão persistente usando PSSession, Invoke-Command e Jobs]()   
   4.3 [PowerShell Remoto usando maquina fora do Domínio]()   

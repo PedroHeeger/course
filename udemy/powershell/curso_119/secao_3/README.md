@@ -15,10 +15,7 @@
 ### Used Tools:
 - Operating System (OS): 
   - Windows 11 <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows11.png" alt="windows11" width="auto" height="25">
-- Cloud:
-  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
-  - Amazon Elastic Compute Cloud (EC2)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ec2.svg" alt="aws_ec2" width="auto" height="25">
   - Google Drive <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
@@ -31,7 +28,6 @@
 - Repository:
   - GitHub   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github" width="auto" height="25">
 - Command Line Interpreter (CLI):
-  - AWS Command Line Interface (CLI)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_cli.svg" alt="aws_cli" width="auto" height="25">
   - Windows PowerShell   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_power_shell.png" alt="windows_power_shell" width="auto" height="25">
 
 ---
@@ -56,12 +52,12 @@
 ---
 
 ### Objective:
-O objetivo desse primeiro módulo do curso foi apresentar o essencial do **Windows PowerShell**, explicando alguns conceitos básicos e mostrando alguns comandos. Também foi apresentado o **Windows PowerShell ISE** que é uma Interface Development Environment (IDE) para construção de scripts em **PowerShell**.
+O objetivo do segundo módulo do curso foi aprofundar nos comandos e estruturas da linguagem de script do **Windows PowerShell**, abordando assuntos como: script, variáveis, arrays, hash tables, operadores, expressões regulares, estruturas de condição e de repetição, funções, e outros conteúdos básicos.
 
 ### Structure:
 A estrutura deste módulo é formada por:
 - Este arquivo de README.md.
-- O arquivo [hello_world.ps1](./hello_world.ps1)
+- A sub-pasta [scripts](./scripts/) contendo os arquivos de scripts em **PowerShell**.
 
 <div align="Center"><figure>
     <img src="../0-aux/md2-img1.png" alt="img01"><br>
@@ -69,7 +65,7 @@ A estrutura deste módulo é formada por:
 </figure></div><br>
 
 ### Development:
-O desenvolvimento deste módulo do curso foi dividido em oito aulas. Abaixo é explicado o que foi desenvolvido em cada uma dessas aulas.
+O desenvolvimento deste módulo do curso foi dividido em quatorze aulas. Abaixo é explicado o que foi desenvolvido em cada uma dessas aulas. A maior parte das aulas foi realizada através do **Visual Studio Code (VS Code)**, porém em alguns casos específicos foi utilizado o **Windows PowerShell ISE** e também o **Windows PowerShell** pelo **Windows Terminal**.
 
 <a name="item03.01"><h4>3.1 Estrutura de um script</h4></a>[Back to summary](#item03)
 
@@ -185,19 +181,31 @@ O Workflow é utilizado quando é necessário criar scripts de longa execução 
 
 <a name="item03.12"><h4>3.12 Job e Scheduled Jobs</h4></a>[Back to summary](#item03)
 
-Jobs permitem a execução de comandos em background no computador local ou remoto. Já os Scheduled Jobs ou Trabalhos agendados são extremamente uteis quando existem tarefas que são executadas com maior frequência ou com recorrência e principalmente quando são atividades de longa duração. Para isso foi utilizado o arquivo [12-jobs.ps1](./scripts/12-jobs.ps1) onde foram desenvolvidos um job e um scheduled job. Na imagem 14 é exibido o primeiro job executado e algumas manipulações realizadas nele.
+Jobs permitem a execução de comandos em background no computador local ou remoto. Já os Scheduled Jobs ou Trabalhos agendados são extremamente uteis quando existem tarefas que são executadas com maior frequência ou com recorrência e principalmente quando são atividades de longa duração. Para isso foi utilizado o arquivo [12-jobs.ps1](./scripts/12-jobs.ps1) onde foram desenvolvidos um job e um scheduled job. Na imagem 14 é exibido o primeiro job executado e algumas manipulações realizadas nele. Como esse job era de um workflow, teve que ser executado no **Windows PowerShell ISE**.
 
 <div align="Center"><figure>
     <img src="../0-aux/md3-img14.png" alt="img14"><br>
     <figcaption>Imagem 14.</figcaption>
 </figure></div><br>
 
+No segundo exemplo, foi criado um scheduled job de nome `Backup` e três opções de triggers, uma diária, uma apenas uma vez e a outra semanal. A que era apenas uma vez, foi modificada alterando o método `AddHours(1)` para `.AddSeconds(5)` para que fosse realizada naquele momento. Ao registrar o scheduled job foi passada essa trigger de uma vez, um nome para o scheduled job, além do bloco de script que executava o comando `Copy-Item "C:\Users\pedro\Downloads\teste\*.*" "C:\Users\pedro\Downloads\teste2\" -Recurse -Force`. Este comando copiava recursivamente os arquivos de uma pasta de teste para uma outra pasta de teste, ambas dentro do diretório de `Downloads`. Após a criação do scheduled job, ele foi listado com o comando `Get-ScheduledJob`, enquanto sua trigger foi exibida pelo comando `Get-ScheduledJob | Get-JobTrigger`. Passado 25 segundos, o scheduled job foi removido com o comando `Get-ScheduledJob | Unregister-ScheduledJob`. A imagem 15 exibem três janelas, a do lado esquerdo é o **Windows PowerShell ISE**, que é divido em duas partes, sendo a parte superior o arquivo de script e a parte inferior o output do arquivo. Já do lado direito, na parte superior tem a pasta de `teste2` aberta no **Windows Explorer** evidenciando que ela recebeu os arquivos, enquanto na parte superior tem a janela do *Task Scheduler* aberta mostrando o job criado e executado com sucesso. 
+
+<div align="Center"><figure>
+    <img src="../0-aux/md3-img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
 
 <a name="item03.13"><h4>3.13 New-Object - Usando o Wscript.Shell</h4></a>[Back to summary](#item03)
 
+Com o WScript Shell é possível usar New-Object para trabalhar com componentes *Component Object Model (COM)*. Os componentes variam desde as várias bibliotecas incluídas no *Windows Script Host (WSH)* até aplicativos de *ActiveX* como o Internet Explorer que estão instalados na maioria dos sistemas. O WScript Shell é um objeto que faz parte do *Windows Script Host (WSH)* e é usado para manipular funcionalidades do sistema operacional e interagir com o ambiente do **Windows**.
 
+Dentro do diretório `script` foi construído o arquivo [13-wshell.ps1](./scripts/13-wshell.ps1). Este criou uma instância do objeto WScript.Shell e executou alguns comandos como: exibir uma mensagem em um popup e abrir o **Notepad** e escrever uma outra mensagem. A imagem 16 evidencia a execução desse arquivo.
 
-
-
+<div align="Center"><figure>
+    <img src="../0-aux/md3-img16.png" alt="img16"><br>
+    <figcaption>Imagem 16.</figcaption>
+</figure></div><br>
 
 <a name="item03.14"><h4>3.14 GitHub - Repositório para scripts</h4></a>[Back to summary](#item03)
+
+Esta aula foi uma aula teórica ensinando como trabalhar com a plataforma **GitHub** e o software **Git**. Foi explicado as principais funcionalidades, como criar um repositório local e remoto e vinculá-los. Também foi apresentado o software **GitHub Desktop** que é uma maneira de trablhar com **Git** e **GitHub** localmente através de uma interface gráfica. Como esse curso já era versionado para o repositório `courses` do meu **GitHub** e o foco não era o **GitHub** e **Git**, não foi realizado parte prática. 
