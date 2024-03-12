@@ -9,8 +9,9 @@ Write-Output "Definindo variáveis"
 $tagNameInstance = "ec2DefaultTest1"
 $sgName = "default"
 $aZ = "us-east-1a"
-$imageId = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
+# $imageId = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
 # $imageId = "ami-079db87dc4c10ac91"    # Amazon Linux 2023 AMI 2023.3.20231218.0 x86_64 HVM kernel-6.1
+$imageId = "ami-0f9c44e98edf38a2b"    # Microsoft Windows Server 2022 Full Locale English AMI provided by Amazon
 $instanceType = "t2.micro"
 $keyPairPath = "G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair"
 $keyPairName = "keyPairUniversal"
@@ -18,9 +19,9 @@ $keyPairName = "keyPairUniversal"
 # $userDataFile = "udFile.sh"
 # $deviceName = "/dev/xvda" 
 $deviceName = "/dev/sda1" 
-$volumeSize = 12
+$volumeSize = 30
 $volumeType = "gp2"
-$instanceProfileName = "instanceProfileTest"
+# $instanceProfileName = "instanceProfileTest"
 
 Write-Output "-----//-----//-----//-----//-----//-----//-----"
 $resposta = Read-Host "Deseja executar o código? (y/n) "
@@ -52,7 +53,7 @@ if ($resposta.ToLower() -eq 'y') {
 
         Write-Output "-----//-----//-----//-----//-----//-----//-----"
         Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
-        aws ec2 run-instances --image-id $imageId --instance-type $instanceType --key-name $keyPairName --security-group-ids $sgId --subnet-id $subnetId --count 1 --user-data "file://$userDataPath\$userDataFile" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --block-device-mappings "[{`"DeviceName`":`"$deviceName`",`"Ebs`":{`"VolumeSize`":$volumeSize,`"VolumeType`":`"$volumeType`"}}]" --no-cli-pager
+        aws ec2 run-instances --image-id $imageId --instance-type $instanceType --key-name $keyPairName --security-group-ids $sgId --subnet-id $subnetId --count 1 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$tagNameInstance}]" --block-device-mappings "[{`"DeviceName`":`"$deviceName`",`"Ebs`":{`"VolumeSize`":$volumeSize,`"VolumeType`":`"$volumeType`"}}]" --no-cli-pager
 
         # Write-Output "-----//-----//-----//-----//-----//-----//-----"
         # Write-Output "Criando a instância EC2 de nome de tag $tagNameInstance"
