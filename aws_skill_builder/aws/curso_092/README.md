@@ -53,7 +53,7 @@
 <a name="item0"><h3>Course Strcuture:</h3></a>
 1. <a href="#item01">1.0 Introduction to Amazon Elastic Compute Cloud (EC2) (Portuguese)</a><br>
   1.1 <a href="#item01.01">1.1 Prática 1: Instanciando uma maquina na AWS</a><br>
-2. <a href="#item02">2.0 Remote Access</a><br>
+2. <a href="#item02">2.0 Remote Access (Windows-Linux)</a><br>
   2.1 <a href="#item02.01">Prática 2: OpenSSH (Windows-Linux) - Acesso Remoto</a><br>
   2.2 <a href="#item02.02">Prática 3: OpenSSH (Windows-Linux) - Execução Remota de Comandos</a><br>
   2.3 <a href="#item02.03">Prática 4: OpenSSH (Windows-Linux) - Transferência de Arquivos</a><br>
@@ -62,17 +62,44 @@
   2.6 <a href="#item02.06">Prática 7: PuTTY (Windows-Linux) - Execução Remota de Comandos</a><br>
   2.7 <a href="#item02.07">Prática 8: PuTTY (Windows-Linux) - Transferência de Arquivos</a><br>
   2.8 <a href="#item02.08">Prática 9: PuTTY (Windows-Linux) - Transferência de Pastas</a><br>
+
+  
   2.9 <a href="#item02.09">Prática 10: VS Code (Windows-Linux) - Acesso Remoto</a><br>
   2.10 <a href="#item02.10">Prática 11: WinScp (Windows-Linux) - Transferência de Arquivos e Pastas</a><br>
   2.11 <a href="#item02.11">Prática 12: FileZilla (Windows-Linux) - Transferência de Arquivos e Pastas</a><br>
-  2.12 <a href="#item02.12">Prática 13: RDP Client (Windows-Windows Server) - Acesso Remoto</a><br>
-  2.13 <a href="#item02.13">Prática 14: RDP Client (Windows-Linux) - Acesso Remoto</a><br>
+
+  2.12 <a href="#item02.13">Prática 13: PowerShell (Windows-Linux) - Acesso Remoto</a><br>
+  2.13 <a href="#item02.12">Prática 14: PowerShell (Windows-Linux) - Execução Remota de Comandos</a><br>
+  2.14 <a href="#item02.12">Prática 15: PowerShell (Windows-Linux) - Transferência de Arquivos</a><br>
+  2.15 <a href="#item02.12">Prática 16: PowerShell (Windows-Linux) - Transferência de Pastas</a><br>
+
+2. <a href="#item02">2.0 Remote Access (Linux-Windows)</a><br>
+
+
+
+
+2. <a href="#item02">2.0 Remote Access (Windows-Windows Server)</a><br>
+  2.13 <a href="#item02.13">Prática X: PowerShell (Windows-Windows Server) - Acesso Remoto</a><br>
+  2.13 <a href="#item02.13">Prática 14: PowerShell (Windows-Windows Server) - Execução Remota de Comandos</a><br>
+
+
+2. <a href="#item02">2.0 Remote Access (Windows-Windows Server)</a><br>
+  2.13 <a href="#item02.13">Prática X: PowerShell (Windows-Windows) - Acesso Remoto</a><br>
+  2.14 <a href="#item02.14">Prática 15: PowerShell (Windows-Windows) - Execução Remota de Comandos</a><br>
+
+
+
+  2.12 <a href="#item02.12">Prática 13: RDP Client (Windows-Windows Server) - Acesso Remoto Gráfico</a><br>
+  2.13 <a href="#item02.13">Prática 14: RDP Client (Windows-Linux) - Acesso Remoto Gráfico</a><br>
+  2.14 <a href="#item02.14">Prática 15: RDP Client (Windows-Windows) - Acesso Remoto Gráfico</a><br>
+  2.15 <a href="#item02.15">Prática 16: Server Manager (Windows Server-Windows Server) - Acesso Remoto</a><br>
+
+
   2.14 <a href="#item02.14">Prática 15: AnyDesk (Windows-Android) - Acesso Remoto</a><br>
 
 
-  2.6 <a href="#item02.06">Prática X: Invoke-Command (Windows-Windows Server) - Acesso Remoto</a><br>
-  2.7 <a href="#item02.07">Prática X: PSSession (Windows-Windows Server) - Acesso Remoto</a><br>
-  2.8 <a href="#item02.07">Prática X: Server Manager (Windows Server-Windows Server) - Acesso Remoto</a><br>
+
+
 
 ---
 
@@ -132,21 +159,28 @@ Por fim, para mostrar que arquivo [udFile.sh](./resources/udFile.sh) foi executa
 
 <a name="item02"><h4>2.0 Remote Access</h4></a>[Back to summary](#item0)
 
-Este tópico foi elaborado para explicar como realizar procedimentos específicos de acesso remoto entre maquinas diferentes. O acesso remoto refere-se à capacidade de interagir com e controlar um sistema computacional, dispositivo ou rede a partir de um local diferente, permitindo a administração, transferência de arquivos ou execução de comandos à distância. Esse recurso é comumente utilizado para gerenciamento eficiente de servidores, máquinas virtuais ou dispositivos remotos. Aqui será apresentado como realizar acesso remoto, como executar um comando remotamente e como transferir arquivos entre as maquinas. 
+Este tópico foi elaborado para explicar como realizar procedimentos específicos de acesso remoto entre maquinas diferentes. O acesso remoto refere-se à capacidade de interagir com e controlar um sistema computacional, dispositivo ou rede a partir de um local diferente, permitindo a administração, transferência de arquivos ou execução de comandos à distância. Esse recurso é comumente utilizado para gerenciamento eficiente de servidores, máquinas virtuais ou dispositivos remotos. Aqui será apresentado como realizar acesso remoto, como executar um comando remotamente e como transferir arquivos entre maquinas. 
 
-Para fins de melhor compreensão, algumas considerações a serem feitas. A maquina física ou maquina local utilizada é minha maquina **Windows** principal que uso no dia a dia, quando estiver utilizando outra maquina física que não seja essa será mencionado. A cloud utilizada para criação de maquinas virtuais é a **AWS** e foi explicado no item anterior como instanciar uma maquina no serviço EC2 da **AWS**. A maquina virtual principal será um **Linux Ubuntu**, ou seja, o sistema operacional dessa instância construída. Neste caso, o usuário dessa instância será `ubuntu`, mas se a maquina fosse um **Amazon Linux**, o usuário seria `ec2-user`. É importante confirmar as informações de login do sistema operacional escolhido. 
+Para fins de melhor compreensão, algumas considerações a serem feitas. A maquina física ou maquina local utilizada é minha maquina **Windows** principal que uso no dia a dia, quando estiver utilizando outra maquina física que não seja essa, será mencionado. A cloud utilizada para criação de maquinas virtuais é a **AWS** e foi explicado no item anterior como instanciar uma maquina no serviço EC2 da **AWS**. Serão instanciadas três maquinas, a primeira um **Linux Ubuntu**, cujo usuário dessa instância é `ubuntu` e já foi criada no item anterior. A segunda instância será um **Windows Server**, cujo usuário será `Administrator`.
+
+
+
+este caso, o usuário dessa instância será `ubuntu`, mas se a maquina fosse um **Amazon Linux**, o usuário seria `ec2-user`. É importante confirmar as informações de login do sistema operacional escolhido. 
+
 
 Durante boa parte deste tópico, o processo será maquina física **Windows** para maquina virtual **Linux**, a instância. O inverso desse processo também será executado. 
 
 
 
-Com relação as tranferências de arquivos, foram criados arquivos e pastas de testes para comprovar as execuções. O arquivo [fileTransfer.txt](./resources/fileTransfer.txt) foi elaborado para simular uma transferência de arquivos. Já pasta [folderTest](./resources/folderTest/) foi criada com dois arquivos, igual o anterior, de nomes [fileTranfer1.txt](./resources/folderTest/fileTransfer1.txt) e [fileTranfer2.txt](./resources/folderTest/fileTransfer2.txt), para simular uma transferência de pasta. A pasta [receiveTest] foi desenvolvida sem nenhum item dentro, apenas para receber as transferências quando o processo fosse inverso (instância para maquina física). Nesse caso, após cada execução os arquivos dentro dela tinham que ser excluídos para executar o processo novamente, seja de uma outra forma ou da mesma forma.
+Com relação as tranferências de arquivos, foram criados arquivos e pastas de testes para comprovar as execuções. O arquivo [fileTransfer.txt](./resources/fileTransfer.txt) foi elaborado para simular uma transferência de arquivos. Já pasta [folderTest](./resources/folderTest/) foi criada com dois arquivos, iguais o anterior, de nomes [fileTranfer1.txt](./resources/folderTest/fileTransfer1.txt) e [fileTranfer2.txt](./resources/folderTest/fileTransfer2.txt), para simular uma transferência de pasta recursivamente. A pasta [receiveTest] foi desenvolvida sem nenhum item dentro, apenas para receber as transferências quando o processo fosse inverso (instância para maquina física). Nesse caso, após cada execução os arquivos dentro desta pasta tinham que ser excluídos para executar o processo novamente, seja de uma outra forma ou da mesma forma.
 
 <a name="item02.01"><h4>2.1 Prática 2: OpenSSH (Windows-Linux) - Acesso Remoto</h4></a>[Back to summary](#item0)
 
-Para realizar acesso remoto em uma instância EC2 existem algumas formas. A depender da forma escolhida pode ser necessário criar uma regra de entrada permitindo acesso a uma porta no grupo de segurança associado a essa instância. A regra liberando acesso na porta `22` do protocolo `TCP` foi criada, pois esses primeiros acessos remotos seriam por conexões SSH. *Secure Shell (SSH)* é um protocolo de rede criptografado que permite o acesso remoto seguro a um computador ou servidor. Ele fornece uma maneira segura de autenticar e transmitir dados pela internet. O SSH é comumente usado para administração remota de sistemas, transferência segura de arquivos e execução de comandos remotamente. Ele criptografa todas as informações transmitidas, incluindo senhas, para proteger contra ataques e interceptações não autorizadas.
+Nessa primeira prática de acesso remoto foi utilizada a instância do serviço **Amazon Elastic Compute Cloud (EC2)** criada no item anterior desse curso através do arquivo em **Python** [ec2Instance.py](./resources/ec2Instance.py). Esta instância possuía o sistema operacional de um **Linux Ubuntu** e foi utilizada como maquina remota na maioria das práticas desenvolvidas nesse item. Assim o usuário utilizado para acesso remoto nesta instância foi o `ubuntu`. Na instanciação da maquina foi definido o arquivo par de chaves `keyPairUniversal` que é um par de chaves já criado e utilizado como padrão nos meus projetos. Esse par de chaves foi utilizado para autenticação sempre que necessário.
 
-Uma forma bem simples de realizar o acesso remoto é com o software **OpenSSH**. Este foi instalado na maquina física **Windows**, mas também poderia ser instalado em uma maquina **Linux**. Sua instalação contemplava instalar o server e o client. O **OpenSSH** pode ser utilizado pela interface de linha de comando (CLI), um shell como o **PowerShell** no **Windows** e o **Bash** no **Linux**, ou ainda através de software específicos que fazem uso do **OpenSSH** como é o caso do **Visual Studio Code (VS Code)**. 
+O protocolo SSH foi também o mais utilizado durante essas práticas, por tanto foi necessário criar uma regra de entrada permitindo acesso na porta `22` do protocolo `TCP` no grupo de segurança associado a essa instância. *Secure Shell (SSH)* é um protocolo de rede criptografado que permite o acesso remoto seguro a um computador ou servidor. Ele fornece uma maneira segura de autenticar e transmitir dados pela internet. O SSH é comumente usado para administração remota de sistemas, transferência segura de arquivos e execução de comandos remotamente. Ele criptografa todas as informações transmitidas, incluindo senhas, para proteger contra ataques e interceptações não autorizadas.
+
+Uma forma bem simples de realizar o acesso remoto é com o software **OpenSSH**. Este foi instalado na maquina física **Windows**, mas também poderia ser instalado em uma maquina **Linux**. Sua instalação contemplava instalar o server e o client. O **OpenSSH** pode ser utilizado pela interface de linha de comando (CLI), um shell como o **PowerShell** no **Windows** e o **Bash** no **Linux**, ou ainda através de software específicos que fazem uso do **OpenSSH** como é o caso do **Visual Studio Code (VS Code)**.
 
 O comando `ssh username@host_name` é o comando básico utilizado para iniciar uma conexão SSH com uma maquina, onde `username` é o nome de usuário da maquina que deseja-se acessar e `host_name` é o nome do host, que pode ser o DNS ou IP público da instância. O parâmetro `-i` é adicionado quando é necessário informar um arquivo par de chaves privada, deve ser informado o caminho completo até o arquivo. Com os comandos `ssh -i G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem ubuntu@ec2-3-85-96-44.compute-1.amazonaws.com` e `ssh -i G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem ubuntu@3.85.96.44` executado no **PowerShell** aberto pelo software **Windows Terminal**, o acesso remoto a instância do EC2 foi realizada. Na imagem 04 abaixo é exibido o acesso remoto sendo realizado da maquina física a instância do EC2 através do **OpenSSH** no **PowerShell**.
 
@@ -155,9 +189,19 @@ O comando `ssh username@host_name` é o comando básico utilizado para iniciar u
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
+
+
+
+
+
+
+
+
+
+
 <a name="item02.02"><h4>2.2 Prática 3: OpenSSH (Windows-Linux) - Execução Remota de Comandos</h4></a>[Back to summary](#item0)
 
-Caso prefira solicitar que a instância execute um comando sem ter que fazer o acesso remoto, basta acrescentar um comando, no caso em **Bash** porque era **Linux**, ao final do comando SSH e entre aspas. O comando `ssh -i "G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem" ubuntu@3.85.96.44 "ls /"` executou o comando `ls /` para listar tudo dentro da raíz do maquina virtual **Linux Ubuntu**. Na imagem 05 é exibido o comando sendo executado na instância EC2 sem acessá-la remotamente. Ao acessar remotamente instância ou solicitar a execução de um comando, na primeira vez pode ser questionado se deseja continuar, pois a autenticidade da instância não foi estabelecida, neste caso, basta confirmar com `yes`. 
+Caso prefira solicitar que a instância execute um comando sem ter que fazer o acesso remoto, basta acrescentar um comando, no caso em **Bash** porque era um **Linux Ubuntu**, ao final do comando SSH e entre aspas. O comando `ssh -i "G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem" ubuntu@3.85.96.44 "ls /"` executou o comando `ls /` para listar tudo dentro da raíz do instância do EC2. Na imagem 05 é exibido o comando sendo executado na instância EC2 sem acessá-la remotamente. Ao acessar remotamente instância ou solicitar a execução de um comando, na primeira vez pode ser questionado se deseja continuar, pois a autenticidade da instância não foi estabelecida, neste caso, basta confirmar com `yes`. 
 
 <div align="Center"><figure>
     <img src="./0-aux/img05.png" alt="img05"><br>
@@ -335,6 +379,35 @@ Um ponto legal do **FileZilla** foi que em cada lado (esquerdo e direto), ele di
     <figcaption>Imagem 26.</figcaption>
 </figure></div><br>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <a name="item02.12"><h4>2.12 Prática 13: RDP Client (Windows-Windows Server) - Acesso Remoto</h4></a>[Back to summary](#item0)
 
 Neste caso foi explorado como realizar o acesso remoto gráfico da maquina física na instância do EC2 através do software **RDP Client**. Para isso foi preciso instanciar uma outra maquina no serviço **Amazon Elastic Compute Cloud (EC2)**. O **Remote Desktop Protocol Client (RDP Client)** é uma aplicação que permite aos usuários acessar e controlar remotamente um computador **Windows**, possibilitando a visualização e interação com a área de trabalho do sistema remoto. Dessa forma, como o **RDP Client** é destinado a maquinas **Windows** foi instanciada uma maquina **Windows Server**, cuja AMI era `ami-0f9c44e98edf38a2b`. O mesmo arquivo **Python** foi utilizado, apenas trocando a variável `image_id` por essa AMI.
@@ -381,6 +454,15 @@ Neste caso foi explorado como realizar o acesso remoto gráfico da maquina físi
 Com a instância em execução, no console da **AWS**, ela foi selecionada e opção `Connect` foi clicada, direcionando para uma nova página que era a página `Connect to instance`. Nesta, existiam três abas, sendo cada uma com uma forma de conexão. As abas eram: `Session Manager` que é um recurso do serviço **AWS System Manager (SSM)**, `RDP client` que foi a forma utilizada, e `EC2 serial console`. Em `RDP client` as instruções fornecidas para conexão remota via qualquer software **RDP Client**. O **Remote Desktop Protocol Client (RDP Client)** é uma aplicação que permite aos usuários acessar e controlar remotamente um computador **Windows**, possibilitando a visualização e interação com a área de trabalho do sistema remoto.
 
 A única informação que não era fornecida de imediato era a senha. No campo `Password` tinha a opção `Get Password` que ao clicá-la era redirecionado para a página `Get Windows password`. 
+
+
+
+
+
+`sudo apt install xrdp xorgxrdp freerdp2-x11`
+`sudo ufw status`
+`sudo ufw enable`
+`sudo ufw allow from ip to any port 3389`
 
 
 <a name="item02.14"><h4>2.14 Prática 15: AnyDesk (Windows-Android) - Acesso Remoto</h4></a>[Back to summary](#item0)
