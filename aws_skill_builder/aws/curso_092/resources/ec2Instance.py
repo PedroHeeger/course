@@ -9,7 +9,9 @@ print("EC2 CREATION")
 
 print("-----//-----//-----//-----//-----//-----//-----")
 print("Definindo variáveis")
-tag_name_instance = "ec2Curso_092"
+tag_name_instance = "ec2Curso_092_Ubuntu"
+# tag_name_instance = "ec2Curso_092_WS"
+# tag_name_instance = "ec2Curso_092_AmazonLinux"
 sg_name = "default"
 aZ = "us-east-1a"
 # image_id = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
