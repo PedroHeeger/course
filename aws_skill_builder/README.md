@@ -8,4 +8,4 @@
 This folder refers to all the courses I took on the AWS Skill Builder platform.
 
 ### Software/Subject:
-- <a href="./aws">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
+- <a href="./aws">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25"></a>

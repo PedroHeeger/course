@@ -2,7 +2,7 @@
 
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">aws_skill_builder   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/aws_skill_builder.png" alt="aws_skill_builder" width="auto" height="25"></a>
-### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
+### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_092 (Introduction to Amazon Elastic Compute Cloud (EC2))   <img src="./0-aux/logo_course.png" alt="curso_092" width="auto" height="25"></a>
 
 #### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(23-11-14)_Introduction...(EC2)_PH_AWSSB.pdf">Certificate</a>
@@ -16,10 +16,11 @@
 - Operating System (OS): 
   - Linux   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="linux" width="auto" height="25">
   - Windows 11   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows11.png" alt="windows11" width="auto" height="25">
+  - Windows Server   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_server.png" alt="windows_server" width="auto" height="25">
 - Linux Distribution: 
   - Ubuntu   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="ubuntu" width="auto" height="25">
 - Cloud:
-  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
+  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
   - Amazon Elastic Compute Cloud (EC2)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_ec2.svg" alt="aws_ec2" width="auto" height="25">
   - AWS Software Development Kit (SDK) - Boto3   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_sdk_python.svg" alt="aws_sdk" width="auto" height="25">
@@ -46,7 +47,15 @@
   - PuTTY   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/putty/putty-original.svg" alt="putty" width="auto" height="25">
   - PuTTYgen   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/puttygen.png" alt="puttygen" width="auto" height="25">
   - PuTTY PSCP   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/putty/putty-original.svg" alt="putty_pscp" width="auto" height="25">
+  - Telnet   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/telnet.png" alt="telnet" width="auto" height="25">
   - WinSCP   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/winscp.png" alt="winscp" width="auto" height="25">
+- Remote Desktop Software:
+  - Chrome Remote Desktop   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/chrome_remote_desktop.png" alt="chrome_remote_desktop" width="auto" height="25">
+  - Remote Desktop Protocol Client (RDP Client)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/rdp_client.png" alt="rdp_client" width="auto" height="25">
+  - TeamViewer   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/team_viewer.png" alt="team_viewer" width="auto" height="25">
+  - TeamViewer QuickSupport   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/team_viewer_qs.png" alt="team_viewer_qs" width="auto" height="25">
+  - TeamViewer Universal Add-On   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/team_viewer_universal_add-on.png" alt="team_viewer_universal_add-on" width="auto" height="25">
+  - Xrdp   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/xrdp.png" alt="xrdp" width="auto" height="25">
 
 ---
 
@@ -83,9 +92,10 @@
   8.2 <a href="#item08.02">Prática 19: RDP Client - Windows-Linux</a><br>
   8.3 <a href="#item08.03">Prática 20: RDP Client - Windows-Windows</a><br>
   8.4 <a href="#item08.04">Prática 20: RDP Client - Windows-Android</a><br>
+9. <a href="#item09">9.0 Acesso Remoto Gráfico (Google Chrome Desktop)</a><br>
 
 
-  7.4 <a href="#item07.04">Prática 16: Server Manager (Windows Server-Windows Server) - Acesso Remoto</a><br>
+ 7.4 <a href="#item07.04">Prática 16: Server Manager (Windows Server-Windows Server) - Acesso Remoto</a><br>
 
 
   2.14 <a href="#item02.14">Prática 15: AnyDesk (Windows-Android) - Acesso Remoto</a><br>
@@ -97,12 +107,12 @@
 ---
 
 ### Objective:
-O objetivo desse curso foi introduzir o serviço **Amazon Elastic Compute Cloud (Amazon EC2)**, um Web service que oferece capacidade computacional segura e redimensionável na nuvem. Neste curso, foi apresentado uma visão geral do serviço e demonstrado como criar e configurar uma instância do Amazon EC2.
+O objetivo desse curso foi introduzir o serviço **Amazon Elastic Compute Cloud (Amazon EC2)**, um Web service que oferece capacidade computacional segura e redimensionável na nuvem. Neste curso, foi apresentado uma visão geral do serviço e demonstrado como criar e configurar uma instância do Amazon EC2. Também foi utilizado este curso para explicar sobre e como funciona diversas formas de acesso remoto entre maquinas com diferentes tipos de sistemas operacionais.
 
 ### Structure:
 A estrutura do curso é formada por:
 - Este arquivo de README.md.
-- A pasta `resources` com os arquivos de teste de transferência, o arquivo `udFileTest.sh` (User Data) e o arquivo de script em **Python** para provisionamento da instância EC2.
+- A pasta `resources` com os arquivos de teste de transferência, o arquivo de user data e o arquivo de script em **Python** para provisionamento da instância EC2.
 - A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README. 
 
 <div align="Center"><figure>
@@ -199,27 +209,9 @@ Com o **OpenSSH** instalado na maquina física **Windows** e uma instância do E
 
 Ao acessar remotamente instância, seja também com execução de comando ou transferência de arquivos, na primeira vez pode ser questionado se deseja continuar, pois a autenticidade da instância não foi estabelecida, neste caso, basta confirmar com `yes` que a maquina será marcada como confiável e adicionada ao arquivo `know_hosts` que fica no diretório do usuário na pasta `.ssh`. Esse arquivo contém todas as maquinas que já foram marcadas como confiáveis.
 
-##### Windows -> Windows Server
-
-Agora o acesso remoto foi realizado da maquina física **Windows** em uma outra instância do EC2, um **Windows Server**. O comando utilizado foi o `ssh -i G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem administrator@3.85.96.44`. Observe que o usuário foi alterado para `administrator` que era o usuário do **Windows Server**, o IP público era outro e o arquivo par de chaves continuou o mesmo, pois todas as instâncias foram construídas com mesmo arquivo par de chaves, o `keyPairUniversal`. Na imagem 08, o acesso remoto foi executado no **PowerShell** por uma outra aba do **Windows Terminal** conectando a instância do **Windows Server**.
-
-<div align="Center"><figure>
-    <img src="./0-aux/img08.png" alt="img08"><br>
-    <figcaption>Imagem 08.</figcaption>
-</figure></div><br>
-
-##### Linux -> Windows Server
-
-Pelo acesso remoto realizado no **Linux Ubuntu** da instância do EC2, foi executado um outro acesso remoto dentro deste conectando a maquina **Linux** a instância do **Windows Server**. Para isso foi instalado o Server do **OpenSSH** com os comandos `sudo apt-get update` para atualizar os pacotes e `sudo apt-get install -y openssh-server` para instalar o Server de fato. A verificação se ele foi instalado corretamente foi feita com `ssh -V`. Com isso o comando utilizado para acesso remoto foi o mesmo anterior `ssh -i G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem administrator@3.85.96.44`, pois a conexão era na mesma instância, apenas partindo de uma maquina diferente. A imagem 09 evidencia essa etapa. 
-
-<div align="Center"><figure>
-    <img src="./0-aux/img09.png" alt="img09"><br>
-    <figcaption>Imagem 09.</figcaption>
-</figure></div><br>
-
 ##### Windows -> Windows
 
-Aqui o acesso remoto foi um pouco diferente, pois ao invés de instâncias foi utilizada outra maquina física **Windows**. Nela também foi instalado o Server do **OpenSSH**. Duas formas eram possíveis para realizar esse acesso. A primeira era com as duas maquinas na mesma rede de internet, ou seja, conectadas ao mesmo Wi-Fi. Já a outra era com elas em duas redes diferentes. No **Windows** quando o **OpenSSH** é instalado e iniciado, geralmente uma regra no Firewall é criada automaticamente liberando o acesso de qualquer IP na porta `22` do protocolo `TCP`. Com o comando `Get-NetFirewallRule -Name '*OpenSSH*'` foi possível verificar essa regra no Firewall, conforme mostrado na imagem 10.
+Aqui o acesso remoto foi um pouco diferente, pois ao invés de instâncias foi utilizada outra maquina física **Windows**. Nela também foi instalado o Server do **OpenSSH** conforme explicação dita anteriormente. Duas formas eram possíveis para realizar esse acesso. A primeira era com as duas maquinas na mesma rede de internet, ou seja, conectadas ao mesmo Wi-Fi. Já a outra era com elas em duas redes diferentes. No **Windows** quando o **OpenSSH** é instalado e iniciado, geralmente uma regra no Firewall é criada automaticamente liberando o acesso de qualquer IP na porta `22` do protocolo `TCP`. Com o comando `Get-NetFirewallRule -Name '*OpenSSH*'` foi possível verificar essa regra no Firewall, conforme mostrado na imagem 10.
 
 <div align="Center"><figure>
     <img src="./0-aux/img10.png" alt="img10"><br>
@@ -247,7 +239,7 @@ Alterando novamente, agora para aba `Escopo`, observe que tanto o endereço de I
     <figcaption>Imagem 13.</figcaption>
 </figure></div><br>
 
-Dada essas informações, algumas configurações nesta regra do firewall foram feitas nas duas maquinas direto pela interface gráfica. Na maquina física principal, na aba `Geral` a ação foi alterada para `Bloquear a conexão`, pois estava maquina seria o Client, jamais o Server, já que ela era minha maquina principal. Na maquina física secundária, na aba `Escopo` em `Endereço de IP Local` foi adicionado o endereço de IP privado desta maquina secundária (`192.168.5.187`), o que significava que só aceitaria comunicação deste IP privado da rede, caso o IP desta maquina mudasse, não aceitaria comunicação. Neste mesma aba, em `Endereço de IP Remoto` foi definido os IPs de fora desta maquina que poderiam se comunicar com ela, no caso o IP privado da maquina principal era o único definido, pois só ela poderia se comunicar com esta maquina. Aqui tem que ter atenção para qual adaptador de rede a maquina está usando, pois pode existir um IP privado do adaptador de rede sem fio `Wi-Fi` e um IP privado para o adaptador `Ethernet Ethernet`. Então tem que verificar qual adaptador ela está utilizando para se conectar. Neste caso, foi adicionado logo os dois IPs que ela utilizava (`192.168.5.168` e `192.168.5.117`). Lembrando que esses IPs privados de ambos adptadores e ambas as maquinas podem modificar, pois o roteador ou modem do ISP provisiona IPs dinâmicos. A imagem 14 ilustra essa configuração na maquina física secudária **Windows**.
+Dada essas informações, algumas configurações nesta regra do firewall foram feitas nas duas maquinas direto pela interface gráfica. Na maquina física principal, na aba `Geral` a ação foi alterada para `Bloquear a conexão`, pois estava maquina seria o Client, jamais o Server, já que ela era minha maquina principal. Na maquina física secundária, na aba `Escopo` em `Endereço de IP Local` foi adicionado o endereço de IP privado desta maquina secundária (`192.168.5.187`), o que significava que só aceitaria comunicação deste IP privado da rede, caso o IP desta maquina mudasse, não aceitaria comunicação. Neste mesma aba, em `Endereço de IP Remoto` foi definido os IPs de fora desta maquina que poderiam se comunicar com ela, no caso o IP privado da maquina principal era o único definido, pois só ela poderia se comunicar com esta maquina. Aqui tem que ter atenção para qual adaptador de rede a maquina está usando, pois pode existir um IP privado do adaptador de rede sem fio `Wi-Fi` e um IP privado para o adaptador `Ethernet Ethernet`. Então tem que verificar qual adaptador ela está utilizando para se conectar. Neste caso, foi adicionado logo os dois IPs que ela utilizava (`192.168.5.168` e `192.168.5.117`). Lembrando que esses IPs privados de ambos adptadores e ambas as maquinas podem modificar, pois o roteador ou modem do ISP provisiona IPs dinâmicos, a não ser que seja fixado um IP estático. A imagem 14 ilustra essa configuração na maquina física secudária **Windows**.
 
 <div align="Center"><figure>
     <img src="./0-aux/img14.png" alt="img14"><br>
@@ -257,13 +249,6 @@ Dada essas informações, algumas configurações nesta regra do firewall foram 
 Caso queira criar uma nova regra utilizando o **PowerShell**, o comando é o `New-NetFirewallRule -Name rule_name -DisplayName 'display_name' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22 -RemoteAddress 'ip'`, onde tem todas as definições necessárias para configurar a regra. Com relação a alteração de uma regra, isso pode ser feito com comando `Set-NetFirewallRule -Name 'rule_name' -RemoteAddress 'ip'`, indicando o nome da regra e o parâmetro que deseja alterar com a modificação. Já o comando `Remove-NetFirewallRule -Name 'name_rule'` remove uma regra de nome determinado.
 
 O acesso remoto pela mesma rede foi realizado com o comando `ssh username@ip`, não sendo necessário informar um arquivo par de chaves, pois a senha do usuário acessado seria a senha da conta da **Microsoft** vinculada a maquina deste usuário. O username e IP foram substituídos pelo nome de usuário da maquina secundária e IP privado que esta maquina utilizava na rede interna. A imagem 15 exibe esse primeiro acesso remoto sendo realizado. Atenção aqui que o shell padrão do **Windows** é o **Prompt de Comando (Cmd)**, então os comandos a serem executados tem que ser do **Cmd** ou executar o comando `powershell` para iniciar uma sessão do **PowerShell** no **Cmd**.
-
-<div align="Center"><figure>
-    <img src="./0-aux/img15.png" alt="img15"><br>
-    <figcaption>Imagem 15.</figcaption>
-</figure></div><br>
-
-Ao invés de passar uma senha, poderia também ter sido construído um arquivo par de chaves privada com o **OpenSSH** através do comando `ssh-keygen -t rsa -b 2048 -N "" -f "keyPair.pem"`. O parâmetro `-t` define o tipo de chave como `RSA`, o parâmetro `b` define o número (quantidade) de bits em `2048`, o parâmetro `-N` define a uma senha vazia e o parâmetro `-f` define onde esse arquivo será salvo, sendo que ele deve ser de extensão `.pem`. Em alguns casos, a depender da versão do shell utilizado, o parâmetro `-N` pode não funcionar muito bem com uma senha vazia, contudo não há problema passar uma senha para essa chave. Esse comando gerou dois arquivos, um era a chave privada no formato estabelecido `.pem` e o outro era a chave pública no formato `.pub`, este último deve ser mantido no computador, que no caso foi executado na maquina secundária. O arquivo de chave privada foi enviado para a maquina principal para que ela usasse para fazer o acesso através de um arquivo par de chaves ao invés da senha do usuário. A imagem 15 evidencia a criação desse arquivo par de chaves na maquina secundária. Com o comando `ssh -i "C:\Users\pedro\.ssh\keyPair" username@ip` foi realizado o acesso remoto através do arquivo par de chaves construído.
 
 <div align="Center"><figure>
     <img src="./0-aux/img15.png" alt="img15"><br>
@@ -281,6 +266,45 @@ A segunda forma de acesso remoto foi com as duas maquinas em redes diferentes, u
     <img src="./0-aux/img17.png" alt="img17"><br>
     <figcaption>Imagem 17.</figcaption>
 </figure></div><br> -->
+
+##### Windows -> Windows Server
+
+Agora o acesso remoto foi realizado da maquina física **Windows** em uma outra instância do EC2, um **Windows Server**. Como por padrão, o **OpenSSH** não vem instalado no **Windows Server**, foi preciso instalá-lo. Dessa forma, foi preciso realizar um outro tipo de acesso remoto, que era um acesso remoto gráfico com o **RDP Client**, ele vai ser explicado mais a frente. A instalação foi da mesma forma que foi executada na maquina física **Windows**. Com acesso remoto gráfico na instância, foi aberto o **PowerShell** como administrador e executado o comando `Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'` para verificar se o Client e o Server do **OpenSSH** estavam instalados. Normalmente no **Windows** ou **Windows Server**, o Client vem instalado, mas o Server tem que executar a instalação. A instalação pode ser feita pelo próprio **PowerShell** ou pela própria interface gráfica. Ambas as formas já foram explicadas anteriormente. Com o comando `Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0` executado no **PowerShell** da instância, foi instalado o Server do **OpenSSH**. Após a instalação, o comando `Get-Service sshd` verificou se o serviço já estava em execução, caso não estivesse ele seria iniciado com `Start-Service sshd`. A imagem 08 ilustra todas esses comandos que foram executados no **PowerShell** da instância **Windows Server** para instalar o Server do **OpenSSH**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img08.png" alt="img08"><br>
+    <figcaption>Imagem 08.</figcaption>
+</figure></div><br>
+
+Assim o comando `ssh -i G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem administrator@3.85.96.44` pôde ser executado. Observe que o usuário foi alterado para `administrator` que era o usuário do **Windows Server**, o IP público era outro e o arquivo par de chaves continuou o mesmo, pois todas as instâncias foram construídas com mesmo arquivo par de chaves, o `keyPairUniversal`. Acontece que como o Server do **OpenSSH** não existia, a pasta padrão `.ssh` não foi gerada no diretório do usuário, e portanto o arquivo `authorized_keys` com a chave pública dessa chave privada não existia. Como o par de chaves era criado na **AWS**, só era possível ter acesso a chave privada, a pública era a **AWS** que gerenciava e como ela era necessária para o arquivo `authorized_key` para confirmar a autenticação, a autenticação não conseguiu ser efetuada. Duas soluções eram possíveis, uma era entrar com a senha do usuário `Administrator`, que era a senha originada da desencriptação do arquivo par de chaves `keyPairUniversal`. do arquivo par de chaves `keyPairUniversal` no console da **AWS**, ou gerar um arquivo par de chaves e fazer a configuração dele no server manualmente. Caso opte pela primeira forma, o comando foi simplificado para `ssh administrator@3.85.96.44`. Na imagem 09, o acesso remoto foi executado no **PowerShell** por uma outra aba do **Windows Terminal** conectando a instância do **Windows Server**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img09.png" alt="img09"><br>
+    <figcaption>Imagem 09.</figcaption>
+</figure></div><br>
+
+Tentei fazer da segunda forma, criando um novo arquivo par de chaves manualmente, mas acredito que isso não funciona muito bem de **Windows** para **Windows** ou para **Windows Server**. Também pesquisei a respeito e não vi materiais explicando como fazer essa conexão com uso de par de chaves, acredito que par de chaves seja mais utilizados para o sistema operacional **Linux**, enquanto no **Windows** a melhor forma é utilizando a senha do usuário. Logo a frente será explicado como criar esse arquivo par de chaves no **Windows** e configurá-lo no **Linux**.
+
+##### Linux -> Windows Server
+
+Pelo acesso remoto realizado no **Linux Ubuntu** da instância do EC2, foi executado um outro acesso remoto dentro deste conectando a maquina **Linux** a instância do **Windows Server**. Para isso, além de instalar o Server do **OpenSSH** no **Windows Server**, foi preciso instalá-lo também no **Linux** através dos comandos `sudo apt-get update` para atualizar os pacotes e `sudo apt-get install -y openssh-server` para instalar o Server de fato. A verificação se ele foi instalado corretamente foi feita com `ssh -V`. Com isso o comando utilizado para acesso remoto foi o mesmo anterior `ssh -i G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair/keyPairUniversal.pem administrator@3.85.96.44`, pois a conexão era na mesma instância, apenas partindo de uma maquina diferente. A imagem 10 evidencia essa etapa. 
+
+<div align="Center"><figure>
+    <img src="./0-aux/img10.png" alt="img10"><br>
+    <figcaption>Imagem 10.</figcaption>
+</figure></div><br>
+
+##### Criação de Arquivo Par de Chave
+
+Ao invés de passar uma senha, poderia também ter sido construído um arquivo par de chaves privada com o **OpenSSH** através do comando `ssh-keygen -t rsa -b 2048 -N "" -f "keyPair"`. Isso poderia ser feito tanto no **Windows** como no **Linux**. O parâmetro `-t` define o tipo de chave como `RSA`, o parâmetro `b` define o número (quantidade) de bits em `2048`, o parâmetro `-N` define a uma senha vazia e o parâmetro `-f` define onde esse arquivo será salvo, sendo que ele deve ser de extensão `.pem`. Em alguns casos, a depender da versão do shell utilizado, o parâmetro `-N` pode não funcionar muito bem com uma senha vazia, contudo não há problema passar uma senha para essa chave. Esse comando gerou dois arquivos, um era a chave privada e o outro era a chave pública no formato `.pub`. Caso um nome não seja determinado para o arquivo, é definido o seguinte padrão `id_rsa` e `id_rsa.pub`, sendo que o `rsa` é o tipo de encriptação da chave, no qual outros tipos podem ser utilizados.
+
+Normalmente este comando é executado na maquina local, onde o arquivo de chave privada é armazenado nele e o arquivo de chave pública é enviado para a maquina remota. O arquivo de chave privada é utilizado durante o acesso remoto para autenticar, e basicamente no server ele usa esse arquivo para achar o par dele que é a chave pública e então confirmar a autenticação. A imagem 15 evidencia a criação desse arquivo par de chaves na maquina principal. 
+
+# MUDAR ESSA FOTO
+<div align="Center"><figure>
+    <img src="./0-aux/img15.png" alt="img15"><br>
+    <figcaption>Imagem 15.</figcaption>
+</figure></div><br>
 
 <a name="item03.02"><h4>3.2 Prática 3: OpenSSH - Execução Remota de Comandos</h4></a>[Back to summary](#item0)
 
@@ -464,15 +488,57 @@ Na interface do **PuTTY**, algumas alterações foram necessárias, a primeira d
 
 <a name="item05"><h4>5.0 Acesso Remoto (PowerShell)</h4></a>[Back to summary](#item0)
 
+A realização do acesso remoto com o **PowerShell** é um pouco mais complicada, pois é preciso habilitar o recurso chamado *PowerShell Remoting*. O *PowerShell Remoting (PSRemoting)* é uma tecnologia que permite a execução de comandos e scripts do **PowerShell** em computadores remotos de forma eficiente e segura. Ele possibilita a administração e automação de tarefas em múltiplos computadores de maneira centralizada, facilitando a gestão de ambientes distribuídos. O *PowerShell Remoting* utiliza o protocolo *WS-Management* (*WinRM*) para comunicação entre computadores e oferece recursos como sessões de conexão remota, execução de comandos remotos e transferência de arquivos entre sistemas. O *Web Services Management (WS-Management)* é um protocolo padrão aberto de gerenciamento baseado em web, padronizado, utilizado para executar operações de gerenciamento em sistemas remotos de maneira interoperável e segura. Ele é frequentemente usado em conjunto com o *PowerShell Remoting* para permitir a execução remota de comandos **PowerShell**. Ele oferece uma abordagem padronizada para a administração e monitoramento de recursos em ambientes distribuídos. Já o *WinRM (Windows Remote Management)* é a implementação da **Microsoft** do protocolo *WS-Management (Web Services Management)* para sistemas **Windows**.
 
+Para utilização do PSRemoting foi necessário habilitá-lo tanto no client, maquina física **Windows**, como no server, instância do EC2 **Windows Server**. Como no **Windows** da maquina física principal já estava tudo configurado, foi preciso configurar apenas na instância. Este processo necessitou da realização de algum acesso remoto com outra forma. A ideal é com o software **RDP Client** que é um acesso remoto gráfico e que vai ser explicado mais adiante. Porém, como o Server do **OpenSSH** já estava instalado, foi utilizado este software. 
+
+No **PowerShell** da maquina física foi executado o comando `ssh username@ip` para se conectar a instância do EC2 **Windows Server**, informando a senha gerada no console da **AWS** com a desencriptação do arquivo par de chaves `keyPairUniversal` na opção `RDP client` do `Connect to instance`. Ao acessar a maquina, o shell padrão era o **Prompt de Comando (Cmd)**, então foi executado o comando `powershell` para iniciar uma sessão do **PowerShell** na instância. O comando `Enable-PSRemoting` foi utilizado para habilitar o acesso remoto. Várias configurações foram feitas após confirmar todas elas com o `A`. Primeiro, ele iniciava ou reiniciava o **WinRM**, depois definia esse serviço como automático, em seguida criava um listener para aceitar requisições de qualquer endereço IP, e por fim criava duas regras de entrada no firewall de mesmo nome (`Windows Remote Management (HTTP-In)`) permitindo acesso do tráfego na porta local `5985` do protocolo *WinRM*. Também foi questionado sobre uma operação do `Set-PSSessionConfiguration` que foi confirmada com `A`. Com o comando `Get-Item WSMan:\localhost\Service\AllowRemoteAccess` foi possível verificar o `PSRemoting` habilitado.
+
+As diferenças entre essas duas regras era o `Profiles` que em uma era `Domain` e `Private` e o `Remote IP Address` em `Scope` era liberado para todos os IPs, enquanto na outra o `Profiles` era `Public` e o `Remote IP Address` era aberto apenas para sub-redes locais. Esta última configuração teve que ser alterada, modificando o `Remote IP Address` para qualquer IP, sendo executado com o comando `Get-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)" | Where-Object { $_.Profile -contains "Public" } | Set-NetFirewallRule -RemoteAddress Any`.
+
+Mesmo assim foi necessário verificar se existia uma regra no firewall do **Windows Server** da instância com o comando `Get-NetFirewallRule -DisplayName Windows Remote Management (HTTP-In)`. Caso não houvesse, era preciso criá-la com o comando `New-NetFirewallRule -Name winrm-http -DisplayName 'Allow WinRM HTTP' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 5985`. Este comando definia a regra como habilitada, com um nome, um nome de display (nome visualizado na interface gráfica), uma direção, o protocolo como `TCP`, a ação como `permitir` e a porta local como `5985`, porta padrão do *WinRM* no protocolo `HTTP`. A porta padrão do *WinRM* para o protocolo `HTTPS` era a porta `5986`. A imagem 34 evidencia a criação da regra no firewall do **Windows Server** e o `PSRemoting` habilitado para acesso remoto, ambos na instância do EC2, sendo executado pelo acesso remoto da maquina física **Windows** via **OpenSSH** no **PowerShell**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img34.png" alt="img34"><br>
+    <figcaption>Imagem 34.</figcaption>
+</figure></div><br>
+
+Na maquina local **Windows** foi necessário adicionar a instância ao arquivos de hosts confiáveis e isso foi feito com o comando `Set-Item WSMan:\localhost\Client\TrustedHosts -Value "54.196.237.188"`, passando como valor o IP ou DNS público da instância, em outros casos poderia ser até o nome da maquina, mas como estava sendo realizada com instâncias EC2 tinha que ser o IP ou DNS público. Ao executar esse comando, o arquivo era sempre substituído, para que fosse adicionado, mantendo o que já existia no arquivo, tinha que ser acrescentado ao comando o parâmetro `-Concatenate`, ficando da seguinte forma `Set-Item WSMan:\localhost\Client\TrustedHosts -Value "54.196.237.188" -Concatenate`. Com o comando `Get-Item WSMan:\localhost\Client\TrustedHosts` os hosts confiáveis definidos no arquivo eram listados. Em seguida, foi realizado um teste de conexão para verificar se a maquina local conseguia se comunicar com a instância e isso foi feito com o comando `Test-NetConnection -ComputerName 54.196.237.188 -Port 5985` passando o IP público da instância e a porta `5985`, porta padrão do *WinRM* para o protocolo `HTTP`. Essa porta já estava liberada tanto no grupo de segurança da instância como no firewall do **Windows Server** dessa mesma instância, que era o **Windows Defender Firewall**. A imagem 35 lista as maquinas no arquivo de hosts confiáveis e mostra a conexão bem sucedida da maquina física com a instância.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img35.png" alt="img35"><br>
+    <figcaption>Imagem 35.</figcaption>
+</figure></div><br>
 
 
 <a name="item05.01"><h4>5.1 Prática 11: PowerShell - Acesso Remoto</h4></a>[Back to summary](#item0)
 
 ##### Windows -> Windows Server
 
+Com tudo configurado, o passo seguinte foi realizar o acesso remoto com o **PowerShell** da maquina física **Windows** na instância **Windows Server**. Isso foi realizado executando o comando `Enter-PSSession -ComputerName 54.196.237.188 -Credential administrator` que criou uma sessão interativa. O parâmetro `-Credential` era utilizado para autenticar o usuário na maquina e seu valor obedece o padrão `domain/username`. Caso a maquina não esteja em nenhum domínio, basta passar o `username`, que no caso era o `administrator`. Se as duas maquinas tivessem no mesmo domínio, esse parâmetro não era necessário. Também foi necessário informar a senha para credenciamento deste usuário que foi a mesma senha gerada no console da **AWS** em `RDP Client`. Na imagem 36 é exibido essa conexão da maquina física com a instância do EC2. Aqui neste caso, ao realizar o acesso o shell que é iniciado foi o **PowerShell** da instância.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img36.png" alt="img36"><br>
+    <figcaption>Imagem 36.</figcaption>
+</figure></div><br>
+
+Ao executar um `Enter-PSSession` uma sessão foi criada e mesmo após sair dela, ela permanece aberta. Isso pode ser verificado com o comando `Get-PSSession` que lista todas sessões abertas. Para excluir essa sessão o comando foi o `Remove-PSSession -Id` informando o Id da sessão na lista. Também foi possível criar sessões sem entrar nelas, o que é muito útil quando deseja-se passar a sessão para uma variável ou vai reutilizá-la várias vezes, assim não é preciso digitar a senha toda vez que ela for usada. O comando utilizado foi o `New-PSSession -ComputerName 54.196.237.188 -Credential administrator` e os parâmetros utilizados foram os mesmos do `Enter-PSSession`. A imagem 37 evidencia a execução desses comandos.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img37.png" alt="img37"><br>
+    <figcaption>Imagem 37.</figcaption>
+</figure></div><br>
+
+Após criar a sessão, foi possível executá-la com o comando `Enter-PSSession -Id 6`, informando seu Id da lista. Neste caso, não foi preciso passar o IP, nem o nome de usuário e a senha, pois tudo já estava configurado anteriormente. O comando `Exit-PSSession` era utilizado para sair de uma sessão. A imagem 38 mostra essas execuções.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img38.png" alt="img38"><br>
+    <figcaption>Imagem 38.</figcaption>
+</figure></div><br>
 
 ##### Windows -> Windows
+
+
 
 
 
@@ -498,13 +564,52 @@ Install-Module -Name OpenSSHUtils -Force
 Install-Module SSHUtils -Scope CurrentUser -Force
 Get-Module -ListAvailable SSHUtils
 
-
-
 <a name="item05.02"><h4>5.2 Prática 12: PowerShell - Execução Remota de Comandos</h4></a>[Back to summary](#item0)
 
+##### Windows -> Windows Server
+
+Com relação a execução de comandos remotamente, o comando utilizado foi o `Invoke-Command -ComputerName 54.196.237.188 -Credential administrator -ScriptBlock { Get-HotFix -Id KB5012170 }`, basicamente ele utiliza os mesmos parâmetros do `PSSession` adicionando o parâmetro `ScriptBlock` com o comando que deve ser executado dentro da instância, que no caso foi `Get-HotFix -Id KB5012170`. É possível criar uma sessão e armazená-la em uma variável e utilizar como parâmetro para substituir `-ComputerName` e `-Credential`, já que a sessão já estaria totalmente configurada. Os comandos seriam `$session = New-PSSession -ComputerName 54.196.237.188 -Credential administrator` e `Invoke-Command -Session $session -ScriptBlock { Get-HotFix -Id KB5012170 }`. A imagem 39 abaixo evidencia essa etapa.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img39.png" alt="img39"><br>
+    <figcaption>Imagem 39.</figcaption>
+</figure></div><br>
+
 <a name="item05.02"><h4>5.3 Prática 13: PowerShell - Transferência de Arquivos</h4></a>[Back to summary](#item0)
+
+##### Windows -> Windows Server
+
+Para transferir um arquivo da maquina física **Windows** para instância do EC2 **Windows Server** usando o **PowerShell** é bem simples. Deve utilizar o comando de cópia padrão que é o `Copy-Item` acrescentando o parâmetro `-ToSession` no final, indicando uma sessão do `PSSession`. Atenção para os caminhos das pastas e arquivos. Com o comando `Copy-Item -Path "G:\Meu Drive\4_PROJ\course\aws_skill_builder\aws\curso_092\resources\fileTransfer.txt" -Destination "C:\Users\Administrator\" -ToSession $Session` foi utilizado uma variável com sessão já criada para enviar o arquivo [fileTransfer.txt](./resources/fileTransfer.txt) da maquina física para a instância. Em seguida, com o comando `Invoke-Command -Session $session -ScriptBlock { Get-ChildItem "C:\Users\Administrator" | Format-Table }` foi executado um comando remoto pelo **PowerShell** da maquina física na instância, para listar o diretório onde o arquivo foi enviado. A imagem 40 mostra essa transferência.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img40.png" alt="img40"><br>
+    <figcaption>Imagem 40.</figcaption>
+</figure></div><br>
+
+O processo inverso também funciona alterando a ordem dos caminhos e modificando o parâmetro `-ToSession` para `-FromSession` e informando a mesma variável da sessão. Com o comando `Copy-Item -Path "C:\Users\Administrator\fileTransfer.txt" -Destination "G:\Meu Drive\4_PROJ\course\aws_skill_builder\aws\curso_092\resources\receiveTest\" -FromSession $Session` essa transferência foi executada. Já com o comando `Get-ChildItem "G:\Meu Drive\4_PROJ\course\aws_skill_builder\aws\curso_092\resources\receiveTest" | Format-Table` foi listado o arquivo na pasta como mostrado na imagem 41 abaixo. Caso seja transferido mais de uma vez o mesmo arquivo, ele substitui o arquivo existente. 
+
+<div align="Center"><figure>
+    <img src="./0-aux/img41.png" alt="img41"><br>
+    <figcaption>Imagem 41.</figcaption>
+</figure></div><br>
+
 <a name="item05.04"><h4>5.4 Prática 14: PowerShell - Transferência de Pastas</h4></a>[Back to summary](#item0)
 
+##### Windows -> Windows Server
+
+Para transferir pasta com arquivos, ou seja, recursivamente, a ideia é a mesma. Bastava acrescentar aos comandos o parâmetro `-Recurse` no final. A pasta [folderTest](./resources/folderTest/) foi transferida para maquina remota, no caso a instância **Windows Server**, com o comando `Copy-Item -Path "G:\Meu Drive\4_PROJ\course\aws_skill_builder\aws\curso_092\resources\folderTest" -Destination "C:\Users\Administrator\" -ToSession $Session -Recurse` e foi os arquivos dessa pasta já na maquina remota foram listados com o comando `Invoke-Command -Session $session -ScriptBlock { Get-ChildItem "C:\Users\Administrator\folderTest" | Format-Table }`. A imagem 42 evidencia a transferência dessa pasta para a maquina remota.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img42.png" alt="img42"><br>
+    <figcaption>Imagem 42.</figcaption>
+</figure></div><br>
+
+O processo inverso foi realizado com o comando `Copy-Item -Path "C:\Users\Administrator\folderTest" -Destination "G:\Meu Drive\4_PROJ\course\aws_skill_builder\aws\curso_092\resources\receiveTest\" -FromSession $Session -Recurse` que transferiu essa pasta da instância do EC2 **Windows Server** para a maquina física **Windows**. Os arquivos dessa pasta foram listado com o comando `Get-ChildItem "G:\Meu Drive\4_PROJ\course\aws_skill_builder\aws\curso_092\resources\receiveTest\folderTest" | Format-Table`, conforme mostrado na imagem 43.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img43.png" alt="img43"><br>
+    <figcaption>Imagem 43.</figcaption>
+</figure></div><br>
 
 
 
