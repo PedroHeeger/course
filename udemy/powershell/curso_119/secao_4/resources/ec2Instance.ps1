@@ -6,11 +6,10 @@ Write-Output "EC2 CREATION"
 
 Write-Output "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "Definindo variáveis"
-$tagNameInstance = "ec2DefaultTest1"
+$tagNameInstance = "ec2Curso119Test1"
 $sgName = "default"
 $aZ = "us-east-1a"
 # $imageId = "ami-0c7217cdde317cfec"    # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-12-07
-# $imageId = "ami-079db87dc4c10ac91"    # Amazon Linux 2023 AMI 2023.3.20231218.0 x86_64 HVM kernel-6.1
 $imageId = "ami-0f9c44e98edf38a2b"    # Microsoft Windows Server 2022 Full Locale English AMI provided by Amazon
 $instanceType = "t2.micro"
 $keyPairPath = "G:/Meu Drive/4_PROJ/scripts/scripts_model/.default/secrets/awsKeyPair"
@@ -85,7 +84,7 @@ Write-Output "EC2 EXCLUSION"
 
 Write-Output "-----//-----//-----//-----//-----//-----//-----"
 Write-Output "Definindo variáveis"
-$tagNameInstance = "ec2DefaultTest1"
+$tagNameInstance = "ec2Curso119Test1"
 
 Write-Output "-----//-----//-----//-----//-----//-----//-----"
 $resposta = Read-Host "Deseja executar o código? (y/n) "

@@ -1,9 +1,9 @@
-# Aprenda PowerShell do zero - Módulo 2   <img src="./0-aux/logo_course.png" alt="curso_119" width="auto" height="45">
+# Aprenda PowerShell do zero - Módulo 2   <img src="../0-aux/logo_course.png" alt="curso_119" width="auto" height="45">
 
-### Repository: [course](../../../)
-### Platform: <a href="../../">udemy   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/udemy.png" alt="udemy" width="auto" height="25"></a>
-### Software/Subject: <a href="../">powershell   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_powershell.png" alt="windows_powershell" width="auto" height="25"></a>
-### Course: <a href="./">curso_119 (Aprenda PowerShell do zero)   <img src="./0-aux/logo_course.png" alt="curso_119" width="auto" height="25"></a>
+### Repository: [course](../../../../)
+### Platform: <a href="../../../">udemy   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/udemy.png" alt="udemy" width="auto" height="25"></a>
+### Software/Subject: <a href="../../">powershell   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows_power_shell.png" alt="windows_power_shell" width="auto" height="25"></a>
+### Course: <a href="../">curso_119 (Aprenda PowerShell do zero)   <img src="../0-aux/logo_course.png" alt="curso_119" width="auto" height="25"></a>
 ### Module: 2. Seção 2: Essencial do PowerShell
 
 ---
@@ -37,7 +37,7 @@
 ---
 
 ### Course Module 2 Strcuture:
-2. <a href="#item02">Seção 2: Essencial do PowerShell</a><br>
+2. <a name="item02">Seção 2: Essencial do PowerShell</a><br>
   2.1 <a href="#item02.01">Iniciando o Powershell</a><br>
   2.2 <a href="#item02.02">Command-Lets</a><br>
   2.3 <a href="#item02.03">Me dá um help please?</a><br>
@@ -50,7 +50,7 @@
 ---
 
 ### Objective:
-O objetivo desse primeiro módulo do curso foi apresentar o essencial do **Windows PowerShell**, explicando alguns conceitos básicos e mostrando alguns comandos. Também foi apresentado o **Windows PowerShell ISE** que é uma Interface Development Environment (IDE) para construção de scripts em **PowerShell**.
+O objetivo desse segundo módulo do curso foi apresentar o essencial do **Windows PowerShell**, explicando alguns conceitos básicos e mostrando alguns comandos. Também foi apresentado o **Windows PowerShell ISE** que é uma Interface Development Environment (IDE) para construção de scripts em **PowerShell**.
 
 ### Structure:
 A estrutura deste módulo é formada por:
