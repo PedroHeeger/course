@@ -69,7 +69,7 @@ O desenvolvimento deste módulo do curso foi dividido em quatorze aulas. Abaixo 
 
 <a name="item03.01"><h4>3.1 Estrutura de um script</h4></a>[Back to summary](#item03)
 
-Este módulo foi iniciado com a explição de como escrever um arquivo de script no **PowerShell ISE**. O arquivo de nome [new_script.ps1](./new_script.ps1) foi elaborado pelo **Notepad** com o comando `notepad new_script.ps1` e armazenado no diretório [scripts](./scripts/) deste módulo. Ele foi executado tanto no **PowerShell** como no **PowerShell ISE** e apenas exibiu uma mensagem determinada, conforme apresentado na imagem 02.
+Este módulo foi iniciado com a explição de como escrever um arquivo de script no **PowerShell ISE**. O arquivo de nome [01-new_script.ps1](./scripts/01-new_script.ps1) foi elaborado pelo **Notepad** com o comando `notepad new_script.ps1` e armazenado no diretório [scripts](./scripts/) deste módulo. Ele foi executado tanto no **PowerShell** como no **PowerShell ISE** e apenas exibiu uma mensagem determinada, conforme apresentado na imagem 02.
 
 <div align="Center"><figure>
     <img src="../0-aux/md3-img2.png" alt="img02"><br>
@@ -78,7 +78,7 @@ Este módulo foi iniciado com a explição de como escrever um arquivo de script
 
 <a name="item03.02"><h4>3.2 Variáveis</h4></a>[Back to summary](#item03)
 
-O assunto abordado nessa aula foi variáveis que, em programação, é um objeto situado na memória que representa um valor ou expressão. Dentro da pasta `scripts` foi construído o arquivo [02-variable.ps1](./script/02-variable.ps1) com alguns exemplos de como utilizar variáveis e alguns métodos que elas podem ter. Esse arquivo foi executado no **Visual Studio Code (VS Code)**, conforme mostrado na imagem 02 abaixo.
+O assunto abordado nessa aula foi variáveis que, em programação, é um objeto situado na memória que representa um valor ou expressão. Dentro da pasta `scripts` foi construído o arquivo [02-variable.ps1](./scripts/02-variable.ps1) com alguns exemplos de como utilizar variáveis e alguns métodos que elas podem ter. Esse arquivo foi executado no **Visual Studio Code (VS Code)**, conforme mostrado na imagem 02 abaixo.
 
 <div align="Center"><figure>
     <img src="../0-aux/md3-img3.png" alt="img03"><br>
@@ -87,7 +87,7 @@ O assunto abordado nessa aula foi variáveis que, em programação, é um objeto
 
 <a name="item03.03"><h4>3.3 Arrays</h4></a>[Back to summary](#item03)
 
-Nesta aula foi criado um outro arquivo no **VS Code**, de nome [03-arrays.ps1](./scripts/03-arrays.ps1), onde foi desenvolvido um array com dois elementos, sendo cada um deles um DNS da **Google**. Em seguida foi realizado a contagem de quantos elementos tinha no array e após a mensagem impressa foi realizado um teste de conexão em cada um dos dois DNS, conforme ilustrado na imagem 04 abaixo.
+Nesta aula foi criado um outro arquivo no **VS Code**, de nome [03-arrays.ps1](ss/03-arrays.ps1), onde foi desenvolvido um array com dois elementos, sendo cada um deles um DNS da **Google**. Em seguida foi realizado a contagem de quantos elementos tinha no array e após a mensagem impressa foi realizado um teste de conexão em cada um dos dois DNS, conforme ilustrado na imagem 04 abaixo.
 
 <div align="Center"><figure>
     <img src="../0-aux/md3-img4.png" alt="img04"><br>
