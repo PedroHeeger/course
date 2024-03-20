@@ -83,12 +83,8 @@ O objetivo desse curso foi apresentar o software **PowerShell**, introduzindo o 
 ### Structure:
 A estrutura do curso é formada por:
 - Este arquivo de README.md.
+- As pastas de cada módulo do curso com o respectio material.
 - A pasta `0-aux`, pasta auxiliar com imagens utilizadas na construção desse arquivo de README.
-
-<div align="Center"><figure>
-    <img src="./0-aux/img01.png" alt="img01"><br>
-    <figcaption>Imagem 01.</figcaption>
-</figure></div><br>
 
 ### Development:
 Este curso foi dividido em quatro módulos, sendo três módulos com conteúdos e que podem ser acessados pelos links do tópico `Course Strcuture`.
