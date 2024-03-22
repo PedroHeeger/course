@@ -48,6 +48,7 @@
   - PuTTYgen   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/puttygen.png" alt="puttygen" width="auto" height="25">
   - PuTTY PSCP   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/putty/putty-original.svg" alt="putty_pscp" width="auto" height="25">
   - Telnet   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/telnet.png" alt="telnet" width="auto" height="25">
+  - Windows Defender Firewall   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/microsoft_windows_defender_firewall.png" alt="microsoft_windows_defender_firewall" width="auto" height="25">
   - WinSCP   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/winscp.png" alt="winscp" width="auto" height="25">
 - Remote Desktop Software:
   - Chrome Remote Desktop   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/chrome_remote_desktop.png" alt="chrome_remote_desktop" width="auto" height="25">
@@ -92,7 +93,11 @@
   8.2 <a href="#item08.02">Prática 19: RDP Client - Windows-Linux</a><br>
   8.3 <a href="#item08.03">Prática 20: RDP Client - Windows-Windows</a><br>
   8.4 <a href="#item08.04">Prática 20: RDP Client - Windows-Android</a><br>
-9. <a href="#item09">9.0 Acesso Remoto Gráfico (Google Chrome Desktop)</a><br>
+9. <a href="#item09">9.0 Acesso Remoto Gráfico (Google Chrome Remote Dsktop)</a><br>
+  9.1 <a href="#item09.01">Prática 18: RDP Client - Windows-Windows Server</a><br>
+  9.2 <a href="#item09.02">Prática 19: RDP Client - Windows-Linux</a><br>
+  9.3 <a href="#item09.03">Prática 20: RDP Client - Windows-Windows</a><br>
+  9.4 <a href="#item08.04">Prática 20: RDP Client - Windows-Android</a><br>
 
 
  7.4 <a href="#item07.04">Prática 16: Server Manager (Windows Server-Windows Server) - Acesso Remoto</a><br>
@@ -794,12 +799,78 @@ Aqui foi explicado como realizar o acesso remoto da maquina física **Windows** 
 
 
 
-<a name="item02.14"><h4>2.14 Prática 15: AnyDesk (Windows-Android) - Acesso Remoto</h4></a>[Back to summary](#item0)
+<a name="item09"><h4>9.0 Acesso Remoto Gráfico (Google Chrome Remote Desktop)</h4></a>[Back to summary](#item0)
 
+<a name="item09.01"><h4>09.1 Prática 21 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
 
+Para execução de acesso remoto gráfico com o software **Google Chrome Remote Desktop** foi preciso ter este software instalado nas duas maquinas e possuir a extensão desse software para o navegador. Também foi necessário logar em uma conta da **Google**. Na maquina física **Windows** e na instância do EC2 **Windows Server**, o software foi baixado e instalado, sendo logado em cada um com uma conta do **Google** diferente. Com este software foi configurado uma maquina para estar disponível para acesso remoto 
 
+A área inicial desse software é apresentada na imagem 70 abaixo. Observe que no lado esquerdo existia um menu com as três seguintes opções: `Acesso remoto`, `Suporte remoto` e `Configurar po SSH`. A primeira opção (`Acesso remoto`) era para configurar o computador para possibilitar que ele fosse acessado remotamente. Esse computador configurado ficava vinculado a conta do **Google** e só o usuário dessa conta poderia acessar remotamente este computador. O acesso remoto era realizado pelo navegador web, por isso foi necessário ter a extensão instalada no navegador, e esse acesso poderia ser feito de qualquer lugar desde que a conta do usuário que foi configurado o computador fosse acessada. Já para que a configuração da maquina para acesso remoto fosse realizada, era preciso ter o software instalado nela. A instalação desse software, na verdade era a instalação do host que possibilitava o acesso remoto.
 
+<div align="Center"><figure>
+    <img src="./0-aux/img70.png" alt="img70"><br>
+    <figcaption>Imagem 70.</figcaption>
+</figure></div><br>
 
+Caso não tivesse instalado nenhum dos dois, primeiro iria ser direcionado para uma página do navegador para baixar a extensão desse software para este navegador, depois seria baixado o software na maquina e solicitado que aceitasse os termos para executar o instalador do o aplicativo **MSI**. Se por acaso, o software **Google Chrome Remote Desktop** não fosse instalado de imediato, era preciso localizar o instalador baixado no computador e executar ele. Para a maquina remota, ou seja, que seria acessada, só era necessário ter o software instalado, enquanto para a maquina que realizaria o acesso remoto era preciso apenas a extensão do navegador. A mesma maquina poderia ter os dois, pois o acesso remoto era realizado pelo navegador da web. Então a maquina remota poderia ser configurada para receber acesso remoto realizado pela própria maquina através de um navegador.
 
+A segunda opção (`Suporte remoto`) possuía duas alternativas, `Compartilhar esta tela` e `Conectar-se a outro computador`. A alternativa `Compartilhar esta tela` permitia o compartilhamento de tela, sendo que a maquina remota, ou seja, que iria compartilhar a tela tinha que ter os mesmos recursos da opção anterior. Caso não tivesse, o mesmo processo seria feito, pois tanto para compartilhar e para configurar o acesso remoto, a maquina remota tinha que ter instalado o software **Google Chrome Remote Desktop**. Já a maquina que iria acessar só precisva da extensão do navegador. As duas opções foram instaladas tanto na instância do EC2 **Windows Server** como na maquina física **Windows**. A imagem 71 exibe o processo de instalação da extensão do navegador web, enquanto a imagem 72 mostra a instalação do software.
 
+<div align="Center"><figure>
+    <img src="./0-aux/img71.png" alt="img71"><br>
+    <figcaption>Imagem 71.</figcaption>
+</figure></div><br>
 
+<div align="Center"><figure>
+    <img src="./0-aux/img72.png" alt="img72"><br>
+    <figcaption>Imagem 72.</figcaption>
+</figure></div><br>
+
+Após a instalação do software, nas duas opções surgiu um botão específico para cada uma. Em `Acesso remoto`, o botão foi o `Ativar` para ativar o acesso remoto desta maquina, conforme mostrado na imagem 73. Essa ativação configurava o acesso remoto nesta conta do **Google** deste usuário e para realizar a conexão era necessário entrar com a conta desse usuário pelo navegador da web de qualquer computador.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img73.png" alt="img73"><br>
+    <figcaption>Imagem 73.</figcaption>
+</figure></div><br>
+
+Ao clicar em `Ativar`, apareceu a opção `Escolher um nome` para definir um nome para o computador, o hostname atual do computador já vinha preenchido e foi decidido manter este mesmo confirmando em `Próximo`, conforme imagem 74. Em seguida, apareceu a opção `Escolher um PIN` para definir um pin de acesso a esta maquina, que era a instância do EC2 **Windows Server**, conforme imagem 75. Após isso, esta maquina era configurada para acesso remota na conta deste usuário. Isso foi realizado apenas na instância do EC2, numa conta **Google** aleatória. 
+
+<div align="Center"><figure>
+    <img src="./0-aux/img74.png" alt="img74"><br>
+    <figcaption>Imagem 74.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img75.png" alt="img75"><br>
+    <figcaption>Imagem 75.</figcaption>
+</figure></div><br>
+
+Já em `Compartilhar esta tela`, o botão foi o `+ Gerar código` para geração do código de acesso que seria utilizado pela alternativa `Conectar-se a outro computador`. Neste caso, o usuário da maquina remota poderia compartilhar a tela com outro usuário em outra maquina, diferentemente da opção de acesso remoto, onde a configuração de acesso remota era criada vinculada a conta do usuário e só ele poderia acessar. Contudo, quando uma configuração de maquina para acesso remoto era feita, ao compartilhar a tela, também era compartilhado o acesso remoto. Isso facilitava, pois assim não era necessário entrar na conta do usuário com a configuração de acesso remoto construída, sendo possível realizar o acesso com outro usuário.
+
+O código foi gerado na instância do EC2 e foi utilizado 
+
+A alternativa `Conectar-se a outro computador` era sempre utilizada para se conectar com a maquina remota através do código de acesso gerado por ele. Então bastava copiar e colar esse código. Assim teria acesso ao compartilhamento de tela da maquina remota e também do acesso remoto se na maquina remota tivesse ativada a configuração de alguma maquina. A imagem 76 exibe duas janelas, uma do acesso remoto gráfico com **RDP Client** onde foi gerado o código de acesso no navegador web da instância do EC2 para executar essa outra forma de acesso remoto com o **Google Chrome Remoto Desktop** pela maquina **Windows**. Já a segunda janela era o software **Google Chrome Remoto Desktop** sendo acesso na maquina física **Windows**, onde foi digitado o código para acessar remotomente a instância. Neste momento, a maquina física **Windows** tinha a conta do **Google** logada na minha conta principal e a instância com a conta do **Google** logada em outra conta aleatória. Mas mesmo assim foi possível realizar o acesso remoto, pois a configuração da maquina já tinha sido feita na conta do **Google** aleatória.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img76.png" alt="img76"><br>
+    <figcaption>Imagem 76.</figcaption>
+</figure></div><br>
+
+Após digitar o código e clicar em conectar, uma mensagem apareceu na maquina remota questionando sobre a permissão do acesso remoto e então foi confirmada a permissão para que a maquina física **Windows** tivesse acesso a instância **Windows Server**, conforme apresentado na imagem 77. Na imagem 78 é exibido no software **Google Chrome Remoto Desktop** da maquina física **Windows** o acesso remoto gráfico realizado, onde a instância do EC2 estava sendo controlada pela maquina física. Para encerrar foi só clicar em `Stop Sharing` em qualquer uma das maquinas para interromper o compartilhamento com acesso remoto.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img77.png" alt="img77"><br>
+    <figcaption>Imagem 77.</figcaption>
+</figure></div><br>
+
+<div align="Center"><figure>
+    <img src="./0-aux/img78.png" alt="img78"><br>
+    <figcaption>Imagem 78.</figcaption>
+</figure></div><br>
+
+A última opção era `Configurar por SSH` que basicamente executava o mesmo processo da opção `Acesso Remoto`, onde configurava a maquina para acesso remoto, só que isso era feito com comandos de shell. Então para executar isso, foi removido a configuração existente na instância. Na opção `Configurar por SSH` foi clicado em `Começar` e ele informa que deve ser baixado o host do software na maquina que seria configurado o acesso remoto, o que já tinha sido feito, portanto foi clicado em `Próximo`. Em seguida ele pede para autorizar antes de configurar um computador. Após isso, três comandos de script foram fornecidos, sendo eles para **Cmd**, **PowerShell** e **Linux Debian**. O comando do **PowerShell** foi copiado e colocado no **PowerShell**. Ao executar foi solicitado que informasse o pin duas vezes. A imagem 79 mostra essa execução no **PowerShell** da instância **Windows Server**.
+
+<div align="Center"><figure>
+    <img src="./0-aux/img79.png" alt="img79"><br>
+    <figcaption>Imagem 79.</figcaption>
+</figure></div><br>
