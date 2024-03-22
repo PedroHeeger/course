@@ -874,3 +874,5 @@ A última opção era `Configurar por SSH` que basicamente executava o mesmo pro
     <img src="./0-aux/img79.png" alt="img79"><br>
     <figcaption>Imagem 79.</figcaption>
 </figure></div><br>
+
+<a name="item09.02"><h4>09.2 Prática 21 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
