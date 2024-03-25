@@ -876,3 +876,5 @@ A última opção era `Configurar por SSH` que basicamente executava o mesmo pro
 </figure></div><br>
 
 <a name="item09.02"><h4>09.2 Prática 22 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
+
+<a name="item09.03"><h4>09.3 Prática 22 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
