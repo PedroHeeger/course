@@ -801,7 +801,7 @@ Aqui foi explicado como realizar o acesso remoto da maquina física **Windows** 
 
 <a name="item09"><h4>9.0 Acesso Remoto Gráfico (Google Chrome Remote Desktop)</h4></a>[Back to summary](#item0)
 
-<a name="item09.01"><h4>09.1 Prática 21 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
+<a name="item09.01"><h4>09.1 Prática 21 Google Chrome Remote Desktop - Windows-Windows Server</h4></a>[Back to summary](#item0)
 
 Para execução de acesso remoto gráfico com o software **Google Chrome Remote Desktop** foi preciso ter este software instalado nas duas maquinas e possuir a extensão desse software para o navegador. Também foi necessário logar em uma conta da **Google**. Na maquina física **Windows** e na instância do EC2 **Windows Server**, o software foi baixado e instalado, sendo logado em cada um com uma conta do **Google** diferente. Com este software foi configurado uma maquina para estar disponível para acesso remoto 
 
@@ -875,6 +875,9 @@ A última opção era `Configurar por SSH` que basicamente executava o mesmo pro
     <figcaption>Imagem 79.</figcaption>
 </figure></div><br>
 
-<a name="item09.02"><h4>09.2 Prática 22 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
+<a name="item09.02"><h4>09.2 Prática 22 Google Chrome Remote Desktop - Windows-Linux</h4></a>[Back to summary](#item0)
 
-<a name="item09.03"><h4>09.3 Prática 22 RDP Client - Windows-Windows Server</h4></a>[Back to summary](#item0)
+
+
+
+<a name="item09.03"><h4>09.3 Prática 22 Google Chrome Remote Desktop - Windows-Windows</h4></a>[Back to summary](#item0)
