@@ -2,6 +2,7 @@
 alura/
 cev/*
 !cev/README.md
+!cev/mysql
 cisco/
 ebac/
 
