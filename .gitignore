@@ -1,6 +1,7 @@
 # .github/
 alura/
-cev/
+cev/*
+!cev/README.md
 cisco/
 ebac/
 
