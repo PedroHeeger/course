@@ -103,7 +103,7 @@
  7.4 <a href="#item07.04">Prática 16: Server Manager (Windows Server-Windows Server) - Acesso Remoto</a><br>
 
 
-  2.14 <a href="#item02.14">Prática 15: AnyDesk (Windows-Android) - Acesso Remoto</a><br>
+
 
 
 
