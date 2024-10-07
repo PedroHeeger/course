@@ -12,4 +12,4 @@ This folder refers to all the courses I took on the Curso em Vídeo (CEV) platfo
 
 
 
-- <a href="./curso_066">curso_066 (Dev Week - Ifood Ciência de Dados com Python)   <img src="./curso_066/0-aux/dev_week.png" alt="curso_066" width="auto" height="25"></a>
+- <a href="./curso_122">curso_122 (MySQL)   <img src="./curso_122/0-aux/logo_course.png" alt="curso_122" width="auto" height="25"></a>
