@@ -94,13 +94,34 @@ A partir desse ponto, surgiram vários bancos de dados, como o **Oracle**, que �
 
 
 
+
+
+
+
+
+
+
+
+
+
 <a name="item01.03"><h4>Aula 2b – Instalando o XAMPP</h4></a>[Back to summary](#item01)
 
 
 
 
 
+
+
+
+
+
+
+
+
 <a name="item01.04"><h4>Aula 3 – Criando o primeiro Banco de Dados</h4></a>[Back to summary](#item01)
+
+
+
 
 
 
