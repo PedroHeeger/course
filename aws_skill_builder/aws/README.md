@@ -27,3 +27,4 @@ This folder refers to all the courses I took on the AWS Skill Builder platform r
 - <a href="./curso_110">curso_110 (Introduction to Amazon Elastic Load Balancer - Application)   <img src="./curso_110/0-aux/logo_course.png" alt="curso_110" width="auto" height="25"></a>
 - <a href="./curso_111">curso_111 (Introdução ao Amazon Bedrock)   <img src="./curso_111/0-aux/logo_course.png" alt="curso_111" width="auto" height="25"></a>
 - <a href="./curso_112">curso_112 (Amazon CodeWhisperer: Introdução)   <img src="./curso_112/0-aux/logo_course.png" alt="curso_112" width="auto" height="25"></a>
+- <a href="./curso_125">curso_125 (Getting Started with Amazon Simple Storage Service)   <img src="./curso_125/0-aux/logo_course.png" alt="curso_125" width="auto" height="25"></a>
