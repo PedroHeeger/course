@@ -2,7 +2,7 @@
 
 ### Repository: [course](../../../)   
 ### Platform: <a href="../../">aws_skill_builder   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/plataforma/aws_skill_builder.png" alt="aws_skill_builder" width="auto" height="25"></a>
-### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25"></a>
+### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_125 (Getting Started with Amazon Simple Storage Service)   <img src="./0-aux/logo_course.png" alt="curso_125" width="auto" height="25"></a>
 
 #### <a href="">Certificate</a>
@@ -16,8 +16,9 @@
 - Operating System (OS): 
   - Windows 11   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/windows11.png" alt="windows11" width="auto" height="25">
 - Cloud:
-  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="aws" width="auto" height="25">
+  - Amazon Web Services (AWS)   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25">
 - Cloud Services:
+  - Amazon Simple Storage Service (S3)   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/cloud/aws_s3.svg" alt="aws_s3" width="auto" height="25">
   - Google Drive   <img src="https://github.com/PedroHeeger/main/blob/main/0-aux/logos/software/google_drive.png" alt="google_drive" width="auto" height="25">
 - Language:
   - HTML   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html" width="auto" height="25">
@@ -32,14 +33,14 @@
 ---
 
 <a name="item0"><h3>Course Strcuture:</h3></a>
-1. <a href="#item01">Getting Started with Amazon Simple Storage Service (Amazon S3) (Portuguese)</a><br>
+1. Getting Started with Amazon Simple Storage Service (Amazon S3) (Portuguese)<br>
 1.1 <a href="#item01.1">Fundamentos do Amazon S3</a><br>
 1.2 <a href="#item01.2">Segurança e Gerenciamento de Dados</a><br>
 
 ---
 
 ### Objective:
-Este curso oferece o conhecimento essencial para iniciar o uso do **Amazon Simple Storage Service (Amazon S3)**. Foram abordados os principais componentes do serviço e a configuração adequada dos mesmos. O conteúdo também incluíu o processo de upload de dados no **Amazon S3** e a utilização de outros serviços da **Amazon Web Services (AWS)** para transferências em grande escala. Além disso, foram explorados os fundamentos de segurança no **Amazon S3**. Por fim, foi analisada a integração do **Amazon S3** com outros serviços, em diferentes cenários de aplicação. Os objetivos específicos incluíram:
+Este curso oferece o conhecimento essencial para iniciar o uso do **Amazon Simple Storage Service (Amazon S3)**. Foram abordados os principais componentes do serviço e a configuração adequada dos mesmos. O conteúdo também incluiu o processo de upload de dados no **Amazon S3** e a utilização de outros serviços da **Amazon Web Services (AWS)** para transferências em grande escala. Além disso, foram explorados os fundamentos de segurança no **Amazon S3**. Por fim, foi analisada a integração do **Amazon S3** com outros serviços, em diferentes cenários de aplicação. Os objetivos específicos incluíram:
 - Descrever os componentes essenciais de uma implementação do **Amazon S3**;
 - Detalhar as ferramentas e operações disponíveis para interação com o **Amazon S3**;
 - Explicar os requisitos e limitações envolvidos no upload de dados para o **Amazon S3**;
@@ -91,9 +92,9 @@ O **Amazon S3** é um sistema de armazenamento de objetos que utiliza chaves exc
 - Metadados: São informações adicionais associadas a um objeto. Existem dois tipos de metadados no S3:
   - Metadados de sistema, controlados pelo S3, como a data de criação e o tamanho do objeto.
   - Metadados controlados pelo usuário, como a classe de armazenamento e configurações de criptografia.
-- Controle de acesso: O S3 permite o controle detalhado de quem pode acessar os objetos por meio de políticas baseadas em recursos (como ACLs e políticas de bucket) e políticas baseadas em usuário.
+- Controle de acesso: O S3 permite o controle detalhado de quem pode acessar os objetos por meio de políticas baseadas em recursos (como ACLs e políticas de bucket) e políticas baseadas em usuário (IAM Policies).
 
-Uma tag é um rótulo que você atribui a um recurso da **AWS**, composto por uma chave e um valor opcional, definidos para atender às necessidades da sua empresa. No **Amazon S3**, as tags são pares de chave-valor aplicáveis a um bucket ou a objetos individuais, facilitando a identificação, pesquisa e categorização de dados. O uso de tags para os objetos permite gerenciar efetivamente o armazenamento e fornecer insights sobre como os dados são usados. As tags recém-criadas atribuídas a um bucket não são aplicadas retroativamente aos objetos filhos existentes. Existem dois tipos de tags:
+Uma tag é um rótulo que é atribuído a um recurso da **AWS**, composto por uma chave e um valor opcional, definidos para atender às necessidades da sua empresa. No **Amazon S3**, as tags são pares de chave-valor aplicáveis a um bucket ou a objetos individuais, facilitando a identificação, pesquisa e categorização de dados. O uso de tags para os objetos permite gerenciar efetivamente o armazenamento e fornecer insights sobre como os dados são usados. As tags recém-criadas atribuídas a um bucket não são aplicadas retroativamente aos objetos filhos existentes. Existem dois tipos de tags:
 - Tags de Bucket: São usadas para rastrear o custo de armazenamento e outras métricas ao associar tags de alocação de custos a buckets do S3. Essas tags ajudam a segmentar os custos no relatório de alocação de custos da **AWS**, mas são aplicáveis apenas a buckets, e não a objetos individuais.
 - Conjunto de Tags de Bucket: Cada bucket pode ter um conjunto de até 50 tags. As chaves dentro desse conjunto precisam ser únicas, mas os valores podem se repetir. Por exemplo, o valor "ocean-life" pode aparecer em chaves diferentes, como project/ocean-life e topic/ocean-life. No entanto, uma chave duplicada resultaria em erro.
 - Tags de Objetos: Permitem categorizar e consultar objetos no **Amazon S3**. As tags podem ser adicionadas durante ou após o upload de um objeto, com até 10 tags por objeto. As chaves podem ter até 128 caracteres e os valores, até 255. As tags diferenciam maiúsculas de minúsculas e seguem as regras de exclusividade de chave para o mesmo objeto.
@@ -120,13 +121,60 @@ O **Amazon S3** pode ser utilizado para hospedar um site estático. Em um site e
 
 Para garantir a melhor compatibilidade, recomenda-se evitar o uso de pontos (.) em nomes de bucket, exceto ao usar buckets para hospedagem de sites estáticos. Incluir pontos em um nome de bucket que não seja para um site estático impede o uso do endereçamento no estilo host virtual por HTTPS, a menos que a validação de certificado própria seja realizada. Isso se deve ao fato de que os certificados de segurança utilizados para hospedagem virtual de buckets não funcionam para buckets com pontos nos nomes. A hospedagem virtual é a prática de atender a vários sites a partir de um único servidor web.
 
+Após a criação de um bucket, existem várias maneiras de adicionar, substituir ou recuperar objetos no bucket do **Amazon S3**. As três principais ferramentas para interagir com buckets são o Console da **AWS**, a Interface de Linha de Comando (CLI) da **AWS** e o Kit de Desenvolvimento de Software (SDK) da **AWS**. Cada uma dessas ferramentas permite trabalhar com os dados de acordo com as preferências e necessidades do usuário.
+- **AWS Management Console**: O Console de Gerenciamento da **AWS** oferece uma interface web simples para interagir com os serviços da **AWS**. É necessário fazer login utilizando o nome da conta e a senha da **AWS**. Se a autenticação multifatorial estiver habilitada, será solicitado o código de autenticação do dispositivo. Com o Console de Gerenciamento da **AWS** para **Amazon S3**, é possível visualizar buckets e objetos, realizar uploads e downloads de dados, além de gerenciar permissões e segurança por meio da interface gráfica. Quase todas as operações de bucket podem ser executadas sem necessidade de escrever código. Ao fazer upload de dados pelo Console, o arquivo máximo permitido é de 160 GB. Para arquivos maiores que esse limite, é recomendado utilizar a **AWS CLI**, o SDK da **AWS** ou a API REST do **Amazon S3**.
+- **AWS Command Line Interface (AWS CLI)**: A CLI da **AWS** é uma ferramenta unificada para gerenciar os serviços da **AWS**. É ideal para gerenciar dados, buckets e objetos do **Amazon S3**, especialmente para usuários que preferem ou precisam da funcionalidade da linha de comando. É possível fazer upload, download e gerenciar objetos manualmente utilizando os comandos da **AWS CLI** ou automatizar processos através de scripts.
+- **AWS Software Development Kit (AWS SDK)**: O SDK da **AWS** simplifica a codificação ao fornecer bibliotecas específicas para diferentes linguagens de programação, facilitando a criação de aplicações na **AWS**. O uso do **Amazon S3** pode ser simplificado nas aplicações através da API adequada para a linguagem de programação ou plataforma escolhida. É possível enviar solicitações autenticadas ao **Amazon S3** utilizando o SDK da **AWS** ou realizando chamadas de API REST diretamente nas aplicações. Diversos SDKs estão disponíveis, permitindo desenvolver soluções conforme necessário para o **Amazon S3**.
 
+A API REST é uma interface HTTP para o **Amazon S3**. Com essa API, é possível utilizar solicitações HTTP padrão para criar, buscar e excluir buckets e objetos. Qualquer toolkit que suporte HTTP pode ser utilizado com a API REST, inclusive navegadores, desde que os objetos possam ser lidos anonimamente. O **Amazon S3** disponibiliza a API REST, permitindo que objetos e buckets sejam considerados recursos, cada um identificado por um URL único. Os modelos de endereçamento são URLs que definem a forma de localizar dados em um bucket do S3, e o **Amazon S3** oferece suporte a dois tipos: URLs de caminho e URLs de hospedagem virtual.
+- URLs de caminho: Nesses URLs, o nome do bucket é colocado após o endpoint global ou específico da região. A formatação do URL segue o padrão: `https://region-specific-endpoint/bucket/object`. O bucket é sempre um subdomínio de s3.amazonaws.com, e quando o DNS resolve esse URL, o endpoint será um subdomínio de s3.amazonaws.com. Importante ressaltar que, com URLs de caminho, várias contas de diferentes empresas e proprietários mapeiam para este único subdomínio, s3.amazonaws.com. Para um URL personalizado, recomenda-se optar por URLs hospedadas virtualmente. Vale mencionar que existe um plano de descontinuação para URLs de caminho em buckets recém-criados. Embora o suporte continue para URLs de caminho criadas anteriormente, uma vez que esse recurso seja obsoleto, a criação de novas URLs de caminho não será mais possível. Essas informações devem ser consideradas ao planejar o futuro do ambiente.
+- Hospedagem virtual: é a prática de atender vários sites a partir de um único servidor web. Uma forma de diferenciar sites é através do nome do host (nome do bucket) da solicitação. Em um URL de hospedagem virtual, o nome do bucket faz parte do nome de domínio, o que o torna mais legível e amigável ao usuário final, no qual a formatação segue o padrão: `https://bucket.region-specific-endpoint/object`. Além disso, a hospedagem virtual apresenta outros benefícios. É possível personalizar completamente a URL dos recursos do **Amazon S3** nomeando o bucket após o nome de domínio registrado, tornando esse nome um alias DNS para o **Amazon S3**. Por exemplo, um URL personalizado para um curso de introdução poderia ser: `http://getting-started-with-s3.net/`. A hospedagem virtual também permite a publicação no “diretório raiz” do servidor virtual do bucket, um recurso importante que possibilita que aplicativos pesquisem arquivos em um local padronizado do diretório raiz. Ao utilizar buckets no estilo de hospedagem virtual com SSL, o certificado curinga SSL apenas corresponde a buckets que não contêm pontos (.). Para contornar essa limitação, recomenda-se não utilizar pontos (.) em nomes de buckets ou utilizar HTTP para implementar uma lógica própria de verificação de certificado.
 
+O **Amazon S3** utiliza o Sistema de Nomes de Domínio (DNS — Domain Name System) para direcionar solicitações para as instalações apropriadas. Embora esse sistema opere com eficiência, podem ocorrer erros de roteamento temporários. Caso uma solicitação chegue a um local incorreto no **Amazon S3**, a resposta será um redirecionamento temporário, solicitando que o usuário reenvie a solicitação para um novo endpoint. Se a solicitação estiver malformada, o **Amazon S3** utiliza redirecionamentos constantes para orientar sobre como realizar a solicitação corretamente. Aqui está um exemplo do passo a passo do roteamento de uma solicitação DNS hipotética:
+- O cliente realiza uma solicitação para recuperar o objeto dolphins.jpg.
+- O cliente deseja visualizar o objeto dolphins.jpg armazenado no **Amazon S3** e faz uma solicitação de DNS para obter o endereço de s3.amazonaws.com.
+- O cliente recebe um ou mais endereços IP para instalações capazes de processar a solicitação. Neste exemplo, o endereço IP é do Servidor B.
+- O cliente faz uma solicitação para a Instalação B do **Amazon S3**.
+- O Servidor B retorna uma cópia do objeto dolphins.jpg para o cliente.
 
+O **Amazon S3** usa o Sistema de Nomes de Domínio (DNS — Domain Name System) para rotear solicitações para instalações capazes de processá-las. Esse sistema funciona com eficiência, mas podem ocorrer erros de roteamento temporários. Se uma solicitação chega na localização errada do **Amazon S3**, ele responde com um redirecionamento temporário pedindo que o solicitante reenvie a solicitação para um novo endpoint. Se uma solicitação é formada de maneira incorreta, o **Amazon S3** usa redirecionamentos constantes para fornecer direções sobre como executar a solicitação corretamente. Observe o passo a passo o roteamento de uma solicitação DNS hipotética:
+- O cliente está fazendo uma solicitação para recuperar o objeto dolphins.jpg.
+- O cliente deseja visualizar o objeto dolphins.jpg armazenado no **Amazon S3**. O cliente faz uma solicitação de DNS para obter o endereço de s3.amazonaws.com (`https://getting-started-with-s3.s3.amazonaws.com/dolphins.jpg`); 
+- O cliente recebe um ou mais endereços IP para instalações capazes de processar a solicitação. Neste exemplo, o endereço IP é para o Servidor B; 
+- O cliente faz uma solicitação para a Instalação B do **Amazon S3**; 
+- O Servidor B retorna uma cópia do objeto dolphin.jpg para o cliente.
 
-
+Um dos requisitos de design do **Amazon S3** é garantir uma disponibilidade extremamente alta. Uma das formas de atender a esse requisito é atualizando os endereços IP associados ao endpoint do **Amazon S3** no DNS, conforme necessário. Devido à natureza distribuída do **Amazon S3**, as solicitações podem, em alguns casos, ser temporariamente direcionadas para a região errada, especialmente logo após a criação ou exclusão de buckets. Um redirecionamento temporário é um tipo de resposta de erro que indica que o solicitante deve reenviar a solicitação para um endpoint diferente. Por exemplo, se um bucket recém-criado for acessado imediatamente após sua criação, pode ocorrer um redirecionamento temporário, dependendo da localização do bucket. Se o bucket foi criado na região Leste dos EUA (Norte da Virgínia), não haverá redirecionamento, pois essa é também o endpoint padrão do **Amazon S3**. No entanto, se o bucket foi criado em qualquer outra região da **AWS**, todas as solicitações para esse bucket serão encaminhadas para o endpoint padrão até que a entrada DNS do bucket seja totalmente propagada. O endpoint padrão, nesse caso, redireciona a solicitação para o endpoint correto, retornando uma resposta HTTP 302. Esses redirecionamentos temporários incluem um URI que aponta para a região correta, permitindo que a solicitação seja reenviada imediatamente. Aqui está um exemplo do passo a passo de um redirecionamento temporário de DNS hipotético:
+- O cliente faz uma solicitação de DNS para obter o objeto dolphin.jpg armazenado no Amazon S3;
+- O cliente recebe um endereço IP de uma região que pode processar a solicitação. Neste exemplo, o IP retornado é 192.168.7.52; 
+- O cliente faz uma solicitação para a Região B do Amazon S3, localizada em 192.168.7.52; 
+- A Região B retorna um redirecionamento indicando que o objeto está disponível no Local D, em 192.168.7.54;
+- O cliente reenvia a solicitação para a Região D, em 192.168.7.54;
+- A Região D retorna uma cópia do objeto solicitado.
 
 <a name="item01.2"><h4>Segurança e Gerenciamento de Dados</h4></a>[Back to summary](#item0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
