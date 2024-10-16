@@ -203,6 +203,83 @@ A **AWS** disponibiliza ferramentas de linha de comando (CLI) e scripts facilita
 - Ferramentas **rsync** e de terceiros: Com base nas suas necessidades, é possível utilizar o **rsync**, uma ferramenta de código aberto, juntamente com outras ferramentas de sistema de arquivos de terceiros, para copiar dados diretamente para os buckets do **Amazon S3**. Essa abordagem permite sincronizar arquivos e diretórios de maneira eficiente, garantindo que as transferências sejam rápidas e seguras.
 - **Amazon S3** e **AWS CLI**: A combinação do **Amazon S3** com a **AWS CLI** permite que escrever comandos e scripts personalizados, auxiliando na movimentação direta de dados para os buckets do **Amazon S3**. A **AWS CLI** oferece um conjunto robusto de comandos que simplificam a interação com os serviços da **AWS**, facilitando operações como upload, download e gerenciamento de objetos armazenados.
 
+Assim como em todos os serviços da **AWS**, a segurança está presente em todas as camadas do **Amazon S3**. Por padrão, todos os recursos do **Amazon S3** são privados e acessíveis apenas pelo proprietário do recurso ou administrador da conta. Ao implementar uma postura de segurança rigorosa, o **Amazon S3** permite que se trabalhe de forma retroativa, configurando e ajustando políticas de acesso. Isso auxilia no alinhamento com os requisitos organizacionais, de governança, segurança e conformidade. Uma das melhores práticas de segurança na **AWS** é projetar o ambiente com base no princípio do menor privilégio.
+
+O menor privilégio é uma estratégia de design de segurança em que as permissões concedidas permitem apenas os direitos mínimos necessários para a execução de uma tarefa. Com o privilégio mínimo, o ponto de partida é um conjunto estrito de permissões mínimas, concedendo permissões adicionais somente quando necessário. Iniciar com restrições rigorosas e adicioná-las conforme necessário é mais seguro do que começar com permissões amplas e flexíveis e, depois, tentar torná-las mais restritivas. Ao trabalhar com o **Amazon S3**, é importante identificar o que cada usuário, função ou aplicativo precisa realizar em seus buckets e, em seguida, criar políticas que permitam a execução apenas dessas tarefas específicas. Ao conceder permissões, deve-se decidir quem recebe as permissões e para quais recursos do **Amazon S3**. A habilitação de ações específicas sobre esses recursos deve ser limitada às permissões necessárias para a tarefa. Implementar o acesso com o menor privilégio é essencial para reduzir vulnerabilidades de segurança.
+
+Um bucket recém-criado é acessível apenas ao usuário que o criou ou ao proprietário da conta. Para permitir o acesso a outros usuários, é necessário usar um ou mais dos seguintes mecanismos de gerenciamento de acesso:
+- AWS Identity and Access Management (IAM): O IAM permite a criação de usuários e a definição de permissões de acesso aos recursos, como buckets e objetos.
+- Políticas de Bucket: As políticas de bucket configuram permissões para todos os objetos ou para um subconjunto específico, utilizando tags ou prefixos.
+- URLs Pré-assinadas: URLs pré-assinadas fornecem acesso temporário, permitindo que outros usuários tenham permissão limitada por um período específico.
+- Listas de Controle de Acesso (ACLs): ACLs podem ser utilizadas para conceder permissões a objetos individuais, permitindo o acesso a usuários autorizados. Observação: as ACLs do **Amazon S3** são uma forma de controle de acesso mais antiga, anterior à implementação do IAM. A **AWS** recomenda preferir políticas de bucket do **Amazon S3** ou políticas do IAM para gerenciar permissões de forma mais eficiente.
+
+
+A **AWS** introduziu o recurso Block Public Access (BPA) no **Amazon S3** para ajudar a evitar a exposição acidental de dados. O BPA permite gerenciar o acesso público tanto no nível da conta quanto no nível de buckets, garantindo que os dados não sejam tornados públicos de forma inadvertida. Quando um bucket é criado, o acesso público é bloqueado por padrão. Para permitir o acesso público, é necessário ajustar as configurações do BPA. A seguir, estão as opções de bloqueio disponíveis:
+- Bloquear Todo o Acesso Público (`Block All Public Access`): Esta opção garante que nenhum bucket ou objeto permita acesso público, independentemente de políticas ou ACLs configuradas. Ela é ativada por padrão em novos buckets e deve ser desativada caso seja necessário conceder acesso público.
+- Bloquear o Acesso Público concedido por Novas ACLs: Impede que novas ACLs públicas sejam criadas, mas não altera ACLs ou políticas de acesso já existentes. Esta opção deve ser usada para impedir que novas permissões públicas sejam adicionadas sem afetar as atuais.
+- Bloquear o Acesso Público concedido por Qualquer ACL: Ao ativar esta opção, todas as ACLs públicas existentes são ignoradas, sem removê-las. Novas ACLs podem ser criadas, mas não terão efeito. Isso garante que os recursos protegidos por ACLs públicas antigas não fiquem acessíveis ao público.
+- Bloquear o Acesso Público por Políticas Públicas de Bucket: Evita a criação de novas políticas de bucket que concedem acesso público, enquanto as políticas existentes permanecem em vigor. Para maior controle, é recomendado habilitar essa configuração no nível da conta.
+- Bloquear Acesso Público e Entre Contas por Políticas Públicas de Bucket: Restringe o acesso entre contas, permitindo apenas que usuários e serviços autorizados dentro da conta acessem o bucket. As políticas de bucket que concedem acesso público são ignoradas, mas não removidas.
+
+Essas opções fornecem uma camada adicional de segurança ao impedir acessos públicos não autorizados, minimizando o risco de exposição de dados sensíveis. Caso não seja necessário tornar o bucket ou os objetos acessíveis publicamente, é altamente recomendado ativar a opção de bloqueio total de acesso público.
+
+Uma política de acesso define quem pode acessar determinados recursos. Esses tipos de políticas são anexados diretamente a recursos, como buckets e objetos, e por isso são chamadas de políticas baseadas em recursos. Exemplos incluem políticas de bucket e listas de controle de acesso. Já as políticas de usuário, ou políticas do IAM, são políticas de acesso aplicadas a identidades dentro da conta **AWS**, como usuários, grupos ou funções. É possível utilizar um ou ambos os tipos de políticas para gerenciar permissões de acesso a recursos do **Amazon S3**.
+
+Para permitir que outras contas da **AWS** ou usuários do IAM acessem buckets ou objetos, é necessário anexar uma política de bucket, que especifica uma entidade Principal (usuário, conta, função ou serviço) na declaração da política. Políticas de bucket gerenciam a segurança diretamente no **Amazon S3** e frequentemente substituem as ACLs. O **Amazon S3** permite políticas de bucket com até 20 KB de tamanho. As políticas de bucket são adequadas quando:
+- É necessário conceder permissões entre contas, sem o uso de funções do IAM;
+- Políticas do IAM atingem seus limites de tamanho;
+- Prefere-se gerenciar políticas de controle de acesso diretamente no ambiente do **Amazon S3**.
+
+Também é possível usar o IAM para gerenciar acesso a recursos do **Amazon S3**. Usuários, grupos e funções do IAM podem ter políticas de acesso que garantem permissões sobre recursos da **AWS**, inclusive o **Amazon S3**. As políticas do IAM possuem limites de tamanho: 2 KB para usuários, 5 KB para grupos e 10 KB para funções. Diferente das políticas de bucket, não há um principal especificado em políticas do IAM, pois são aplicadas diretamente a usuários, grupos ou funções. As políticas do IAM são indicadas quando:
+- É necessário gerenciar permissões de outros serviços da **AWS** além do S3;
+- Existem diversos buckets do **Amazon S3** com requisitos de permissão distintos, onde as políticas do IAM facilitam o gerenciamento centralizado;
+- Prefere-se controlar o acesso dentro do IAM, em vez de no próprio S3.
+
+É possível usar uma cadeia de consulta para expressar uma solicitação diretamente em um URL, utilizando parâmetros para fornecer informações de solicitação e autenticação. Quando a assinatura da solicitação é incorporada ao URL, ele é chamado de URL pré-assinado. Por padrão, todos os objetos e buckets são privados, acessíveis apenas pelo proprietário. No entanto, o proprietário pode compartilhar o acesso temporário ao objeto com terceiros que não possuem credenciais da **AWS**, gerando um URL pré-assinado.
+
+O objetivo principal de um URL pré-assinado é fornecer acesso temporário ao objeto. Ao criar esse URL, é necessário especificar as credenciais de segurança, o nome do bucket, a chave do objeto, o método HTTP (como PUT para upload) e uma data e hora de expiração. Qualquer pessoa com o URL pré-assinado poderá acessar o objeto. Por exemplo, no caso de um vídeo armazenado em um bucket privado, o acesso pode ser compartilhado gerando um URL pré-assinado, válido por um período específico, configurado no momento da criação. URLs pré-assinados podem ser incorporados em links clicáveis, com validade de até sete dias.
+
+Cenários de uso incluem a concessão de acesso temporário aos recursos do **Amazon S3**, como a incorporação de um URL pré-assinado em um site ou sua utilização em comandos de linha de comando para download de objetos. Também é possível gerar URLs pré-assinados de forma programática para permitir que terceiros façam o upload de objetos em um bucket. Outros detalhes sobre URLs pré-assinados:
+- Permissões do objeto: Qualquer pessoa com credenciais válidas pode gerar um URL pré-assinado, mas apenas aqueles com permissão para realizar a operação podem acessar o objeto com sucesso.
+- Credenciais para gerar um URL pré-assinado podem incluir:
+  - Perfil de instância do IAM: válido por até 6 horas;
+  - AWS Security Token Service (STS): válido por até 36 horas, quando assinado com credenciais permanentes, como as de um usuário IAM ou do usuário raiz;
+  - Usuário do IAM: válido por até 7 dias usando a AWS Signature versão 4.
+- Validade do token: Caso um URL pré-assinado seja criado com um token temporário, ele expirará quando o token expirar, mesmo que o URL tenha uma validade posterior definida.
+
+Antes da introdução do `Amazon S3 Object Ownership`, os objetos do S3 pertenciam à conta da **AWS** que realizava o upload. Se o proprietário do bucket realizasse o upload de um objeto, esse objeto continuava sob a propriedade do proprietário do bucket. No entanto, se outra conta da **AWS** fizesse o upload, o objeto permanecia de propriedade dessa conta. Com o lançamento do novo recurso `Amazon S3 Object Ownership`, todos os objetos gravados em um bucket podem ser de propriedade do proprietário do bucket. Esse recurso permite que o proprietário do bucket tenha controle total sobre os objetos, transferindo automaticamente a propriedade de qualquer novo objeto carregado por outras contas. O `Amazon S3 Object Ownership` possui dois modos:
+- Gravador de objetos (`Object Writer`): A conta que grava o objeto é a proprietária.
+- Proprietário do bucket preferido (`Bucket Owner Preferred`): O proprietário do bucket passa a ser dono do objeto se ele for carregado com a ACL padrão `bucket-owner-full-control`. Sem essa configuração e a ACL padrão, o objeto permanece sob a propriedade da conta que fez o upload.
+
+Após configurar a Propriedade de Objetos do S3 com a preferência do proprietário do bucket, é possível adicionar uma política de bucket para exigir que todas as operações PUT no **Amazon S3** incluam a ACL padrão `bucket-owner-full-control`. Essa ACL concede ao proprietário do bucket controle total sobre os novos objetos, e, com a configuração de Propriedade de Objetos do S3, a propriedade do objeto é transferida para o proprietário do bucket. Se a ACL obrigatória não for incluída no upload, a solicitação falhará. Isso garante que o proprietário do bucket possa impor a uniformidade da propriedade sobre todos os novos objetos carregados em seus buckets.
+
+No console do **Amazon S3**, é possível utilizar o Analisador de Acesso para S3 para revisar todos os buckets com listas de controle de acesso (ACLs) de bucket, políticas de bucket ou políticas de ponto de acesso que concedem acesso público ou compartilhado. O Analisador de Acesso para **Amazon S3** alerta sobre buckets configurados para permitir acesso a qualquer pessoa na internet ou a outras contas da **AWS**, inclusive contas fora da organização. Para cada bucket público ou compartilhado, são fornecidas descobertas que relatam a origem e o nível de acesso público ou compartilhado.
+
+Há várias maneiras de evitar o acesso público acidental aos dados:
+- O que fazer:
+  - Utilizar o recurso de Bloqueio de Acesso Público do **Amazon S3** no nível da conta para impedir o acesso público aos buckets;
+  - Auditar as ACLs e políticas de bucket existentes;
+  - Configurar funções e permissões apropriadas para limitar a capacidade de alterar as configurações de bloqueio de acesso público.
+- O que não fazer:
+  - Não permitir acesso público, a menos que exista um motivo claro, como a hospedagem de sites estáticos no **Amazon S3**;
+  - Evitar o uso de acesso público como forma de solucionar problemas. É importante reservar o tempo necessário e analisar as políticas de permissão/acesso de forma incremental para identificar problemas de acesso.
+
+A proteção de dados garante a segurança dos dados em trânsito (durante a transferência para e do **Amazon S3**) e em repouso (enquanto estão armazenados em discos nos datacenters do **Amazon S3**). Para proteger dados em trânsito, é possível utilizar SSL/TLS (Secure Socket Layer/Transport Layer Security) ou criptografia no lado do cliente. Ao fornecer o nível adequado de proteção para os dados em trânsito, garante-se a confidencialidade e a integridade dos dados da workload contra possíveis interceptações mal-intencionadas. A API da **AWS**, sendo um serviço REST, oferece suporte a conexões SSL/TLS, e todos os SDKs e ferramentas de CLI oficiais da **AWS** se conectam à API da **AWS** utilizando SSL/TLS por padrão. Para dados em repouso (dados já armazenados em disco), o **Amazon S3** disponibiliza duas opções: criptografia no lado do servidor e criptografia no lado do cliente.
+
+Ao utilizar a criptografia no lado do servidor, o **Amazon S3** criptografa um objeto antes de salvá-lo no disco e o descriptografa no momento do download. Desde que haja autenticação e permissões de acesso, não haverá diferença no acesso a objetos criptografados ou não criptografados. Por exemplo, ao compartilhar objetos usando um URL pré-assinado, esse URL funcionará da mesma forma para objetos criptografados e não criptografados. Ao listar objetos no bucket, a API de listagem retornará todos os objetos, independentemente da criptografia. Existem três opções mutuamente exclusivas, dependendo da gestão das chaves de criptografia:
+- Criptografia no lado do servidor com chaves gerenciadas do **Amazon S3** (SSE-S3): Nesta opção, cada objeto é criptografado com uma chave exclusiva, sendo que a chave é criptografada com uma chave mestra que é alterada regularmente. O **Amazon S3** utiliza uma das cifras de bloco mais fortes disponíveis, o padrão de criptografia avançada de 256 bits (AES-256), para criptografar os dados.
+- Criptografia no lado do servidor com chaves mestras do cliente (CMKs) armazenadas no **AWS Key Management Service** (SSE-KMS): Essa opção é semelhante ao SSE-S3, mas com benefícios e cobranças adicionais pelo uso deste serviço. Existem permissões adicionais para o uso de uma CMK, oferecendo maior proteção contra acesso não autorizado aos objetos no **Amazon S3**. O SSE-KMS também proporciona uma trilha de auditoria mostrando quando e quem usou a CMK. Além disso, é possível optar por criar e gerenciar CMKs gerenciadas pelo cliente ou utilizar CMKs gerenciadas pela **AWS**, que são exclusivas para cada serviço e região.
+- Criptografia no lado do servidor com chaves fornecidas pelo cliente (SSE-C): Nesta opção, as chaves de criptografia são gerenciadas pelo cliente, enquanto o **Amazon S3** gerencia a criptografia (ao gravar em discos) e a descriptografia ao acessar os objetos. Com essa abordagem, a responsabilidade pela gestão e rotação das chaves recai sobre o cliente; sem acesso a essas chaves, os dados do **Amazon S3** não poderão ser descriptografados.
+
+Não é possível aplicar diferentes tipos de criptografia de servidor ao mesmo objeto simultaneamente.
+
+A criptografia no lado do cliente refere-se ao ato de criptografar dados sigilosos antes de enviá-los para o **Amazon S3**. Com a criptografia no lado do cliente, a criptografia é realizada localmente, e os dados nunca deixam o ambiente de execução sem estarem criptografados. A posse das chaves de criptografia mestre permanece com o usuário, e elas nunca são enviadas para a **AWS**, sendo crucial armazená-las com segurança (por exemplo, como um arquivo ou utilizando um sistema de gerenciamento de chaves separado) e carregá-las ao fazer o upload ou download de objetos. Isso garante que ninguém fora do ambiente tenha acesso às chaves mestras; sem acesso a essas chaves, os dados não podem ser descriptografados. Se as chaves de criptografia mestre forem perdidas, a descriptografia dos dados se torna impossível, tornando essencial o armazenamento seguro dessas chaves.
+
+Para habilitar a criptografia no lado do cliente, existem as seguintes opções:
+- Utilizar uma chave mestra do cliente (CMK) armazenada no **AWS Key Management Service (AWS KMS)**. Nesta opção, uma CMK do **AWS KMS** é utilizada para a criptografia no lado do cliente ao fazer upload ou download de dados no **Amazon S3**.
+- Utilizar uma chave mestra que é armazenada na aplicação. Nessa abordagem, uma chave mestra do lado do cliente é fornecida ao cliente de criptografia do **Amazon S3**, que utiliza essa chave mestra apenas para criptografar a chave de criptografia de dados gerada aleatoriamente.
+
+As chaves mestras no lado do cliente e os dados não criptografados não são enviados para a **AWS**. É importante gerenciar as chaves de criptografia com segurança; caso sejam perdidas, a descriptografia dos dados não será possível.
 
 
 
@@ -229,11 +306,15 @@ A **AWS** disponibiliza ferramentas de linha de comando (CLI) e scripts facilita
 
 
 
+Não é possível aplicar diferentes tipos de criptografia de servidor ao mesmo objeto simultaneamente.
 
+Criptografia no lado do cliente é o ato de criptografar os dados sigilosos antes de enviá-los para o Amazon S3. Ao usar a criptografia no lado do cliente, a criptografia é executada localmente e seus dados nunca deixam o ambiente de execução sem criptografia. Você mantém a posse de suas chaves de criptografia mestre e elas nunca são enviadas para a AWS, portanto, é importante que você as armazene com segurança (ou seja, como um arquivo ou usando um sistema de gerenciamento de chaves separado) e as carregue ao fazer o upload ou download de objetos. Isso garante que ninguém fora do ambiente tenha acesso às chaves mestras e sem acesso às chaves mestras; seus dados não podem ser descriptografados. Se suas chaves de criptografia mestre forem perdidas, você não poderá descriptografar seus próprios dados, portanto, é essencial que, se você usar criptografia do lado do cliente, armazene suas chaves com segurança.
 
+Para habilitar a criptografia no lado do cliente, você tem as seguintes opções: 
+- Usar uma chave mestra do cliente (CMK) armazenada no AWS Key Management Service (AWS KMS). Com essa opção, você usa uma CMK do AWS KMS para criptografia do lado do cliente ao fazer upload ou download de dados no Amazon S3; 
+- Use uma chave mestra que você armazena na sua aplicação. Com essa opção, você fornece uma chave mestra do lado do cliente para o cliente de criptografia do Amazon S3. O cliente usa a chave mestra apenas para criptografar a chave de criptografia de dados que gera aleatoriamente.
 
-
-
+As chaves mestras no lado do cliente e seus dados não criptografados não são enviados para a AWS. É importante que você gerencie com segurança suas chaves de criptografia. Se perdê-las, você não poderá descriptografar os seus dados.
 
 
 
