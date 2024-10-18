@@ -281,41 +281,24 @@ Para habilitar a criptografia no lado do cliente, existem as seguintes opções:
 
 As chaves mestras no lado do cliente e os dados não criptografados não são enviados para a **AWS**. É importante gerenciar as chaves de criptografia com segurança; caso sejam perdidas, a descriptografia dos dados não será possível.
 
+À medida que as organizações coletam e analisam quantidades crescentes de dados, as soluções on-premises tradicionais para armazenamento, gerenciamento e análise de dados se tornam insuficientes para acompanhar o crescimento. Silos de dados, que não foram projetados para funcionar de maneira integrada, dificultam a consolidação do armazenamento, o que impede a realização de análises amplas e eficientes. Isso limita a agilidade e a capacidade de extrair mais valor e insights dos dados, além de dificultar a adoção de ferramentas e processos analíticos mais avançados à medida que as necessidades evoluem.
 
+Um data lake é um repositório centralizado que permite a migração, o armazenamento e o gerenciamento de dados estruturados e não estruturados em uma escala ilimitada. Com os dados centralizados, torna-se possível extrair valor e insights por meio de análises e machine learning. Um data lake disponibiliza os dados e as ferramentas de análise para mais usuários, em diferentes áreas de negócios, permitindo que obtenham os insights necessários para a tomada de decisões, sempre que precisarem.
 
+A solução de data lake baseada no **Amazon S3** utiliza o **Amazon S3** como a principal plataforma de armazenamento. O **Amazon S3** é ideal para data lakes devido à sua escalabilidade praticamente ilimitada, permitindo aumentar o armazenamento de gigabytes para petabytes sem interrupções. O serviço foi projetado para oferecer uma durabilidade de 99,999999999% (onze noves). Ele combina performance escalável, facilidade de uso, criptografia nativa e controle de acesso, além de se integrar a uma ampla gama de ferramentas de processamento de dados da **AWS** e de terceiros. A **AWS** desenvolveu uma arquitetura de data lake econômica, utilizando o **Amazon S3** e outros serviços. Algumas características do **Amazon S3** como base para um data lake incluem:
+- Desacoplamento do armazenamento da computação: Em soluções tradicionais de Hadoop e data warehouse, o armazenamento e a computação são acoplados, dificultando a otimização de custos e fluxos de trabalho. O **Amazon S3** permite armazenar diferentes tipos de dados em seus formatos nativos de forma econômica, enquanto o **Amazon EC2** fornece a capacidade computacional necessária para processá-los, com a possibilidade de otimizar instâncias para obter a melhor performance.
+- Arquitetura de dados centralizada: O **Amazon S3** facilita a criação de um ambiente multi-tenant, no qual diversos usuários podem aplicar suas ferramentas de análise de dados em um conjunto comum de dados. Isso melhora a governança e os custos, evitando a necessidade de distribuir cópias de dados em várias plataformas de processamento.
+- Integração com serviços sem servidor da **AWS**: O **Amazon S3** integra-se com serviços como **Amazon Athena**, *Amazon Redshift Spectrum*, **Amazon Rekognition** e **AWS Glue** para consultar e processar dados. Além disso, integra-se com a computação sem servidor do **AWS Lambda**, permitindo a execução de código sem necessidade de gerenciar servidores, cobrando apenas pelos dados processados e pelo tempo de computação consumido.
+- APIs padronizadas: As APIs REST do **Amazon S3** são compatíveis com a maioria dos principais fornecedores independentes de software (ISV), como os fornecedores de ferramentas de análise e **Apache Hadoop**, facilitando a análise dos dados no **Amazon S3** com ferramentas já conhecidas.
 
+Os desafios iniciais na construção de um data lake incluíam a dificuldade de gerenciar todos os ativos de dados brutos à medida que são adicionados ao repositório, além de rastrear novos ativos e versões geradas por processos como transformação, processamento e análise de dados. Para resolver essas questões, um componente fundamental de um data lake baseado no **Amazon S3** é o catálogo de dados. Esse catálogo atua como um ponto central de referência que permite consultar todos os ativos armazenados nos buckets S3, garantindo uma visão unificada e precisa do conteúdo do data lake. A criação de um catálogo de dados completo pode ser realizada utilizando serviços da **AWS** como **AWS Lambda**, **Amazon DynamoDB** e **Amazon Elasticsearch Service (Amazon ES)**. De maneira geral, o Lambda pode ser configurado para acionar eventos que automaticamente atualizam tabelas no DynamoDB com informações sobre os objetos e seus metadados à medida que são adicionados ao **Amazon S3**. Para localizar ativos específicos, o **Amazon ES** permite realizar buscas por metadados e categorizações associadas aos dados armazenados.
 
+O **AWS Glue** é um serviço ETL (extração, transformação e carregamento) completamente gerenciado, projetado para facilitar e reduzir o custo da organização e processamento de dados. Ele permite organizar, limpar, validar e preparar os dados para armazenamento em um data warehouse ou data lake. O *AWS Glue Data Catalog* atua como um índice que contém informações sobre a localização, esquema e outras métricas relacionadas aos dados. Para estruturar um data lake ou data warehouse, é essencial catalogar esses dados.
 
+Um dos principais benefícios de usar um data lake na **AWS** é a capacidade de processar e consultar dados diretamente, sem precisar provisionar clusters ou mover grandes volumes de dados para outra plataforma. Isso torna possível realizar análises avançadas diretamente nos dados armazenados no **Amazon S3**, evitando a duplicação de dados em plataformas analíticas ou data warehouses separados. Essa abordagem reduz os custos e amplia o acesso a análises de grandes volumes de dados, inclusive não estruturados, para qualquer usuário com conhecimentos em SQL. Ferramentas como o **Amazon Athena** e o *Amazon Redshift Spectrum* permitem que essas consultas sejam realizadas de maneira eficiente:
+- **Amazon Athena**: O Athena é um serviço sem servidor que possibilita a execução de consultas interativas diretamente sobre os dados no **Amazon S3**, utilizando SQL padrão. Ele oferece resultados rápidos, sem a necessidade de gerenciar infraestrutura, e a cobrança é baseada no volume de dados analisados. O Athena suporta dados estruturados, semiestruturados e não estruturados e pode ser integrado ao **Amazon QuickSight** para visualização de dados ou a ferramentas de BI de terceiros via conexão JDBC.
+- *Amazon Redshift Spectrum*: Outra opção é o Redshift Spectrum, que permite executar consultas SQL no **Amazon S3** diretamente a partir de um cluster do Redshift. Embora o Redshift exija o carregamento de dados para consultas internas, o Spectrum permite que as consultas sejam realizadas sobre os dados no próprio data lake. Ele oferece otimização avançada de consultas e escalabilidade para processar grandes volumes de dados, suportando uma variedade de formatos como CSV, TSV, Parquet, Sequence RCFile, entre outros.
 
+Como o **Amazon Athena** e o **Amazon Redshift** compartilham o mesmo catálogo de dados e formatos de armazenamento, ambos podem ser utilizados nos mesmos conjuntos de dados. O Athena é ideal para consultas ad hoc e descobertas rápidas por meio de SQL, enquanto o Redshift Spectrum se destaca em cenários mais complexos, onde múltiplos usuários precisam executar cargas simultâneas de trabalho relacionadas a BI e relatórios. Dessa forma, é possível combinar a flexibilidade do Athena com o desempenho do Redshift Spectrum para atender a diferentes necessidades analíticas em um data lake.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Não é possível aplicar diferentes tipos de criptografia de servidor ao mesmo objeto simultaneamente.
-
-Criptografia no lado do cliente é o ato de criptografar os dados sigilosos antes de enviá-los para o Amazon S3. Ao usar a criptografia no lado do cliente, a criptografia é executada localmente e seus dados nunca deixam o ambiente de execução sem criptografia. Você mantém a posse de suas chaves de criptografia mestre e elas nunca são enviadas para a AWS, portanto, é importante que você as armazene com segurança (ou seja, como um arquivo ou usando um sistema de gerenciamento de chaves separado) e as carregue ao fazer o upload ou download de objetos. Isso garante que ninguém fora do ambiente tenha acesso às chaves mestras e sem acesso às chaves mestras; seus dados não podem ser descriptografados. Se suas chaves de criptografia mestre forem perdidas, você não poderá descriptografar seus próprios dados, portanto, é essencial que, se você usar criptografia do lado do cliente, armazene suas chaves com segurança.
-
-Para habilitar a criptografia no lado do cliente, você tem as seguintes opções: 
-- Usar uma chave mestra do cliente (CMK) armazenada no AWS Key Management Service (AWS KMS). Com essa opção, você usa uma CMK do AWS KMS para criptografia do lado do cliente ao fazer upload ou download de dados no Amazon S3; 
-- Use uma chave mestra que você armazena na sua aplicação. Com essa opção, você fornece uma chave mestra do lado do cliente para o cliente de criptografia do Amazon S3. O cliente usa a chave mestra apenas para criptografar a chave de criptografia de dados que gera aleatoriamente.
-
-As chaves mestras no lado do cliente e seus dados não criptografados não são enviados para a AWS. É importante que você gerencie com segurança suas chaves de criptografia. Se perdê-las, você não poderá descriptografar os seus dados.
-
-
-
-
+O **Amazon FSx for Lustre** é um sistema de arquivos totalmente gerenciado, projetado para otimizar cargas de trabalho intensivas em computação, como aquelas voltadas para computação de alta performance, machine learning e processamento de mídia. Ele permite iniciar e operar um sistema de arquivos Lustre capaz de lidar com grandes volumes de dados, alcançando taxas de transferência de centenas de gigabytes por segundo, milhões de IOPS e latências inferiores a milissegundos. O **Amazon FSx for Lustre** pode ser integrado a buckets do **Amazon S3**, permitindo acessar e processar dados de um sistema de arquivos de alta performance ao mesmo tempo. Esse sistema pode utilizar o **Amazon S3** tanto como repositório de dados brutos quanto para dados processados, facilitando o processamento de grandes volumes de dados armazenados no S3. Quando conectado a um bucket S3, o FSx for Lustre exibe os objetos como arquivos, possibilitando a execução de workloads sem a necessidade de gerenciar transferências de dados. À medida que os dados no bucket S3 são alterados, o FSx for Lustre atualiza automaticamente o sistema de arquivos com as informações mais recentes, garantindo que os workloads utilizem os dados atualizados.
