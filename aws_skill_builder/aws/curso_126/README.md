@@ -93,6 +93,7 @@ Estudo de Caso: A Chan Zuckerberg Biohub usa o **AWS DataSync** para automatizar
 
 
 
+Um agente é uma máquina virtual usada para ler dados ou gravar dados em um local. Um agente é usado on-premises para gerenciar operações de leitura e gravação nos compartilhamentos de arquivos NFS ou SMB ou no armazenamento de objetos. A localização e o uso do agente variam para o armazenamento na nuvem com base no tipo de serviços de armazenamento da AWS.
 
 
 
