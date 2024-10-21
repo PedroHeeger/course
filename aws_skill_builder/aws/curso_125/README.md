@@ -5,7 +5,7 @@
 ### Software/Subject: <a href="../">aws   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="auto" height="25"></a>
 ### Course: <a href="./">curso_125 (Getting Started with Amazon Simple Storage Service)   <img src="./0-aux/logo_course.png" alt="curso_125" width="auto" height="25"></a>
 
-#### <a href="">Certificate</a>
+#### <a href="https://github.com/PedroHeeger/main/blob/main/cert_ti/04-curso/cloud/aws/(24-10-14)_Getting_Started...Amazon_S3_PH_AWSSB.pdf">Certificate</a>
 
 ---
 
