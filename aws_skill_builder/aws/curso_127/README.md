@@ -168,3 +168,75 @@ Entre os principais casos de uso do **AWS Systems Manager**, destacam-se:
 
 
 
+
+
+AmazonSSMManagedInstanceCore: Esta política é necessária para que uma instância EC2 se torne uma instância gerenciada pelo Systems Manager. Ela inclui as permissões necessárias para comunicação entre a instância e o Systems Manager, além de permitir a atualização do SSM Agent e a execução de comandos.
+
+AmazonSSMPatchAssociation: Esta política é usada especificamente para gerenciar associações de patches. Ela permite que o Systems Manager aplique patches às instâncias gerenciadas. Isso inclui permissões para criar e atualizar associações de patches.
+
+
+/var/log/amazon/ssm
+
+
+Vault:
+
+Essa pasta normalmente armazena dados relacionados a operações de gerenciamento e execuções anteriores de documentos. É possível que ela contenha informações sobre as execuções dos documentos que ainda estão registradas.
+
+ipc (Inter-Process Communication):
+Esta pasta pode ser usada pelo SSM Agent para comunicação entre processos. Se houver informações residuais, isso pode afetar o comportamento do agente e suas operações.
+
+runtimeconfig:
+Esta pasta é utilizada para armazenar a configuração de tempo de execução do agente. Pode conter dados que instruem o agente sobre qual documento executar.
+
+
+
+
+
+AWS-QuickSetup-SSMHostMgmt-AttachIAMToInstance-8a1a2
+Documento: AWSQuickSetup-CreateAndAttachIAMToInstanceV2-8a1a2
+Função: Cria e anexa uma política de IAM (Identity and Access Management) à instância, garantindo que a instância tenha as permissões necessárias para realizar operações específicas.
+
+
+
+AWS-QuickSetup-SSMHostMgmt-EnableExplorer-8a1a2
+Documento: AWS-EnableExplorer
+Função: Habilita o Systems Manager Explorer, que fornece uma visão geral da saúde e estado de instâncias gerenciadas, facilitando o monitoramento e a análise. Esse monitoramento é realizado pelo AWS Resource Explorer.
+
+
+AWS-QuickSetup-SSMHostMgmt-UpdateSSMAgent-8a1a2
+Documento: AWS-UpdateSSMAgent
+Função: Atualiza o agente do AWS Systems Manager nas instâncias, garantindo que as últimas melhorias e correções de segurança estejam aplicadas.
+
+AWS-QuickSetup-SSMHostMgmt-CollectInventory-8a1a2
+Documento: AWS-GatherSoftwareInventory
+Função: Coleta informações sobre o software instalado nas instâncias gerenciadas, permitindo que os administradores tenham visibilidade sobre as versões de software e aplicativos em uso.
+
+AWS-QuickSetup-SSMHostMgmt-ScanForPatches-8a1a2
+Documento: AWS-RunPatchBaselineAssociation
+Função: Realiza a varredura nas instâncias para identificar patches ausentes, ajudando a garantir que o software esteja sempre atualizado e seguro.
+- Operation String (Required) The update or configuration to perform on the instance. The system checks if patches specified in the patch baseline are installed on the instance. The install operation installs patches missing from the baseline.
+- AssociationId String (Required) The Association ID of the State Manager Association executing the document.
+
+
+
+
+
+
+
+AWS-QuickSetup-SSMHostMgmt-ManageCloudWatchAgent-8a1a2
+Documento: AWSQuickSetup-InstallAndManageCloudWatchDocument-8a1a2
+Função: Instala e gerencia o agente do Amazon CloudWatch nas instâncias, permitindo o monitoramento de métricas e logs de forma centralizada.
+
+AWS-QuickSetup-SSMHostMgmt-UpdateCloudWatchAgent-8a1a2
+Documento: AWSQuickSetup-SSMHostMgmt-UpdateCloudWatchDocument-8a1a2
+Função: Atualiza o agente do Amazon CloudWatch nas instâncias gerenciadas, garantindo que as últimas versões estejam instaladas para monitoramento adequado.
+
+
+
+
+
+
+
+aws ssm create-association --name AWS-RunPatchBaselineAssociation --targets "[{`"Key`":`"InstanceIds`",`"Values`":[`"i-01e08160c579163ef`"]}]" --association-name ssmAssociationTest2 --schedule-expression "rate(1 day)" --parameters "AssociationId=4420fb91-4288-438b-91ca-74295cf6e124,Operation=Install" --tags Key=Name,Value='ssmAssociationTest2' --no-cli-pager
+
+aws ssm create-association --name "AWS-RunPatchBaselineAssociation" --targets "[{`"Key`":`"InstanceIds`",`"Values`":[`"i-01e08160c579163ef`"]}]" --association-name "ssmAssociationTest2" --schedule-expression "rate(1 day)" --parameters "AssociationId=4420fb91-4288-438b-91ca-74295cf6e124,Operation=Install" --tags "Key=Name,Value='ssmAssociationTest2'" --no-cli-pager
