@@ -147,6 +147,8 @@ Entre os principais casos de uso do **AWS Systems Manager**, destacam-se:
 
 <a name="item01.2"><h4>Usando o AWS Systems Manager</h4></a>[Back to summary](#item0)
 
+Nesta primeira etapa, foi
+
 
 
 
