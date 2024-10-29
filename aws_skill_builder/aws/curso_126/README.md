@@ -40,14 +40,14 @@
 ---
 
 ### Objective:
-Neste curso, foram abordados o serviço de transferência de dados **AWS DataSync**, seus casos de uso, benefícios, principais recursos e componentes. O funcionamento do serviço foi explicado, assim como os passos necessários para configurá-lo por meio do Console de Gerenciamento da **AWS**. Além disso, foi apresentado como o DataSync pode ser utilizado para realizar transferências de dados de forma automatizada e segura entre armazenamentos locais e a **AWS**, ou entre serviços na nuvem. 
+Neste curso, foi abordado o serviço de transferência de dados **AWS DataSync**, seus casos de uso, benefícios, principais recursos e componentes. O funcionamento do serviço foi explicado, assim como os passos necessários para configurá-lo por meio do Console de Gerenciamento da **AWS**. Além disso, foi apresentado como o DataSync pode ser utilizado para realizar transferências de dados de forma automatizada e segura entre armazenamentos locais e a **AWS**, ou entre serviços na nuvem. 
 Os objetivos específicos englobaram:
 - Detalhar o serviço DataSync e seus principais casos de uso;
 - Apresentar as funcionalidades e vantagens do DataSync;
 - Demonstrar as arquiteturas de serviço associadas ao DataSync;
 - Explicar os elementos que compõem o serviço DataSync;
 - Abordar o processo de transferência de arquivos através do DataSync;
-- Realizar a configuração do DataSync por meio do Console de Gerenciamento da AWS.
+- Realizar a configuração do DataSync por meio do Console de Gerenciamento da **AWS**.
 
 ### Structure:
 A estrutura do curso é formada por:
@@ -168,20 +168,40 @@ A arquitetura do **AWS DataSync** pode variar conforme o caso de uso da implemen
     - O DataSync se integra ao **AWS Key Management Service (AWS KMS)** para criptografar dados em repouso. O serviço precisa de permissões de leitura e gravação nos serviços de armazenamento de destino.
     - O agente do DataSync deve ser ativado na Região **AWS** onde a conta **AWS** e os serviços de armazenamento estão localizados.
 
+A seguir é apresentado os requisitos mínimos para o agente do DataSync:
+- Requisitos para um agente do DataSync no local: Um agente do DataSync opera como uma máquina virtual (VM) em implementações on-premises. O DataSync oferece suporte apenas a versões específicas de hipervisores e hosts. Importante notar que, quando um fabricante descontinua o suporte a uma versão de hipervisor, o DataSync também interrompe seu suporte.
+  - Hipervisores compatíveis:
+    - **VMware ESXi Hypervisor** nas versões 6.0, 6.5 ou 6.7.
+    - Máquina Virtual baseada em Kernel Linux (**KVM**) – suportada em versões **Linux** 2.6.20 e superiores. O **AWS DataSync** é testado e compatível com as distribuições CentOS/RHEL 7.8, Ubuntu 16.04 LTS e Ubuntu 18.04 LTS. Outras distribuições **Linux** modernas podem funcionar, mas não há garantia sobre sua funcionalidade ou desempenho.
+    - **Microsoft Hyper-V Hypervisor** (versões 2012 R2 ou 2016).
+  - Requisitos de máquina virtual: Cada VM implantada precisa de recursos mínimos de hardware para atender aos requisitos de transferência de dados, que podem mudar ao longo do tempo.
+    - Quatro ou mais processadores virtuais alocados à VM.
+    - Mínimo de 80 GB de espaço em disco para instalação da imagem da VM e dos dados do sistema.
+    - Requisitos mínimos de memória:
+    - Para tarefas de transferência de até 20 milhões de arquivos: 32 GB ou mais de RAM alocados à VM.
+    - Para tarefas de transferência de mais de 20 milhões de arquivos: 64 GB ou mais de RAM alocados à VM.
+- Requisitos para um agente do DataSync na nuvem: Um agente do DataSync opera como uma instância **Amazon EC2** e é disponibilizado como uma AMI, que contém a imagem da máquina virtual do DataSync. É necessário fornecer recursos adequados para atender aos requisitos de transferência de dados, que podem variar ao longo do tempo. O tamanho mínimo da instância **Amazon EC2** requerido para a AMI do DataSync é 2xlarge.
+- Requisitos para a rede: Os requisitos de rede diferem dependendo do uso de endpoints públicos ou privados. Para ambos os tipos de endpoints, a utilização do DataSync exige a abertura de portas de rede para operações no local.
 
+O DataSync se integra a outros produtos da **AWS** para fornecer uma solução completa.
+- On-premises para serviços de rede da Nuvem **AWS**: Para soluções do DataSync on-premises voltadas para a Nuvem **AWS**, uma conexão segura e rápida é um elemento-chave para o sucesso. A **AWS** oferece dois serviços principais de conectividade que se integram perfeitamente para atender aos requisitos da organização:
+  - **AWS Site-to-Site VPN**: O **AWS Site-to-Site VPN** fornece uma conexão segura do local on-premises pela Internet para a Nuvem **AWS**. É possível habilitar uma conexão acelerada do Site-to-Site VPN para otimizar a performance da rede de transferência de dados. O Site-to-Site VPN é compatível com conexões IPSec (Internet Protocol security) para tráfego criptografado seguro.
+  - **AWS Direct Connect**: O **AWS Direct Connect** oferece uma conexão dedicada segura do local on-premises para a Nuvem **AWS**. Proporciona acesso completo à largura de banda total da conexão dedicada, ligando a rede interna a um local do **AWS Direct Connect** por meio de um cabo de fibra ótica Ethernet padrão do roteador para um roteador do **AWS Direct Connect**.
+- **AWS IAM**: A **AWS** utiliza credenciais de segurança para identificar e conceder acesso aos recursos da **AWS**. Os recursos do **AWS Identity and Access Management (AWS IAM)** permitem que outros usuários, produtos e aplicações utilizem os recursos da **AWS** de forma completa ou limitada, sem a necessidade de compartilhar credenciais de segurança. Por padrão, as identidades do IAM (usuários, grupos e roles) não têm permissão para criar, visualizar ou modificar recursos da **AWS**. Para permitir que usuários, grupos e roles acessem recursos do **AWS DataSync** e interajam com a API e o console do DataSync, é necessário criar uma política do IAM. Essa política concede permissão para utilizar recursos específicos e ações de API necessárias. A política deve ser anexada à identidade do IAM que requer acesso. A **AWS** oferece políticas gerenciadas que fornecem permissões necessárias para casos de uso comuns, evitando a necessidade de investigar quais permissões são necessárias.
+- **Amazon CloudWatch**: É possível monitorar o **AWS DataSync** utilizando o **Amazon CloudWatch**, que coleta e processa dados brutos do DataSync em métricas legíveis quase em tempo real. Essas estatísticas são mantidas por um período de 15 meses, permitindo o acesso a informações históricas e uma melhor compreensão da performance do DataSync. Por padrão, os dados de métricas do DataSync são enviados automaticamente para o CloudWatch em intervalos de cinco minutos. O **Amazon CloudWatch** fornece métricas que ajudam a obter informações sobre a performance do DataSync, que podem ser visualizadas pelo console do CloudWatch ou acessadas por meio da CLI do CloudWatch ou da API do CloudWatch. Essas métricas também estão disponíveis na página de detalhes da execução da tarefa no console do **AWS DataSync**.
+- **AWS CloudTrail**: O DataSync é integrado ao **AWS CloudTrail**, um serviço que fornece um registro das ações realizadas por usuários, roles ou produtos da **AWS** no DataSync. O CloudTrail captura todas as chamadas de API para o DataSync como eventos, incluindo chamadas do console do **AWS DataSync** e chamadas de código para operações da API do DataSync. Ao criar uma trilha, é possível habilitar a entrega contínua de eventos do CloudTrail para um bucket do **Amazon S3**, incluindo eventos para o DataSync. Mesmo sem configurar uma trilha, ainda é possível visualizar os eventos mais recentes no console do CloudTrail em Histórico de eventos. Com as informações coletadas pelo CloudTrail, é possível determinar a solicitação feita ao DataSync, o endereço IP da qual a solicitação foi realizada, quem fez a solicitação, quando foi feita e detalhes adicionais.
 
+<a name="item01.3"><h4>Preços do Serviço DataSync</h4></a>[Back to summary](#item0)
 
+Taxas de transferência de dados do DataSync: O serviço gerenciado do DataSync oferece um preço previsível baseado no uso. O pagamento é realizado apenas pela quantidade de dados copiados, com custos baseados em uma taxa fixa por gigabyte para a utilização de tecnologia de aceleração de rede, infraestrutura de nuvem gerenciada, validação de dados e automação no DataSync. Não há necessidade de gerenciar recursos, custos adiantados ou taxas mínimas. Entretanto, taxas de serviço adicionais da **AWS** se aplicam quando há uso de produtos da **AWS** além do DataSync. As taxas de transferência de dados do DataSync são de US$ 0,0125 por gigabyte (GB). É importante notar que o valor mencionado refere-se ao preço em vigor em 12 de fevereiro de 2020 e está sujeito a alterações.
 
+As cobranças adicionais incluem:
+- Taxas padrão de solicitação, armazenamento e transferência de dados para leitura e gravação de produtos da **AWS**, como **Amazon S3**, **Amazon EFS** e **Amazon FSx for Windows File Server**.
+- Cópia de dados de um serviço de armazenamento da **AWS** para um sistema de armazenamento on-premises. A transferência de dados da **AWS** é cobrada de acordo com a taxa padrão.
+- Cópia de dados de uma Região **AWS** para outra Região **AWS**, com pagamento pela transferência de dados da **AWS** segundo a taxa padrão.
+- Taxas padrão para outros produtos da **AWS**, como **Amazon CloudWatch** e **AWS CloudTrail**.
 
-
-
-
-
-
-
-
-
-
+<a name="item01.4"><h4>Processo de Configuração do DataSync</h4></a>[Back to summary](#item0)
 
 
 
