@@ -36,25 +36,46 @@
 ---
 
 <h3>Course Strcuture:</h3>
-1. <a href="#item01">MySQL</a><br>
-  1.1 <a href="#item01.01">Aula 1 – O que é um Banco de Dados?</a><br>   
-  1.2 <a href="#item01.02">Aula 2a – Instalando o MySQL com WAMP</a><br>   
-  1.3 <a href="#item01.03">Aula 2b – Instalando o XAMPP</a><br>   
-  1.4 <a href="#item01.04">Aula 3 – Criando o primeiro Banco de Dados</a><br>   
-  1.5 <a href="#item01.05">Aula 4 – Melhorando a Estrutura do Banco de Dados</a><br>   
-  1.6 <a href="#item01.06">Aula 5 – Inserindo Dados na Tabela (INSERT INTO)</a><br>   
-  1.7 <a href="#item01.07">Aula 6 – Alterando a Estrutura da Tabela (ALTER TABLE e DROP TABLE)</a><br>   
-  1.8 <a href="#item01.08">Aula 7 – Manipulando Linhas (UPDATE, DELETE e TRUNCATE)</a><br>   
-  1.9 <a href="#item01.09">Aula 8 – Gerenciando Cópias de Segurança MySQL</a><br>   
-  1.10 <a href="#item01.10">Aula 9 – PHPMyAdmin (Parte 1)</a><br>   
-  1.11 <a href="#item01.11">Aula 10 – PHPMyAdmin (Parte 2)</a><br>   
-  1.12 <a href="#item01.12">Exercício para curso de MySQL</a><br>   
-  1.13 <a href="#item01.13">Aula 11 – SELECT (Parte 1)</a><br>   
-  1.14 <a href="#item01.14">Aula 12 – SELECT (Parte 2)</a><br>   
-  1.15 <a href="#item01.15">Aula 13 – SELECT (Parte 3)</a><br>   
-  1.16 <a href="#item01.16">Aula 14 – Modelo Relacional</a><br>   
-  1.17 <a href="#item01.17">Aula 15 – Chaves Estrangeiras e JOIN</a><br>   
-  1.18 <a href="#item01.18">Aula 16 – INNER JOIN com várias tabelas</a><br>   
+1. <a href="#item01">Introdução ao curso</a><br>
+  1.1 <a href="#item01.01">Primeira vez neste curso</a><br>   
+  1.2 <a href="#item01.02">Baixe e Instale o Packet Tracer</a><br>   
+  1.3 <a href="#item01.03">Introdução ao Cisco Packet Tracer</a><br>   
+  1.4 <a href="#item01.04">Packet Tracer como uma ferramenta de aprendizagem adaptável</a><br>   
+  1.5 <a href="#item01.05">Packet Tracer - Exploração dos Modos Lógico e Físico</a><br>   
+2. <a href="#item02">Teste de segurança de rede</a><br>
+  2.1 <a href="#item02.01">Introdução</a><br>   
+  2.2 <a href="#item02.02">Governança</a><br>   
+  2.3 <a href="#item02.03">A ética da segurança cibernética</a><br>   
+  2.4 <a href="#item02.04">Estrutura de gerenciamento de segurança de TI</a><br>   
+  2.5 <a href="#item02.05">Resumo de Governança e conformidade</a><br>   
+3. <a href="#item03">Inteligência de ameaças</a><br>
+  3.1 <a href="#item03.01">Introdução</a><br>   
+  3.2 <a href="#item03.02">Avaliações de segurança</a><br>   
+  3.3 <a href="#item03.03">Técnicas de teste de segurança</a><br>   
+  3.4 <a href="#item03.04">Ferramentas de teste de segurança de rede</a><br>   
+  3.5 <a href="#item03.05">Teste de penetração</a><br>   
+  3.6 <a href="#item03.06">Resumo de teste de segurança de rede</a><br>   
+4. <a href="#item04">Avaliação de vulnerabilidade de endpoint</a><br>
+  4.1 <a href="#item04.01">Introdução</a><br>   
+  4.2 <a href="#item04.02">Perfil de rede e servidor</a><br>   
+  4.3 <a href="#item04.03">Sistema de pontuação de vulnerabilidade comum (CVSS)</a><br>   
+  4.4 <a href="#item04.04">Gerenciamento seguro de dispositivos</a><br>   
+  4.5 <a href="#item04.05">Resumo da avaliação de vulnerabilidade de endpoint</a><br>   
+5. <a href="#item05">Gerenciamento de riscos e controles de segurança</a><br>
+  5.1 <a href="#item05.01">Introdução</a><br>   
+  5.2 <a href="#item05.02">Gerenciamento de risco</a><br>   
+  5.3 <a href="#item05.03">Avaliação de risco</a><br>   
+  5.4 <a href="#item05.04">Controles de segurança</a><br>   
+  5.5 <a href="#item05.05">Resumo de Gerenciamento de riscos e controles de segurança</a><br>   
+6. <a href="#item06">Análise forense digital e análise e resposta a incidentes</a><br>
+  6.1 <a href="#item06.01">Introdução</a><br>   
+  6.2 <a href="#item06.02">Manuseio de evidências e atribuição de ataque</a><br>   
+  6.3 <a href="#item06.03">O Cyber Kill Chain</a><br>   
+  6.4 <a href="#item06.04">O modelo Diamond de análise de intrusão</a><br>   
+  6.5 <a href="#item06.05">Resposta a incidentes</a><br>   
+  6.6 <a href="#item06.06">Recuperação de desastres</a><br>   
+  6.7 <a href="#item06.07">Análise forense digital e análise de incidentes e resumo de resposta</a><br>   
+
 
 ---
 
@@ -68,27 +89,18 @@ A estrutura do curso é formada por:
 
 ### Development:
 
-<a name="item01.01"><h4>Aula 1 – O que é um Banco de Dados?</h4></a>[Back to summary](#item01)
+<a name="item01.01"><h4>Primeira vez neste curso</h4></a>[Back to summary](#item01)
 
-Os primeiros computadores, surgidos a partir de 1945, eram voltados para uso acadêmico e militar e se tornaram mais comuns na década de 1950. Naquela época, as informações eram armazenadas em papel, por meio de fichas que eram preenchidas e guardadas em pastas, posteriormente organizadas em arquivos metálicos. Se compararmos essa estrutura com o conceito de banco de dados, as fichas representariam os registros, as pastas seriam as tabelas e os armários (arquivos metálicos) corresponderiam aos arquivos. O grande desafio desse sistema era o excesso de papel acumulado. A partir do final dos anos 1950 e início dos anos 1960, o foco passou a ser a digitalização dessas informações, já que os computadores começaram a se popularizar no ambiente empresarial, tornando-se progressivamente menores e mais acessíveis em comparação aos gigantescos modelos militares e acadêmicos iniciais.
+<a name="item01.02"><h4>Baixe e Instale o Packet Tracer</h4></a>[Back to summary](#item01)
 
-No início da digitalização, o conceito de banco de dados ainda não era amplamente difundido. Assim, os dados eram armazenados em fitas magnéticas ou cartões perfurados, que funcionavam de forma sequencial — ou seja, os registros eram organizados um após o outro, tornando o processo de busca lento e ineficiente, já que era necessário percorrer toda a fita para encontrar um registro específico. Esse método de armazenamento ficou conhecido como Arquivos Sequenciais ou Arquivos de Acesso Sequencial. Com o tempo, surgiram os discos (como disquetes e HDs), que permitiam o armazenamento de dados de forma direta e não sequencial, eliminando a necessidade de ler todo o disco para localizar um registro. Além disso, esses discos introduziram a indexação, o que possibilitava organizar os registros como se fossem tabelas, com um índice para facilitar a identificação. Esse novo formato ficou conhecido como Arquivos Diretos ou Arquivos de Acesso Direto.
+<a name="item01.03"><h4>Introdução ao Cisco Packet Tracer</h4></a>[Back to summary](#item01)
 
-Embora os arquivos de acesso direto fossem uma melhoria significativa em relação aos arquivos sequenciais, ainda havia um problema com os índices, que eram bastante simplistas. Foi na década de 1960 que ocorreu um marco importante na evolução dos bancos de dados. O Departamento de Defesa dos Estados Unidos recebeu a tarefa de desenvolver uma forma mais eficiente e segura de armazenar informações. Como parte desse esforço, surgiu um evento crucial chamado CODASYL, um grande encontro que reuniu militares, empresas e universidades para discutir novas tecnologias. Entre as muitas inovações propostas, uma das mais notáveis foi a criação do **COBOL**, uma das linguagens de programação mais influentes da história. O **COBOL** foi a primeira linguagem a tratar tanto da lógica da programação quanto dos dados embutidos nela, dando grande importância à estrutura de dados. Essa característica tornou o **COBOL** essencial, e muitas grandes empresas ainda o utilizam até os dias atuais, embora muitas estejam gradualmente migrando para outras soluções. Além do **COBOL**, no CODASYL foi discutido o surgimento de uma nova tecnologia que foi nomeada de Banco de Dados.
+<a name="item01.04"><h4>Packet Tracer como uma ferramenta de aprendizagem adaptável</h4></a>[Back to summary](#item01)
 
-O conceito de Banco de Dados, criado na década de 1960, permanece até hoje dividido em quatro componentes principais: a Base de Dados, que contém os dados propriamente ditos; o Sistema Gerenciador, conhecido como SGBD (Sistema de Gerenciamento de Banco de Dados) ou DBMS (Database Management System) em inglês, que é responsável por administrar esses dados; a Linguagem de Exploração, utilizada para interagir e manipular o banco de dados; e os Programas Adicionais, que incluem funções como gerenciamento de usuários, otimizadores de dados e qualquer outro software que possa ser integrado ao sistema.
+<a name="item01.05"><h4>Packet Tracer - Exploração dos Modos Lógico e Físico</h4></a>[Back to summary](#item01)
 
-Além do Departamento de Defesa dos EUA, a IBM desempenhou um papel fundamental na construção dos bancos de dados. A empresa, que remonta às inovações de Herman Hollerith, evoluiu para se tornar uma das maiores companhias de tecnologia do mundo. Uma das primeiras propostas da IBM foi a criação do conceito de dados hierárquicos, onde os dados seriam organizados em uma estrutura com diferentes níveis de hierarquia, o que deu origem ao Modelo Hierárquico. Além disso, a IBM desenvolveu uma evolução desse modelo, no qual os dados não seriam mais organizados de forma hierárquica, mas interligados de maneira semelhante a uma rede, resultando no Modelo em Rede.
 
-Os modelos hierárquico e em rede, criados pela IBM no final da década de 1960, permitiam armazenar informações como dados de clientes, serviços, funcionários, empresas e fornecedores. No entanto, esses modelos apresentavam uma limitação: não facilitavam o relacionamento entre os dados, ou seja, a conexão entre registros de diferentes conjuntos. Para resolver esse problema, na década de 1970, Edgar F. Codd, um pesquisador da IBM, propôs um novo modelo. Em vez de usar hierarquias ou redes, esse modelo organizava os dados com base em relações, originando o Modelo Relacional. Embora o Modelo Relacional seja amplamente utilizado até hoje, outros modelos surgiram posteriormente, como o Modelo baseado em Documentos e o Modelo Orientado a Objetos, mais recente. Ainda assim, o Modelo Relacional é considerado mais simples de compreender e explicar.
-
-O Modelo Relacional é extremamente importante, pois permite, por exemplo, em um cadastro de cliente em um banco de dados, acessar diversos registros relacionados a esse mesmo cliente. Dessa forma, é possível obter informações sobre seu endereço, as compras realizadas e, a partir dessas compras, identificar onde, o que e quando ele adquiriu determinado produto, além de consultar o estoque desse item. Tudo isso é viabilizado pelas relações entre os dados.
-
-Uma das linguagens de exploração mais utilizadas no modelo relacional é a SQL, que originalmente era chamada de **Structured English Query Language (SEQUEL)**. Com o tempo, o nome foi alterado para **Structured Query Language (SQL)**. Basicamente, SQL é uma linguagem de consulta de dados. A ideia inicial era que ela se tornasse uma linguagem universal, suportada por todos os bancos de dados. No entanto, cada fabricante fez suas próprias adaptações à SQL, criando versões específicas, o que gerou confusão no mercado, já que, em vez de uma única linguagem, surgiram várias variações. Para lidar com esse problema, os órgãos de padronização ANSI e ISO intervieram para unificar e regular a linguagem.
-
-A partir desse ponto, surgiram vários bancos de dados, como o **Oracle**, que é um dos maiores do mercado atualmente; a IBM, com seu banco de dados **DB2**; e o **dBase**, um banco de dados antigo que caiu em desuso. A Microsoft também oferece o **SQL Server**. Essas são soluções pagas, voltadas para o mercado empresarial. No entanto, também existem opções gratuitas, como o **MySQL**, que é uma das soluções mais populares e atualmente pertence à Oracle. Parte dos desenvolvedores que criaram o **MySQL** fez um fork dele, resultando no **MariaDB**. Além desses, há o **Firebird** e o **PostgreSQL**, ambos também gratuitos e amplamente utilizados.
-
-<a name="item01.02"><h4>Aula 2a – Instalando o MySQL com WAMP</h4></a>[Back to summary](#item01)
+<a name="item02.01"><h4>Introdução</h4></a>[Back to summary](#item02)
 
 
 
@@ -98,14 +110,7 @@ A partir desse ponto, surgiram vários bancos de dados, como o **Oracle**, que �
 
 
 
-
-
-
-
-
-
-<a name="item01.03"><h4>Aula 2b – Instalando o XAMPP</h4></a>[Back to summary](#item01)
-
+<a name="item02.02"><h4>Governança</h4></a>[Back to summary](#item02)
 
 
 
@@ -113,12 +118,59 @@ A partir desse ponto, surgiram vários bancos de dados, como o **Oracle**, que �
 
 
 
+<a name="item02.03"><h4>A ética da segurança cibernética</h4></a>[Back to summary](#item02)
+
+⚖️ Ética   
+A ética funciona como guia para distinguir o certo do errado e direcionar decisões, especialmente no contexto da segurança digital. Profissionais da área precisam considerar leis, direitos e interesses das organizações ao lidar com dilemas, pois nem sempre haverá uma resposta única ou óbvia.
+
+📊 Ética Utilitarista   
+Proposta por filósofos como Jeremy Bentham e John Stuart Mill, essa abordagem define que a moralidade de uma ação está em suas consequências. Assim, uma escolha é ética quando promove o maior benefício possível para o maior número de pessoas.
+
+🛡️ Abordagem de Direitos   
+Baseia-se no respeito aos direitos fundamentais de cada indivíduo, como privacidade, segurança e verdade. Essa perspectiva defende que as escolhas pessoais não podem ser violadas por decisões de outros, e que as leis devem ser aplicadas de forma justa a todos.
+
+🤝 Abordagem de Bem Comum   
+Essa visão valoriza ações que beneficiam a coletividade, incentivando a busca por metas e valores compartilhados. O foco está em reconhecer que decisões éticas vão além do interesse individual e devem fortalecer a comunidade como um todo.
+
+📜 10 Mandamentos da Ética   
+O Computer Ethics Institute estabeleceu princípios que norteiam o uso responsável da tecnologia. Entre eles estão: não prejudicar outras pessoas, não interferir em sistemas de terceiros, não roubar, não usar software sem licença, respeitar a propriedade intelectual, considerar o impacto social de projetos e agir sempre com respeito e responsabilidade.
+
+💻 Ética Digital   
+No ambiente digital, aplicar esses mandamentos significa evitar práticas como acessar arquivos sem permissão, usar credenciais de terceiros ou copiar conteúdo protegido. Atitudes éticas incluem creditar fontes corretamente, respeitar a privacidade e manter relações de respeito em interações online.
+
+🕵️‍♂️ Cibercrime   
+Os crimes digitais se dividem em três categorias: ataques em que o computador é o alvo direto (como invasões ou malware), crimes cometidos com ajuda de computadores (como fraudes e roubos) e aqueles em que o computador apenas armazena informações ligadas a delitos. Esse tipo de crime cresce rapidamente e diversas agências trabalham para combatê-lo, como o FBI, IC3 e InfraGard.
+
+📚 Leis Cibernéticas   
+Nos EUA, as leis que regulam o uso da tecnologia incluem normas estatutárias (como a CFAA, que proíbe acessos não autorizados), leis administrativas (que regem agências como FCC e FTC no combate a fraudes) e o direito comum, baseado em precedentes judiciais.
+
+🏛️ FISMA   
+O Federal Information Security Management Act exige que agências federais implementem programas de segurança da informação. Isso inclui inventário de sistemas, avaliações de risco, políticas de proteção, treinamentos, testes de controles e planos de resposta a incidentes.
+
+💼 Leis Específicas de Setores   
+Diversos segmentos possuem regulamentações próprias. No setor financeiro, a GLBA regula o compartilhamento de dados; na contabilidade, a SOX busca transparência em práticas corporativas; no mercado de cartões, o PCI DSS define padrões de segurança; e no comércio de criptografia, há regras de exportação e importação devido a preocupações de segurança nacional.
+
+🚨 Leis de Notificação de Violação de Segurança   
+Com o aumento da coleta de dados pessoais, empresas precisam notificar indivíduos em caso de vazamento. Entre as leis estão a ECPA, que protege comunicações eletrônicas, e a CFAA, que criminaliza acessos não autorizados e distribuição de malware.
+
+🔒 Proteção da Privacidade   
+Não há uma lei única nos EUA, mas sim várias normas que protegem dados pessoais. Exemplos incluem o Privacy Act de 1974, a FOIA para acesso a informações públicas, a FERPA para registros educacionais, a COPPA e a CIPA para proteção infantil online, a HIPAA para dados de saúde e legislações estaduais como a SB 1386 da Califórnia. Além disso, políticas de privacidade e avaliações de impacto (PIA) ajudam organizações a garantir conformidade.
+
+🌐 Leis Internacionais   
+O combate ao cibercrime exige cooperação entre países, já que legislações nacionais variam bastante. A Convenção sobre o Cibercrime, ratificada por dezenas de estados, busca harmonizar esforços contra delitos digitais, como fraudes, violações de segurança e pornografia infantil. Organizações como o EPIC também atuam globalmente na defesa da privacidade e na promoção de políticas abertas e transparentes.
+
+<a name="item02.04"><h4>Estrutura de gerenciamento de segurança de TI</h4></a>[Back to summary](#item02)
 
 
 
 
 
-<a name="item01.04"><h4>Aula 3 – Criando o primeiro Banco de Dados</h4></a>[Back to summary](#item01)
+
+
+
+
+
+<a name="item02.05"><h4>Resumo de Governança e conformidade</h4></a>[Back to summary](#item02)
 
 
 
@@ -128,19 +180,46 @@ A partir desse ponto, surgiram vários bancos de dados, como o **Oracle**, que �
 
 
 
-<a name="item01.05"><h4>Aula 4 – Melhorando a Estrutura do Banco de Dados</h4></a>[Back to summary](#item01)
+
+
+
+
+<a name="item03.01"><h4>Introdução</h4></a>[Back to summary](#item03)
 
 
 
 
 
 
-
-<a name="item01.06"><h4>Aula 5 – Inserindo Dados na Tabela (INSERT INTO)</h4></a>[Back to summary](#item01)
-
+<a name="item03.02"><h4>Avaliações de segurança</h4></a>[Back to summary](#item03)
 
 
 
 
 
-<a name="item01.07"><h4>Aula 6 – Alterando a Estrutura da Tabela (ALTER TABLE e DROP TABLE)</h4></a>[Back to summary](#item01)
+<a name="item03.03"><h4>Técnicas de teste de segurança</h4></a>[Back to summary](#item03)
+
+
+
+
+
+<a name="item03.04"><h4>Ferramentas de teste de segurança de rede</h4></a>[Back to summary](#item03)
+
+
+
+
+
+
+<a name="item03.05"><h4>Teste de penetração</h4></a>[Back to summary](#item03)
+
+
+
+
+
+
+<a name="item03.06"><h4>Resumo de teste de segurança de rede</h4></a>[Back to summary](#item03)
+
+
+
+
+
