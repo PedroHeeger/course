@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 5 Structure:
-5. <a href="#item05">Gerenciamento de Riscos e Controles de Segurança</a><br>
+5. <a href="item05">Gerenciamento de Riscos e Controles de Segurança</a><br>
   5.1 <a href="#item05.01">Introdução</a><br>
   5.2 <a href="#item05.02">Gerenciamento de risco</a><br>
   5.3 <a href="#item05.03">Avaliação de risco</a><br>

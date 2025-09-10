@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 0 Structure:
-0. <a href="#item00">Introdução ao Curso</a><br>
+0. <a href="item00">Introdução ao Curso</a><br>
 
 ---
 

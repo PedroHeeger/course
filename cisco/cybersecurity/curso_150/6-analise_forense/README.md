@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 6 Structure:
-6. <a href="#item06">Análise Forense Digital e Análise e Resposta a Incidentes</a><br>
+6. <a href="item06">Análise Forense Digital e Análise e Resposta a Incidentes</a><br>
   6.1 <a href="#item06.01">Introdução</a><br>
   6.2 <a href="#item06.02">Manuseio de evidências e atribuição de ataque</a><br>
   6.3 <a href="#item06.03">O Cyber Kill Chain</a><br>

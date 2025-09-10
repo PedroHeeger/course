@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 3 Structure:
-3. <a href="#item03">Inteligência de Ameaças</a><br>
+3. <a href="item03">Inteligência de Ameaças</a><br>
   3.1 <a href="#item03.01">Introdução</a><br>
   3.2 <a href="#item03.02">Fontes de informação</a><br>
   3.3 <a href="#item03.03">Serviços de inteligência de ameaças</a><br>

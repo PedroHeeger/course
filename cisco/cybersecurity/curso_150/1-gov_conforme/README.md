@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 1 Structure:
-1. <a href="#item01">Governança e Conformidade</a><br>
+1. <a href="item01">Governança e Conformidade</a><br>
   1.1 <a href="#item01.01">Introdução</a><br>
   1.2 <a href="#item01.02">Governança</a><br>
   1.3 <a href="#item01.03">A ética da segurança cibernética</a><br>
@@ -71,7 +71,7 @@ Governança não deve ser confundida com o gerenciamento de segurança de TI. En
 
 👥 Funções na Administração de Dados   
 Bons programas de governança de dados envolvem diferentes papéis, cada um com responsabilidades específicas:
-- Proprietário dos Dados: Garante políticas, classificação correta dos ativos e critérios de acesso.
+- Proprietário dos dados: Garante políticas, classificação correta dos ativos e critérios de acesso.
 - Controlador de dados: Define como e para quê os dados pessoais são processados.
 - Processador de dados: Lida com dados pessoais em nome do controlador.
 - Custodiante dos dados: Aplica controles técnicos segundo regras do proprietário dos dados.
@@ -124,7 +124,7 @@ Profissionais de segurança têm habilidades semelhantes às de criminosos digit
 <a name="item01.03"><h4>1.3 A ética da segurança cibernética</h4></a>[Back to summary](#item01)
 
 ⚖️ Ética e Segurança Digital   
-A ética é o conjunto de princípios que nos ajuda a diferenciar o certo do errado. No campo da segurança digital, ela guia especialistas a equilibrar a lei, os interesses da empresa e os direitos das pessoas ao tomar decisões difíceis. Muitas vezes, não há resposta óbvia — a conduta correta depende da análise do contexto e da perspectiva ética utilizada.
+A ética é o conjunto de princípios que nos ajuda a diferenciar o certo do errado. No campo da segurança digital, ela guia especialistas a equilibrar a lei, os interesses da empresa e os direitos das pessoas ao tomar decisões difíceis. Muitas vezes, não há resposta óbvia, a conduta correta depende da análise do contexto e da perspectiva ética utilizada.
 - 📊 Ética Utilitarista
     - A visão utilitarista, defendida por filósofos como Jeremy Bentham e John Stuart Mill, considera que o valor de uma ação está em suas consequências. Portanto, uma decisão é ética quando gera o maior benefício para o maior número de pessoas, mesmo que não seja a solução perfeita para todos os envolvidos.
 - 🛡️ Abordagem de Direitos
@@ -133,7 +133,17 @@ A ética é o conjunto de princípios que nos ajuda a diferenciar o certo do err
     - Essa perspectiva entende que o comportamento ético deve fortalecer a comunidade como um todo. As decisões não devem atender apenas a interesses individuais, mas contribuir para metas e valores coletivos, promovendo solidariedade e responsabilidade social.
 
 💻 Os Dez Mandamentos da Ética em Informática   
-O Computer Ethics Institute criou dez princípios que funcionam como guia de conduta no uso de computadores: não causar danos a outras pessoas, não invadir arquivos, não roubar, não mentir, não usar software sem licença, não se apropriar de propriedade intelectual alheia, não usar recursos de terceiros sem autorização, considerar os impactos sociais das suas criações e, acima de tudo, agir sempre com respeito.
+O Computer Ethics Institute criou dez princípios que funcionam como guia de conduta no uso de computadores:
+- Não usar um computador para prejudicar outras pessoas;
+- Não interferir no trabalho de computação de outras pessoas;
+- Não invadir arquivos de computador de outras pessoas;
+- Não usar um computador para roubar;
+- Não usar um computador para mentir;
+- Não copiar ou usar software proprietário sem pagar;
+- Não usar os recursos do computador de outras pessoas sem autorização;
+- Não se apropriar de propriedade intelectual alheia;
+- Considerar os impactos sociais das suas criações;
+- Sempre usar um computador com consideração e respeito aos colegas.
 
 ✅ Exemplos de Ações Éticas   
 Algumas atitudes reforçam a confiança e o respeito no uso da tecnologia, mostrando como a ética digital deve ser aplicada na prática:
