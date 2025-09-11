@@ -29,7 +29,18 @@
 ---
 
 ### Course Module 1 Structure:
-1. <a href="item01">Governança e Conformidade</a><br>
+1. <a name="item01">Governança e Conformidade</a><br>
+1.1 <a href="#item01.01">Introdução</a><br>
+1.2 <a href="#item01.02">Governança</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.2.1 <a href="#item01.02.01">Laboratório - Desenvolver Políticas e procedimentos de segurança cibernética</a><br>
+1.3 <a href="#item01.03">A ética da segurança cibernética</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.3.1 <a href="#item01.03.01">Laboratório - Crie seu código pessoal de conduta ética</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.3.2 <a href="#item01.03.02">Laboratório - Recomendar medidas de segurança para atender aos requisitos de conformidade</a><br>
+1.4 <a href="#item01.04">Estrutura de gerenciamento de segurança de TI</a><br>
+1.5 <a href="#item01.05">Resumo de Governança e conformidade</a><br>
+
+
+1. <a name="item01">Governança e Conformidade</a><br>
   1.1 <a href="#item01.01">Introdução</a><br>
   1.2 <a href="#item01.02">Governança</a><br>
     1.2.1 <a href="#item01.02.01">Laboratório - Desenvolver Políticas e procedimentos de segurança cibernética</a><br>
