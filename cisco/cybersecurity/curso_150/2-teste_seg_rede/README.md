@@ -35,9 +35,11 @@
 2. <a href="item02">Teste de Segurança de Rede</a><br>
   2.1 <a href="#item02.01">Introdução</a><br>
   2.2 <a href="#item02.02">Avaliações de segurança</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.2.1 <a href="#item02.02.01">Laboratório - Packet Tracer - Use comandos de diagnóstico</a><br>
   2.3 <a href="#item02.03">Técnicas de teste de segurança</a><br>
   2.4 <a href="#item02.04">Ferramentas de teste de segurança de rede</a><br>
   2.5 <a href="#item02.05">Teste de penetração</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.5.1 <a href="#item02.05.01">Laboratório - Use o Wireshark para comparar o tráfego Telnet e SSH</a><br>
   2.6 <a href="#item02.06">Resumo de teste de segurança de rede</a><br>
 
 ---
@@ -54,7 +56,7 @@ O objetivo desse curso foi apresentar o software **PowerShell**, introduzindo o 
 <a name="item02.01"><h4>2.1 Introdução</h4></a>[Back to summary](#item02)
 
 💻 Teste de Segurança de Rede   
-Como técnico de segurança digital, o papel principal é proteger a rede contra ameaças e ataques. Isso envolve atuar junto a uma equipe de profissionais de defesa cibernética, utilizando técnicas e ferramentas que permitem identificar falhas antes que sejam exploradas por invasores. Neste módulo, serão abordados recursos essenciais para avaliação de vulnerabilidades, incluindo:
+Como técnico de segurança digital, o papel principal é proteger a rede contra ameaças e ataques. Isso envolve atuar junto a uma equipe de profissionais de defesa cibernética, utilizando técnicas e ferramentas que permitem identificar falhas antes que sejam exploradas por invasores. Neste módulo, foram abordados recursos essenciais para avaliação de vulnerabilidades, incluindo:
 - Ferramentas de linha de comando: utilizadas para coletar informações sobre a rede e diagnosticar problemas de conectividade.
 - ST&E (Security Test & Evaluation): processo que verifica se os mecanismos de segurança implementados estão funcionando corretamente.
 - Testes de penetração: simulações de ataques reais que ajudam a entender como o sistema resistiria diante de uma ameaça.
@@ -68,10 +70,10 @@ Um scanner de vulnerabilidades é uma ferramenta que avalia computadores, redes,
 
 🔍 O que os Scanners Detectam   
 Esses scanners verificam diferentes tipos de fragilidades:
-- Uso de senhas padrão ou senhas fracas.
-- Patches de segurança não aplicados.
-- Portas abertas que expõem serviços.
-- Erros de configuração em softwares e sistemas operacionais.
+- Uso de senhas padrão ou senhas fracas;
+- Patches de segurança não aplicados;
+- Portas abertas que expõem serviços;
+- Erros de configuração em softwares e sistemas operacionais;
 - Endereços IP ativos, incluindo dispositivos inesperados conectados à rede.
 
 🌐 Importância e Ferramentas Populares   
