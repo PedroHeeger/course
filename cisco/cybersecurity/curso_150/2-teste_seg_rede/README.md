@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 2 Structure:
-2. <a href="item02">Teste de Segurança de Rede</a><br>
+2. <a name="item02">Teste de Segurança de Rede</a><br>
   2.1 <a href="#item02.01">Introdução</a><br>
   2.2 <a href="#item02.02">Avaliações de segurança</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;2.2.1 <a href="#item02.02.01">Laboratório - Packet Tracer - Use comandos de diagnóstico</a><br>
