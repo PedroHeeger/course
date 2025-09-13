@@ -45,7 +45,7 @@
 ---
 
 ### Objective:
-O objetivo desse curso foi apresentar o software **PowerShell**, introduzindo o básico sobre essa ferramenta.
+O objetivo deste módulo foi apresentar os fundamentos de testes de segurança de rede, abordando técnicas, ferramentas e práticas essenciais para identificar vulnerabilidades em sistemas, redes e aplicações. Foram exploradas avaliações de segurança utilizando scanners automatizados, varreduras de rede, testes de penetração e análise de tráfego, destacando a importância de diferenciar abordagens invasivas e não invasivas, credenciadas e não credenciadas, além de gerenciar falsos positivos e negativos. Também foram apresentados recursos de monitoramento avançado, como SIEM e SOAR, que permitem coletar, correlacionar e automatizar respostas a incidentes, garantindo uma visão integrada da segurança. O módulo contemplou, ainda, a aplicação de princípios de segurança das operações, ST&E e hardening de sistemas, bem como a utilização de ferramentas clássicas e modernas, como Nmap, SuperScan, Metasploit, Tripwire, L0phtCrack e GFI LanGuard, reforçando a capacidade de mapear a infraestrutura, identificar falhas e implementar defesas proativas e contínuas.
 
 ### Folder Structure:
 - [README.md](./README.md): Este documento de README, escrito em **Markdown**, descrevendo todo conteúdo realizado neste módulo.
@@ -127,6 +127,18 @@ O SOAR complementa o SIEM, coletando informações de várias fontes e automatiz
 - Resposta a incidentes.
 
 Quando integrado ao SIEM, o SOAR potencializa a capacidade de detectar, correlacionar e reagir rapidamente a ameaças.
+
+<a name="item02.02.01"><h4>2.2.1 Laboratório - Packet Tracer - Use comandos de diagnóstico</h4></a>[Back to summary](#item02)
+
+##### Parte 1: Reunir as configurações do dispositivo de usuário final
+
+
+##### Parte 2: Coletar informações sobre a rede e os dispositivos
+
+##### Parte 3: Diagnosticar problemas de conectividade
+
+
+
 
 <a name="item02.03"><h4>2.3 Técnicas de teste de segurança</h4></a>[Back to summary](#item02)
 
@@ -290,6 +302,16 @@ A segurança física é um fator crítico para prevenir sniffing malicioso, gara
 📌 Conclusão   
 O teste de penetração permite que empresas compreendam seus pontos fracos antes de serem explorados. Aliado a packet analyzers e técnicas de sniffing, oferece uma visão completa da postura de segurança, permitindo decisões informadas para proteger sistemas, redes e dados sensíveis.
 
+<a name="item02.05.01"><h4>2.5.1 Laboratório - Use o Wireshark para comparar o tráfego Telnet e SSH</h4></a>[Back to summary](#item02)
+
+##### Parte 1: Usar o Wireshark para capturar o tráfego do navegador da Web.
+
+##### Parte 2: Usar o Wireshark para capturar o tráfego Telnet.
+
+
+##### Parte 3: Usar o Wireshark para capturar o tráfego SSH.
+
+
 <a name="item02.06"><h4>2.6 Resumo de teste de segurança de rede</h4></a>[Back to summary](#item02)
 
 🔍 Scanners de Vulnerabilidades   
@@ -322,12 +344,13 @@ Principais tipos de testes de rede:
 - Detecção de vírus
 
 🔧 Ferramentas de Testes de Rede   
-- Nmap / Zenmap: varredura de portas TCP/UDP, identificação de sistemas operacionais.
-- SuperScan: scanner de portas para Windows, requer privilégios de administrador.
-- Tripwire: verificador de integridade.
-- LOphtCrack: quebra de senha.
-- Metasploit: plataforma de exploração de falhas.
-- SIEMs e GFI LANguard: análise, correlação e gerenciamento de vulnerabilidades.
+- **Nmap / Zenmap:** realizam varredura de portas TCP/UDP e ajudam a identificar sistemas operacionais e serviços ativos em uma rede.  
+- **SuperScan:** scanner de portas para Windows, usado para mapear serviços ativos; requer privilégios de administrador para funcionar corretamente.  
+- **Tripwire:** ferramenta de verificação de integridade de arquivos e sistemas, detectando alterações não autorizadas.  
+- **LOphtCrack:** utilizado para auditoria de senhas, permitindo identificar senhas fracas ou comprometidas.  
+- **Metasploit:** plataforma para testes de penetração que automatiza a exploração de vulnerabilidades conhecidas.  
+- **SIEMs:** sistemas que coletam, correlacionam e analisam eventos de segurança para detecção de incidentes.  
+- **GFI LANguard:** ferramenta de gerenciamento de vulnerabilidades e auditoria de rede, oferecendo relatórios detalhados sobre falhas de segurança.
 
 🎯 Testes de Penetração   
 Os pen tests simulam ataques reais para identificar pontos fracos antes que criminosos os explorem.
@@ -347,6 +370,4 @@ Algumas organizações vão além e realizam exercícios de Red/Blue Team:
 🌐 Analisadores de Pacotes (Packet Analyzers)   
 Ferramentas que capturam e registram tráfego de rede.
 - Uso legítimo: análise de desempenho, resolução de problemas, verificação de largura de banda.
-- Uso malicioso: sniffing de credenciais, espionagem de comunicação.
-
-Exemplo: sniffers que conseguem observar todo o tráfego da rede ou filtrar dados específicos (como logins e senhas).
+- Uso malicioso: sniffing de credenciais, espionagem de comunicação. Exemplo: sniffers que conseguem observar todo o tráfego da rede ou filtrar dados específicos (como logins e senhas).
