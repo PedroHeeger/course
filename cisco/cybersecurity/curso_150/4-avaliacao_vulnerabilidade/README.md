@@ -32,7 +32,7 @@
 ---
 
 ### Course Module 4 Structure:
-4. <a name="#item04">Avaliação de Vulnerabilidade de Endpoint</a><br>
+4. <a name="item04">Avaliação de Vulnerabilidade de Endpoint</a><br>
   4.1 <a href="#item04.01">Introdução</a><br>
   4.2 <a href="#item04.02">Perfil de rede e servidor</a><br>
   4.3 <a href="#item04.03">Sistema de pontuação de vulnerabilidade comum (CVSS)</a><br>
