@@ -253,12 +253,12 @@ A MITRE desenvolveu, em 1999, o banco de dados **Common Vulnerabilities and Expo
 Com base nesse recurso, a Parte 1 deste laboratório envolveu a consulta à base CVE no site da MITRE, incluindo a análise da seção de **Terminologia** para responder às perguntas da Etapa 1. Em seguida, na Etapa 2, foi realizada uma pesquisa no **Cisco Security Advisories**, aplicando o filtro `Impacto` para listar apenas os CVEs classificados como críticos e escolher um, conforme imagem 01. Por fim, o CVE selecionado foi consultado diretamente no programa da MITRE na Etapa 3, permitindo uma análise detalhada da vulnerabilidade.
 
 <div align="center"><figure>
-    <img src="../0-aux/img01" alt="img01"><br>
+    <img src="../0-aux/md3-img01.png" alt="img01"><br>
     <figcaption>Imagem 01.</figcaption>
 </figure></div><br>
 
 <div align="center"><figure>
-    <img src="../0-aux/img02" alt="img02"><br>
+    <img src="../0-aux/md3-img02.png" alt="img02"><br>
     <figcaption>Imagem 02.</figcaption>
 </figure></div><br>
 
@@ -295,12 +295,12 @@ A Parte 2 deste laboratório teve como foco a investigação do **MITRE ATT&CK**
 Na primeira etapa, foi acessado o site oficial do **MITRE ATT&CK** conforme mostrado na imagem 03, e, em seguida, na etapa 2, foram analisadas a tática de *Reconnaissance* (Reconhecimento) e a técnica de *Phishing for Information*, conforme imagem 04. O portal apresentava uma matriz de ataque voltada para empresas, em que cada coluna correspondia a uma tática (como reconhecimento ou desenvolvimento de recursos) e, abaixo delas, eram listadas as técnicas empregadas pelos agentes maliciosos. Cada técnica era acompanhada de uma breve descrição sobre como podia ser utilizada em um ataque, e, ao clicar no link associado, era possível acessar informações detalhadas, incluindo métodos de execução e formas de mitigação.
 
 <div align="center"><figure>
-    <img src="../0-aux/img03" alt="img03"><br>
+    <img src="../0-aux/md3-img03.png" alt="img03"><br>
     <figcaption>Imagem 03.</figcaption>
 </figure></div><br>
 
 <div align="center"><figure>
-    <img src="../0-aux/img04" alt="img04"><br>
+    <img src="../0-aux/md3-img04.png" alt="img04"><br>
     <figcaption>Imagem 04.</figcaption>
 </figure></div><br>
 
@@ -327,7 +327,7 @@ Na etapa 3 a tática foi alterada para *Command and Control* (Comando e Controle
   - Prevenção de intrusão de rede: Sistemas de detecção e prevenção de intrusão de rede que utilizam assinaturas de rede para identificar tráfego de malware adversário específico podem ser usados ​​para mitigar a atividade no nível da rede. As assinaturas geralmente representam indicadores únicos dentro de protocolos e podem ser baseadas na técnica de ofuscação específica usada por um adversário ou ferramenta específica, e provavelmente serão diferentes entre as diferentes famílias e versões de malware. Os adversários provavelmente alterarão as assinaturas C2 da ferramenta ao longo do tempo ou construirão protocolos de forma a evitar a detecção por ferramentas defensivas comuns.
 
 <div align="center"><figure>
-    <img src="../0-aux/img05" alt="img05"><br>
+    <img src="../0-aux/md3-img05.png" alt="img05"><br>
     <figcaption>Imagem 05.</figcaption>
 </figure></div><br>
 
@@ -340,7 +340,7 @@ A quarta e última etapa consistiu em investigar a tática *Impact* (Impacto) e 
   - Backup de dados: Considere implementar planos de recuperação de desastres de TI que contenham procedimentos para fazer backups regulares de dados que podem ser usados ​​para restaurar dados organizacionais. Certifique-se de que os backups sejam armazenados fora do sistema e protegidos de métodos comuns que os adversários podem usar para obter acesso e destruir os backups para evitar a recuperação.
 
 <div align="center"><figure>
-    <img src="../0-aux/img06" alt="img06"><br>
+    <img src="../0-aux/md3-img06.png" alt="img06"><br>
     <figcaption>Imagem 06.</figcaption>
 </figure></div><br>
 
@@ -369,12 +369,12 @@ Na Etapa 2, o hash foi utilizado em diferentes ferramentas de reputação de arq
   - Target Machine: Intel 386 or later processors and compatible processors.
 
 <div align="center"><figure>
-    <img src="../0-aux/img07" alt="img07"><br>
+    <img src="../0-aux/md3-img07.png" alt="img07"><br>
     <figcaption>Imagem 07.</figcaption>
 </figure></div><br>
 
 <div align="center"><figure>
-    <img src="../0-aux/img08" alt="img08"><br>
+    <img src="../0-aux/md3-img08.png" alt="img08"><br>
     <figcaption>Imagem 08.</figcaption>
 </figure></div><br>
 
