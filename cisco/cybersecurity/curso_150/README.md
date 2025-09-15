@@ -76,17 +76,16 @@
   6.6 <a href="./6-analise_forense/README.md#item06.06">Recuperação de desastres</a><br>
   6.7 <a href="./6-analise_forense/README.md#item06.07">Análise forense digital e análise de incidentes e resumo de resposta</a><br>
 
-1.1.6 - lab: Laboratório - Desenvolver Políticas e procedimentos de segurança cibernética
-1.2.14 - lab: Laboratório - Crie seu código pessoal de conduta ética
-1.2.15 - lab: Laboratório - Recomendar medidas de segurança para atender aos requisitos de conformidade
-2.1.7 - lab: Packet Tracer - Use comandos de diagnóstico
-2.4.8 - lab: Laboratório - Use o Wireshark para comparar o tráfego Telnet e SSH
-3.1.4 - lab: Laboratório - Avaliar relatórios de segurança digital
-3.2.8 - lab: Laboratório - identifique inteligência relevante de ameaças
-4.2.7 - lab: Laboratório - Avaliar vulnerabilidades
+
+
+
+
+
 5.1.3 - lab: Laboratório - Gerenciamento de risco
 5.2.6 - lab: Laboratório - Análise de riscos
 5.3.5 - lab: Laboratório - Implementação de controles de segurança
+
+6.1.12 - Laboratório - Coletar informações do sistema depois de um incidente
 
 ---
 
